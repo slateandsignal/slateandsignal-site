@@ -73,6 +73,11 @@
 
   .btn{display:inline-block;padding:16px 40px;font-size:12px;letter-spacing:.22em;text-transform:uppercase;font-weight:500;transition:all .25s;}
   .btn-dark{background:var(--black);color:var(--white);}
+  .btn-hover-swap{position:relative;overflow:hidden;}
+  .btn-hover-swap .btn-default,.btn-hover-swap .btn-hover{display:block;transition:transform .25s ease;}
+  .btn-hover-swap .btn-hover{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;transform:translateY(100%);}
+  .btn-hover-swap:hover .btn-default{transform:translateY(-100%);}
+  .btn-hover-swap:hover .btn-hover{transform:translateY(0);}
   .btn-dark:hover{background:var(--gold-deep);color:var(--black);}
   .btn-line{border:1px solid rgba(13,13,13,.3);}
   .btn-line:hover{border-color:var(--gold-deep);color:var(--gold-deep);}
@@ -174,7 +179,7 @@
     <h1 style="margin-top:22px;">Personal Brand Discovery</h1>
     <p class="hero-sub">We provide the clarity so you can build with confidence.</p>
     <div class="hero-ctas">
-      <a class="btn btn-dark" href="#report">Coming Soon</a>
+      <a class="btn btn-dark btn-hover-swap" href="#report"><span class="btn-default">The Signal Report</span><span class="btn-hover">Coming Soon</span></a>
       <a class="btn btn-line" href="#profile">The Signal Profile</a>
     </div>
   </div>
