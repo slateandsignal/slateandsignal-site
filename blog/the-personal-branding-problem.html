@@ -39,6 +39,8 @@
   .nav-links a:hover{color:var(--gold-deep);}
   .nav-btn{border:1px solid var(--black);padding:10px 24px;}
   .nav-btn:hover{background:var(--black);color:var(--white);}
+  .nav-toggle{display:none;}
+  .nav-toggle-label{display:none;cursor:pointer;font-size:24px;line-height:1;padding:8px;}
 
   .btn{display:inline-block;padding:16px 40px;font-size:12px;letter-spacing:.22em;text-transform:uppercase;font-weight:500;transition:all .25s;}
   .btn-dark{background:var(--black);color:var(--white);}
@@ -63,7 +65,13 @@
   .foot-logo img{height:72px;width:auto;}
 
   @media(max-width:920px){
-    .nav-links a:not(.nav-btn){display:none;}
+        .nav-inner{position:relative;}
+    .nav-links{position:fixed;top:80px;left:0;right:0;background:var(--white);flex-direction:column;align-items:stretch;gap:0;max-height:0;overflow:hidden;transition:max-height .3s ease;border-bottom:1px solid rgba(13,13,13,.08);}
+    .nav-links a{padding:18px 32px;border-top:1px solid rgba(13,13,13,.06);}
+    .nav-links a:not(.nav-btn){display:block;}
+    .nav-links .nav-btn{margin:16px 32px;text-align:center;border-top:none;}
+    .nav-toggle-label{display:block;}
+    .nav-toggle:checked ~ .nav-links{max-height:500px;}
     .post-hero img{height:440px;}
   }
 </style>
@@ -73,6 +81,8 @@
 <nav>
   <div class="wrap nav-inner">
     <a class="nav-logo" href="/" aria-label="Slate and Signal home"><img src="../images/logo-dark.png" alt="Slate &amp; Signal"></a>
+    <input type="checkbox" id="nav-toggle" class="nav-toggle">
+    <label for="nav-toggle" class="nav-toggle-label">&#9776;</label>
     <div class="nav-links">
       <a href="/#profile">Signal Profile</a>
       <a href="/#report">Signal Report</a>
