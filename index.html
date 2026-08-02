@@ -50,7 +50,7 @@
   :root{
     --black:#0D0D0D;
     --white:#FFFFFF;
-    --gold:#F4D475;
+    --gold:#FFDE7A;
     --gold-deep:#C9A227;
     --serif:'Cormorant Garamond', Georgia, serif;
     --sans:'DM Sans', -apple-system, sans-serif;
@@ -85,6 +85,7 @@
   .btn-line:hover{border-color:var(--gold-deep);color:var(--gold-deep);}
   .btn-gold{background:var(--gold);color:var(--black);}
   .btn-gold:hover{background:var(--white);}
+  .hero-ctas .btn-gold.btn-hover-swap:hover{background:var(--gold);}
 
   header{padding-top:80px;display:grid;grid-template-columns:1.05fr .95fr;min-height:92vh;}
   .hero-copy{display:flex;flex-direction:column;justify-content:center;padding:80px 60px 80px max(32px, calc((100vw - 1140px)/2 + 32px));}
@@ -189,7 +190,7 @@
     <h1 style="margin-top:22px;">Personal Brand Discovery</h1>
     <p class="hero-sub">We provide the clarity so you can build with confidence.</p>
     <div class="hero-ctas">
-      <a class="btn btn-dark btn-hover-swap" href="#report"><span class="btn-default">The Signal Report</span><span class="btn-hover">Coming Soon</span></a>
+      <a class="btn btn-gold btn-hover-swap" href="#report"><span class="btn-default">The Signal Report</span><span class="btn-hover">Coming Soon</span></a>
       <a class="btn btn-line" href="#profile">The Signal Profile</a>
     </div>
   </div>
