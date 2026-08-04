@@ -1,0 +1,865 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Signal Profile, William Covey</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500&display=swap" rel="stylesheet">
+ <style>
+        *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+        :root {
+            --black:   #0D0D0D;
+            --dark:    #111111;
+            --card:    #1A1A1A;
+            --border:  #2A2A2A;
+            --white:   #FFFFFF;
+            --dim:     #E8E8E8;
+            --dimmer:  #FFFFFF;
+            --gold:    #F4D475;
+            --serif:   'Cormorant Garamond', Georgia, serif;
+            --sans:    'DM Sans', -apple-system, sans-serif;
+        }
+
+        html {
+            background: var(--black);
+            color: var(--white);
+            font-family: var(--sans);
+            font-weight: 300;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        .page {
+            max-width: 900px;
+            margin: 0 auto;
+            position: relative;
+        }
+
+        .section {
+            padding: 80px 64px;
+            border-bottom: 1px solid #1A1A1A;
+        }
+
+        .section-light {
+            background: #FFFFFF;
+            color: #111111;
+            border-bottom: 1px solid #E8E8E8;
+        }
+
+        .sec-num {
+            font-size: 10px;
+            letter-spacing: 0.5em;
+            text-transform: uppercase;
+            color: var(--gold);
+            margin-bottom: 12px;
+        }
+
+        .section-light .sec-num { color: var(--gold); }
+
+        .sec-title {
+            font-family: var(--serif);
+            font-size: 48px;
+            font-weight: 300;
+            line-height: 1.05;
+            letter-spacing: -0.02em;
+            color: var(--white);
+        }
+
+        .section-light .sec-title { color: #111111; }
+
+        .sec-sub {
+            font-size: 12px;
+            color: var(--dim);
+            line-height: 1.7;
+            margin-top: 16px;
+            max-width: 440px;
+        }
+
+        .section-light .sec-sub { color: #000000; }
+
+        #cover {
+            min-height: 100vh;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            border-bottom: 1px solid #1A1A1A;
+        }
+
+        .cover-left {
+            padding: 80px 64px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            border-right: 1px solid #1A1A1A;
+        }
+
+        .cover-right {
+            padding: 80px 64px;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+        }
+
+        .cover-brand {
+            font-size: 9px;
+            letter-spacing: 0.5em;
+            text-transform: uppercase;
+            color: var(--gold);
+        }
+
+        .cover-label {
+            font-size: 10px;
+            letter-spacing: 0.4em;
+            text-transform: uppercase;
+            color: var(--gold);
+            margin-bottom: 20px;
+        }
+
+        .cover-name {
+            font-family: var(--serif);
+            font-size: 72px;
+            font-weight: 300;
+            line-height: 0.95;
+            letter-spacing: -0.03em;
+            overflow-wrap: break-word;
+            word-break: break-word;
+        }
+
+        .cover-meta {
+            margin-top: 40px;
+        }
+
+        .cover-meta-row {
+            display: flex;
+            justify-content: space-between;
+            border-top: 1px solid #1A1A1A;
+            padding: 14px 0;
+            font-size: 11px;
+        }
+
+        .cover-meta-label { color: var(--gold); letter-spacing: 0.1em; text-transform: uppercase; }
+        .cover-meta-value { color: var(--white); }
+
+        .cover-archetype-card {
+            border: 1px solid #1A1A1A;
+            padding: 36px 40px;
+            margin-bottom: 32px;
+        }
+
+        .cover-archetype-label {
+            font-size: 9px;
+            letter-spacing: 0.4em;
+            text-transform: uppercase;
+            color: var(--gold);
+            margin-bottom: 16px;
+        }
+
+        .cover-archetype-name {
+            font-family: var(--serif);
+            font-size: 28px;
+            font-weight: 300;
+            font-style: italic;
+            line-height: 1.2;
+            color: var(--white);
+            margin-bottom: 16px;
+        }
+
+        .cover-archetype-desc {
+            font-size: 12px;
+            color: var(--dim);
+            line-height: 1.85;
+        }
+
+        .strength-display {
+            display: flex;
+            align-items: baseline;
+            gap: 8px;
+            margin-bottom: 8px;
+        }
+
+        .strength-number {
+            font-family: var(--serif);
+            font-size: 80px;
+            font-weight: 300;
+            line-height: 1;
+            color: var(--white);
+        }
+
+        .strength-denom {
+            font-size: 18px;
+            color: var(--dimmer);
+            font-family: var(--serif);
+        }
+
+        .strength-label {
+            font-size: 9px;
+            letter-spacing: 0.4em;
+            text-transform: uppercase;
+            color: var(--gold);
+            margin-bottom: 16px;
+        }
+
+        .strength-bar-wrap {
+            height: 2px;
+            background: #1A1A1A;
+            width: 100%;
+            margin-bottom: 8px;
+        }
+
+        .strength-bar {
+            height: 2px;
+            background: var(--gold);
+            width: 0;
+            transition: width 1.4s cubic-bezier(0.4,0,0.2,1);
+        }
+
+        .themes-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1px;
+            background: #E0E0E0;
+            margin-top: 48px;
+        }
+
+        .theme-card {
+            background: #FFFFFF;
+            padding: 32px 36px;
+        }
+
+        .theme-num {
+            font-size: 9px;
+            letter-spacing: 0.4em;
+            text-transform: uppercase;
+            color: #000000;
+            margin-bottom: 12px;
+        }
+
+        .theme-name {
+            font-family: var(--serif);
+            font-size: 22px;
+            font-weight: 400;
+            color: #111111;
+            margin-bottom: 12px;
+            line-height: 1.25;
+        }
+
+        .theme-desc {
+            font-size: 12px;
+            color: #000000;
+            line-height: 1.85;
+        }
+
+        .archetype-inner {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 80px;
+            margin-top: 48px;
+            align-items: start;
+        }
+
+        .archetype-main {
+            font-family: var(--serif);
+            font-size: 36px;
+            font-weight: 300;
+            font-style: italic;
+            line-height: 1.25;
+            color: var(--white);
+            margin-bottom: 20px;
+        }
+
+        .archetype-match {
+            font-size: 10px;
+            letter-spacing: 0.25em;
+            text-transform: uppercase;
+            color: var(--gold);
+            margin-bottom: 24px;
+        }
+
+        .archetype-body {
+            font-size: 13px;
+            color: var(--dim);
+            line-height: 1.95;
+        }
+
+        .statement-text {
+            font-family: var(--serif);
+            font-size: 27px;
+            font-weight: 300;
+            line-height: 1.65;
+            color: var(--white);
+            max-width: 720px;
+            margin-top: 48px;
+        }
+
+        .statement-text em {
+            font-style: italic;
+            color: var(--gold);
+        }
+
+        .pillars-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: 1px;
+            background: #E0E0E0;
+            margin-top: 48px;
+        }
+
+        .pillar-card {
+            background: #FFFFFF;
+            padding: 36px 28px;
+        }
+
+        .pillar-num {
+            font-size: 9px;
+            letter-spacing: 0.4em;
+            text-transform: uppercase;
+            color: #000000;
+            margin-bottom: 16px;
+        }
+
+        .pillar-name {
+            font-family: var(--serif);
+            font-size: 24px;
+            font-weight: 400;
+            color: #111111;
+            line-height: 1.2;
+            margin-bottom: 16px;
+        }
+
+        .pillar-desc {
+            font-size: 12px;
+            color: #000000;
+            line-height: 1.85;
+            margin-bottom: 20px;
+        }
+
+        .pillar-example {
+            font-size: 11px;
+            color: #000000;
+            line-height: 1.7;
+            border-top: 1px solid #F0F0F0;
+            padding-top: 16px;
+            font-style: italic;
+        }
+
+        .blind-spot-inner {
+            max-width: 660px;
+            margin-top: 48px;
+        }
+
+        .blind-spot-headline {
+            font-family: var(--serif);
+            font-size: 34px;
+            font-weight: 300;
+            line-height: 1.35;
+            color: var(--white);
+            margin-bottom: 32px;
+        }
+
+        .blind-spot-body {
+            font-size: 13px;
+            color: var(--dim);
+            line-height: 1.95;
+        }
+
+        .blind-spot-body p + p {
+            margin-top: 20px;
+        }
+
+        .first-move-headline {
+            font-family: var(--serif);
+            font-size: 42px;
+            font-weight: 300;
+            font-style: italic;
+            line-height: 1.3;
+            margin-bottom: 32px;
+        }
+
+        .first-move-body {
+            font-size: 13px;
+            color: #000000;
+            line-height: 1.95;
+            max-width: 580px;
+        }
+
+        .first-move-body p + p {
+            margin-top: 20px;
+        }
+
+        .vi-dark-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1px;
+            background: #1A1A1A;
+            margin-top: 48px;
+        }
+
+        .vi-dark-card {
+            background: #111111;
+            padding: 36px;
+        }
+
+        .vi-label-dark {
+            font-size: 9px;
+            letter-spacing: 0.4em;
+            text-transform: uppercase;
+            color: #FFFFFF;
+            margin-bottom: 14px;
+        }
+
+        .vi-value-dark {
+            font-family: var(--serif);
+            font-size: 22px;
+            font-weight: 400;
+            color: var(--white);
+            line-height: 1.3;
+            margin-bottom: 12px;
+        }
+
+        .vi-body-dark {
+            font-size: 12px;
+            color: #FFFFFF;
+            line-height: 1.85;
+        }
+
+        .color-swatch-row {
+            display: flex;
+            gap: 8px;
+            margin-top: 18px;
+        }
+
+        .color-swatch {
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+        }
+
+        .notes-list {
+            margin-top: 48px;
+            max-width: 680px;
+        }
+
+        .note-item {
+            border-left: 1px solid #E0E0E0;
+            padding: 4px 0 36px 32px;
+        }
+
+        .note-item:last-child { padding-bottom: 0; }
+
+        .note-num {
+            font-size: 9px;
+            letter-spacing: 0.4em;
+            text-transform: uppercase;
+            color: var(--gold);
+            margin-bottom: 12px;
+        }
+
+        .note-text {
+            font-size: 12px;
+            color: #000000;
+            line-height: 1.95;
+        }
+
+        .strength-two-col {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 80px;
+            align-items: start;
+            margin-top: 48px;
+        }
+
+        .back-name {
+            font-family: var(--serif);
+            font-size: 56px;
+            font-weight: 300;
+            line-height: 1.0;
+            letter-spacing: 0.08em;
+            margin-bottom: 24px;
+        }
+
+        .back-star {
+            color: var(--gold);
+            font-size: 24px;
+            margin-bottom: 24px;
+        }
+
+        .back-tagline {
+            font-size: 10px;
+            letter-spacing: 0.35em;
+            text-transform: uppercase;
+            color: var(--gold);
+        }
+
+        .primer-section {
+            padding: 64px 64px 72px;
+            background: #FFFFFF;
+            color: #111111;
+            border-bottom: 1px solid #E8E8E8;
+        }
+
+        .primer-intro {
+            font-family: var(--serif);
+            font-style: italic;
+            font-size: 17px;
+            color: #333;
+            max-width: 620px;
+            line-height: 1.7;
+            margin-bottom: 40px;
+        }
+
+        .primer-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1px;
+            background: #E0E0E0;
+        }
+
+        .primer-card {
+            background: #FFFFFF;
+            padding: 28px 32px;
+        }
+
+        .primer-term {
+            font-family: var(--serif);
+            font-size: 19px;
+            font-weight: 400;
+            color: #111111;
+            margin-bottom: 10px;
+        }
+
+        .primer-def {
+            font-size: 12.5px;
+            color: #000000;
+            line-height: 1.85;
+        }
+
+        @media (max-width: 700px) {
+            .primer-section { padding: 48px 24px 56px; }
+            .primer-grid { grid-template-columns: 1fr; }
+            .section { padding: 48px 24px; }
+            #cover { grid-template-columns: 1fr; min-height: auto; }
+            .cover-left, .cover-right { padding: 48px 24px; border-right: none; }
+            .cover-name { font-size: 42px; }
+            .sec-title { font-size: 32px; }
+            .themes-grid { grid-template-columns: 1fr; }
+            .archetype-inner { grid-template-columns: 1fr; gap: 32px; }
+            .pillars-grid { grid-template-columns: 1fr; }
+            .vi-dark-grid { grid-template-columns: 1fr; }
+            .strength-two-col { grid-template-columns: 1fr; gap: 32px; }
+            .next-grid { grid-template-columns: 1fr !important; gap: 32px !important; }
+            .statement-text { font-size: 20px; }
+            .strength-number { font-size: 56px; }
+            .archetype-main { font-size: 26px; }
+            .blind-spot-headline { font-size: 26px; }
+            .first-move-headline { font-size: 30px; }
+        }
+    </style>
+</head>
+<body>
+<div class="page">
+
+<div id="cover">
+    <div class="cover-left">
+        <div class="cover-brand">SLATE &amp; SIGNAL, Signal Profile</div>
+        <div>
+            <div class="cover-label">Signal Profile</div>
+            <div class="cover-name">William<br>Covey</div>
+            <div class="cover-meta">
+                <div class="cover-meta-row">
+                    <span class="cover-meta-label">Date</span>
+                    <span class="cover-meta-value">August 2026</span>
+                </div>
+                <div class="cover-meta-row">
+                    <span class="cover-meta-label">Signal Strength</span>
+                    <span class="cover-meta-value">4 / 10</span>
+                </div>
+                <div class="cover-meta-row">
+                    <span class="cover-meta-label">Archetype</span>
+                    <span class="cover-meta-value">The Practical Philosopher</span>
+                </div>
+            </div>
+        </div>
+        <div style="font-size:9px; letter-spacing:0.3em; text-transform:uppercase; color:#FFFFFF;">Confidential</div>
+    </div>
+    <div class="cover-right">
+        <div class="cover-archetype-card">
+            <div class="cover-archetype-label">Archetype</div>
+            <div class="cover-archetype-name">The Practical Philosopher</div>
+            <div class="cover-archetype-desc">You think in systems and first principles, but your expression is grounded in real work. You're drawn to the big questions, the thinkers, the scriptures, the psychology of why people do what they do. At the same time, you're the person who can diagnose an electrical issue or untangle an administrative mess. You observe, you test reactions, you teach through doing.</div>
+        </div>
+        <div>
+            <div class="strength-label">Signal Strength</div>
+            <div class="strength-display">
+                <div class="strength-number">4</div>
+                <div class="strength-denom">/ 10</div>
+            </div>
+            <div class="strength-bar-wrap">
+                <div class="strength-bar" id="coverBar"></div>
+            </div>
+            <div style="font-size:11px; color:#FFFFFF; margin-top:10px; line-height:1.75;">
+ The signal here is real but scattered. Your answers point to someone with depth and range, but the through-line isn't obvious yet. What you're building (family temple work, cognitive reality for your family) sits in a completely different register from what people come to you for (administration advice, automotive troubleshooting). The interests are clear, the craft is clear, but how they connect to an audience or a content direction is still forming. </div>
+        </div>
+    </div>
+</div>
+
+<div class="primer-section">
+    <div class="sec-num" style="color:var(--gold);">Before You Read</div>
+    <div class="sec-title" style="color:#111111;">Interpretation<br>Guide</div>
+    <div class="primer-intro">A quick guide to the words in this profile, so nothing here leaves you guessing what it actually means for you.</div>
+    <div class="primer-grid">
+        <div class="primer-card">
+            <div class="primer-term">Signal</div>
+            <div class="primer-def">The pattern already running through your story, work, and instincts, whether or not you've named it yet. It's what people already sense about you before you say a word. Building a brand or a following works better when you build on a signal that's natural to you, instead of inventing one or chasing a trend that might be completely discordant with who you actually are. There shouldn't be any friction between you and what you're creating.</div>
+        </div>
+        <div class="primer-card">
+            <div class="primer-term">Archetype</div>
+            <div class="primer-def">The recognizable role your signal plays in other people's stories, the reason a stranger could describe what you do in one sentence to a friend. It shapes what you post, how you sound, and who ends up following you because they recognize the role you play.</div>
+        </div>
+        <div class="primer-card">
+            <div class="primer-term">Signal Strength</div>
+            <div class="primer-def">A 1 to 10 read of how clear and consistent your pattern is right now, based only on what you wrote. A lower number isn't a bad grade, it just means the pattern needs more specificity before it's ready to build content on. A higher number means you already have enough to start posting from today.</div>
+        </div>
+        <div class="primer-card">
+            <div class="primer-term">Suggested Direction</div>
+            <div class="primer-def">An actual recommendation. Where your answers point in terms of niche and what kind of content format genuinely fits how you communicate, so you're not staring at a blank page wondering where to start.</div>
+        </div>
+        <div class="primer-card">
+            <div class="primer-term">Content Pillars</div>
+            <div class="primer-def">Three real categories your future posts can live in, pulled from what's already true about you rather than invented. Instead of watching a thousand other videos to see how everyone else does it, wondering where to start, what to talk about, and what people even want to see, you can pick a pillar from this profile and have a clear direction for what to create.</div>
+        </div>
+    </div>
+</div>
+
+<div class="section section-light">
+    <div class="sec-num">01</div>
+    <div class="sec-title">Suggested<br>Direction</div>
+    <div class="sec-sub">Where these answers point, and how you could actually build with them.</div>
+
+    <div style="margin-top:48px;">
+        <div style="font-size:9px; letter-spacing:0.4em; text-transform:uppercase; color:var(--gold); margin-bottom:20px;">Niche Directions</div>
+        <div class="pillar-card" style="border:1px solid #E0E0E0; margin-bottom:1px;">
+            <div class="pillar-num">Direction 01</div>
+            <div class="pillar-name">Faith-Grounded Systems Thinking</div>
+            <div class="pillar-desc">You could build around the intersection of LDS theology, history, and practical problem-solving. This would be content for people who want to think seriously about their faith, understand the historical and doctrinal foundations, and apply that thinking to how they organize their lives, raise their families, and make decisions. It's Glenn Beck's model but rooted in LDS specificity instead of general conservatism. The audience is people who want substance.</div>
+        </div>
+        <div class="pillar-card" style="border:1px solid #E0E0E0; margin-bottom:1px;">
+            <div class="pillar-num">Direction 02</div>
+            <div class="pillar-name">Observation and Human Behavior</div>
+            <div class="pillar-desc">You could lean into your psychology background and your habit of saying things for a reaction. This would be content about why people do what they do, what you've noticed from observing individuals, and how understanding human behavior helps you navigate everything from friendships to fatherhood to church leadership. The audience is people who want to understand the mechanics of interaction.</div>
+        </div>
+        <div class="pillar-card" style="border:1px solid #E0E0E0;">
+            <div class="pillar-num">Direction 03</div>
+            <div class="pillar-name">Practical Mentorship for Young Men</div>
+            <div class="pillar-desc">You could build around the lessons you learned from farm work, the Marines, fatherhood, and church service, framed as mentorship for younger men trying to figure out discipline, work, faith, and family. This would be advice grounded in real experience. The audience is men who want a model. It's closer to what people already come to you for, just made public and organized.</div>
+        </div>
+    </div>
+
+    <div style="margin-top:56px;">
+        <div style="font-size:9px; letter-spacing:0.4em; text-transform:uppercase; color:var(--gold); margin-bottom:20px;">Content Format</div>
+        <div class="pillar-card" style="border:1px solid #1A1A1A;">
+            <div class="pillar-name">Written reflections with occasional project documentation.</div>
+            <div class="pillar-desc">Based on your instinct to ponder, take notes, and talk, combined with your interest in good quotes and your willingness to show a project in progress, the format that fits you best is written content: essays, reflections, or structured commentary on a platform like Substack or a simple blog. You could pair that with occasional photo or video documentation of a project you're working on, shown without narration, just the work itself. This lets you think on the page, share quotes that shaped your thinking, and occasionally show the tangible results of what you're building. It's substance content. Monetization would come from paid subscriptions if the writing develops a following, or from offering one-on-one consulting in the areas where people already come to you for advice.</div>
+            <div class="pillar-example">A weekly essay on a principle from LDS history or scripture, connected to a practical observation about human behavior or family life, with a quote from one of the philosophers you've studied. Occasionally, a post showing a home project or repair you completed, captioned with the lesson it taught you. The format is thoughtful, grounded, and doesn't require you to perform on camera.</div>
+        </div>
+    </div>
+
+    <div style="margin-top:32px; font-size:11px; color:#666; line-height:1.85; max-width:640px; font-style:italic;">
+ These directions are informed suggestions drawn from your own answers. The Signal Report is where they get tested against real market research and verifiable data: what's saturated, what's genuinely open, and color science run against your actual field. </div>
+</div>
+
+<div class="section">
+    <div class="sec-num">02</div>
+    <div class="sec-title">Signal<br>Archetype</div>
+    <div class="sec-sub" style="color:#FFFFFF;">An archetype is the recognizable role your brand plays in someone else's story. People follow a role they recognize and trust. Naming yours is the first step to building a brand people can actually describe to a friend.</div>
+    <div style="margin-top:48px; max-width:640px;">
+        <div class="archetype-main">The Practical Philosopher</div>
+        <div class="archetype-body">
+ You're someone who thinks about Socrates and Freud and Marx, who enjoys exploring the mind and observing individuals, and who also troubleshoots automotive electrical systems and gives administration advice because those things feel easy to you. You say things for a reaction because you're watching what happens. You're drawn to LDS history and scriptures, research on health, and you light up most when you're doing church work or helping your family. The pattern is someone who operates in two registers at once: the conceptual and the concrete, the observer and the doer. You're building toward a cognitive reality for your family and temple sealing, which is a spiritual and relational project, while the skills people recognize you for are practical and diagnostic. Your content challenge is deciding which of those you're willing to make public and which stays private, because right now they don't obviously share a stage. </div>
+    </div>
+</div>
+
+<div class="section section-light">
+    <div class="sec-num">03</div>
+    <div class="sec-title">Signal<br>Strength</div>
+    <div class="strength-two-col">
+        <div>
+            <div style="height:32px;"></div>
+            <div class="strength-label" style="color:#000000;">Score</div>
+            <div class="strength-display">
+                <div class="strength-number" style="color:#111111;">4</div>
+                <div class="strength-denom" style="color:#000000;">/ 10</div>
+            </div>
+            <div class="strength-bar-wrap" style="background:#E0E0E0;">
+                <div class="strength-bar" id="strengthBar"></div>
+            </div>
+            <div style="font-size:11px; color:#000000; margin-top:10px;">Real depth, unclear direction.</div>
+        </div>
+        <div style="padding-top:40px;">
+            <div style="font-family:'Cormorant Garamond',serif; font-size:22px; font-weight:400; color:#111111; line-height:1.5; margin-bottom:20px;">
+ The signal is real but needs focus. </div>
+            <div style="font-size:12px; color:#000000; line-height:1.95;">
+                <p>Your answers show someone with genuine substance. You've thought deeply about philosophy, psychology, observation, discipline, brotherhood, faith. You've done real work: farm labor, military service, projectionist training, fatherhood, church leadership. People come to you for things that require both technical skill and systems thinking. All of that is real.</p>
+                <p style="margin-top:16px;">The challenge is that your answers don't yet point to a single public-facing direction. What you're building (a cognitive reality for your family, temple sealing) is deeply personal and spiritual. What people recognize you for (administration advice, automotive troubleshooting) is practical and technical. What energizes you (family and church work) doesn't obviously translate to content unless you're willing to make that the subject. Your interests span LDS history, psychology, health research, and world events, but none of them are developed into a specific angle yet.</p>
+                <p style="margin-top:16px;">This is a clarity problem. You have the raw material, but the through-line between what you care about, what you're good at, and what you'd be willing to show publicly is still forming. A stronger signal would require you to decide which of these you're actually building a brand around, and which stays in the background. Right now, it's all on the table but nothing is clearly the main thing.</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="section section-light">
+    <div class="sec-num">05</div>
+    <div class="sec-title">Content<br>Pillars</div>
+    <div class="sec-sub">Three areas where your signal is strongest and most transferable to an audience.</div>
+
+    <div class="pillars-grid">
+        <div class="pillar-card">
+            <div class="pillar-num">Pillar 01</div>
+            <div class="pillar-name">Faith and Doctrine</div>
+            <div class="pillar-desc">This pillar is where you write about LDS history, scriptures, theology, and how they shape your thinking. It's content for people who want to go deeper than Sunday lessons, who want to understand the why behind the doctrine and how it applies to real decisions. This fits your love of research and your energy around church work.</div>
+            <div class="pillar-example">A post unpacking a specific verse or historical event in LDS history, connected to a principle you're teaching your own family or applying in your own life right now.</div>
+        </div>
+        <div class="pillar-card">
+            <div class="pillar-num">Pillar 02</div>
+            <div class="pillar-name">Human Behavior</div>
+            <div class="pillar-desc">This pillar is where you share what you've observed about how people think, interact, and make decisions, drawing on your psychology background and your habit of testing reactions. It's content about understanding the mechanics of human nature, grounded in real examples from your life, your work, or your leadership roles.</div>
+            <div class="pillar-example">A post about a specific interaction where you said something to get a reaction, what you learned from the response, and what it revealed about how people process information or defend their beliefs.</div>
+        </div>
+        <div class="pillar-card">
+            <div class="pillar-num">Pillar 03</div>
+            <div class="pillar-name">Work and Discipline</div>
+            <div class="pillar-desc">This pillar is where you talk about the lessons from farm work, the Marines, fatherhood, and the necessity of labor. It's content about building things, fixing things, and the discipline required to show up and do hard work. This connects to your willingness to show projects in progress and your belief that labor is necessary to achieve anything.</div>
+            <div class="pillar-example">A post about a specific repair or project you completed, what went wrong, how you solved it, and what it taught you about patience, problem-solving, or persistence.</div>
+        </div>
+    </div>
+</div>
+
+<div class="section">
+    <div class="sec-num">06</div>
+    <div class="sec-title">Signal<br>Blind Spot</div>
+    <div class="blind-spot-inner">
+        <div class="blind-spot-headline">You're trying to build something private on a public platform.</div>
+        <div class="blind-spot-body">
+            <p>You're energized by family and church work, but those are internal projects. They're not designed to be content, and trying to force them into that shape might hollow them out.</p>
+            <p>At the same time, the things people already come to you for (administration advice, automotive troubleshooting) don't seem to be what you want to build a brand around. They're skills, but they're not the thing you're passionate about. The result is a tension: the stuff you care about most isn't public-facing, and the stuff people recognize you for isn't what you want to lead with.</p>
+            <p>This isn't a fatal problem, but it does mean you need to decide what you're willing to make public and what stays private. If your faith, your family, and your church work are the core of who you are, then your content needs to be an extension of that. That might mean writing about LDS theology and history, sharing the principles you're teaching your kids, or documenting the discipline and work ethic you learned from the Marines and farm labor. It means making the private thing public in a way that feels right to you.</p>
+            <p>If you're not willing to do that, then your content needs to be built around one of the other directions: psychology and human behavior, practical mentorship, or even the technical troubleshooting skills people already come to you for. But right now, you're stuck in the middle. That's the blind spot. You need to pick a lane, and then build everything else around that decision.</p>
+        </div>
+    </div>
+</div>
+
+<div class="section section-light">
+    <div class="sec-num">07</div>
+    <div class="sec-title">First<br>Move</div>
+    <div style="margin-top:48px; max-width:640px;">
+        <div class="first-move-headline" style="color:#111111;">Write ten reflections and see which one feels like you.</div>
+        <div class="first-move-body">
+            <p>Your first move is to write ten short pieces, each one exploring a different angle from your answers. One about a principle from LDS history or scripture. One about a human behavior observation. One about a lesson from farm work or the Marines. One about a repair or project you completed. One about something you learned from fatherhood. One quoting a philosopher and connecting it to something you're thinking about now. Keep them short, 300 to 500 words, just enough to develop the idea.</p>
+            <p>The goal is to see which one feels like the thing you could write a hundred more of without getting bored. Which one sounds like you. Which one makes you want to keep going instead of feeling like an assignment. That's the direction.</p>
+            <p>Once you know which direction feels right, write ten more in that vein. Build a small body of work before you worry about an audience. Let the repetition clarify the voice, the angle, and the through-line. Then, and only then, start thinking about where to post it and who it's for.</p>
+            <p>This approach works because you're someone who thinks by writing and pondering. You're going to figure it out by doing the work and seeing what emerges. So do the work first. The rest will clarify itself.</p>
+        </div>
+    </div>
+</div>
+
+<div class="section">
+    <div class="sec-num">08</div>
+    <div class="sec-title">Visual<br>Identity</div>
+    <div class="sec-sub">A compass for the visual work ahead. Direction for how the visual world should feel.</div>
+
+    <div class="vi-dark-grid">
+        <div class="vi-dark-card">
+            <div class="vi-label-dark">Mood</div>
+            <div class="vi-value-dark">Grounded, serious, built to last.</div>
+            <div class="vi-body-dark">Your visual mood should feel like work clothes and well-worn tools. Practical, durable, unpretentious. Think weathered wood, concrete, metal hardware, hands holding something real. The aesthetic is earned. It's the look of someone who's done the labor and has the scars to prove it. Textures matter more than decoration. Everything should feel like it has weight and history.</div>
+        </div>
+        <div class="vi-dark-card">
+            <div class="vi-label-dark">Photography Style</div>
+            <div class="vi-value-dark">Documentary.</div>
+            <div class="vi-body-dark">Your photography should be straightforward and unadorned. Natural light, real settings, no artificial styling. If you're showing a project, show the workspace as it actually is: tools on the bench, sawdust on the floor, the thing half-finished. If you're showing a quote or a principle, pair it with an image that grounds it in the physical world: a book on a table, a landscape, a building, something tangible. The style is observational. You're documenting.</div>
+        </div>
+        <div class="vi-dark-card">
+            <div class="vi-label-dark">Color Direction</div>
+            <div class="vi-value-dark">Earth, iron, and deep blue.</div>
+            <div class="vi-body-dark">Grounded and serious, built from deep navy authority, warm terracotta earth, and amber accents on a cream foundation: the palette of earned credibility.</div>
+            <div class="color-swatch-row">
+                <div class="color-swatch" style="background:#1C3A5C;"></div>
+                <div class="color-swatch" style="background:#C65D3B;"></div>
+                <div class="color-swatch" style="background:#D9A757;"></div>
+                <div class="color-swatch" style="background:#F4EFE3;"></div>
+                <div class="color-swatch" style="background:#3A3A3A;"></div>
+            </div>
+        </div>
+        <div class="vi-dark-card">
+            <div class="vi-label-dark">Tone of Voice</div>
+            <div class="vi-value-dark">Direct, observational, earned.</div>
+            <div class="vi-body-dark">Your tone should be the voice of someone who's thought about this deeply and lived it personally. You don't need to prove anything or perform authority. You say what you've noticed, what you've learned, and what you think, and you let the reader decide if it's useful. You're comfortable with silence and with letting an idea sit. You use quotes because they clarify your thinking. You're not trying to be likable, you're trying to be clear. The voice is steady, grounded, and unafraid of being wrong, because you're more interested in the truth than in being right.</div>
+        </div>
+    </div>
+</div>
+
+<div class="section" style="background:#0D0D0D; color:#FFFFFF;">
+    <div style="display:grid; grid-template-columns:1fr 1fr; gap:80px; align-items:start;" class="next-grid">
+        <div>
+            <div class="sec-num">What Comes Next</div>
+            <div class="sec-title">Your<br>Next Move</div>
+            <div style="height:28px;"></div>
+            <div style="font-size:15px; color:var(--dim); line-height:1.9; max-width:340px;">
+ Your next step is a decision. How do you want to show up, and what is your niche? </div>
+            <div style="height:20px;"></div>
+            <div style="font-family:'Cormorant Garamond',serif; font-size:19px; font-weight:300; color:#FFFFFF; line-height:1.8; max-width:340px; font-style:italic;">
+ Once you decide, you already have enough here to start. </div>
+            <div style="height:28px;"></div>
+            <div style="font-size:12px; color:#FFFFFF; line-height:1.9; max-width:320px;">
+ No pressure, no rush. This one stands on its own. </div>
+        </div>
+        <div style="padding-top:52px; display:flex; flex-direction:column; gap:24px;">
+            <div style="border:1px solid #1A1A1A; padding:32px 36px;">
+                <div style="font-size:9px; letter-spacing:0.4em; text-transform:uppercase; color:var(--gold); margin-bottom:18px;">Once you know your direction</div>
+                <div style="font-family:'Cormorant Garamond',serif; font-size:14px; font-style:italic; color:#FFFFFF; line-height:1.85; margin-bottom:22px;">
+ Once you're clear on the direction, the content, and the colors you want, the Signal Report gives you the real research behind those specific choices. </div>
+                <div style="font-size:11px; color:#FFFFFF; line-height:2.3; border-top:1px solid #1A1A1A; padding-top:18px;">
+                    <div>Verified color science for your exact palette</div>
+                    <div>Real research on your chosen niche</div>
+                    <div>The underserved gap within it</div>
+                    <div>Market opportunity backed by real data</div>
+                    <div>Income comparables from your actual field</div>
+                </div>
+                <div style="height:22px;"></div>
+                <div style="font-size:9px; letter-spacing:0.3em; text-transform:uppercase; color:var(--gold);">
+ Available Soon
+ </div>
+            </div>
+            <div style="border:1px solid #1A1A1A; padding:32px 36px;">
+                <div style="font-size:9px; letter-spacing:0.4em; text-transform:uppercase; color:var(--gold); margin-bottom:18px;">Ready to actually start building?</div>
+                <div style="font-family:'Cormorant Garamond',serif; font-size:14px; font-style:italic; color:#FFFFFF; line-height:1.85; margin-bottom:22px;">
+ The Bridge Starter turns this signal into a real, day-to-day plan you can follow. </div>
+                <div style="font-size:9px; letter-spacing:0.3em; text-transform:uppercase; color:var(--gold);">
+ Available Soon
+ </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="section" style="background:#0D0D0D; color:#FFFFFF;">
+    <div class="back-name">SLATE<br>&amp; SIGNAL</div>
+    <div class="back-star">✦</div>
+    <div class="back-tagline">Clarity Reveals. Strategy Amplifies. You Lead.</div>
+</div>
+
+<div style="padding:24px 64px; font-size:9px; letter-spacing:0.2em; text-transform:uppercase; color:#F4D475; background:#0D0D0D; border-top:1px solid #1A1A1A;">Prepared exclusively for William Covey &middot; wucovey@icloud.com &middot; August 2026</div>
+</div>
+
+<script>
+    window.addEventListener('load', () => {
+        setTimeout(() => {
+            const bars = ['coverBar', 'strengthBar'];
+            bars.forEach(id => {
+                const el = document.getElementById(id);
+                if (el) el.style.width = '40%';
+            });
+        }, 500);
+    });
+</script>
+
+</body>
+</html>
