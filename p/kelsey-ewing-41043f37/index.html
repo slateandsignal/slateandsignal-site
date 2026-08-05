@@ -1,0 +1,866 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Signal Profile, Kelsey Ewing</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500&display=swap" rel="stylesheet">
+ <style>
+        *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+        :root {
+            --black:   #0D0D0D;
+            --dark:    #111111;
+            --card:    #1A1A1A;
+            --border:  #2A2A2A;
+            --white:   #FFFFFF;
+            --dim:     #E8E8E8;
+            --dimmer:  #FFFFFF;
+            --gold:    #F4D475;
+            --serif:   'Cormorant Garamond', Georgia, serif;
+            --sans:    'DM Sans', -apple-system, sans-serif;
+        }
+
+        html {
+            background: var(--black);
+            color: var(--white);
+            font-family: var(--sans);
+            font-weight: 300;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        .page {
+            max-width: 900px;
+            margin: 0 auto;
+            position: relative;
+        }
+
+        .section {
+            padding: 80px 64px;
+            border-bottom: 1px solid #1A1A1A;
+        }
+
+        .section-light {
+            background: #FFFFFF;
+            color: #111111;
+            border-bottom: 1px solid #E8E8E8;
+        }
+
+        .sec-num {
+            font-size: 10px;
+            letter-spacing: 0.5em;
+            text-transform: uppercase;
+            color: var(--gold);
+            margin-bottom: 12px;
+        }
+
+        .section-light .sec-num { color: var(--gold); }
+
+        .sec-title {
+            font-family: var(--serif);
+            font-size: 48px;
+            font-weight: 300;
+            line-height: 1.05;
+            letter-spacing: -0.02em;
+            color: var(--white);
+        }
+
+        .section-light .sec-title { color: #111111; }
+
+        .sec-sub {
+            font-size: 12px;
+            color: var(--dim);
+            line-height: 1.7;
+            margin-top: 16px;
+            max-width: 440px;
+        }
+
+        .section-light .sec-sub { color: #000000; }
+
+        #cover {
+            min-height: 100vh;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            border-bottom: 1px solid #1A1A1A;
+        }
+
+        .cover-left {
+            padding: 80px 64px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            border-right: 1px solid #1A1A1A;
+        }
+
+        .cover-right {
+            padding: 80px 64px;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+        }
+
+        .cover-brand {
+            font-size: 9px;
+            letter-spacing: 0.5em;
+            text-transform: uppercase;
+            color: var(--gold);
+        }
+
+        .cover-label {
+            font-size: 10px;
+            letter-spacing: 0.4em;
+            text-transform: uppercase;
+            color: var(--gold);
+            margin-bottom: 20px;
+        }
+
+        .cover-name {
+            font-family: var(--serif);
+            font-size: 72px;
+            font-weight: 300;
+            line-height: 0.95;
+            letter-spacing: -0.03em;
+            overflow-wrap: break-word;
+            word-break: break-word;
+        }
+
+        .cover-meta {
+            margin-top: 40px;
+        }
+
+        .cover-meta-row {
+            display: flex;
+            justify-content: space-between;
+            border-top: 1px solid #1A1A1A;
+            padding: 14px 0;
+            font-size: 11px;
+        }
+
+        .cover-meta-label { color: var(--gold); letter-spacing: 0.1em; text-transform: uppercase; }
+        .cover-meta-value { color: var(--white); }
+
+        .cover-archetype-card {
+            border: 1px solid #1A1A1A;
+            padding: 36px 40px;
+            margin-bottom: 32px;
+        }
+
+        .cover-archetype-label {
+            font-size: 9px;
+            letter-spacing: 0.4em;
+            text-transform: uppercase;
+            color: var(--gold);
+            margin-bottom: 16px;
+        }
+
+        .cover-archetype-name {
+            font-family: var(--serif);
+            font-size: 28px;
+            font-weight: 300;
+            font-style: italic;
+            line-height: 1.2;
+            color: var(--white);
+            margin-bottom: 16px;
+        }
+
+        .cover-archetype-desc {
+            font-size: 12px;
+            color: var(--dim);
+            line-height: 1.85;
+        }
+
+        .strength-display {
+            display: flex;
+            align-items: baseline;
+            gap: 8px;
+            margin-bottom: 8px;
+        }
+
+        .strength-number {
+            font-family: var(--serif);
+            font-size: 80px;
+            font-weight: 300;
+            line-height: 1;
+            color: var(--white);
+        }
+
+        .strength-denom {
+            font-size: 18px;
+            color: var(--dimmer);
+            font-family: var(--serif);
+        }
+
+        .strength-label {
+            font-size: 9px;
+            letter-spacing: 0.4em;
+            text-transform: uppercase;
+            color: var(--gold);
+            margin-bottom: 16px;
+        }
+
+        .strength-bar-wrap {
+            height: 2px;
+            background: #1A1A1A;
+            width: 100%;
+            margin-bottom: 8px;
+        }
+
+        .strength-bar {
+            height: 2px;
+            background: var(--gold);
+            width: 0;
+            transition: width 1.4s cubic-bezier(0.4,0,0.2,1);
+        }
+
+        .themes-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1px;
+            background: #E0E0E0;
+            margin-top: 48px;
+        }
+
+        .theme-card {
+            background: #FFFFFF;
+            padding: 32px 36px;
+        }
+
+        .theme-num {
+            font-size: 9px;
+            letter-spacing: 0.4em;
+            text-transform: uppercase;
+            color: #000000;
+            margin-bottom: 12px;
+        }
+
+        .theme-name {
+            font-family: var(--serif);
+            font-size: 22px;
+            font-weight: 400;
+            color: #111111;
+            margin-bottom: 12px;
+            line-height: 1.25;
+        }
+
+        .theme-desc {
+            font-size: 12px;
+            color: #000000;
+            line-height: 1.85;
+        }
+
+        .archetype-inner {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 80px;
+            margin-top: 48px;
+            align-items: start;
+        }
+
+        .archetype-main {
+            font-family: var(--serif);
+            font-size: 36px;
+            font-weight: 300;
+            font-style: italic;
+            line-height: 1.25;
+            color: var(--white);
+            margin-bottom: 20px;
+        }
+
+        .archetype-match {
+            font-size: 10px;
+            letter-spacing: 0.25em;
+            text-transform: uppercase;
+            color: var(--gold);
+            margin-bottom: 24px;
+        }
+
+        .archetype-body {
+            font-size: 13px;
+            color: var(--dim);
+            line-height: 1.95;
+        }
+
+        .statement-text {
+            font-family: var(--serif);
+            font-size: 27px;
+            font-weight: 300;
+            line-height: 1.65;
+            color: var(--white);
+            max-width: 720px;
+            margin-top: 48px;
+        }
+
+        .statement-text em {
+            font-style: italic;
+            color: var(--gold);
+        }
+
+        .pillars-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: 1px;
+            background: #E0E0E0;
+            margin-top: 48px;
+        }
+
+        .pillar-card {
+            background: #FFFFFF;
+            padding: 36px 28px;
+        }
+
+        .pillar-num {
+            font-size: 9px;
+            letter-spacing: 0.4em;
+            text-transform: uppercase;
+            color: #000000;
+            margin-bottom: 16px;
+        }
+
+        .pillar-name {
+            font-family: var(--serif);
+            font-size: 24px;
+            font-weight: 400;
+            color: #111111;
+            line-height: 1.2;
+            margin-bottom: 16px;
+        }
+
+        .pillar-desc {
+            font-size: 12px;
+            color: #000000;
+            line-height: 1.85;
+            margin-bottom: 20px;
+        }
+
+        .pillar-example {
+            font-size: 11px;
+            color: #000000;
+            line-height: 1.7;
+            border-top: 1px solid #F0F0F0;
+            padding-top: 16px;
+            font-style: italic;
+        }
+
+        .blind-spot-inner {
+            max-width: 660px;
+            margin-top: 48px;
+        }
+
+        .blind-spot-headline {
+            font-family: var(--serif);
+            font-size: 34px;
+            font-weight: 300;
+            line-height: 1.35;
+            color: var(--white);
+            margin-bottom: 32px;
+        }
+
+        .blind-spot-body {
+            font-size: 13px;
+            color: var(--dim);
+            line-height: 1.95;
+        }
+
+        .blind-spot-body p + p {
+            margin-top: 20px;
+        }
+
+        .first-move-headline {
+            font-family: var(--serif);
+            font-size: 42px;
+            font-weight: 300;
+            font-style: italic;
+            line-height: 1.3;
+            margin-bottom: 32px;
+        }
+
+        .first-move-body {
+            font-size: 13px;
+            color: #000000;
+            line-height: 1.95;
+            max-width: 580px;
+        }
+
+        .first-move-body p + p {
+            margin-top: 20px;
+        }
+
+        .vi-dark-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1px;
+            background: #1A1A1A;
+            margin-top: 48px;
+        }
+
+        .vi-dark-card {
+            background: #111111;
+            padding: 36px;
+        }
+
+        .vi-label-dark {
+            font-size: 9px;
+            letter-spacing: 0.4em;
+            text-transform: uppercase;
+            color: #FFFFFF;
+            margin-bottom: 14px;
+        }
+
+        .vi-value-dark {
+            font-family: var(--serif);
+            font-size: 22px;
+            font-weight: 400;
+            color: var(--white);
+            line-height: 1.3;
+            margin-bottom: 12px;
+        }
+
+        .vi-body-dark {
+            font-size: 12px;
+            color: #FFFFFF;
+            line-height: 1.85;
+        }
+
+        .color-swatch-row {
+            display: flex;
+            gap: 8px;
+            margin-top: 18px;
+        }
+
+        .color-swatch {
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+        }
+
+        .notes-list {
+            margin-top: 48px;
+            max-width: 680px;
+        }
+
+        .note-item {
+            border-left: 1px solid #E0E0E0;
+            padding: 4px 0 36px 32px;
+        }
+
+        .note-item:last-child { padding-bottom: 0; }
+
+        .note-num {
+            font-size: 9px;
+            letter-spacing: 0.4em;
+            text-transform: uppercase;
+            color: var(--gold);
+            margin-bottom: 12px;
+        }
+
+        .note-text {
+            font-size: 12px;
+            color: #000000;
+            line-height: 1.95;
+        }
+
+        .strength-two-col {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 80px;
+            align-items: start;
+            margin-top: 48px;
+        }
+
+        .back-name {
+            font-family: var(--serif);
+            font-size: 56px;
+            font-weight: 300;
+            line-height: 1.0;
+            letter-spacing: 0.08em;
+            margin-bottom: 24px;
+        }
+
+        .back-star {
+            color: var(--gold);
+            font-size: 24px;
+            margin-bottom: 24px;
+        }
+
+        .back-tagline {
+            font-size: 10px;
+            letter-spacing: 0.35em;
+            text-transform: uppercase;
+            color: var(--gold);
+        }
+
+        .primer-section {
+            padding: 64px 64px 72px;
+            background: #FFFFFF;
+            color: #111111;
+            border-bottom: 1px solid #E8E8E8;
+        }
+
+        .primer-intro {
+            font-family: var(--serif);
+            font-style: italic;
+            font-size: 17px;
+            color: #333;
+            max-width: 620px;
+            line-height: 1.7;
+            margin-bottom: 40px;
+        }
+
+        .primer-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1px;
+            background: #E0E0E0;
+        }
+
+        .primer-card {
+            background: #FFFFFF;
+            padding: 28px 32px;
+        }
+
+        .primer-term {
+            font-family: var(--serif);
+            font-size: 19px;
+            font-weight: 400;
+            color: #111111;
+            margin-bottom: 10px;
+        }
+
+        .primer-def {
+            font-size: 12.5px;
+            color: #000000;
+            line-height: 1.85;
+        }
+
+        @media (max-width: 700px) {
+            .primer-section { padding: 48px 24px 56px; }
+            .primer-grid { grid-template-columns: 1fr; }
+            .section { padding: 48px 24px; }
+            #cover { grid-template-columns: 1fr; min-height: auto; }
+            .cover-left, .cover-right { padding: 48px 24px; border-right: none; }
+            .cover-name { font-size: 42px; }
+            .sec-title { font-size: 32px; }
+            .themes-grid { grid-template-columns: 1fr; }
+            .archetype-inner { grid-template-columns: 1fr; gap: 32px; }
+            .pillars-grid { grid-template-columns: 1fr; }
+            .vi-dark-grid { grid-template-columns: 1fr; }
+            .strength-two-col { grid-template-columns: 1fr; gap: 32px; }
+            .next-grid { grid-template-columns: 1fr !important; gap: 32px !important; }
+            .statement-text { font-size: 20px; }
+            .strength-number { font-size: 56px; }
+            .archetype-main { font-size: 26px; }
+            .blind-spot-headline { font-size: 26px; }
+            .first-move-headline { font-size: 30px; }
+        }
+    </style>
+</head>
+<body>
+<div class="page">
+
+<div id="cover">
+    <div class="cover-left">
+        <div class="cover-brand">SLATE &amp; SIGNAL, Signal Profile</div>
+        <div>
+            <div class="cover-label">Signal Profile</div>
+            <div class="cover-name">Kelsey<br>Ewing</div>
+            <div class="cover-meta">
+                <div class="cover-meta-row">
+                    <span class="cover-meta-label">Date</span>
+                    <span class="cover-meta-value">August 2026</span>
+                </div>
+                <div class="cover-meta-row">
+                    <span class="cover-meta-label">Signal Strength</span>
+                    <span class="cover-meta-value">6 / 10</span>
+                </div>
+                <div class="cover-meta-row">
+                    <span class="cover-meta-label">Archetype</span>
+                    <span class="cover-meta-value">The Guide</span>
+                </div>
+            </div>
+        </div>
+        <div style="font-size:9px; letter-spacing:0.3em; text-transform:uppercase; color:#FFFFFF;">Confidential</div>
+    </div>
+    <div class="cover-right">
+        <div class="cover-archetype-card">
+            <div class="cover-archetype-label">Archetype</div>
+            <div class="cover-archetype-name">The Guide</div>
+            <div class="cover-archetype-desc">You walk alongside women through territory you've already crossed yourself</div>
+        </div>
+        <div>
+            <div class="strength-label">Signal Strength</div>
+            <div class="strength-display">
+                <div class="strength-number">6</div>
+                <div class="strength-denom">/ 10</div>
+            </div>
+            <div class="strength-bar-wrap">
+                <div class="strength-bar" id="coverBar"></div>
+            </div>
+            <div style="font-size:11px; color:#FFFFFF; margin-top:10px; line-height:1.75;">
+ Your answers show clear direction in what you want to build and who you want to serve. The challenge is that your communication instincts and the shape of your offer are still forming. You know the destination, the path there needs more definition. </div>
+        </div>
+    </div>
+</div>
+
+<div class="primer-section">
+    <div class="sec-num" style="color:var(--gold);">Before You Read</div>
+    <div class="sec-title" style="color:#111111;">Interpretation<br>Guide</div>
+    <div class="primer-intro">A quick guide to the words in this profile, so nothing here leaves you guessing what it actually means for you.</div>
+    <div class="primer-grid">
+        <div class="primer-card">
+            <div class="primer-term">Signal</div>
+            <div class="primer-def">The pattern already running through your story, work, and instincts, whether or not you've named it yet. It's what people already sense about you before you say a word. Building a brand or a following works better when you build on a signal that's natural to you, instead of inventing one or chasing a trend that might be completely discordant with who you actually are. There shouldn't be any friction between you and what you're creating.</div>
+        </div>
+        <div class="primer-card">
+            <div class="primer-term">Archetype</div>
+            <div class="primer-def">The recognizable role your signal plays in other people's stories, the reason a stranger could describe what you do in one sentence to a friend. It shapes what you post, how you sound, and who ends up following you because they recognize the role you play.</div>
+        </div>
+        <div class="primer-card">
+            <div class="primer-term">Signal Strength</div>
+            <div class="primer-def">A 1 to 10 read of how clear and consistent your pattern is right now, based only on what you wrote. A lower number isn't a bad grade, it just means the pattern needs more specificity before it's ready to build content on. A higher number means you already have enough to start posting from today.</div>
+        </div>
+        <div class="primer-card">
+            <div class="primer-term">Suggested Direction</div>
+            <div class="primer-def">An actual recommendation. Where your answers point in terms of niche and what kind of content format genuinely fits how you communicate, so you're not staring at a blank page wondering where to start.</div>
+        </div>
+        <div class="primer-card">
+            <div class="primer-term">Content Pillars</div>
+            <div class="primer-def">Three real categories your future posts can live in, pulled from what's already true about you rather than invented. Instead of watching a thousand other videos to see how everyone else does it, wondering where to start, what to talk about, and what people even want to see, you can pick a pillar from this profile and have a clear direction for what to create.</div>
+        </div>
+    </div>
+</div>
+
+<div class="section section-light">
+    <div class="sec-num">01</div>
+    <div class="sec-title">Suggested<br>Direction</div>
+    <div class="sec-sub">Where these answers point, and how you could actually build with them.</div>
+
+    <div style="margin-top:48px;">
+        <div style="font-size:9px; letter-spacing:0.4em; text-transform:uppercase; color:var(--gold); margin-bottom:20px;">Niche Directions</div>
+        <div class="pillar-card" style="border:1px solid #E0E0E0; margin-bottom:1px;">
+            <div class="pillar-num">Direction 01</div>
+            <div class="pillar-name">Hashimoto's healing for women in their twenties and thirties</div>
+            <div class="pillar-desc">This is the most direct line from your answers. You're building a functional medicine health coaching business specifically for young women navigating Hashimoto's. You've lived it yourself. You know the frustration of being told food doesn't matter. You have the research background and the listening skills to walk someone through it. This is the niche your business is already named for.</div>
+        </div>
+        <div class="pillar-card" style="border:1px solid #E0E0E0; margin-bottom:1px;">
+            <div class="pillar-num">Direction 02</div>
+            <div class="pillar-name">Food as medicine for people leaving traditional medicine behind</div>
+            <div class="pillar-desc">Your Q4 story about your doctor dismissing food as medicine was a turning point for you. There's a version of your work that speaks to people in that exact moment, the ones who just got told their symptoms don't matter or that diet won't help. You could build content around taking your health into your own hands when the system fails you, using functional medicine as the framework.</div>
+        </div>
+        <div class="pillar-card" style="border:1px solid #E0E0E0;">
+            <div class="pillar-num">Direction 03</div>
+            <div class="pillar-name">Functional nutrition for chronic health conditions</div>
+            <div class="pillar-desc">This is a slightly broader take on the same territory. You're interested in how food is fuel and medicine, especially for chronic issues. Hashimoto's is one example but your research instinct seems to go wider. You could build around functional nutrition as a category and let Hashimoto's be your entry point rather than your only lane. This gives you room to grow into other conditions over time if that feels right.</div>
+        </div>
+    </div>
+
+    <div style="margin-top:56px;">
+        <div style="font-size:9px; letter-spacing:0.4em; text-transform:uppercase; color:var(--gold); margin-bottom:20px;">Content Format</div>
+        <div class="pillar-card" style="border:1px solid #1A1A1A;">
+            <div class="pillar-name">Educational content in written or short video form, with a clear coaching offer</div>
+            <div class="pillar-desc">Your communication instincts lean toward writing or talking things through privately first, then sharing once they feel solid. You enjoy listening to people speak but that doesn't mean you have to be on camera constantly. A realistic format for you might be written posts or emails that educate people on functional medicine principles, paired with short videos when you feel ready, and a clear coaching package as the thing people can buy. You mentioned wanting to speak on podcasts eventually. That works as a visibility play once you have content that shows what you know.</div>
+            <div class="pillar-example">You could write a weekly post or email breaking down one functional medicine concept related to Hashimoto's, like why conventional thyroid panels miss half the picture or how to read your own labs. Keep it practical and specific. Link to your coaching offer at the bottom. When you're comfortable, add short videos explaining the same concepts. The content builds trust, the offer gives people a way to work with you directly.</div>
+        </div>
+    </div>
+
+    <div style="margin-top:32px; font-size:11px; color:#666; line-height:1.85; max-width:640px; font-style:italic;">
+ These directions are informed suggestions drawn from your own answers. The Signal Report is where they get tested against real market research and verifiable data: what's saturated, what's genuinely open, and color science run against your actual field. </div>
+</div>
+
+<div class="section">
+    <div class="sec-num">02</div>
+    <div class="sec-title">Signal<br>Archetype</div>
+    <div class="sec-sub" style="color:#FFFFFF;">An archetype is the recognizable role your brand plays in someone else's story. People follow a role they recognize and trust. Naming yours is the first step to building a brand people can actually describe to a friend.</div>
+    <div style="margin-top:48px; max-width:640px;">
+        <div class="archetype-main">The Guide</div>
+        <div class="archetype-body">
+ You're someone who takes health research seriously enough to spend real time on it, who remembers what people tell you about their bodies, and who naturally wants to help people feel supported rather than alone in something hard. The pattern across your answers is that you're building a business around walking women through Hashimoto's healing because you did it yourself and know how isolating it feels when a doctor tells you food doesn't matter. You light up talking about functional medicine. You're a good listener. You value discipline but also learning through mistakes. The work you're building is about being the person you needed when you were navigating this alone. </div>
+    </div>
+</div>
+
+<div class="section section-light">
+    <div class="sec-num">03</div>
+    <div class="sec-title">Signal<br>Strength</div>
+    <div class="strength-two-col">
+        <div>
+            <div style="height:32px;"></div>
+            <div class="strength-label" style="color:#000000;">Score</div>
+            <div class="strength-display">
+                <div class="strength-number" style="color:#111111;">6</div>
+                <div class="strength-denom" style="color:#000000;">/ 10</div>
+            </div>
+            <div class="strength-bar-wrap" style="background:#E0E0E0;">
+                <div class="strength-bar" id="strengthBar"></div>
+            </div>
+            <div style="font-size:11px; color:#000000; margin-top:10px;">Clear niche and mission, communication style still forming</div>
+        </div>
+        <div style="padding-top:40px;">
+            <div style="font-family:'Cormorant Garamond',serif; font-size:22px; font-weight:400; color:#111111; line-height:1.5; margin-bottom:20px;">
+ You know exactly who you want to serve and why
+ </div>
+            <div style="font-size:12px; color:#000000; line-height:1.95;">
+                <p>Your answers are consistent about the work you're building. You want to help young women with Hashimoto's navigate their healing journey using functional medicine principles. You're drawn to food as medicine research. People already come to you for health advice. You've worked with a functional medicine coach yourself and it changed your career direction completely. That's a strong foundation.</p>
+                <p style="margin-top:16px;">The gap is in how you're showing up to communicate that work. Your Q10 answer lists multiple monetization paths but doesn't clarify which format feels most natural to you right now. You mention writing or talking to yourself, showing work to close people first, and enjoying listening to others speak. That's useful context but it doesn't yet translate into a clear content format or posting rhythm.</p>
+                <p style="margin-top:16px;">That's not a signal problem, that's a visibility and offer problem. Your answers show you know what you want to build, they don't yet show how you're making that visible or what specifically you're asking people to buy. Clarifying those two things will raise this score significantly.</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="section section-light">
+    <div class="sec-num">05</div>
+    <div class="sec-title">Content<br>Pillars</div>
+    <div class="sec-sub">Three areas where your signal is strongest and most transferable to an audience.</div>
+
+    <div class="pillars-grid">
+        <div class="pillar-card">
+            <div class="pillar-num">Pillar 01</div>
+            <div class="pillar-name">Food as Medicine</div>
+            <div class="pillar-desc">This is your core interest. Content here covers how food impacts chronic health conditions, what functional nutrition actually means, and how to use food as a tool rather than just eating clean. This fits your research habit and your belief that food matters even when doctors say it doesn't.</div>
+            <div class="pillar-example">A post explaining why seed oils show up in every functional medicine protocol, what they actually do in the body, and which swaps are worth making first.</div>
+        </div>
+        <div class="pillar-card">
+            <div class="pillar-num">Pillar 02</div>
+            <div class="pillar-name">Hashimoto's Navigation</div>
+            <div class="pillar-desc">This is content specifically for the audience you're building your business around. It includes how to get properly tested, what symptoms actually mean, how to talk to doctors who dismiss you, and what healing looks like day to day. You've been through this yourself so you can speak from real experience.</div>
+            <div class="pillar-example">A post walking through the difference between TSH-only testing and a full thyroid panel, and how to ask for the right labs even if your doctor resists.</div>
+        </div>
+        <div class="pillar-card">
+            <div class="pillar-num">Pillar 03</div>
+            <div class="pillar-name">Taking Health Into Your Own Hands</div>
+            <div class="pillar-desc">This pillar is about empowerment and agency when the medical system fails you. It fits your story about leaving traditional medicine and working with a functional coach. Content here might cover how to research your own symptoms, how to find practitioners who listen, and how to trust yourself when the answers aren't coming from doctors.</div>
+            <div class="pillar-example">A post about what to do when your PCP says your labs are normal but you still feel terrible, including how to find a functional medicine practitioner and what questions to ask in the first appointment.</div>
+        </div>
+    </div>
+</div>
+
+<div class="section">
+    <div class="sec-num">06</div>
+    <div class="sec-title">Signal<br>Blind Spot</div>
+    <div class="blind-spot-inner">
+        <div class="blind-spot-headline">You are waiting to feel ready instead of letting the work make you ready</div>
+        <div class="blind-spot-body">
+            <p>It's because you're treating content and visibility as something you'll do once you feel more prepared, rather than the thing that prepares you.</p>
+            <p>Your Q10 answer lists writing or talking to yourself, then showing things to your husband or close friends first. That's a safe loop. It keeps the work private. It doesn't put you in front of the women you want to serve. You can research functional medicine for another year and it won't sign a client. Posting consistently will.</p>
+            <p>You mentioned your dad's advice about doing things right and how you've reframed it as not being afraid to make mistakes. You're still holding back from posting or putting an offer out there because it might not be perfect. The women you want to help don't need you to be perfect. They need you to show up and prove you understand what they're going through.</p>
+            <p>The other part of this is that you're frustrated by advice that says to rely only on social media for clients, but you haven't clarified what you're doing instead. If social media isn't the main channel, what is? Email? Referrals? Partnerships? You need to pick a channel and commit to showing up there regularly.</p>
+        </div>
+    </div>
+</div>
+
+<div class="section section-light">
+    <div class="sec-num">07</div>
+    <div class="sec-title">First<br>Move</div>
+    <div style="margin-top:48px; max-width:640px;">
+        <div class="first-move-headline" style="color:#111111;">Post three times a week for eight weeks on one platform</div>
+        <div class="first-move-body">
+            <p>Pick Instagram, LinkedIn, or a newsletter platform. Commit to posting three times a week for eight weeks. That's 24 posts. Each one should teach something small and specific about Hashimoto's, functional nutrition, or taking your health into your own hands. Write like you're talking to one woman who just got dismissed by her doctor and has no idea what to do next.</p>
+            <p>At the end of every post, include one sentence about your coaching offer. Keep it simple. Something like, I work one on one with women navigating Hashimoto's, link in bio if you want to talk. You don't need a perfect website or a polished funnel. You need people to know you exist and that you can help them.</p>
+            <p>Track how many people reach out. Track which posts get the most response. Adjust based on what you learn. The goal is to prove to yourself that you can show up consistently and that people respond when you do.</p>
+            <p>After eight weeks, if you've posted consistently and still haven't signed a client, the problem is likely your offer or your pricing. At that point you can adjust the package or how you're positioning it. But you can't adjust an offer nobody knows exists. Post first. Refine second.</p>
+        </div>
+    </div>
+</div>
+
+<div class="section">
+    <div class="sec-num">08</div>
+    <div class="sec-title">Visual<br>Identity</div>
+    <div class="sec-sub">A compass for the visual work ahead. Direction for how the visual world should feel.</div>
+
+    <div class="vi-dark-grid">
+        <div class="vi-dark-card">
+            <div class="vi-label-dark">Mood</div>
+            <div class="vi-value-dark">Cozy, approachable, light and inviting</div>
+            <div class="vi-body-dark">Your references lean toward warm, welcoming spaces. Bookstores and tea shops. Minimalist but not cold. The ceramic artist you mentioned has a playful, colorful energy. Your instinct is toward light colors that feel uplifting. The mood should feel like a calm, safe place where someone can sit down and figure out something hard without feeling judged or overwhelmed. Think soft textures, natural light, a little color but not chaotic. Cozy and clean at the same time.</div>
+        </div>
+        <div class="vi-dark-card">
+            <div class="vi-label-dark">Photography Style</div>
+            <div class="vi-value-dark">Bright, soft, naturally lit</div>
+            <div class="vi-body-dark">Photos should feel light and airy. Natural light whenever possible. Soft focus is fine. Images might include hands holding a mug, a journal on a table, fresh vegetables in a bowl, a supplement bottle next to a plant. The kind of images that feel like someone's real life. Avoid harsh shadows, cold lighting, or anything that feels sterile or medicalized. You want people to feel like they're in your kitchen.</div>
+        </div>
+        <div class="vi-dark-card">
+            <div class="vi-label-dark">Color Direction</div>
+            <div class="vi-value-dark">Soft lilac and warm pink with cream and sage</div>
+            <div class="vi-body-dark">Soft lilac and warm pink with cream and sage: gentle, nurturing, and optimistic. Reflects your love of light colors while maintaining professional readability and calm authority.</div>
+            <div class="color-swatch-row">
+                <div class="color-swatch" style="background:#D4A5D8;"></div>
+                <div class="color-swatch" style="background:#F4A6C8;"></div>
+                <div class="color-swatch" style="background:#A8C5A0;"></div>
+                <div class="color-swatch" style="background:#FFF8F0;"></div>
+                <div class="color-swatch" style="background:#2C2C2C;"></div>
+            </div>
+        </div>
+        <div class="vi-dark-card">
+            <div class="vi-label-dark">Tone of Voice</div>
+            <div class="vi-value-dark">Warm, clear, like talking to a friend who's been through it</div>
+            <div class="vi-body-dark">Your tone should sound like someone who listens well and remembers what people tell them. You're walking alongside someone and explaining what you've learned in language they can actually use. Warm but not overly casual. Clear but not clinical. You can be direct about what's not working in traditional medicine without being bitter or preachy. The goal is for someone to read your content and feel like you get it, like you've been exactly where they are and made it through to the other side.</div>
+        </div>
+    </div>
+</div>
+
+<div class="section" style="background:#0D0D0D; color:#FFFFFF;">
+    <div style="display:grid; grid-template-columns:1fr 1fr; gap:80px; align-items:start;" class="next-grid">
+        <div>
+            <div class="sec-num">What Comes Next</div>
+            <div class="sec-title">Your<br>Next Move</div>
+            <div style="height:28px;"></div>
+            <div style="font-size:15px; color:var(--dim); line-height:1.9; max-width:340px;">
+ Your next step is a decision. How do you want to show up, and what is your niche? </div>
+            <div style="height:20px;"></div>
+            <div style="font-family:'Cormorant Garamond',serif; font-size:19px; font-weight:300; color:#FFFFFF; line-height:1.8; max-width:340px; font-style:italic;">
+ Once you decide, you already have enough here to start. </div>
+            <div style="height:28px;"></div>
+            <div style="font-size:12px; color:#FFFFFF; line-height:1.9; max-width:320px;">
+ No pressure, no rush. This one stands on its own. </div>
+        </div>
+        <div style="padding-top:52px; display:flex; flex-direction:column; gap:24px;">
+            <div style="border:1px solid #1A1A1A; padding:32px 36px;">
+                <div style="font-size:9px; letter-spacing:0.4em; text-transform:uppercase; color:var(--gold); margin-bottom:18px;">Once you know your direction</div>
+                <div style="font-family:'Cormorant Garamond',serif; font-size:14px; font-style:italic; color:#FFFFFF; line-height:1.85; margin-bottom:22px;">
+ Once you're clear on the direction, the content, and the colors you want, the Signal Report gives you the real research behind those specific choices. </div>
+                <div style="font-size:11px; color:#FFFFFF; line-height:2.3; border-top:1px solid #1A1A1A; padding-top:18px;">
+                    <div>Verified color science for your exact palette</div>
+                    <div>Real research on your chosen niche</div>
+                    <div>The underserved gap within it</div>
+                    <div>Market opportunity backed by real data</div>
+                    <div>Income comparables from your actual field</div>
+                </div>
+                <div style="height:22px;"></div>
+                <div style="font-size:9px; letter-spacing:0.3em; text-transform:uppercase; color:var(--gold);">
+ Available Soon
+ </div>
+            </div>
+            <div style="border:1px solid #1A1A1A; padding:32px 36px;">
+                <div style="font-size:9px; letter-spacing:0.4em; text-transform:uppercase; color:var(--gold); margin-bottom:18px;">Ready to actually start building?</div>
+                <div style="font-family:'Cormorant Garamond',serif; font-size:14px; font-style:italic; color:#FFFFFF; line-height:1.85; margin-bottom:22px;">
+ The Bridge Starter turns this signal into a real, day-to-day plan you can follow. </div>
+                <div style="font-size:9px; letter-spacing:0.3em; text-transform:uppercase; color:var(--gold);">
+ Available Soon
+ </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="section" style="background:#0D0D0D; color:#FFFFFF;">
+    <div class="back-name">SLATE<br>&amp; SIGNAL</div>
+    <div class="back-star">✦</div>
+    <div class="back-tagline">Clarity Reveals. Strategy Amplifies. You Lead.</div>
+</div>
+
+<div style="padding:24px 64px; font-size:9px; letter-spacing:0.2em; text-transform:uppercase; color:#F4D475; background:#0D0D0D; border-top:1px solid #1A1A1A;">Prepared exclusively for Kelsey Ewing &middot; rock.lifeset@gmail.com &middot; August 2026</div>
+</div>
+
+<script>
+    window.addEventListener('load', () => {
+        setTimeout(() => {
+            const bars = ['coverBar', 'strengthBar'];
+            bars.forEach(id => {
+                const el = document.getElementById(id);
+                if (el) el.style.width = '60%';
+            });
+        }, 500);
+    });
+</script>
+
+</body>
+</html>
