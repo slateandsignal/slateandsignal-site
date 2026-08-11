@@ -122,6 +122,31 @@
   .tier li{padding:12px 0;border-top:1px solid rgba(13,13,13,.1);font-size:15px;}
   .tier-dark li{border-top-color:rgba(255,255,255,.12);}
   .tier li:first-child{border-top:none;}
+
+  /* Frosted "coming soon" glass over an unreleased tier.
+     Deliberate sub-100% opacity, authorized by Raquel 2026-08-07 for this element only.
+     The brand rule that every color renders at 100% opacity still holds everywhere else. */
+  .tier-locked{position:relative;}
+  .tier-locked .tier-veil{
+    position:absolute;inset:0;z-index:2;
+    pointer-events:none; /* frost is visual only, the waitlist button underneath stays clickable */
+    display:flex;flex-direction:column;align-items:center;justify-content:center;
+    background:rgba(13,13,13,.22);
+    -webkit-backdrop-filter:blur(3px) saturate(115%);
+    backdrop-filter:blur(3px) saturate(115%);
+  }
+  .tier-locked .tier-veil span{
+    font-size:13px;letter-spacing:.34em;text-transform:uppercase;font-weight:500;
+    color:var(--gold);
+    border:1px solid rgba(255,222,122,.7);
+    padding:16px 34px;
+    background:rgba(13,13,13,.72);
+    -webkit-backdrop-filter:blur(6px);
+    backdrop-filter:blur(6px);
+  }
+  @supports not ((backdrop-filter:blur(1px)) or (-webkit-backdrop-filter:blur(1px))){
+    .tier-locked .tier-veil{background:rgba(13,13,13,.7);}
+  }
   .tier li::before{content:"";display:inline-block;width:5px;height:5px;background:var(--gold-deep);border-radius:50%;margin-right:14px;vertical-align:middle;}
   .tier-dark li::before{background:var(--gold);}
 
@@ -131,6 +156,7 @@
   .band-card .label{margin-top:22px;display:block;}
 
   .method{padding:150px 0 160px;}
+  .after-close{font-family:var(--serif);font-size:26px;line-height:1.35;text-align:center;max-width:22em;margin:80px auto 0;}
   .steps{display:grid;grid-template-columns:repeat(3,1fr);gap:56px;margin-top:80px;}
   .step-num{font-family:var(--serif);font-size:46px;color:var(--gold-deep);line-height:1;}
   .step h4{font-family:var(--serif);font-weight:500;font-size:25px;margin:22px 0 14px;}
@@ -179,7 +205,6 @@
     <div class="nav-links">
       <a href="#profile">Signal Profile</a>
       <a href="/report/">Signal Report</a>
-      <a href="#method">The Method</a>
       <a href="#list">The List</a>
       <a href="/about/">About</a>
       <a href="/blog/">Blog</a>
@@ -242,7 +267,8 @@
         </ul>
         <a class="btn btn-line" href="https://buy.stripe.com/6oUcN7b8LegoaWneeS5ZC02">Begin</a>
       </div>
-      <div class="tier tier-dark" id="report">
+      <div class="tier tier-dark tier-locked" id="report">
+        <div class="tier-veil" aria-hidden="true"><span>Coming Soon</span></div>
         <div class="label">The Full Study</div>
         <h3>The Signal Report</h3>
         <div class="price"><sup>$</sup>497</div>
@@ -261,6 +287,33 @@
   </div>
 </section>
 
+<hr class="hairline">
+
+<section class="method" id="after">
+  <div class="wrap">
+    <div class="label">Before You Begin</div>
+    <h2>What happens after you purchase.</h2>
+    <div class="steps">
+      <div class="step">
+        <div class="step-num">01</div>
+        <h4>Check your inbox.</h4>
+        <p>Your questionnaire will arrive within a minute of checkout. It includes 9 thoughtful questions and takes about 10 minutes to complete.</p>
+      </div>
+      <div class="step">
+        <div class="step-num">02</div>
+        <h4>Answer honestly.</h4>
+        <p>There are no right answers. Answer honestly and give as much detail as you can. The more you share, the more clearly your profile can recognize the strengths, patterns, and possibilities you may be too close to see yourself. You may find that the questions alone help things begin to click.</p>
+      </div>
+      <div class="step">
+        <div class="step-num">03</div>
+        <h4>Receive your Signal Profile.</h4>
+        <p>Your personalized profile is usually ready within minutes of submitting your answers. If it needs a closer look, you'll receive it the same day and always within 24 hours.</p>
+      </div>
+    </div>
+    <p class="after-close">You don't have to keep starting from square one. Start with what is already there.</p>
+  </div>
+</section>
+
 <div class="band">
   <div class="band-card">
     <div class="quote">The report reveals what was already there.</div>
@@ -268,31 +321,7 @@
   </div>
 </div>
 
-<section class="method" id="method">
-  <div class="wrap">
-    <div class="label">The Method</div>
-    <h2>Three movements.</h2>
-    <div class="steps">
-      <div class="step">
-        <div class="step-num">01</div>
-        <h4>You answer.</h4>
-        <p>A focused questionnaire draws out the strengths, stories, experiences, and patterns you already carry. Most people find the questions themselves clarifying.</p>
-      </div>
-      <div class="step">
-        <div class="step-num">02</div>
-        <h4>We research.</h4>
-        <p>Live market research, niche gap analysis, and verified income comparables. Every claim in your report is sourced. Nothing is invented, estimated, or padded.</p>
-      </div>
-      <div class="step">
-        <div class="step-num">03</div>
-        <h4>You receive the map.</h4>
-        <p>A designed report that names your signal, shows the market waiting for it, and gives you the direction to build in. Yours to keep and to build on.</p>
-      </div>
-    </div>
-  </div>
-</section>
 
-<hr class="hairline">
 
 <section class="signup" id="list">
   <div class="wrap signup-inner">
