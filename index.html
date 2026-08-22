@@ -124,6 +124,16 @@
   .tier li{padding:12px 0;border-top:1px solid rgba(13,13,13,.1);font-size:15px;}
   .tier-dark li{border-top-color:rgba(255,255,255,.12);}
   .tier li:first-child{border-top:none;}
+  .tier-copy{margin:28px 0 40px;flex:1;}
+  .tier-copy p{font-size:15px;line-height:1.7;margin-bottom:18px;}
+  .tier-copy p:last-child{margin-bottom:0;}
+  .tier-dark .tier-copy p{color:rgba(255,255,255,.82);}
+  .tier-copy .lede{font-family:var(--serif);font-size:21px;line-height:1.5;}
+  .tier-dark .tier-copy .lede{color:var(--white);}
+  .tier-copy .closing{font-family:var(--serif);font-size:19px;}
+  .tier-dark .tier-copy .closing{color:var(--gold);}
+  .tier-status{font-size:13px;letter-spacing:.14em;text-transform:uppercase;margin-bottom:28px;}
+  .tier-dark .tier-status{color:var(--gold);}
 
   /* Frosted "coming soon" glass over an unreleased tier.
      Deliberate sub-100% opacity, authorized by Raquel 2026-08-07 for this element only.
@@ -280,16 +290,14 @@
         <div class="tier-veil" aria-hidden="true"><span>Coming Soon</span></div>
         <div class="label">The Full Study</div>
         <h3>The Signal Report</h3>
-        <div class="price"><sup>$</sup>497</div>
-        <div class="price-note">Research of this depth typically runs $5,000 and up as a studio engagement.</div>
-        <ul>
-          <li>A research-backed niche recommendation</li>
-          <li>The market gap it fills, with cited live research</li>
-          <li>Income comparables from your actual field</li>
-          <li>A custom color palette, grounded in color psychology</li>
-          <li>Your archetype and your constellation, the visual signature of your brand</li>
-          <li>Delivered as a designed, multi-page premium report</li>
-        </ul>
+        <div class="tier-copy">
+          <p class="lede">A personal brand that could only belong to you.</p>
+          <p>Your personal brand already lives in your strengths, experience, perspective, and the patterns that have shaped your life.</p>
+          <p>The Signal Report brings it into view.</p>
+          <p>Every detail is considered. Every possibility is researched. Your strongest direction is developed into a complete brand vision, from its place in the market and possibilities for income to the message, archetype, and visual world that bring it to life.</p>
+          <p class="closing">Individually researched. Entirely yours.</p>
+        </div>
+        <div class="tier-status">Coming soon &middot; $497</div>
         <a class="btn btn-gold" href="/report/">See What It Finds</a>
       </div>
     </div>
