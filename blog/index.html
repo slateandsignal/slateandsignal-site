@@ -54,6 +54,9 @@
 
   footer{background:var(--black);color:rgba(255,255,255,.65);padding:70px 0;font-size:12px;letter-spacing:.12em;}
   .foot-inner{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:26px;}
+  .foot-links{display:flex;gap:28px;flex-wrap:wrap;align-items:center;}
+  .foot-links a{color:rgba(255,255,255,.65);transition:color .2s;}
+  .foot-links a:hover{color:var(--gold);}
   .foot-logo img{height:72px;width:auto;}
 
   @media(max-width:760px){
@@ -142,7 +145,17 @@
 <footer>
   <div class="wrap foot-inner">
     <a class="foot-logo" href="/"><img src="../images/logo-white.png" alt="Slate &amp; Signal"></a>
-    <div>slateandsignal.studio</div>
+    <div class="foot-links">
+      <a href="/about/">About</a>
+      <a href="/blog/">Blog</a>
+      <a href="https://slateandsignal.substack.com/" target="_blank" rel="noopener">Substack</a>
+      <a href="https://www.instagram.com/slateandsignal/" target="_blank" rel="noopener">Instagram</a>
+      <a href="https://www.tiktok.com/@slateandsignal" target="_blank" rel="noopener">TikTok</a>
+      <a href="https://www.pinterest.com/SlateandSignal/" target="_blank" rel="noopener">Pinterest</a>
+      <a href="https://www.linkedin.com/company/135758054/" target="_blank" rel="noopener">LinkedIn</a>
+      <a href="https://www.facebook.com/profile.php?id=61592240619564" target="_blank" rel="noopener">Facebook</a>
+      <a href="mailto:hello@slateandsignal.studio">hello@slateandsignal.studio</a>
+    </div>
   </div>
 </footer>
 
