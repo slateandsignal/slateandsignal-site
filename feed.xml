@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Slate &amp; Signal</title>
+    <link>https://slateandsignal.studio/blog/</link>
+    <atom:link href="https://slateandsignal.studio/feed.xml" rel="self" type="application/rss+xml" />
+    <description>Brand discovery and clarity for people at the very beginning of building a personal brand.</description>
+    <language>en-us</language>
+    <lastBuildDate>Mon, 07 Sep 2026 09:00:00 -0500</lastBuildDate>
+    <item>
+      <title>How Do I Pick a Niche When I Have So Many Interests?</title>
+      <link>https://slateandsignal.studio/blog/how-do-i-pick-a-niche-with-so-many-interests.html</link>
+      <guid isPermaLink="true">https://slateandsignal.studio/blog/how-do-i-pick-a-niche-with-so-many-interests.html</guid>
+      <pubDate>Mon, 07 Sep 2026 09:00:00 -0500</pubDate>
+      <description>Choosing a niche when you have a lot of interests does not have to mean abandoning most of them. Look for the common thread, the angle, and the room where your interests already make sense together.</description>
+    </item>
+    <item>
+      <title>You Followed the Personal Branding Advice. So Why Isn&#x27;t It Working?</title>
+      <link>https://slateandsignal.studio/blog/you-followed-the-personal-branding-advice.html</link>
+      <guid isPermaLink="true">https://slateandsignal.studio/blog/you-followed-the-personal-branding-advice.html</guid>
+      <pubDate>Tue, 25 Aug 2026 09:00:00 -0500</pubDate>
+      <description>You did what the experts said and very little happened. The steps are not wrong. They just leave out the decisions underneath them.</description>
+    </item>
+    <item>
+      <title>The Question Nobody Can Answer</title>
+      <link>https://slateandsignal.studio/blog/the-question-nobody-can-answer.html</link>
+      <guid isPermaLink="true">https://slateandsignal.studio/blog/the-question-nobody-can-answer.html</guid>
+      <pubDate>Mon, 17 Aug 2026 09:00:00 -0500</pubDate>
+      <description>Every branding guide asks what you want to be known for, then moves on as though you already know. Here&#x27;s a real place to begin when you don&#x27;t.</description>
+    </item>
+    <item>
+      <title>What a Personal Brand Is: ACTUALLY</title>
+      <link>https://slateandsignal.studio/blog/what-a-personal-brand-is.html</link>
+      <guid isPermaLink="true">https://slateandsignal.studio/blog/what-a-personal-brand-is.html</guid>
+      <pubDate>Tue, 11 Aug 2026 09:00:00 -0500</pubDate>
+      <description>You already have a personal brand. Building a business simply means learning how to translate it.</description>
+    </item>
+    <item>
+      <title>The Personal Branding Problem</title>
+      <link>https://slateandsignal.studio/blog/the-personal-branding-problem.html</link>
+      <guid isPermaLink="true">https://slateandsignal.studio/blog/the-personal-branding-problem.html</guid>
+      <pubDate>Tue, 05 Aug 2026 09:00:00 -0500</pubDate>
+      <description>Why building a personal brand feels so confusing, and where the real starting point actually is.</description>
+    </item>
+  </channel>
+</rss>
