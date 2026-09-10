@@ -1,0 +1,553 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Find Your Content Style | Slate &amp; Signal</title>
+<meta name="description" content="A self-scoring guide to the way you naturally communicate, the content formats that fit you, and how to use them for what you are building. For anyone asking what should I post.">
+<meta name="robots" content="noindex, nofollow">
+<link rel="canonical" href="https://slateandsignal.studio/content-style/">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Find Your Content Style | Slate &amp; Signal">
+<meta property="og:description" content="Twelve questions. One result that is actually yours.">
+<meta property="og:url" content="https://slateandsignal.studio/content-style/">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --black:#0D0D0D;
+    --white:#FFFFFF;
+    --gold:#FFDE7A;
+    --gold-deep:#C9A227;
+    --muted:#6B6B6B;
+    --rule:#E6E6E6;
+    --serif:'Cormorant Garamond', Georgia, serif;
+    --sans:'DM Sans', -apple-system, sans-serif;
+  }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  body{background:var(--white);color:var(--black);font-family:var(--sans);font-weight:300;line-height:1.7;-webkit-font-smoothing:antialiased;}
+  a{color:inherit;}
+  button{font:inherit;color:inherit;background:none;border:0;cursor:pointer;}
+  .page{max-width:640px;margin:0 auto;padding:48px 28px 96px;}
+
+  /* masthead, same bones as the invoice */
+  .mast{display:flex;justify-content:space-between;align-items:flex-end;gap:16px;padding-bottom:22px;border-bottom:1.5px solid var(--black);margin-bottom:44px;}
+  .brand{font-family:var(--serif);font-size:30px;font-weight:400;line-height:1;text-decoration:none;}
+  .brand-tag{font-size:9.5px;letter-spacing:.3em;text-transform:uppercase;color:var(--gold-deep);font-weight:500;margin-top:8px;}
+  .mast-right{text-align:right;font-size:13px;color:var(--muted);line-height:1.5;}
+  .mast-right strong{display:block;font-family:var(--serif);font-weight:400;font-size:22px;color:var(--black);letter-spacing:.04em;}
+
+  .label{font-size:10.5px;letter-spacing:.3em;text-transform:uppercase;color:var(--gold-deep);font-weight:500;margin-bottom:14px;}
+  h1{font-family:var(--serif);font-weight:400;font-size:clamp(40px,8vw,58px);line-height:1.04;margin-bottom:18px;}
+  h2{font-family:var(--serif);font-weight:400;font-size:clamp(26px,5.4vw,34px);line-height:1.2;margin-bottom:28px;}
+  h3{font-family:var(--serif);font-weight:500;font-size:22px;line-height:1.25;margin-bottom:8px;}
+  p{font-size:16px;margin-bottom:16px;color:#2A2A2A;}
+  .dek{font-family:var(--serif);font-style:italic;font-size:21px;line-height:1.45;color:#333;margin-bottom:34px;}
+  .small{font-size:13px;color:var(--muted);}
+
+  .steps{list-style:none;border-top:1px solid var(--black);margin:28px 0 36px;}
+  .steps li{display:flex;gap:18px;padding:14px 0;border-bottom:1px solid var(--rule);font-size:15px;}
+  .steps li span{font-family:var(--serif);font-size:18px;color:var(--gold-deep);min-width:18px;}
+
+  /* form */
+  .field{margin-bottom:22px;}
+  .field label{display:block;font-size:10.5px;letter-spacing:.3em;text-transform:uppercase;color:var(--gold-deep);font-weight:500;margin-bottom:8px;}
+  .field input{width:100%;border:0;border-bottom:1px solid var(--black);padding:10px 0;font:inherit;font-size:18px;background:transparent;border-radius:0;}
+  .field input:focus{outline:none;border-bottom:2px solid var(--gold-deep);}
+  .err{color:#9B2C2C;font-size:13px;margin-top:-8px;margin-bottom:16px;}
+
+  .btn{display:inline-block;background:var(--black);color:var(--white);padding:17px 38px;font-size:11.5px;letter-spacing:.24em;text-transform:uppercase;font-weight:500;text-decoration:none;transition:background .2s;}
+  .btn:hover{background:var(--gold-deep);color:var(--black);}
+  .btn-line{background:transparent;color:var(--black);border:1px solid var(--black);}
+  .btn-line:hover{background:var(--black);color:var(--white);}
+  .btn-block{display:block;width:100%;text-align:center;}
+
+  /* question screens */
+  .q-meta{display:flex;justify-content:space-between;align-items:center;margin-bottom:22px;}
+  .q-meta .label{margin:0;}
+  .back{font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:var(--muted);}
+  .back:hover{color:var(--black);}
+  .back[hidden]{display:none;}
+  .answers{border-top:1px solid var(--black);}
+  .answer{display:flex;gap:18px;width:100%;text-align:left;padding:19px 4px;border-bottom:1px solid var(--rule);font-size:16px;line-height:1.5;transition:background .15s;}
+  .answer:hover{background:#FAFAF7;}
+  .answer .k{font-family:var(--serif);font-size:19px;color:var(--gold-deep);min-width:20px;line-height:1.3;}
+  .answer .t strong{display:block;font-weight:500;font-size:16px;margin-bottom:2px;color:var(--black);}
+  .answer .t em{font-style:normal;font-size:14px;color:var(--muted);}
+  .answer.picked{background:#FFF8E1;}
+  .part-intro{font-size:15px;color:var(--muted);margin:-14px 0 26px;}
+
+  .screen{animation:fade .35s ease;}
+  @keyframes fade{from{opacity:0;transform:translateY(6px);}to{opacity:1;transform:none;}}
+
+  /* result, laid out like the invoice */
+  .r-head{display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap;margin-bottom:34px;}
+  .r-head .col{min-width:0;}
+  .r-head .right{text-align:right;margin-left:auto;}
+  .r-style{font-family:var(--serif);font-size:clamp(40px,9vw,60px);line-height:1;margin-bottom:10px;}
+  .r-style em{font-style:normal;color:var(--gold-deep);}
+  .lines{border-top:1px solid var(--black);margin-bottom:40px;}
+  .line{display:flex;justify-content:space-between;gap:20px;padding:15px 0;border-bottom:1px solid var(--rule);}
+  .line .l{font-size:15px;}
+  .line .l small{display:block;font-style:italic;color:var(--muted);font-size:13px;}
+  .line .v{text-align:right;font-size:15px;}
+  .section{margin-bottom:44px;}
+  .section p{font-size:16px;}
+  .fmt{display:flex;justify-content:space-between;gap:16px;padding:12px 0;border-bottom:1px solid var(--rule);font-size:15px;}
+  .fmt .why{color:var(--muted);font-size:13px;text-align:right;}
+  .fmt.out{color:#9A9A9A;}
+  .fmt.out .name{text-decoration:line-through;text-decoration-color:#C8C8C8;}
+  .note{border:1px solid var(--gold-deep);padding:26px 28px;margin-bottom:44px;}
+  .note p:last-child{margin-bottom:0;}
+  .recog{columns:2;column-gap:28px;margin:14px 0 16px;list-style:none;}
+  .recog li{font-size:15px;padding:4px 0;break-inside:avoid;}
+  .cta{border-top:1.5px solid var(--black);padding-top:34px;margin-top:10px;}
+  .price{display:flex;justify-content:space-between;align-items:baseline;border-top:1px solid var(--black);padding:18px 0 26px;margin-top:22px;}
+  .price .n{font-family:var(--serif);font-size:26px;}
+  .price .a{font-family:var(--serif);font-size:30px;color:var(--gold-deep);}
+  .actions{display:flex;gap:12px;flex-wrap:wrap;margin-top:30px;}
+  .foot{text-align:center;font-size:10px;letter-spacing:.3em;text-transform:uppercase;color:var(--muted);margin-top:64px;}
+
+  @media (max-width:520px){
+    .page{padding:32px 22px 80px;}
+    .mast-right{display:none;}
+    .recog{columns:1;}
+    .fmt{flex-direction:column;gap:2px;}
+    .fmt .why{text-align:left;}
+  }
+  @media print{
+    .no-print{display:none!important;}
+    .page{padding:0;max-width:none;}
+    .screen{animation:none;}
+    .section,.note,.cta{break-inside:avoid;}
+  }
+</style>
+<script>function loadScript(a){var b=document.getElementsByTagName("head")[0],c=document.createElement("script");c.type="text/javascript",c.src="https://tracker.metricool.com/resources/be.js",c.onreadystatechange=a,c.onload=a,b.appendChild(c)}loadScript(function(){beTracker.t({hash:"e1ec5ef17fb5951bb3b77b706c9ad04"})});</script>
+</head>
+<body>
+<main class="page">
+  <header class="mast">
+    <div>
+      <a class="brand" href="/">Slate &amp; Signal</a>
+      <div class="brand-tag">Clarity reveals &middot; Strategy amplifies</div>
+    </div>
+    <div class="mast-right" id="mastRight"><strong>Content Style</strong>A self-scoring guide</div>
+  </header>
+  <div id="app"></div>
+  <div class="foot">Slate &amp; Signal &middot; slateandsignal.studio</div>
+</main>
+
+<script>
+/* n8n webhook that writes to Kit. Left empty = preview mode, nothing is sent anywhere. */
+var WEBHOOK = "https://slateandsignal.app.n8n.cloud/webhook/content-style";
+var PROFILE_URL = "https://slateandsignal.studio/?utm_source=content-style&utm_medium=lead-magnet&utm_campaign=content-style-result#profile";
+
+var STYLES = {
+  EX:{name:"The Explainer", short:"Explainer",
+    desc:["You tend to make things easier to understand.","When you know something useful, your instinct is often to clarify it, demonstrate it, organize it, or help someone see how the pieces fit."],
+    formats:[["Talking-head explanations",2,0,1],["Tutorials",1,0,2],["Demonstrations",1,0,2,"doc"],["Screen recordings",0,0,1],["Voiceover explainers",0,1,2],["Q&A",1,0,1],["Carousels",0,0,1,"write"],["Written guides or breakdowns",0,0,1,"write"]]},
+  ST:{name:"The Storyteller", short:"Storyteller",
+    desc:["You tend to communicate through what happened.","Experiences, moments, people, changes, and details give you something to work with."],
+    formats:[["Storytime",2,0,1,"personal"],["Narrated video",0,1,2],["Vlogs",2,0,3,"personal"],["Written stories or essays",0,0,1,"write"],["Voiceover",0,1,1],["Photo stories",0,0,1],["Long-form video or audio",1,1,3],["Story-led carousels",0,0,2,"write"]]},
+  SH:{name:"The Sharer", short:"Sharer",
+    desc:["You naturally bring other people into things you discover, enjoy, learn about, or care about.","You do not always need to teach or analyze something. Sometimes the value is simply noticing something worth passing along."],
+    formats:[["Recommendations",1,0,1],["Favorites",1,0,1],["Discoveries",1,0,1],["Lists",0,0,1,"write"],["Resource posts",0,0,1,"write"],["Personal picks",1,0,1],["Come-with-me content",1,0,2,"personal"],["Places, products, people, or ideas worth knowing about",0,0,1]]},
+  CO:{name:"The Conversationalist", short:"Conversationalist",
+    desc:["You tend to communicate through exchange.","Questions, reactions, other people’s experiences, and back-and-forth often help you find the interesting part."],
+    formats:[["Interviews",1,1,2],["Q&A",1,0,1],["Podcast-style content",0,1,2],["Live conversations",2,0,1],["Response videos",2,0,1],["Audience questions",0,0,1],["Guest conversations",1,1,3],["Conversational talking head",2,0,1],["Comment-led posts",0,0,1,"write"]]},
+  CM:{name:"The Commentator", short:"Commentator",
+    desc:["You tend to examine what something means, how it compares, whether it works, or what you think about it.","Your contribution is often the judgment, interpretation, or point of view you add."],
+    formats:[["Commentary",1,0,1],["Reviews",1,0,2],["Comparisons",0,0,2],["Analysis",0,0,2,"write"],["Reaction with explanation",2,0,1],["Opinion pieces",0,0,1,"write"],["Case studies",0,0,3,"write"],["Trend observations",1,0,1],["“What I noticed” content",1,0,1]]},
+  DO:{name:"The Documenter", short:"Documenter",
+    desc:["You tend to communicate by showing something happening.","The process, progression, experiment, project, or experience itself can become the content."],
+    formats:[["Behind the scenes",0,0,1,"doc"],["Process video",0,0,2,"doc"],["Progress updates",0,0,1,"doc"],["Build-in-public content",1,0,1,"doc"],["Before and after",0,0,1,"doc"],["Project diaries",1,0,2,"doc"],["Day-in-the-life",1,0,2,"doc personal"],["Experiments",1,0,2,"doc"],["Challenges",1,0,2,"doc"],["Recaps showing what changed",0,0,2,"doc"]]}
+};
+/* format tuple: [name, face 0 none / 1 optional / 2 required, needs voice, production 1 low / 2 medium / 3 high, flags] */
+
+var Q = [
+ ["A friend asks how you learned to do something you’re now good at. What are you most likely to do?",["Tell them the easiest way I found to learn it.","Tell them how I got into it and what happened while I was learning.","Start telling them about the resources, people, or things I found along the way.","Ask what they’re trying to learn so we can talk through it."],["EX","ST","SH","CO"]],
+ ["You try a new restaurant and really like it. A friend asks how it was. What are you most likely to say?",["Tell them what I thought was especially good and what I would skip.","Show them pictures or video so they can see what it was like.","Tell them they need to go because I think they’d love it.","Tell them what happened while I was there or something memorable about the experience."],["CM","DO","SH","ST"]],
+ ["Someone brings up a subject you’ve recently gotten interested in. What happens most naturally?",["I start explaining something useful I’ve learned about it.","I start talking about what I think about it and why.","I want to hear what they know or think about it too.","I start telling them about all the interesting things I’ve found."],["EX","CM","CO","SH"]],
+ ["You try something new and it goes badly. A few days later, what are you most likely to do with the experience?",["Tell the story because the whole thing is funny or ridiculous now.","Show what happened, especially if I try it again and it improves.","Explain what I learned so someone else could avoid the same problem.","Figure out what went wrong and whether the advice I followed was actually any good."],["ST","DO","EX","CM"]],
+ ["You attend an event you really enjoyed. When you talk about it later, what are you most likely to focus on?",["The people I talked to and the conversations we had.","The things I discovered there that I think other people would like.","One or two moments that made the whole experience memorable.","What the event was actually like from beginning to end."],["CO","SH","ST","DO"]],
+ ["A friend is trying to choose between two things you know quite a bit about. What are you most likely to do?",["Compare them and tell them what I think each one does better.","Explain the differences so the choice is easier to understand.","Ask what matters most to them before I give an opinion.","Show them examples of both so they can see the difference themselves."],["CM","EX","CO","DO"]],
+ ["You find something online that you think is genuinely interesting. What makes you most likely to send it to someone?",["I immediately think of someone who would love it too.","There’s a good story behind it that I want them to hear.","It gives me an opinion or observation I want to talk about.","It explains something I’ve been trying to put into words."],["SH","ST","CM","EX"]],
+ ["You start working on a project that will take several weeks. Which part are you most likely to share with someone along the way?",["Photos, clips, progress, or changes as it develops.","Questions or problems I’m running into so we can talk about them.","New things I’m finding that relate to the project.","Decisions I’m making and why I’m choosing one approach over another."],["DO","CO","SH","CM"]],
+ ["Someone asks you about a hobby or subject you’ve spent a lot of time on. Where are you most likely to go first?",["Give them something useful that makes it easier to understand.","Tell them how I became interested in it in the first place.","Show them what I’ve done, made, or learned over time.","Ask what they want to know about it."],["EX","ST","DO","CO"]],
+ ["You discover that something very popular is not nearly as good as everyone says it is. What are you most likely to do?",["Explain what I think people are overlooking.","Tell people about something else I think is much better.","Explain the difference so people understand why the two aren’t the same.","Tell the story of what happened when I finally tried it myself."],["CM","SH","EX","ST"]],
+ ["You spend an afternoon learning about something completely new. Which part would you be most likely to talk about afterward?",["The conversation I would want to have with someone who knows more about it.","What the learning process actually looked like.","What surprised me or changed my opinion.","The best things I discovered while looking into it."],["CO","DO","CM","SH"]],
+ ["Someone asks what you’ve been working on lately. What answer feels most natural?",["Tell them how the whole thing started and what’s happened so far.","Explain what I’m trying to accomplish and how it works.","Start talking with them about one of the questions or ideas I’m still working through.","Show them where it started, where it is now, or what I’ve made so far."],["ST","EX","CO","DO"]]
+];
+
+var BUILD = [
+ ["A product","Something you have created or plan to create that people can buy. This could be a physical product, digital product, invention, app, course, collection, or other offer."],
+ ["A service or expertise-based business","People hire you, book you, consult with you, learn from you, or pay for your expertise."],
+ ["An audience","Your main goal right now is to become known, build a following, grow readership or viewership, or develop an audience before deciding exactly where it leads."],
+ ["Creative work or a specific project","Art, writing, photography, music, film, design, a book, a collection, or another body of work you want people to discover."],
+ ["A community","You want people to gather, participate, connect, discuss, collaborate, attend, or belong."],
+ ["A business or company","You are building a company, organization, brand, or larger venture and want content to help people discover or understand it."],
+ ["I’m not sure yet","You know you want to create or become more visible, but you do not yet know what you ultimately want to build around it."]
+];
+var BUILD_SHORT = ["Product","Service or expertise","Audience","Creative work or project","Community","Business or company","Not sure yet"];
+
+var VIS = [
+ ["I’m comfortable being on camera regularly.","Your face can be part of your normal content."],
+ ["I’m comfortable appearing sometimes.","You can mix visible content with voiceover, process footage, text, objects, places, or other subjects."],
+ ["I’m comfortable using my voice, but I’d rather not show my face often.","Voiceover, audio, interviews, screen recordings, narrated footage, and off-camera conversation may fit well."],
+ ["I’d rather show what I’m doing than show myself.","Hands, process, workspace, product, environment, movement, demonstrations, and real footage can carry much of the content."],
+ ["I prefer text, visuals, or mostly faceless content.","Writing, carousels, photography, graphics, footage, screen recordings, visual storytelling, and text-led video may fit best."],
+ ["I want as little personal exposure as possible.","You can still create recognizability through your choices, voice, visual language, subjects, work, and point of view."]
+];
+var VIS_SHORT = ["On camera regularly","On camera sometimes","Voice-first, little or no face","Show the work, not myself","Text, visuals, mostly faceless","As little exposure as possible"];
+
+var PROD = [
+ ["I want something I can make quickly.","Short talking head, simple voiceover, Q&A, quick commentary, simple recommendations, or lightly edited footage may fit."],
+ ["I would rather write.","Written posts, newsletters, articles, captions, text-led carousels, scripts, or written commentary may fit."],
+ ["I want to create from things I am already doing.","Process footage, documenting, behind the scenes, day-in-the-life, demonstrations, progress, and real-world footage may fit."],
+ ["I enjoy producing something more carefully.","Edited storytelling, longer video, interviews, visual essays, polished photography, documentary-style work, or designed content may fit."],
+ ["I want the lowest-production option possible.","Simple footage, text, screenshots, voice notes, screen recordings, lists, recommendations, or repeatable templates may fit."],
+ ["I’m willing to experiment before deciding.","Use your Content Style as the constant and test several formats until one feels sustainable."]
+];
+var PROD_SHORT = ["Quick to make","Writing","From what I already do","Carefully produced","Lowest production","Experimenting"];
+
+var DIR = {
+ EX:[
+  ["Make the world around the product understandable.","Explain the problem it addresses, show how people currently deal with that problem, demonstrate what your product changes, and answer the questions someone naturally has before they understand why it matters."],
+  ["Let people see how your mind works.","Explain the problems you regularly encounter, the distinctions you make, the questions people should be asking, and the parts of your field that are often misunderstood."],
+  ["Build around useful clarity.","Choose subjects you can explain repeatedly without forcing yourself. Notice what people save, share, ask about, or want you to explain further."],
+  ["Open up the work.","Explain materials, technique, decisions, research, context, references, process, or the ideas behind what people are seeing."],
+  ["Give people useful things to work with together.","Recurring questions, shared resources, explanations, workshops, or concepts can give the community something concrete to discuss and use."],
+  ["Teach the market around the company.","Help people understand the problem, the category, the choices available to them, and the decisions that matter before they ever need to hear a sales pitch."],
+  ["Start with what people already ask you to explain.","The subjects that repeatedly produce good questions are useful clues."]],
+ ST:[
+  ["Tell the story around the thing.","Why it exists. What led to it. The person it was made for. The decisions, setbacks, discoveries, or experiences that shaped it."],
+  ["Use real situations to show the work.","Tell stories that demonstrate the kinds of problems you encounter, what changed, what mattered, and what the experience actually looks like from the inside."],
+  ["Give people something they want to follow.","Personal experiences, projects, observations, travel, experiments, work, reinvention, or another recurring subject can create continuity from one piece of content to the next."],
+  ["Give the finished work a history.","Share where ideas began, what changed while you made it, the stories behind individual pieces, and the experiences that influenced the work."],
+  ["Tell the stories of the people inside it.","Member experiences, gatherings, milestones, turning points, beginnings, and shared moments help other people understand what participation feels like."],
+  ["Tell the human story surrounding the company.","Founding moments, customers, decisions, problems, milestones, people, and change can make the company more understandable than a list of claims."],
+  ["Notice the stories you already repeat.","If certain experiences keep coming back into your conversations, there may be a larger subject underneath them."]],
+ SH:[
+  ["Build a world around what you make.","Share the things that naturally sit beside your product: ideas, references, tools, places, materials, people, habits, complementary products, or discoveries your future customer would also care about."],
+  ["Become useful through what you find.","Share resources, tools, examples, research, recommendations, people, or ideas that help the same kinds of people who might eventually need your work."],
+  ["Give people a reason to trust what you choose.","Consistently surface things worth their time. Your subject may become clearer by noticing what you repeatedly find yourself sending, saving, recommending, or talking about."],
+  ["Share the world that feeds the work.","Books, places, objects, materials, artists, references, ideas, music, images, and discoveries can help people understand your taste and the world your work comes from."],
+  ["Keep the group connected to useful things.","Introduce members to resources, opportunities, people, work, events, ideas, and discoveries that are genuinely relevant to them."],
+  ["Become a useful source within the company’s world.","Share developments, examples, resources, customer stories, people, and useful things happening around the category rather than talking only about the business itself."],
+  ["Look at what you already share without being asked.","Your repeated recommendations and discoveries may reveal the subject people could eventually know you for."]],
+ CO:[
+  ["Use conversation to uncover the world around the product.","Questions from customers, discussions with experts, conversations with people who experience the problem, reactions, objections, and feedback can all become content.|You do not have to talk about the product every time. Talk about the conversations that make the product relevant."],
+  ["Let people hear you think with another person.","Answer real questions. Respond to situations. Interview people. Work through a problem out loud. Show what changes when your knowledge meets someone else’s experience."],
+  ["Make the audience part of the material.","Ask questions worth answering. Respond to comments. Interview interesting people. Let one conversation lead naturally to the next."],
+  ["Use conversation to open the project outward.","Talk with collaborators, subjects, readers, viewers, other artists, experts, or people connected to the ideas behind the work."],
+  ["Make participation visible.","Member conversations, interviews, questions, group discussions, introductions, recurring topics, and live exchanges can show people what happens when they join."],
+  ["Bring people into the thinking around the company.","Customer questions, founder conversations, team discussions, expert interviews, industry debates, and conversations about the problem can make the business easier to understand."],
+  ["Follow the conversations you want to keep having.","Pay attention to the subjects that make you ask another question instead of ending the discussion."]],
+ CM:[
+  ["Develop a point of view around the product’s category.","Compare approaches. Examine tradeoffs. Talk about what works, what does not, what people misunderstand, and what led you to build your solution differently."],
+  ["Show how you evaluate things.","Analyze situations, compare approaches, review common advice, interpret changes in your field, and explain what you notice that affects the people you work with."],
+  ["Choose subjects you genuinely have something to say about.","Do not simply report what happened. Add the part that comes from you: what you think it means, why it matters, what you disagree with, or what people may be missing."],
+  ["Talk about the ideas surrounding the work.","Influences, criticism, creative decisions, culture, comparisons, artistic choices, and observations can give people another way to understand what you are making."],
+  ["Give people something worth discussing.","Questions, current issues, differing approaches, trends, case studies, and thoughtful disagreement can generate useful conversation inside the group."],
+  ["Build a recognizable point of view around the company’s field.","Interpret what is happening in the market, explain changes, compare approaches, and help customers understand what deserves attention."],
+  ["Notice what repeatedly makes you think, “I have thoughts about this.”","If you keep forming opinions about the same subject, there may be enough there to build around."]],
+ DO:[
+  ["Show the thing becoming real.","Development, prototypes, sourcing, testing, versions, packaging, decisions, changes, mistakes, and launch preparation can all become content before the product is finished."],
+  ["Show the work where privacy allows.","Preparation, tools, process, decisions, workspaces, before-and-after thinking, and what happens behind the final result can make an otherwise invisible service easier to understand."],
+  ["Give people something real to follow.","Choose something you are doing, learning, changing, building, attempting, researching, or exploring and let the progression create the material."],
+  ["Let people watch it develop.","Drafts, sketches, rehearsals, research, edits, materials, rejected versions, experiments, and progress can become part of the experience of the finished work."],
+  ["Show what participation actually looks like.","Gatherings, projects, conversations, collaborations, preparation, member activity, and progress help people see the community in action."],
+  ["Let people see parts of the company being built.","Development, decisions, launches, experiments, customer feedback, operations, milestones, and changes can make the work itself worth following."],
+  ["Pick something already happening in your life and document it for a while.","You may discover the subject by paying attention to what you enjoy showing and what other people want to keep following."]]
+};
+
+var COMBOS = {
+ "EX+ST":"Explain through experiences and examples.",
+ "EX+DO":"Show the process, then make sense of what is happening.",
+ "ST+CM":"Tell what happened and add what you think it means.",
+ "SH+CM":"Recommend things, but give people enough judgment to understand why you chose them.",
+ "SH+CO":"Find interesting things and bring other people into the discovery.",
+ "CO+CM":"Use questions, reactions, and discussion to develop a point of view.",
+ "DO+ST":"Capture what happens, then shape the strongest moments into a story."
+};
+var ORDER = ["EX","ST","SH","CO","CM","DO"];
+
+/* ---------- state ---------- */
+var S = {step:"intro", i:0, name:"", email:"", a:[], build:null, vis:null, prod:null};
+function save(){ try{ localStorage.setItem("ss-content-style", JSON.stringify(S)); }catch(e){} }
+function load(){ try{ var v = JSON.parse(localStorage.getItem("ss-content-style")); if(v && v.email) S = v; }catch(e){} }
+
+function send(payload){
+  if(!WEBHOOK) return;
+  try{
+    var body = new URLSearchParams(payload);
+    fetch(WEBHOOK, {method:"POST", mode:"no-cors", body:body});
+  }catch(e){}
+}
+
+var app = document.getElementById("app");
+function esc(s){ return String(s).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;"); }
+function render(html){ app.innerHTML = '<div class="screen">'+html+'</div>'; window.scrollTo(0,0); }
+
+/* ---------- screens ---------- */
+function intro(){
+  render(
+    '<div class="label">A self-scoring guide</div>'+
+    '<h1>Find Your Content Style</h1>'+
+    '<p class="dek">The way you naturally communicate, the content formats that may fit you best, and how to use them for what you’re building.</p>'+
+    '<p>There are plenty of ways to create content. You do not need to be good at all of them.</p>'+
+    '<ol class="steps">'+
+      '<li><span>1</span>How you naturally communicate</li>'+
+      '<li><span>2</span>Which content formats fit that style</li>'+
+      '<li><span>3</span>What you want your content to help you build</li>'+
+      '<li><span>4</span>How visible and involved you actually want to be</li>'+
+    '</ol>'+
+    '<p class="small" style="margin-bottom:30px">Fifteen taps. Your result is scored for you and sent to your inbox so you can come back to it.</p>'+
+    '<form id="gate" novalidate>'+
+      '<div class="field"><label for="fn">First name</label><input id="fn" autocomplete="given-name" value="'+esc(S.name)+'"></div>'+
+      '<div class="field"><label for="em">Email</label><input id="em" type="email" autocomplete="email" inputmode="email" value="'+esc(S.email)+'"></div>'+
+      '<div class="err" id="err" hidden></div>'+
+      '<button class="btn btn-block" type="submit">Begin</button>'+
+    '</form>'
+  );
+  document.getElementById("gate").onsubmit = function(e){
+    e.preventDefault();
+    var n = document.getElementById("fn").value.trim();
+    var m = document.getElementById("em").value.trim();
+    var err = document.getElementById("err");
+    if(!n){ err.textContent = "Add your first name so your result is addressed to you."; err.hidden = false; return; }
+    if(!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(m)){ err.textContent = "That email doesn’t look complete yet."; err.hidden = false; return; }
+    S.name = n; S.email = m; S.step = "how"; save();
+    send({stage:"start", first_name:n, email:m});
+    how();
+  };
+}
+
+function how(){
+  render(
+    '<div class="label">How this works</div>'+
+    '<h2>Choose the answer that is closest to what you would <em>actually</em> do.</h2>'+
+    '<p>Do not choose what sounds smartest, most useful, or most likely to perform online.</p>'+
+    '<p style="margin-bottom:36px">If two answers could fit, choose the one you would probably do first.</p>'+
+    '<button class="btn btn-block" id="go">Start the questions</button>'
+  );
+  document.getElementById("go").onclick = function(){ S.step="q"; S.i=0; save(); question(); };
+}
+
+function question(){
+  var q = Q[S.i], letters = ["A","B","C","D"], rows = "";
+  for(var k=0;k<4;k++){
+    rows += '<button class="answer'+(S.a[S.i]===k?' picked':'')+'" data-k="'+k+'"><span class="k">'+letters[k]+'</span><span class="t">'+esc(q[1][k])+'</span></button>';
+  }
+  render(
+    '<div class="q-meta"><div class="label">Part one &middot; Question '+(S.i+1)+' of 12</div><button class="back" id="back">Back</button></div>'+
+    '<h2>'+esc(q[0])+'</h2>'+
+    '<div class="answers">'+rows+'</div>'
+  );
+  document.getElementById("back").onclick = function(){
+    if(S.i===0){ S.step="how"; save(); how(); } else { S.i--; save(); question(); }
+  };
+  [].forEach.call(app.querySelectorAll(".answer"), function(b){
+    b.onclick = function(){
+      S.a[S.i] = +b.dataset.k; b.classList.add("picked");
+      setTimeout(function(){
+        if(S.i<11){ S.i++; save(); question(); } else { S.step="build"; save(); choice("build"); }
+      }, 180);
+    };
+  });
+}
+
+var PARTS = {
+  build:{label:"Part two", title:"What are you building toward?", intro:"Your Content Style tells you how you naturally communicate. Now decide what you want your content to help you build right now.", list:BUILD, prev:"q", next:"vis"},
+  vis:{label:"Part three", title:"How visible do you want to be?", intro:"There is no rule that says a personal brand requires turning your private life into content. But people usually need some way to recognize the person, thinking, taste, work, or point of view behind what they are following.", list:VIS, prev:"build", next:"prod"},
+  prod:{label:"Part four", title:"What can you realistically keep making?", intro:"The best content format is not useful if you hate making it.", list:PROD, prev:"vis", next:"result"}
+};
+function choice(key){
+  var P = PARTS[key], rows = "", letters = "ABCDEFG";
+  P.list.forEach(function(o,k){
+    rows += '<button class="answer'+(S[key]===k?' picked':'')+'" data-k="'+k+'"><span class="k">'+letters[k]+'</span><span class="t"><strong>'+esc(o[0])+'</strong><em>'+esc(o[1])+'</em></span></button>';
+  });
+  render(
+    '<div class="q-meta"><div class="label">'+P.label+'</div><button class="back" id="back">Back</button></div>'+
+    '<h2>'+P.title+'</h2>'+
+    '<p class="part-intro">'+P.intro+' Choose the closest.</p>'+
+    '<div class="answers">'+rows+'</div>'
+  );
+  document.getElementById("back").onclick = function(){
+    if(P.prev==="q"){ S.step="q"; S.i=11; save(); question(); } else { S.step=P.prev; save(); choice(P.prev); }
+  };
+  [].forEach.call(app.querySelectorAll(".answer"), function(b){
+    b.onclick = function(){
+      S[key] = +b.dataset.k; b.classList.add("picked");
+      setTimeout(function(){
+        S.step = P.next; save();
+        if(P.next==="result"){ result(true); } else { choice(P.next); }
+      }, 180);
+    };
+  });
+}
+
+/* ---------- scoring ---------- */
+function score(){
+  var t = {EX:0,ST:0,SH:0,CO:0,CM:0,DO:0};
+  S.a.forEach(function(k,i){ t[Q[i][2][k]]++; });
+  var ranked = ORDER.slice().sort(function(x,y){ return t[y]-t[x] || ORDER.indexOf(x)-ORDER.indexOf(y); });
+  var top = [ranked[0]];
+  if(t[ranked[0]] - t[ranked[1]] <= 1) top.push(ranked[1]);
+  return {totals:t, top:top};
+}
+function comboLine(top){
+  if(top.length<2) return null;
+  return COMBOS[top[0]+"+"+top[1]] || COMBOS[top[1]+"+"+top[0]] || "Look at the formats for both. The combination may actually be more useful than either one alone.";
+}
+
+/* ---------- format filtering ---------- */
+function filterFormats(top){
+  var seen = {}, all = [];
+  top.forEach(function(c){ STYLES[c].formats.forEach(function(f){ if(!seen[f[0]]){ seen[f[0]]=1; all.push(f); } }); });
+  function visReason(f){
+    var face=f[1], voice=f[2], flags=f[4]||"";
+    if(S.vis>=2 && face===2) return "needs your face on camera";
+    if(S.vis>=4 && voice) return "needs your voice";
+    if(S.vis===5 && flags.indexOf("personal")>-1) return "shares your private life";
+    return null;
+  }
+  function prodReason(f){
+    var p=f[3], flags=f[4]||"";
+    if((S.prod===0||S.prod===1) && p===3) return "heavier production";
+    if(S.prod===2 && p===3 && flags.indexOf("doc")<0) return "heavier production";
+    if(S.prod===4 && p>=2) return "more production than you want";
+    return null;
+  }
+  function run(useProd){
+    var keep=[], out=[];
+    all.forEach(function(f){
+      var r = visReason(f) || (useProd ? prodReason(f) : null);
+      if(r) out.push([f[0],r]); else keep.push(f);
+    });
+    return {keep:keep, out:out};
+  }
+  var r = run(true);
+  if(r.keep.length < 3) r = run(false);
+  var flag = S.prod===1 ? "write" : S.prod===2 ? "doc" : null;
+  r.keep.sort(function(a,b){
+    if(flag){ var fa=(a[4]||"").indexOf(flag)>-1, fb=(b[4]||"").indexOf(flag)>-1; if(fa!==fb) return fa?-1:1; }
+    if(S.prod===3) return b[3]-a[3];
+    return a[3]-b[3];
+  });
+  return r;
+}
+
+/* ---------- result ---------- */
+function result(fresh){
+  var sc = score(), top = sc.top, t = sc.totals;
+  var styleName = top.length>1
+    ? STYLES[top[0]].short+' <em>+</em> '+STYLES[top[1]].short
+    : STYLES[top[0]].name;
+  var plainStyle = top.map(function(c){ return STYLES[c].short; }).join(" + ");
+  var f = filterFormats(top);
+
+  var html =
+    '<div class="r-head">'+
+      '<div class="col"><div class="label">Prepared for</div><p style="margin:0;font-size:17px">'+esc(S.name)+'</p></div>'+
+      '<div class="col right"><div class="label">Your result</div><p class="small" style="margin:0">'+new Date().toLocaleDateString("en-US",{month:"long",day:"numeric",year:"numeric"})+'</p></div>'+
+    '</div>'+
+    '<div class="label">Your content style</div>'+
+    '<div class="r-style">'+styleName+'</div>';
+
+  if(top.length>1) html += '<p class="dek" style="margin-bottom:30px">'+esc(comboLine(top))+'</p>';
+  else html += '<div style="height:24px"></div>';
+
+  html += '<div class="lines">'+
+    '<div class="line"><div class="l">Building toward</div><div class="v">'+BUILD_SHORT[S.build]+'</div></div>'+
+    '<div class="line"><div class="l">Visibility</div><div class="v">'+VIS_SHORT[S.vis]+'</div></div>'+
+    '<div class="line"><div class="l">Production</div><div class="v">'+PROD_SHORT[S.prod]+'</div></div>'+
+    '<div class="line"><div class="l">Your scores<small>Highest score is your strongest style. Within one point, keep both.</small></div><div class="v">'+
+      ORDER.map(function(c){ return c+' '+t[c]; }).join(' &middot; ')+'</div></div>'+
+  '</div>';
+
+  top.forEach(function(c){
+    html += '<div class="section"><div class="label">'+STYLES[c].name+'</div>'+
+      STYLES[c].desc.map(function(p){ return '<p>'+esc(p)+'</p>'; }).join('')+'</div>';
+  });
+
+  top.forEach(function(c){
+    var d = DIR[c][S.build];
+    html += '<div class="section"><div class="label">Your direction &middot; '+STYLES[c].short+' + '+BUILD_SHORT[S.build]+'</div>'+
+      '<h3>'+esc(d[0])+'</h3>'+
+      d[1].split("|").map(function(p){ return '<p>'+esc(p)+'</p>'; }).join('')+'</div>';
+  });
+
+  html += '<div class="section"><div class="label">Formats to try</div>'+
+    '<p class="small">Filtered for how visible you want to be and what you can realistically keep making. You do not need to use all of them.</p>'+
+    '<div style="border-top:1px solid var(--black)">'+
+      f.keep.map(function(x){ return '<div class="fmt"><span class="name">'+esc(x[0])+'</span></div>'; }).join('')+
+    '</div></div>';
+
+  if(f.out.length){
+    html += '<div class="section"><div class="label">Set aside for now</div>'+
+      '<div style="border-top:1px solid var(--rule)">'+
+        f.out.map(function(x){ return '<div class="fmt out"><span class="name">'+esc(x[0])+'</span><span class="why">'+x[1]+'</span></div>'; }).join('')+
+      '</div>'+
+      '<p class="small" style="margin-top:14px">Your result is not telling you what you must do. It is narrowing the field.</p></div>';
+  }
+
+  if(S.vis>=2){
+    html += '<div class="note"><div class="label">Faceless does not have to mean anonymous</div>'+
+      '<p>There is a difference between “I do not want my private life to become content” and “I do not want anyone to know there is a person behind this.”</p>'+
+      '<p style="margin-bottom:6px">A recognizable personal brand can come from more than a face. People can begin to recognize:</p>'+
+      '<ul class="recog"><li>Your voice</li><li>Your taste</li><li>Your way of explaining something</li><li>What you notice</li><li>What you choose to show</li><li>The subjects you return to</li><li>Your visual style</li><li>Your work</li><li>Your point of view</li></ul>'+
+      '<p>You decide how much access people get.</p></div>';
+  }
+
+  html += '<div class="section"><div class="label">What this does not decide</div>'+
+    '<p>This assessment can help you identify the way you naturally communicate and narrow the kinds of content you may want to try.</p>'+
+    '<p>It does not determine your niche. It does not tell you what makes your particular combination of experience, interests, strengths, and ideas valuable. It does not research your market, competition, opportunities, or positioning.</p>'+
+    '<p>Those are different questions.</p></div>';
+
+  html += '<div class="cta"><div class="label">If you know how you want to create, but not what your brand should be</div>'+
+    '<p>The <strong style="font-weight:500">Signal Profile</strong> looks at you individually.</p>'+
+    '<p>Your answers are analyzed to identify the patterns in your experience, strengths, interests, and direction and turn them into a clearer starting point for your personal brand.</p>'+
+    '<p>It includes possible niche directions, subjects you could build around, content starting points, platform fit, color direction, and the patterns that already make your brand yours.</p>'+
+    '<div class="price"><span class="n">Signal Profile</span><span class="a">$59</span></div>'+
+    '<a class="btn btn-block" href="'+PROFILE_URL+'">See the Signal Profile</a></div>';
+
+  html += '<div class="actions no-print">'+
+    '<button class="btn btn-line" id="pdf">Save as PDF</button>'+
+    '<button class="btn btn-line" id="redo">Retake</button>'+
+  '</div>'+
+  '<p class="small no-print" style="margin-top:16px">A copy of this result is on its way to '+esc(S.email)+'.</p>';
+
+  render(html);
+  document.getElementById("mastRight").innerHTML = '<strong>'+plainStyle+'</strong>'+BUILD_SHORT[S.build];
+  document.getElementById("pdf").onclick = function(){ window.print(); };
+  document.getElementById("redo").onclick = function(){
+    S = {step:"how", i:0, name:S.name, email:S.email, a:[], build:null, vis:null, prod:null}; save(); how();
+  };
+
+  if(fresh){
+    send({
+      stage:"complete", first_name:S.name, email:S.email,
+      content_style: top[0], content_style_second: top[1]||"",
+      content_style_label: plainStyle,
+      building_toward: BUILD_SHORT[S.build], visibility: VIS_SHORT[S.vis], production: PROD_SHORT[S.prod],
+      style_description: top.map(function(c){ return STYLES[c].desc.join(" "); }).join(" "),
+      direction_title: top.map(function(c){ return DIR[c][S.build][0]; }).join(" / "),
+      direction_body: (top.length>1 ? comboLine(top)+" " : "") + top.map(function(c){ return DIR[c][S.build][1].replace("|"," "); }).join(" "),
+      formats: f.keep.map(function(x){ return x[0]; }).join(", "),
+      scores: ORDER.map(function(c){ return c+":"+t[c]; }).join(" ")
+    });
+  }
+}
+
+/* ---------- boot ---------- */
+load();
+if(S.step==="result" && S.prod!==null) result(false);
+else if(S.step==="q" && S.email) question();
+else if(PARTS[S.step] && S.email) choice(S.step);
+else if(S.step==="how" && S.email) how();
+else intro();
+</script>
+</body>
+</html>
