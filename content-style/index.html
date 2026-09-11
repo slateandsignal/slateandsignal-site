@@ -365,9 +365,9 @@ function question(){
 }
 
 var PARTS = {
-  build:{label:"Part two", title:"What are you building toward?", intro:"Your Content Style tells you how you naturally communicate. Now decide what you want your content to help you build right now.", list:BUILD, prev:"q", next:"vis"},
-  vis:{label:"Part three", title:"How visible do you want to be?", intro:"There is no rule that says a personal brand requires turning your private life into content. But people usually need some way to recognize the person, thinking, taste, work, or point of view behind what they are following.", list:VIS, prev:"build", next:"prod"},
-  prod:{label:"Part four", title:"What can you realistically keep making?", intro:"The best content format is not useful if you hate making it.", list:PROD, prev:"vis", next:"result"}
+  build:{label:"Almost done &middot; 3 quick questions left", title:"What are you building toward?", intro:"Your Content Style tells you how you naturally communicate. Now decide what you want your content to help you build right now.", list:BUILD, prev:"q", next:"vis"},
+  vis:{label:"Almost done &middot; 2 quick questions left", title:"How visible do you want to be?", intro:"There is no rule that says a personal brand requires turning your private life into content. But people usually need some way to recognize the person, thinking, taste, work, or point of view behind what they are following.", list:VIS, prev:"build", next:"prod"},
+  prod:{label:"Last question", title:"What can you realistically keep making?", intro:"The best content format is not useful if you hate making it.", list:PROD, prev:"vis", next:"result"}
 };
 function choice(key){
   var P = PARTS[key], rows = "", letters = "ABCDEFG";
