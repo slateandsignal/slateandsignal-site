@@ -549,7 +549,12 @@ function result(fresh){
       direction_title: top.map(function(c){ return DIR[c][S.build][0]; }).join(" / "),
       direction_body: (top.length>1 ? comboLine(top)+" " : "") + top.map(function(c){ return DIR[c][S.build][1].replace("|"," "); }).join(" "),
       formats: f.keep.map(function(x){ return x[0]; }).join(", "),
-      scores: ORDER.map(function(c){ return c+":"+t[c]; }).join(" ")
+      scores: ORDER.map(function(c){ return c+":"+t[c]; }).join(" "),
+      answers: S.a.map(function(k,i){ return (i+1)+"ABCD".charAt(k); }).join(" "),
+      building_toward_choice: "ABCDEFG".charAt(S.build),
+      visibility_choice: "ABCDEF".charAt(S.vis),
+      production_choice: "ABCDEF".charAt(S.prod),
+      formats_set_aside: f.out.map(function(x){ return x[0]; }).join(", ")
     });
   }
 }
