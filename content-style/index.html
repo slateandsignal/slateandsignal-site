@@ -9,12 +9,12 @@
 <link rel="canonical" href="https://slateandsignal.studio/content-style/">
 <meta property="og:type" content="website">
 <meta property="og:title" content="Find Your Content Style | Slate &amp; Signal">
-<meta property="og:description" content="Twelve questions. One result that is actually yours.">
+<meta property="og:description" content="A guide to your content creation direction.">
 <meta property="og:url" content="https://slateandsignal.studio/content-style/">
 <meta property="og:image" content="https://slateandsignal.studio/images/content-style-share.png">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
-<meta property="og:image:alt" content="Find Your Content Style, a self-scoring guide from Slate &amp; Signal">
+<meta property="og:image:alt" content="Find Your Content Style, a guide to your content creation direction from Slate &amp; Signal">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:image" content="https://slateandsignal.studio/images/content-style-share.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -51,6 +51,9 @@
   p{font-size:16px;margin-bottom:16px;color:#2A2A2A;}
   .dek{font-family:var(--serif);font-style:italic;font-size:21px;line-height:1.45;color:#333;margin-bottom:34px;}
   .small{font-size:13px;color:var(--muted);}
+  .quote{margin:6px 0 40px;padding:26px 0 24px;border-top:1px solid var(--rule);border-bottom:1px solid var(--rule);text-align:center;}
+  .quote p{font-family:var(--serif);font-style:italic;font-size:26px;line-height:1.35;color:var(--black);margin:0 0 12px;}
+  .quote cite{font-style:normal;font-size:10.5px;letter-spacing:.3em;text-transform:uppercase;color:var(--gold-deep);font-weight:500;}
 
   .steps{list-style:none;border-top:1px solid var(--black);margin:28px 0 36px;}
   .steps li{display:flex;gap:18px;padding:14px 0;border-bottom:1px solid var(--rule);font-size:15px;}
@@ -138,7 +141,7 @@
       <a class="brand" href="/">Slate &amp; Signal</a>
       <div class="brand-tag">Clarity reveals &middot; Strategy amplifies</div>
     </div>
-    <div class="mast-right" id="mastRight"><strong>Content Style</strong>A self-scoring guide</div>
+    <div class="mast-right" id="mastRight"><strong>Content Style</strong>A guide to your content creation direction</div>
   </header>
   <div id="app"></div>
   <div class="foot">Slate &amp; Signal &middot; slateandsignal.studio</div>
@@ -299,10 +302,14 @@ function render(html){ app.innerHTML = '<div class="screen">'+html+'</div>'; win
 /* ---------- screens ---------- */
 function intro(){
   render(
-    '<div class="label">A self-scoring guide</div>'+
+    '<div class="label">A guide to your content creation direction</div>'+
     '<h1>Find Your Content Style</h1>'+
-    '<p class="dek">The way you naturally communicate, the content formats that may fit you best, and how to use them for what you’re building.</p>'+
-    '<p>There are plenty of ways to create content. You do not need to be good at all of them.</p>'+
+    '<blockquote class="quote"><p>‘What if I fall?’<br>Oh but my darling,<br>what if you fly?</p><cite>Erin Hanson</cite></blockquote>'+
+    '<div class="label">What this does</div>'+
+    '<p>There is no one way to do this. What worked for someone else may not be organic to you or the way you naturally present yourself to others.</p>'+
+    '<p>This guide looks at how you already communicate and what your brand goal is, then matches that to content formats that suit you.</p>'+
+    '<p>The result is a content style that is likely to fit you naturally, along with formats that make sense for the way you communicate and how visible you want to be.</p>'+
+    '<p>Knowing this part of your brand direction gives you a solid place to start, so you can spend less time cycling through content styles.</p>'+
     '<ol class="steps">'+
       '<li><span>1</span>How you naturally communicate</li>'+
       '<li><span>2</span>Which content formats fit that style</li>'+
