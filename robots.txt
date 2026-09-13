@@ -6,3 +6,6 @@ Allow: /
 Disallow: /p/
 
 Sitemap: https://slateandsignal.studio/sitemap.xml
+
+# Signal Report lookup page, passcode only, never indexed.
+Disallow: /my-report/

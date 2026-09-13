@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Your Signal Report | Slate &amp; Signal</title>
+<meta name="robots" content="noindex, nofollow">
+<meta http-equiv="Cache-Control" content="no-store">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root{ --black:#0A0A0A; --white:#FFFFFF; --gold:#C4A265; --serif:'Cormorant Garamond', Georgia, serif; --sans:'DM Sans', -apple-system, sans-serif; }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  html,body{height:100%;}
+  body{background:var(--black);color:var(--white);font-family:var(--sans);font-weight:300;}
+  .entry{min-height:100%;display:flex;align-items:center;justify-content:center;padding:32px;}
+  form{width:100%;max-width:360px;display:flex;flex-direction:column;gap:14px;}
+  input{font-family:var(--serif);font-size:26px;text-align:center;letter-spacing:.08em;padding:14px 16px;background:#111111;color:var(--white);border:1px solid #2A2A2A;border-radius:2px;outline:none;}
+  input:focus{border-color:var(--gold);}
+  button{font-family:var(--sans);font-size:13px;letter-spacing:.2em;text-transform:uppercase;padding:14px;background:var(--gold);color:var(--black);border:0;border-radius:2px;cursor:pointer;}
+  button:disabled{cursor:wait;}
+  .msg{font-size:16px;text-align:center;color:#DDDDDD;min-height:24px;}
+  .report{display:none;width:100%;height:100vh;border:0;background:#d9d6cf;}
+  body.showing .entry{display:none;}
+  body.showing .report{display:block;}
+</style>
+</head>
+<body>
+<main class="entry">
+  <form id="lookup" autocomplete="off">
+    <input id="code" name="passcode" type="text" inputmode="text" autocapitalize="off" spellcheck="false" aria-label="Passcode" required>
+    <button id="go" type="submit">Open</button>
+    <p class="msg" id="msg" role="status"></p>
+  </form>
+</main>
+<!-- The report renders in a sandboxed frame so it keeps the Signal Report template's own CSS and scripts exactly as designed. -->
+<iframe class="report" id="report" title="Signal Report" sandbox="allow-scripts"></iframe>
+<script>
+  // n8n "Signal Report - Lookup" production webhook. Placeholder until that workflow is built.
+  const LOOKUP_WEBHOOK_URL = 'https://slateandsignal.app.n8n.cloud/webhook/REPLACE-WITH-REPORT-LOOKUP';
+
+  const form = document.getElementById('lookup');
+  const input = document.getElementById('code');
+  const btn = document.getElementById('go');
+  const msg = document.getElementById('msg');
+  const frame = document.getElementById('report');
+
+  form.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    const passcode = input.value.trim();
+    if (!passcode) return;
+    btn.disabled = true;
+    msg.textContent = '';
+    try {
+      const res = await fetch(LOOKUP_WEBHOOK_URL, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ passcode }),
+        cache: 'no-store',
+        credentials: 'omit'
+      });
+      const data = await res.json();
+      if (data && data.found === true && data.reportHtml) {
+        input.value = '';
+        document.title = (data.clientName ? data.clientName + ' | ' : '') + 'Signal Report';
+        frame.srcdoc = data.reportHtml;
+        document.body.classList.add('showing');
+      } else {
+        msg.textContent = 'No report found for that code. Double check it and try again.';
+      }
+    } catch (err) {
+      msg.textContent = 'No report found for that code. Double check it and try again.';
+    } finally {
+      btn.disabled = false;
+    }
+  });
+</script>
+</body>
+</html>
