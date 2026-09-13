@@ -29,7 +29,7 @@
   --white:#FFFFFF;
   --soft:#F7F5F1;
   --card:#FFFFFF;
-  --gold:#f4d475;
+  --gold:#FFDE7A;
   --gold2:#C4882A;
   /* --amber MUST be overridden with this client's actual accent color before delivery (see Signal-Report-SOP.md Step 7). Left as loud red on purpose so a forgotten step is obvious, not invisible. */
   --amber:#FF0000;
@@ -187,7 +187,7 @@ img { display:block; width:100%; height:100%; object-fit:cover; }
 /* NEXT */
 .next { padding:76px 70px; display:grid; grid-template-columns:47% 53%; gap:60px; align-items:start; }
 .next h2 { font-size:54px; margin:78px 0 30px; }
-.next-card { border:1px solid rgba(196,162,101,.42); border-radius:8px; padding:38px 42px; }
+.next-card { border:1px solid rgba(255,222,122,.42); border-radius:8px; padding:38px 42px; }
 .next-card ul { list-style:none; margin-top:22px; }
 .next-card li { padding:13px 0; border-bottom:1px solid rgba(255,255,255,.09); color:#fff; }
 .next-card li::before { content:'✦'; color:var(--gold); margin-right:12px; }
@@ -348,8 +348,8 @@ img { display:block; width:100%; height:100%; object-fit:cover; }
         <circle fill="none" stroke="rgba(255,255,255,0.05)" stroke-width="0.8" cx="350" cy="260" r="210"/>
         <defs>
           <radialGradient id="cglowgrad" cx="50%" cy="50%" r="50%">
-            <stop offset="0%" stop-color="#C4A265" stop-opacity="0.12"/>
-            <stop offset="100%" stop-color="#C4A265" stop-opacity="0"/>
+            <stop offset="0%" stop-color="#FFDE7A" stop-opacity="0.12"/>
+            <stop offset="100%" stop-color="#FFDE7A" stop-opacity="0"/>
           </radialGradient>
         </defs>
         <circle id="ccenter-glow" cx="350" cy="260" r="80" fill="url(#cglowgrad)" opacity="0" style="transition:opacity 1s ease;"/>
@@ -370,17 +370,17 @@ img { display:block; width:100%; height:100%; object-fit:cover; }
       </svg>
       <div id="cdots-labels"></div>
       <div id="carchetype-label" style="position:absolute;text-align:center;opacity:0;transition:opacity 1s ease;transform:translate(-50%,-50%);left:50%;top:50%;">
-        <span style="font-size:14px;color:#F4D475;display:block;margin-bottom:4px;">&#10022;</span>
-        <span id="carch-name" style="font-family:'Cormorant Garamond',serif;font-size:11px;font-weight:300;letter-spacing:0.3em;text-transform:uppercase;color:rgba(244,212,117,0.9);"></span>
+        <span style="font-size:14px;color:#FFDE7A;display:block;margin-bottom:4px;">&#10022;</span>
+        <span id="carch-name" style="font-family:'Cormorant Garamond',serif;font-size:11px;font-weight:300;letter-spacing:0.3em;text-transform:uppercase;color:rgba(255,222,122,0.9);"></span>
       </div>
     </div>
     </div>
 
-    <div id="cbadge" style="margin-top:20px;display:inline-flex;align-items:center;gap:8px;border:1px solid rgba(196,162,101,0.35);padding:8px 20px;font-size:9px;letter-spacing:0.3em;text-transform:uppercase;color:#C4A265;opacity:0;transition:opacity 0.8s ease;font-family:'DM Sans',sans-serif;">&#10022; &nbsp; HIGH ALIGNMENT DETECTED</div>
+    <div id="cbadge" style="margin-top:20px;display:inline-flex;align-items:center;gap:8px;border:1px solid rgba(255,222,122,0.35);padding:8px 20px;font-size:9px;letter-spacing:0.3em;text-transform:uppercase;color:#FFDE7A;opacity:0;transition:opacity 0.8s ease;font-family:'DM Sans',sans-serif;">&#10022; &nbsp; HIGH ALIGNMENT DETECTED</div>
 
     <p id="cdesc" style="margin-top:16px;max-width:560px;text-align:center;font-family:'Cormorant Garamond',serif;font-size:14px;font-style:italic;font-weight:300;color:rgba(255,255,255,0.7);line-height:1.8;opacity:0;transition:opacity 1s ease;padding:0 16px;"></p>
 
-    <button id="creplay" style="margin-top:14px;background:none;border:1px solid #2A2A2A;color:#555;font-family:'DM Sans',sans-serif;font-size:10px;letter-spacing:0.3em;text-transform:uppercase;padding:8px 20px;cursor:pointer;transition:border-color 0.3s,color 0.3s;" onmouseover="this.style.borderColor='#C4A265';this.style.color='#C4A265'" onmouseout="this.style.borderColor='#2A2A2A';this.style.color='#555'">&#8635; &nbsp; REPLAY</button>
+    <button id="creplay" style="margin-top:14px;background:none;border:1px solid #2A2A2A;color:#555;font-family:'DM Sans',sans-serif;font-size:10px;letter-spacing:0.3em;text-transform:uppercase;padding:8px 20px;cursor:pointer;transition:border-color 0.3s,color 0.3s;" onmouseover="this.style.borderColor='#FFDE7A';this.style.color='#FFDE7A'" onmouseout="this.style.borderColor='#2A2A2A';this.style.color='#555'">&#8635; &nbsp; REPLAY</button>
   </div>
 
 </div>
@@ -389,13 +389,13 @@ img { display:block; width:100%; height:100%; object-fit:cover; }
   .cnode-label { position:absolute; opacity:0; transition:opacity 0.6s ease; pointer-events:none; }
   .cnode-label.lit { opacity:1; }
   .cnode-dim { font-size:8px; letter-spacing:0.2em; text-transform:uppercase; color:rgba(255,255,255,0.35); margin-bottom:3px; font-family:'DM Sans',sans-serif; }
-  .cnode-desc { font-family:'Cormorant Garamond',serif; font-size:13px; font-style:italic; color:#C4A265; line-height:1.3; white-space:nowrap; }
-  .cnode-desc.cpeak { font-size:16px; color:#F4D475; }
-  .cnode-dot { width:8px; height:8px; border-radius:50%; background:#C4A265; position:absolute; transform:translate(-50%,-50%); opacity:0; transition:opacity 0.4s ease, box-shadow 0.4s ease; }
-  .cnode-dot.lit { opacity:1; box-shadow:0 0 12px 3px rgba(196,162,101,0.5); }
-  .cnode-dot.cpeak { background:#F4D475 !important; width:12px !important; height:12px !important; box-shadow:0 0 20px 6px rgba(244,212,117,0.6) !important; animation:cpulse 2s ease-in-out infinite; }
-  @keyframes cpulse { 0%,100%{box-shadow:0 0 20px 6px rgba(244,212,117,0.6)} 50%{box-shadow:0 0 32px 10px rgba(244,212,117,0.85)} }
-  .cline { stroke:rgba(196,162,101,0.45); stroke-width:0.8; fill:none; stroke-dasharray:1000; stroke-dashoffset:1000; transition:stroke-dashoffset 1.2s ease; }
+  .cnode-desc { font-family:'Cormorant Garamond',serif; font-size:13px; font-style:italic; color:#FFDE7A; line-height:1.3; white-space:nowrap; }
+  .cnode-desc.cpeak { font-size:16px; color:#FFDE7A; }
+  .cnode-dot { width:8px; height:8px; border-radius:50%; background:#FFDE7A; position:absolute; transform:translate(-50%,-50%); opacity:0; transition:opacity 0.4s ease, box-shadow 0.4s ease; }
+  .cnode-dot.lit { opacity:1; box-shadow:0 0 12px 3px rgba(255,222,122,0.5); }
+  .cnode-dot.cpeak { background:#FFDE7A !important; width:12px !important; height:12px !important; box-shadow:0 0 20px 6px rgba(255,222,122,0.6) !important; animation:cpulse 2s ease-in-out infinite; }
+  @keyframes cpulse { 0%,100%{box-shadow:0 0 20px 6px rgba(255,222,122,0.6)} 50%{box-shadow:0 0 32px 10px rgba(255,222,122,0.85)} }
+  .cline { stroke:rgba(255,222,122,0.45); stroke-width:0.8; fill:none; stroke-dasharray:1000; stroke-dashoffset:1000; transition:stroke-dashoffset 1.2s ease; }
   .cline.drawn { stroke-dashoffset:0; }
 </style>
 
@@ -1163,7 +1163,7 @@ img { display:block; width:100%; height:100%; object-fit:cover; }
     line.setAttribute('x1', data.nodes[a].x); line.setAttribute('y1', data.nodes[a].y);
     line.setAttribute('x2', data.nodes[b].x); line.setAttribute('y2', data.nodes[b].y);
     line.classList.add('cline');
-    if (a === data.peakNode || b === data.peakNode) line.style.stroke = 'rgba(244,212,117,0.55)';
+    if (a === data.peakNode || b === data.peakNode) line.style.stroke = 'rgba(255,222,122,0.55)';
     linesGroup.appendChild(line);
     return line;
   });
