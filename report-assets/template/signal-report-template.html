@@ -30,7 +30,6 @@
   --soft:#F7F5F1;
   --card:#FFFFFF;
   --gold:#FFDE7A;
-  --gold2:#C4882A;
   /* --amber MUST be overridden with this client's actual accent color before delivery (see Signal-Report-SOP.md Step 7). Left as loud red on purpose so a forgotten step is obvious, not invisible. */
   --amber:#FF0000;
   --line:rgba(17,17,17,.12);
@@ -39,12 +38,6 @@
   --serif:'Cormorant Garamond', Georgia, serif;
   --sans:'DM Sans', -apple-system, BlinkMacSystemFont, sans-serif;
 
-  /* KNG palette, used only on the visual identity page */
-  --melon:#F58D68;
-  --lavender:#9279B7;
-  --sky:#38A2D4;
-  --aqua:#2A97AC;
-  --deepteal:#1A6B73;
 }
 
 html, body { background:#d9d6cf; color:var(--ink); font-family:var(--sans); -webkit-font-smoothing:antialiased; }
@@ -371,16 +364,16 @@ img { display:block; width:100%; height:100%; object-fit:cover; }
       <div id="cdots-labels"></div>
       <div id="carchetype-label" style="position:absolute;text-align:center;opacity:0;transition:opacity 1s ease;transform:translate(-50%,-50%);left:50%;top:50%;">
         <span style="font-size:14px;color:#FFDE7A;display:block;margin-bottom:4px;">&#10022;</span>
-        <span id="carch-name" style="font-family:'Cormorant Garamond',serif;font-size:11px;font-weight:300;letter-spacing:0.3em;text-transform:uppercase;color:rgba(255,222,122,0.9);"></span>
+        <span id="carch-name" style="font-family:'Cormorant Garamond',serif;font-size:11px;font-weight:300;letter-spacing:0.3em;text-transform:uppercase;color:#FFDE7A;"></span>
       </div>
     </div>
     </div>
 
     <div id="cbadge" style="margin-top:20px;display:inline-flex;align-items:center;gap:8px;border:1px solid rgba(255,222,122,0.35);padding:8px 20px;font-size:9px;letter-spacing:0.3em;text-transform:uppercase;color:#FFDE7A;opacity:0;transition:opacity 0.8s ease;font-family:'DM Sans',sans-serif;">&#10022; &nbsp; HIGH ALIGNMENT DETECTED</div>
 
-    <p id="cdesc" style="margin-top:16px;max-width:560px;text-align:center;font-family:'Cormorant Garamond',serif;font-size:14px;font-style:italic;font-weight:300;color:rgba(255,255,255,0.7);line-height:1.8;opacity:0;transition:opacity 1s ease;padding:0 16px;"></p>
+    <p id="cdesc" style="margin-top:16px;max-width:560px;text-align:center;font-family:'Cormorant Garamond',serif;font-size:14px;font-style:italic;font-weight:300;color:#FFFFFF;line-height:1.8;opacity:0;transition:opacity 1s ease;padding:0 16px;"></p>
 
-    <button id="creplay" style="margin-top:14px;background:none;border:1px solid #2A2A2A;color:#555;font-family:'DM Sans',sans-serif;font-size:10px;letter-spacing:0.3em;text-transform:uppercase;padding:8px 20px;cursor:pointer;transition:border-color 0.3s,color 0.3s;" onmouseover="this.style.borderColor='#FFDE7A';this.style.color='#FFDE7A'" onmouseout="this.style.borderColor='#2A2A2A';this.style.color='#555'">&#8635; &nbsp; REPLAY</button>
+    <button id="creplay" style="margin-top:14px;background:none;border:1px solid #2A2A2A;color:#FFFFFF;font-family:'DM Sans',sans-serif;font-size:10px;letter-spacing:0.3em;text-transform:uppercase;padding:8px 20px;cursor:pointer;transition:border-color 0.3s,color 0.3s;" onmouseover="this.style.borderColor='#FFDE7A';this.style.color='#FFDE7A'" onmouseout="this.style.borderColor='#2A2A2A';this.style.color='#555'">&#8635; &nbsp; REPLAY</button>
   </div>
 
 </div>
@@ -388,7 +381,7 @@ img { display:block; width:100%; height:100%; object-fit:cover; }
 <style>
   .cnode-label { position:absolute; opacity:0; transition:opacity 0.6s ease; pointer-events:none; }
   .cnode-label.lit { opacity:1; }
-  .cnode-dim { font-size:8px; letter-spacing:0.2em; text-transform:uppercase; color:rgba(255,255,255,0.35); margin-bottom:3px; font-family:'DM Sans',sans-serif; }
+  .cnode-dim { font-size:8px; letter-spacing:0.2em; text-transform:uppercase; color:#FFFFFF; margin-bottom:3px; font-family:'DM Sans',sans-serif; }
   .cnode-desc { font-family:'Cormorant Garamond',serif; font-size:13px; font-style:italic; color:#FFDE7A; line-height:1.3; white-space:nowrap; }
   .cnode-desc.cpeak { font-size:16px; color:#FFDE7A; }
   .cnode-dot { width:8px; height:8px; border-radius:50%; background:#FFDE7A; position:absolute; transform:translate(-50%,-50%); opacity:0; transition:opacity 0.4s ease, box-shadow 0.4s ease; }
@@ -1278,7 +1271,7 @@ img { display:block; width:100%; height:100%; object-fit:cover; }
         <div class="dot" style="background:{{HEX 1}}"></div><div class="dot" style="background:{{HEX 2}}"></div><div class="dot" style="background:{{HEX 3}}"></div><div class="dot" style="background:{{HEX 4 or white}}"></div>
       </div>
       <!-- Optional: only if colors were removed -->
-      <div style="font-size:11px; letter-spacing:.15em; text-transform:uppercase; color:#999; margin-bottom:10px;">{{REMOVED COLORS LABEL — omit this whole block if nothing was removed}}</div>
+      <div style="font-size:11px; letter-spacing:.15em; text-transform:uppercase; color:#111111; margin-bottom:10px;">{{REMOVED COLORS LABEL — omit this whole block if nothing was removed}}</div>
       <div class="color-dots">
         <div class="dot" style="background:{{REMOVED HEX 1}};"></div><div class="dot" style="background:{{REMOVED HEX 2}};"></div>
       </div>
@@ -1326,12 +1319,12 @@ img { display:block; width:100%; height:100%; object-fit:cover; }
       <p>{{WHY THIS NICHE — 2-3 sentences on why it is the most underserved option for this person specifically}}</p>
     </div>
     <div class="dark-card">
-      <div class="kicker" style="margin-bottom:14px; color:#999;">ALTERNATE DIRECTION</div>
+      <div class="kicker" style="margin-bottom:14px; color:#FFFFFF;">ALTERNATE DIRECTION</div>
       <h3 style="font-size:22px;">{{ALTERNATE NICHE 1 NAME}}</h3>
       <p>{{ONE SENTENCE ON WHY THIS COULD ALSO WORK}}</p>
     </div>
     <div class="dark-card">
-      <div class="kicker" style="margin-bottom:14px; color:#999;">ALTERNATE DIRECTION</div>
+      <div class="kicker" style="margin-bottom:14px; color:#FFFFFF;">ALTERNATE DIRECTION</div>
       <h3 style="font-size:22px;">{{ALTERNATE NICHE 2 NAME}}</h3>
       <p>{{ONE SENTENCE ON WHY THIS COULD ALSO WORK}}</p>
     </div>
@@ -1366,10 +1359,10 @@ img { display:block; width:100%; height:100%; object-fit:cover; }
     <p class="sub">{{PAGE 10 SUBTITLE}}</p>
   </div>
   <div class="eco-grid">
-    <div class="eco-box"><div class="label">{{REVENUE STREAM 1 NAME}}</div><p>{{DESCRIPTION + PRICE RANGE + WHY}}</p><p style="font-size:12px; color:#888; margin-top:10px;"><em>{{COMPARABLE — real, verifiable example}}. Source: {{SOURCE NAME/LINK}}, gathered {{MONTH DAY, YEAR}}.</em></p></div>
-    <div class="eco-box"><div class="label">{{REVENUE STREAM 2 NAME}}</div><p>{{DESCRIPTION + PRICE RANGE + WHY}}</p><p style="font-size:12px; color:#888; margin-top:10px;"><em>{{COMPARABLE — real, verifiable example}}. Source: {{SOURCE NAME/LINK}}, gathered {{MONTH DAY, YEAR}}.</em></p></div>
-    <div class="eco-box"><div class="label">{{REVENUE STREAM 3 NAME}}</div><p>{{DESCRIPTION + PRICE RANGE + WHY}}</p><p style="font-size:12px; color:#888; margin-top:10px;"><em>{{COMPARABLE — real, verifiable example}}. Source: {{SOURCE NAME/LINK}}, gathered {{MONTH DAY, YEAR}}.</em></p></div>
-    <div class="eco-box"><div class="label">{{REVENUE STREAM 4 NAME}}</div><p>{{DESCRIPTION + PRICE RANGE + WHY}}</p><p style="font-size:12px; color:#888; margin-top:10px;"><em>{{COMPARABLE — real, verifiable example}}. Source: {{SOURCE NAME/LINK}}, gathered {{MONTH DAY, YEAR}}.</em></p></div>
+    <div class="eco-box"><div class="label">{{REVENUE STREAM 1 NAME}}</div><p>{{DESCRIPTION + PRICE RANGE + WHY}}</p><p style="font-size:12px; color:#111111; margin-top:10px;"><em>{{COMPARABLE — real, verifiable example}}. Source: {{SOURCE NAME/LINK}}, gathered {{MONTH DAY, YEAR}}.</em></p></div>
+    <div class="eco-box"><div class="label">{{REVENUE STREAM 2 NAME}}</div><p>{{DESCRIPTION + PRICE RANGE + WHY}}</p><p style="font-size:12px; color:#111111; margin-top:10px;"><em>{{COMPARABLE — real, verifiable example}}. Source: {{SOURCE NAME/LINK}}, gathered {{MONTH DAY, YEAR}}.</em></p></div>
+    <div class="eco-box"><div class="label">{{REVENUE STREAM 3 NAME}}</div><p>{{DESCRIPTION + PRICE RANGE + WHY}}</p><p style="font-size:12px; color:#111111; margin-top:10px;"><em>{{COMPARABLE — real, verifiable example}}. Source: {{SOURCE NAME/LINK}}, gathered {{MONTH DAY, YEAR}}.</em></p></div>
+    <div class="eco-box"><div class="label">{{REVENUE STREAM 4 NAME}}</div><p>{{DESCRIPTION + PRICE RANGE + WHY}}</p><p style="font-size:12px; color:#111111; margin-top:10px;"><em>{{COMPARABLE — real, verifiable example}}. Source: {{SOURCE NAME/LINK}}, gathered {{MONTH DAY, YEAR}}.</em></p></div>
   </div>
 </section>
 
@@ -1392,7 +1385,7 @@ img { display:block; width:100%; height:100%; object-fit:cover; }
 <section class="page dark back" style="min-height:740px; display:flex; flex-direction:column; align-items:center; justify-content:center; text-align:center; padding:100px 64px;">
   <div style="font-family:var(--serif); font-size:clamp(36px,5vw,52px); font-weight:300; letter-spacing:.05em; line-height:1.1; margin-bottom:8px;">SLATE<br><img src="assets/wordmark-ampersand.png" alt="&amp;" style="height:100px; width:auto; display:inline-block; vertical-align:-24px; margin:10px 0;"><br>SIGNAL</div>
   <div style="font-size:20px; color:var(--gold); margin:20px 0;">&#10022;</div>
-  <div style="font-size:11px; letter-spacing:.35em; text-transform:uppercase; color:#999;">Clarity Reveals. Strategy Amplifies. You Lead.</div>
+  <div style="font-size:11px; letter-spacing:.35em; text-transform:uppercase; color:#FFFFFF;">Clarity Reveals. Strategy Amplifies. You Lead.</div>
 </section>
 
 </div>
