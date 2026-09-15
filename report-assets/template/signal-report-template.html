@@ -143,6 +143,15 @@ img { display:block; width:100%; height:100%; object-fit:cover; }
 .eco-box { border-top:1px solid rgba(17,17,17,.15); padding-top:22px; min-height:190px; }
 .eco-box .label { margin-bottom:20px; }
 .eco-box p,.eco-box li { font-size:15px; line-height:1.7; margin-bottom:10px; }
+/* Raquel 2026-09-15: Revenue Potential reads as one stacked column at every width, larger type. Market key-number cards sit in a row, uncropped. */
+.revenue-list { grid-template-columns:1fr !important; gap:40px; }
+.revenue-list .eco-box { min-height:0; }
+.revenue-list .eco-box p { font-size:18px; line-height:1.7; }
+.revenue-list .eco-box .label { font-size:13px; }
+.market-charts { height:auto !important; overflow:visible !important; }
+.market-charts::before { display:none !important; }
+.market-charts > div, .market-cards { display:grid; grid-template-columns:repeat(auto-fit, minmax(220px, 1fr)); gap:34px; }
+
 .exp-strip { position:absolute; left:70px; right:70px; bottom:56px; border:1px solid rgba(17,17,17,.12); border-radius:8px; padding:30px 34px; display:grid; grid-template-columns:repeat(3,1fr); gap:18px; background:rgba(255,255,255,.55); }
 .exp-item { display:flex; gap:16px; align-items:center; border-right:1px solid rgba(17,17,17,.10); padding-right:22px; }
 .exp-item:last-child { border-right:0; }
@@ -1352,17 +1361,17 @@ img { display:block; width:100%; height:100%; object-fit:cover; }
 </section>
 
 <!-- PAGE 10 -->
-<section class="page light ecosystem" style="grid-template-columns:34% 66%;">
+<section class="page light ecosystem" style="grid-template-columns:1fr; gap:10px;">
   <div>
     <div class="page-num">10 <span class="numline"></span></div>
     <h2>REVENUE<br>POTENTIAL</h2>
     <p class="sub">{{PAGE 10 SUBTITLE}}</p>
   </div>
-  <div class="eco-grid">
-    <div class="eco-box"><div class="label">{{REVENUE STREAM 1 NAME}}</div><p>{{DESCRIPTION + PRICE RANGE + WHY}}</p><p style="font-size:12px; color:#111111; margin-top:10px;"><em>{{COMPARABLE — real, verifiable example}}. Source: {{SOURCE NAME/LINK}}, gathered {{MONTH DAY, YEAR}}.</em></p></div>
-    <div class="eco-box"><div class="label">{{REVENUE STREAM 2 NAME}}</div><p>{{DESCRIPTION + PRICE RANGE + WHY}}</p><p style="font-size:12px; color:#111111; margin-top:10px;"><em>{{COMPARABLE — real, verifiable example}}. Source: {{SOURCE NAME/LINK}}, gathered {{MONTH DAY, YEAR}}.</em></p></div>
-    <div class="eco-box"><div class="label">{{REVENUE STREAM 3 NAME}}</div><p>{{DESCRIPTION + PRICE RANGE + WHY}}</p><p style="font-size:12px; color:#111111; margin-top:10px;"><em>{{COMPARABLE — real, verifiable example}}. Source: {{SOURCE NAME/LINK}}, gathered {{MONTH DAY, YEAR}}.</em></p></div>
-    <div class="eco-box"><div class="label">{{REVENUE STREAM 4 NAME}}</div><p>{{DESCRIPTION + PRICE RANGE + WHY}}</p><p style="font-size:12px; color:#111111; margin-top:10px;"><em>{{COMPARABLE — real, verifiable example}}. Source: {{SOURCE NAME/LINK}}, gathered {{MONTH DAY, YEAR}}.</em></p></div>
+  <div class="eco-grid revenue-list">
+    <div class="eco-box"><div class="label">{{REVENUE STREAM 1 NAME}}</div><p>{{DESCRIPTION + PRICE RANGE + WHY}}</p><p style="font-size:14px; color:#111111; margin-top:10px;"><em>{{COMPARABLE — real, verifiable example}}. Source: {{SOURCE NAME/LINK}}, gathered {{MONTH DAY, YEAR}}.</em></p></div>
+    <div class="eco-box"><div class="label">{{REVENUE STREAM 2 NAME}}</div><p>{{DESCRIPTION + PRICE RANGE + WHY}}</p><p style="font-size:14px; color:#111111; margin-top:10px;"><em>{{COMPARABLE — real, verifiable example}}. Source: {{SOURCE NAME/LINK}}, gathered {{MONTH DAY, YEAR}}.</em></p></div>
+    <div class="eco-box"><div class="label">{{REVENUE STREAM 3 NAME}}</div><p>{{DESCRIPTION + PRICE RANGE + WHY}}</p><p style="font-size:14px; color:#111111; margin-top:10px;"><em>{{COMPARABLE — real, verifiable example}}. Source: {{SOURCE NAME/LINK}}, gathered {{MONTH DAY, YEAR}}.</em></p></div>
+    <div class="eco-box"><div class="label">{{REVENUE STREAM 4 NAME}}</div><p>{{DESCRIPTION + PRICE RANGE + WHY}}</p><p style="font-size:14px; color:#111111; margin-top:10px;"><em>{{COMPARABLE — real, verifiable example}}. Source: {{SOURCE NAME/LINK}}, gathered {{MONTH DAY, YEAR}}.</em></p></div>
   </div>
 </section>
 
