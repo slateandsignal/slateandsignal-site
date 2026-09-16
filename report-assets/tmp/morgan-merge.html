@@ -1,17 +1,18 @@
 <!DOCTYPE html>
-<script type="application/json" id="cowork-artifact-meta">
+
+<script id="cowork-artifact-meta" type="application/json">
 {
   "name": "Slate & Signal Individual Report Template",
   "schemaVersion": 1,
-  "description": "Slate & Signal master report template with all 7 constellations inlined. Constellation page auto-animates based on {{ARCHETYPE NAME}} — no iframes, no external files required."
+  "description": "Slate & Signal master report template with all 7 constellations inlined. Constellation page auto-animates based on <span data-tok="t001">The Educator</span> — no iframes, no external files required."
 }
 </script>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Slate & Signal — Individual Signal Report Template</title>
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600&display=swap" rel="stylesheet">
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Morgan Testrun | Signal Report | Slate &amp; Signal</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&amp;family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600&amp;display=swap" rel="stylesheet"/>
 <style>
 @font-face {
   font-family: 'Anastasia';
@@ -31,7 +32,7 @@
   --card:#FFFFFF;
   --gold:#FFDE7A;
   /* --amber MUST be overridden with this client's actual accent color before delivery (see Signal-Report-SOP.md Step 7). Left as loud red on purpose so a forgotten step is obvious, not invisible. */
-  --amber:#FF0000;
+  --amber:#C08A2E;
   --line:rgba(17,17,17,.12);
   --lineDark:rgba(255,255,255,.14);
   --shadow:0 24px 70px rgba(0,0,0,.18);
@@ -96,10 +97,6 @@ img { display:block; width:100%; height:100%; object-fit:cover; }
 .cover-main h1 { font-size:52px; line-height:1.05; color:#fff; margin-bottom:22px; }
 .cover-main .kicker { font-size:16px; margin-bottom:34px; }
 .cover-tagline { font-size:19px; color:#fff; max-width:310px; line-height:1.55; }
-.photo-quote { margin-top:30px; text-align:center; }
-.photo-quote-rule { width:60px; height:1px; background:#FFDE7A; margin:0 auto 22px; }
-.photo-quote-text { font-family:var(--serif); font-style:italic; font-weight:300; font-size:22px; line-height:1.5; color:#FFDE7A; margin:0 0 14px; }
-.photo-quote-name { font-size:10px; letter-spacing:.3em; text-transform:uppercase; color:#FFDE7A; }
 .cover-date { font-size:13px; letter-spacing:.22em; text-transform:uppercase; color:#fff; }
 .cover-bottom-rule { width:170px; height:1px; background:var(--gold); margin-top:20px; }
 
@@ -216,7 +213,8 @@ img { display:block; width:100%; height:100%; object-fit:cover; }
   .signal-panel { margin-top:30px; }
   .eco-grid,.dark-grid,.revenue-comparables,.exp-strip { grid-template-columns:1fr; position:static; }
 }
-
+</style>
+<style>:root{--soft:#f7f6f3;}</style><style>
 /* Phones. Added 2026-09-15 after the report was opened on a phone and the cover filled the
    screen with nothing readable. Everything here is width only, the desktop report is untouched. */
 @media(max-width:700px) {
@@ -256,181 +254,169 @@ img { display:block; width:100%; height:100%; object-fit:cover; }
   .next img { height:auto !important; }
   .next ul { max-width:none !important; }
 }
+
 </style>
 </head>
 <body>
-<div class="report">
-
+<div class="report" data-eid="e1">
 <!-- PAGE 1 -->
-<section class="page dark cover">
-  <div class="cover-photo">
-    <img src="assets/report-cover-update.png" alt="" style="width:100%; height:100%; object-fit:cover; display:block;">
-  </div>
-  <div class="cover-right">
-    <div class="cover-logo" style="font-family:'Cormorant Garamond',serif; font-weight:300; letter-spacing:-0.02em;">SLATE<img src="assets/wordmark-ampersand.png" alt="&amp;" style="height:44px; width:auto; display:inline-block; vertical-align:-18px; margin:0 4px;">SIGNAL <span class="rule" style="display:inline-block; vertical-align:middle; margin-left:22px;"></span></div>
-    <div class="cover-main">
-      <h1>{{CLIENT NAME}}</h1>
-      <div class="kicker">THE SIGNAL REPORT</div>
-      <div class="cover-tagline">{{COVER TAGLINE — one sentence}}</div>
-    </div>
-    <div>
-      <div class="cover-date">{{DATE}}</div>
-      <div class="cover-bottom-rule"></div>
-    </div>
-  </div>
-</section>
-
-
-<!-- PAGE 2 -->
-<section class="page light overview" style="grid-template-columns:1fr;">
-  <div class="page-num">02 <span class="numline"></span></div>
-  <div class="top-star star">✦</div>
-  <h2 class="overview-title">HOW TO READ<br>THIS REPORT</h2>
-  <p class="sub">A few terms used throughout, explained plainly before you read the rest.</p>
-  <div class="card-grid">
-    <div class="card glass">
-      <div class="card-label">Signal</div>
-      <p class="small">The pattern that shows up again and again in what you're drawn to, what people come to you for, and what you've lived through. It was always there. This report exists to name it clearly enough that you can build around it on purpose.</p>
-    </div>
-    <div class="card glass">
-      <div class="card-label">Archetype</div>
-      <p class="small">The role your signal plays for other people. Not a personality label, a function. It answers the question "what does this person do for the people around them" in one recognizable shape, so an audience can understand you fast.</p>
-    </div>
-    <div class="card glass">
-      <div class="card-label">Constellation</div>
-      <p class="small">The visual map of your archetype. Each point of light is one real theme from your answers, and the shape they form together is the same shape as your archetype, because the archetype isn't assigned to you, it's built from the actual points. The constellation and the archetype match because one is the picture of the other.</p>
-    </div>
-    <div class="card glass">
-      <div class="card-label">Signal Strength</div>
-      <p class="small">A 1-10 score for how consistent and specific your signal is right now, not how good or marketable you are. A lower score usually means the signal is real but not yet fully claimed out loud, not that it's weak.</p>
-    </div>
-    <div class="card glass">
-      <div class="card-label">The Niche Gap</div>
-      <p class="small">Real research into what your specific audience is already asking for online, and where the honest answer is "nobody is fully addressing this yet." This is where you have room to become the clear answer, not just another voice in a crowded topic.</p>
-    </div>
-    <div class="card glass">
-      <div class="card-label">Contrarian Belief</div>
-      <p class="small">Something you believe, based on real experience, that goes against what most people in your space currently say. These are listed because a contrarian belief stated clearly and often is one of the fastest ways an audience remembers who you are.</p>
-    </div>
-  </div>
-</section>
-
-<!-- PAGE 3 -->
-<section class="page light overview">
-  <div class="page-num">03 <span class="numline"></span></div>
-  <div class="top-star star">✦</div>
-  <h2 class="overview-title">SIGNAL<br>OVERVIEW</h2>
-  <p class="sub">A snapshot of your natural pattern.</p>
-  <div class="card-grid">
-    <div class="card glass">
-      <div class="card-label">Signal Archetype</div>
-      <div class="card-value">{{ARCHETYPE NAME}}</div>
-      <p class="small" style="margin-top:18px;">{{ARCHETYPE — 3-5 sentences explaining the archetype with specific evidence, and why it is a natural strength}}</p>
-    </div>
-    <div class="card glass">
-      <div class="card-label">Signal Strength</div>
-      <div class="strength-num">{{SCORE}} / 10</div>
-      <div class="strength-track"><div class="strength-fill"></div></div>
-      <p class="small" style="margin-bottom:10px;"><strong>What raises it:</strong> {{ONE SENTENCE ON WHAT DRIVES THE SCORE UP}}</p>
-      <p class="small"><strong>What holds it down:</strong> {{ONE SENTENCE ON WHAT HOLDS THE SCORE DOWN}}</p>
-    </div>
-    <div class="card glass">
-      <div class="card-label">Primary Themes</div>
-      <ul class="bullets">
-        <li>{{PRIMARY THEME 1}}</li>
-        <li>{{PRIMARY THEME 2}}</li>
-        <li>{{PRIMARY THEME 3}}</li>
-        <li>{{PRIMARY THEME 4}}</li>
-        <li>{{PRIMARY THEME 5}}</li>
-      </ul>
-    </div>
-    <div class="card glass">
-      <div class="card-label">Natural Communication Style</div>
-      <div class="card-value" style="font-size:22px; line-height:1.4;">{{STYLE WORD 1}}<br>{{STYLE WORD 2}}<br>{{STYLE WORD 3}}</div>
-    </div>
-    <div class="card glass full">
-      <div class="card-label">Core Essence</div>
-      <p class="essence">{{CORE ESSENCE — one to two sentences capturing who this person is at their core, no em dashes unless grammatically required}}</p>
-    </div>
-  </div>
-</section>
-
-<!-- PAGE 4 -->
-<section class="page light signals">
-  <div class="page-num">04 <span class="numline"></span></div>
-  <div class="signals-copy">
-    <h2>SIGNATURE<br>SIGNAL</h2>
-    <p class="sub">{{PAGE 4 SUBTITLE — optional}}</p>
-    <div class="still-life-frame">
-      <div class="photo-placeholder-box">Lifestyle photo placeholder</div>
-    </div>
-  </div>
-  <div class="signal-panel glass">
-    <div class="signal-row"><div class="icon"><svg viewBox="0 0 24 24"><path d="M4 19c6-2 10-2 16 0V5c-6-2-10-2-16 0z"/><path d="M12 6v12"/></svg></div><span><strong>{{SIGNAL 1 NAME}}.</strong> {{SIGNAL 1 DESCRIPTION — one to two sentences, no em dashes}}</span></div>
-    <div class="signal-row"><div class="icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="8"/><path d="M12 4v16M4 12h16"/></svg></div><span><strong>{{SIGNAL 2 NAME}}.</strong> {{SIGNAL 2 DESCRIPTION — one to two sentences, no em dashes}}</span></div>
-    <div class="signal-row"><div class="icon"><svg viewBox="0 0 24 24"><path d="M12 21s7-6.4 7-12a7 7 0 0 0-14 0c0 5.6 7 12 7 12z"/><circle cx="12" cy="9" r="2"/></svg></div><span><strong>{{SIGNAL 3 NAME}}.</strong> {{SIGNAL 3 DESCRIPTION — one to two sentences, no em dashes}}</span></div>
-    <div class="signal-row"><div class="icon"><svg viewBox="0 0 24 24"><path d="M5 12h14"/><path d="M12 5l7 7-7 7"/></svg></div><span><strong>{{SIGNAL 4 NAME}}.</strong> {{SIGNAL 4 DESCRIPTION — one to two sentences, no em dashes}}</span></div>
-    <div class="signal-row"><div class="icon"><svg viewBox="0 0 24 24"><path d="M4 4h16v12H7l-3 3z"/></svg></div><span><strong>{{SIGNAL 5 NAME}}.</strong> {{SIGNAL 5 DESCRIPTION — one to two sentences, no em dashes}}</span></div>
-    <div class="signal-row"><div class="icon"><svg viewBox="0 0 24 24"><path d="M12 2l3 7 7 1-5 5 1 7-6-4-6 4 1-7-5-5 7-1z"/></svg></div><span><strong>{{SIGNAL 6 NAME}}.</strong> {{SIGNAL 6 DESCRIPTION — one to two sentences, no em dashes}}</span></div>
-  </div>
-</section>
-
-<!-- PAGE 5 -->
-<section class="page dark constellation">
-  <div class="const-text">
-    <div class="page-num">05 <span class="numline"></span></div>
-    <h2>YOUR SIGNAL<br>CONSTELLATION</h2>
-    <p class="body">{{ONE SENTENCE TYING CLIENT TO THEIR ARCHETYPE}}</p>
-    <div class="const-script">{{ARCHETYPE NAME}}</div>
-    <div class="badge">&#10022; {{BADGE TEXT}}</div>
-  </div>
-  <div class="const-box glass" id="const-stage-wrap" style="position:relative;overflow:hidden;padding:0;background:#0D0D0D;display:flex;flex-direction:column;align-items:center;justify-content:center;">
-
-  <div id="cstage-outer" style="width:100%;height:100%;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:24px 16px;box-sizing:border-box;">
-
-    <div id="cstage-shrink" style="position:relative;overflow:hidden;">
-    <div id="cstage" style="position:absolute;top:0;left:0;width:700px;height:520px;">
-      <svg id="csvg" viewBox="0 0 700 520" style="position:absolute;top:0;left:0;width:100%;height:100%;">
-        <circle fill="none" stroke="rgba(255,255,255,0.05)" stroke-width="0.8" cx="350" cy="260" r="210"/>
-        <defs>
-          <radialGradient id="cglowgrad" cx="50%" cy="50%" r="50%">
-            <stop offset="0%" stop-color="#FFDE7A" stop-opacity="0.12"/>
-            <stop offset="100%" stop-color="#FFDE7A" stop-opacity="0"/>
-          </radialGradient>
-        </defs>
-        <circle id="ccenter-glow" cx="350" cy="260" r="80" fill="url(#cglowgrad)" opacity="0" style="transition:opacity 1s ease;"/>
-        <g id="cbgstars" fill="#fff">
-          <circle cx="60" cy="55" r="1" opacity="0.25"/><circle cx="130" cy="95" r="1.3" opacity="0.35"/>
-          <circle cx="90" cy="180" r="1" opacity="0.2"/><circle cx="45" cy="260" r="1.2" opacity="0.3"/>
-          <circle cx="120" cy="330" r="1" opacity="0.22"/><circle cx="70" cy="450" r="1.3" opacity="0.35"/>
-          <circle cx="200" cy="60" r="1" opacity="0.2"/><circle cx="270" cy="440" r="1" opacity="0.25"/>
-          <circle cx="340" cy="470" r="1.2" opacity="0.3"/><circle cx="420" cy="480" r="1" opacity="0.22"/>
-          <circle cx="620" cy="70" r="1.3" opacity="0.35"/><circle cx="660" cy="150" r="1" opacity="0.25"/>
-          <circle cx="640" cy="230" r="1.2" opacity="0.3"/><circle cx="670" cy="330" r="1" opacity="0.2"/>
-          <circle cx="620" cy="420" r="1.3" opacity="0.35"/><circle cx="560" cy="480" r="1" opacity="0.22"/>
-          <circle cx="480" cy="40" r="1" opacity="0.25"/><circle cx="230" cy="180" r="0.9" opacity="0.18"/>
-          <circle cx="510" cy="230" r="0.9" opacity="0.18"/><circle cx="380" cy="330" r="0.9" opacity="0.16"/>
-          <circle cx="150" cy="420" r="1.1" opacity="0.28"/><circle cx="600" cy="480" r="0.9" opacity="0.2"/>
-        </g>
-        <g id="clines"></g>
-      </svg>
-      <div id="cdots-labels"></div>
-      <div id="carchetype-label" style="position:absolute;text-align:center;opacity:0;transition:opacity 1s ease;transform:translate(-50%,-50%);left:50%;top:50%;">
-        <span style="font-size:14px;color:#FFDE7A;display:block;margin-bottom:4px;">&#10022;</span>
-        <span id="carch-name" style="font-family:'Cormorant Garamond',serif;font-size:11px;font-weight:300;letter-spacing:0.3em;text-transform:uppercase;color:#FFDE7A;"></span>
-      </div>
-    </div>
-    </div>
-
-    <div id="cbadge" style="margin-top:20px;display:inline-flex;align-items:center;gap:8px;border:1px solid rgba(255,222,122,0.35);padding:8px 20px;font-size:9px;letter-spacing:0.3em;text-transform:uppercase;color:#FFDE7A;opacity:0;transition:opacity 0.8s ease;font-family:'DM Sans',sans-serif;">&#10022; &nbsp; HIGH ALIGNMENT DETECTED</div>
-
-    <p id="cdesc" style="margin-top:16px;max-width:560px;text-align:center;font-family:'Cormorant Garamond',serif;font-size:14px;font-style:italic;font-weight:300;color:#FFFFFF;line-height:1.8;opacity:0;transition:opacity 1s ease;padding:0 16px;"></p>
-
-    <button id="creplay" style="margin-top:14px;background:none;border:1px solid #2A2A2A;color:#FFFFFF;font-family:'DM Sans',sans-serif;font-size:10px;letter-spacing:0.3em;text-transform:uppercase;padding:8px 20px;cursor:pointer;transition:border-color 0.3s,color 0.3s;" onmouseover="this.style.borderColor='#FFDE7A';this.style.color='#FFDE7A'" onmouseout="this.style.borderColor='#2A2A2A';this.style.color='#555'">&#8635; &nbsp; REPLAY</button>
-  </div>
-
+<section class="page dark cover" data-eid="e2">
+<div class="cover-photo" data-eid="e3">
+<img alt="" data-eid="e4" src="https://slateandsignal.studio/report-assets/report-cover-update.png" style="width:100%; height:100%; object-fit:cover; display:block;"/>
 </div>
-
+<div class="cover-right" data-eid="e5">
+<div class="cover-logo" data-eid="e6" style="font-family:'Cormorant Garamond',serif; font-weight:300; letter-spacing:-0.02em;">SLATE<img alt="&amp;" data-eid="e7" src="https://slateandsignal.studio/report-assets/wordmark-ampersand.png" style="height:44px; width:auto; display:inline-block; vertical-align:-18px; margin:0 4px;"/>SIGNAL <span class="rule" data-eid="e8" style="display:inline-block; vertical-align:middle; margin-left:22px;"></span></div>
+<div class="cover-main" data-eid="e9">
+<h1 data-eid="e10"><span data-tok="t002">Morgan Testrun</span></h1>
+<div class="kicker" data-eid="e11">THE SIGNAL REPORT</div>
+<div class="cover-tagline" data-eid="e12"><span data-tok="t003">You have always been the one who makes people slow down and look at what is right in front of them.</span></div>
+</div>
+<div data-eid="e13">
+<div class="cover-date" data-eid="e14"><span data-tok="t004">September 14, 2026</span></div>
+<div class="cover-bottom-rule" data-eid="e15"></div>
+</div>
+</div>
+</section>
+<!-- PAGE 2 -->
+<section class="page light overview" data-eid="e16" style="grid-template-columns:1fr;">
+<div class="page-num" data-eid="e17">02 <span class="numline" data-eid="e18"></span></div>
+<div class="top-star star" data-eid="e19">✦</div>
+<h2 class="overview-title" data-eid="e20">HOW TO READ<br data-eid="e21"/>THIS REPORT</h2>
+<p class="sub" data-eid="e22">A few terms that will be helpful to understand as you read your report.</p>
+<div class="card-grid" data-eid="e23">
+<div class="card glass" data-eid="e24">
+<div class="card-label" data-eid="e25" style="font-size:13px;">Signal</div>
+<p class="small" data-eid="e26">Your signal is what you naturally and unconsciously communicate to the world. The stronger it is, the more clearly your interests, instincts, and values work together to give your brand a solid foundation on which to build.</p>
+</div>
+<div class="card glass" data-eid="e27">
+<div class="card-label" data-eid="e28" style="font-size: 13px;font-size:13px;">Archetype</div>
+<p class="small" data-eid="e29"><p class="p1" style='font-style: normal; font-variant: normal; font-size-adjust: none; font-language-override: normal; font-kerning: auto; font-optical-sizing: auto; font-feature-settings: normal; font-variation-settings: normal; font-stretch: normal; font-size: 13px; line-height: normal; font-family: "Helvetica Neue"; color: rgb(0, 0, 0);'>In psychology and storytelling, archetypes are familiar human patterns. This is particularly useful to know as you build your brand because it helps make your brand feel consistent and gives your brand a recognizable role. It helps people understand what they can expect from you and gives your voice, content, and visual choices a consistent direction.</p></p>
+</div>
+<div class="card glass" data-eid="e30">
+<div class="card-label" data-eid="e31" style="font-size:13px;">Constellation</div>
+<p class="small" data-eid="e32">The constellation in your report is a visual expression of your archetype. Each point of light represents a theme from your answers, brought together into a constellation unique to you. It tells the same story as your archetype.</p>
+</div>
+<div class="card glass" data-eid="e33">
+<div class="card-label" data-eid="e34" style="font-size:13px;">Signal Strength</div>
+<p class="small" data-eid="e35">A 1-10 score for how consistent and specific your signal is right now, not how good or marketable you are. A lower score usually means the signal is real but not yet fully claimed out loud, not that it's weak.</p>
+</div>
+<div class="card glass" data-eid="e36">
+<div class="card-label" data-eid="e37">The Niche Gap</div>
+<p class="small" data-eid="e38"><p class="p1" style='font-style: normal; font-variant: normal; font-size-adjust: none; font-language-override: normal; font-kerning: auto; font-optical-sizing: auto; font-feature-settings: normal; font-variation-settings: normal; font-stretch: normal; font-size: 13px; line-height: normal; font-family: "Helvetica Neue"; color: rgb(0, 0, 0);'>Real research into what actual questions your audience is already asking. Especially the questions they’re not getting good answers to. Those gaps show you where there is room to say (or show) something useful and specific without repeating what everyone else is already saying. To stand out. An opportunity to become the authority within your niche.</p></p>
+</div>
+<div class="card glass" data-eid="e39">
+<div class="card-label" data-eid="e40">Contrarian Belief</div>
+<p class="small" data-eid="e41">Something you believe, based on real experience, that goes against what most people in your niche currently say. These are listed because a contrarian belief stated clearly and often is one of the fastest ways an audience remembers who you are.</p>
+</div>
+</div>
+</section>
+<!-- PAGE 3 -->
+<section class="page light overview" data-eid="e42">
+<div class="page-num" data-eid="e43">03 <span class="numline" data-eid="e44"></span></div>
+<div class="top-star star" data-eid="e45">✦</div>
+<h2 class="overview-title" data-eid="e46">SIGNAL<br data-eid="e47"/>OVERVIEW</h2>
+<p class="sub" data-eid="e48">A snapshot of your unconscious trademark. It's who you are, naturally. </p>
+<div class="card-grid" data-eid="e49">
+<div class="card glass" data-eid="e50">
+<div class="card-label" data-eid="e51">Signal Archetype</div>
+<div class="card-value" data-eid="e52"><span data-tok="t005">The Educator</span></div>
+<p class="small" data-eid="e53" style="margin-top:18px;"><span data-tok="t006">Nineteen years teaching middle school science, a school garden program and an after school nature club all point at the same function: you take a live, messy, outdoor thing and make it legible to a twelve year old in about two minutes. Other teachers come to you for how to run an outdoor lesson inside the rules their administration will accept, and parents come to you for what to do with a Saturday. The market advantage sits in the delivery mechanism. Teachers and parents in this space want a procedure they can follow on Tuesday with a nearby park and a short window of time, and you already build those procedures for a living. That puts you in the small group of people holding both the science content and the group management that makes it work outside.</span></p>
+</div>
+<div class="card glass" data-eid="e54">
+<div class="card-label" data-eid="e55">Signal Strength</div>
+<div class="strength-num" data-eid="e56"><span data-tok="t007">8</span> / 10</div>
+<div class="strength-track" data-eid="e57"><div class="strength-fill" data-eid="e58"></div></div>
+<p class="small" data-eid="e59" style="margin-bottom:10px;"><strong data-eid="e60">What raises it:</strong> <span data-tok="t008">Four separate buckets converge on one offer: classroom science teaching, a garden program, a nature club, and a standing line of teachers and parents already asking you for outdoor lesson help.</span></p>
+<p class="small" data-eid="e61"><strong data-eid="e62">What holds it down:</strong> <span data-tok="t009">The audience choice sits open between teachers and parents, and until one of them is named first, the newsletter and the lesson packs will read as two products sharing one list.</span></p>
+</div>
+<div class="card glass" data-eid="e63">
+<div class="card-label" data-eid="e64">Primary Themes</div>
+<ul class="bullets" data-eid="e65">
+<li data-eid="e66"><span data-tok="t010">Outdoor science instruction</span></li>
+<li data-eid="e67"><span data-tok="t011">No-budget teaching</span></li>
+<li data-eid="e68"><span data-tok="t012">Local ecology and field guides</span></li>
+<li data-eid="e69"><span data-tok="t013">Group management outdoors</span></li>
+<li data-eid="e70"><span data-tok="t014">Family weekends in nature</span></li>
+</ul>
+</div>
+<div class="card glass" data-eid="e71">
+<div class="card-label" data-eid="e72">Natural Communication Style</div>
+<div class="card-value" data-eid="e73" style="font-size:22px; line-height:1.4;"><span data-tok="t015">Patient</span><br data-eid="e74"/><span data-tok="t016">Plain spoken</span><br data-eid="e75"/><span data-tok="t017">Observant</span></div>
+</div>
+<div class="card glass full" data-eid="e76">
+<div class="card-label" data-eid="e77">Core Essence</div>
+<p class="essence" data-eid="e78"><span data-tok="t018">You are a science teacher whose real subject is attention. You can put a living thing in front of a restless group and turn a walk into a lesson using what is already in the park.</span></p>
+</div>
+</div>
+</section>
+<!-- PAGE 4 -->
+<section class="page light signals" data-eid="e79">
+<div class="page-num" data-eid="e80">04 <span class="numline" data-eid="e81"></span></div>
+<div class="signals-copy" data-eid="e82">
+<h2 data-eid="e83" style="translate:0px -116px;">SIGNATURE<br data-eid="e84"/>SIGNAL</h2>
+<p class="sub" data-eid="e85" style="translate:-1px -141px;font-size:15px;">The traits and patterns that consistently show up in how you work, communicate, and create.</p>
+<div class="still-life-frame" data-eid="e86" style="translate:-7px -73px;">
+<img alt="" src="https://slateandsignal.studio/ri/morgan-testrun-41a654e08d45/signature.jpg" style="width:100%; height:100%; object-fit:cover; object-position:center; display:block; filter:contrast(0.90) saturate(0.82) brightness(0.97);"/>
+</div>
+</div>
+<div class="signal-panel glass" data-eid="e88" style="translate:-2px -15px;font-size:15px;">
+<div class="signal-row" data-eid="e89"><div class="icon" data-eid="e90"><svg data-eid="e91" style="color: rgb(18, 18, 17);color:#FFDE7A;" viewbox="0 0 24 24"><path d="M4 19c6-2 10-2 16 0V5c-6-2-10-2-16 0z" data-eid="e92"></path><path d="M12 6v12" data-eid="e93" style="color: rgb(8, 8, 8);color:#FFDE7A;"></path></svg></div><span data-eid="e94" style="translate: 0px;"><strong data-eid="e95"><span data-tok="t020">Two Minute Curiosity</span>.</strong> <span data-tok="t021">You can settle a restless group of twelve year olds and get them looking closely in about two minutes, outdoors, with nothing prepared.</span></span></div>
+<div class="signal-row" data-eid="e96"><div class="icon" data-eid="e97"><svg data-eid="e98" style="color: rgb(13, 13, 12);color:#FFDE7A;" viewbox="0 0 24 24"><circle cx="12" cy="12" data-eid="e99" r="8"></circle><path d="M12 4v16M4 12h16" data-eid="e100"></path></svg></div><span data-eid="e101"><strong data-eid="e102"><span data-tok="t022">Zero Budget Rigor</span>.</strong> <span data-tok="t023">You treat a creek, a fallen log and a parking lot median as instruments, and the science stays rigorous while the cost stays at zero.</span></span></div>
+<div class="signal-row" data-eid="e103"><div class="icon" data-eid="e104"><svg data-eid="e105" style="color: rgb(10, 10, 10);color:#FFDE7A;" viewbox="0 0 24 24"><path d="M12 21s7-6.4 7-12a7 7 0 0 0-14 0c0 5.6 7 12 7 12z" data-eid="e106"></path><circle cx="12" cy="9" data-eid="e107" r="2"></circle></svg></div><span data-eid="e108"><strong data-eid="e109"><span data-tok="t024">Approval Ready Planning</span>.</strong> <span data-tok="t025">You design outdoor lessons that survive the paperwork, the administrator and the weather, which is the part most outdoor ideas stall on.</span></span></div>
+<div class="signal-row" data-eid="e110"><div class="icon" data-eid="e111"><svg data-eid="e112" style="color: rgb(5, 5, 5);color:#FFDE7A;" viewbox="0 0 24 24"><path d="M5 12h14" data-eid="e113" style="color: rgb(5, 5, 5);color:#FFDE7A;"></path><path d="M12 5l7 7-7 7" data-eid="e114"></path></svg></div><span data-eid="e115"><strong data-eid="e116" style="font-weight: 700;font-weight:700;"><span data-tok="t026">Field Guide Fluency</span>.</strong> <span data-tok="t027">Native plants, watershed ecology and bird migration are ordinary reading for you, so identification questions get answered on the spot.</span></span></div>
+<div class="signal-row" data-eid="e117"><div class="icon" data-eid="e118"><svg data-eid="e119" style="color: rgb(5, 5, 5);color:#FFDE7A;" viewbox="0 0 24 24"><path d="M4 4h16v12H7l-3 3z" data-eid="e120"></path></svg></div><span data-eid="e121"><strong data-eid="e122" style="font-weight: 700;font-weight:700;"><span data-tok="t028">Parent Translation</span>.</strong> <span data-tok="t029">You turn a parent's broad wish to get kids off screens into a specific place, a specific season and a specific thing to look for.</span></span></div>
+<div class="signal-row" data-eid="e123"><div class="icon" data-eid="e124"><svg data-eid="e125" style="color: rgb(3, 3, 3);color:#FFDE7A;" viewbox="0 0 24 24"><path d="M12 2l3 7 7 1-5 5 1 7-6-4-6 4 1-7-5-5 7-1z" data-eid="e126"></path></svg></div><span data-eid="e127"><strong data-eid="e128" style="font-weight: 700;font-weight:700;"><span data-tok="t030">Long Horizon Patience</span>.</strong> <span data-tok="t031">Nineteen years with middle schoolers, a season long garden program and a solo Ozark Trail hike show the steadiness outdoor programs run on.</span></span></div>
+</div>
+</section>
+<!-- PAGE 5 -->
+<section class="page dark constellation" data-eid="e129">
+<div class="const-text" data-eid="e130">
+<div class="page-num" data-eid="e131">05 <span class="numline" data-eid="e132"></span></div>
+<h2 data-eid="e133" style="translate:-9px -12px;font-size:38px;">  <span style="letter-spacing: -0.02em; background-color: initial;">YOUR SIGNAL</span><div>CONSTELLATION</div></h2>
+<p class="body" data-eid="e135" style="font-size:16px;"><span data-tok="t032">Every pattern in your answers points at The Educator: you make the outdoors teachable for people with no training and no budget.</span></p>
+<div class="const-script" data-eid="e136"><span data-tok="t033">The Educator</span></div>
+<div class="badge" data-eid="e137" style="translate:-1px -17px;font-size:14px;">✦ <span data-tok="t034">Signal Archetype</span></div>
+</div>
+<div class="const-box glass" data-eid="e138" id="const-stage-wrap" style="position:relative;overflow:hidden;padding:0;background:#0D0D0D;display:flex;flex-direction:column;align-items:center;justify-content:center;font-size:6px;">
+<div data-eid="e139" id="cstage-outer" style="width:100%;height:100%;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:24px 16px;box-sizing:border-box;">
+<div data-eid="e140" id="cstage-shrink" style="position:relative;overflow:hidden;">
+<div data-eid="e141" id="cstage" style="position:absolute;top:0;left:0;width:700px;height:520px;">
+<svg data-eid="e142" id="csvg" style="position:absolute;top:0;left:0;width:100%;height:100%;" viewbox="0 0 700 520">
+<circle cx="350" cy="260" data-eid="e143" fill="none" r="210" stroke="rgba(255,255,255,0.05)" stroke-width="0.8"></circle>
+<defs data-eid="e144">
+<radialgradient cx="50%" cy="50%" data-eid="e145" id="cglowgrad" r="50%">
+<stop data-eid="e146" offset="0%" stop-color="#FFDE7A" stop-opacity="0.12"></stop>
+<stop data-eid="e147" offset="100%" stop-color="#FFDE7A" stop-opacity="0"></stop>
+</radialgradient>
+</defs>
+<circle cx="350" cy="260" data-eid="e148" fill="url(#cglowgrad)" id="ccenter-glow" opacity="0" r="80" style="transition:opacity 1s ease;"></circle>
+<g data-eid="e149" fill="#fff" id="cbgstars">
+<circle cx="60" cy="55" data-eid="e150" opacity="0.25" r="1"></circle><circle cx="130" cy="95" data-eid="e151" opacity="0.35" r="1.3"></circle>
+<circle cx="90" cy="180" data-eid="e152" opacity="0.2" r="1"></circle><circle cx="45" cy="260" data-eid="e153" opacity="0.3" r="1.2"></circle>
+<circle cx="120" cy="330" data-eid="e154" opacity="0.22" r="1"></circle><circle cx="70" cy="450" data-eid="e155" opacity="0.35" r="1.3"></circle>
+<circle cx="200" cy="60" data-eid="e156" opacity="0.2" r="1"></circle><circle cx="270" cy="440" data-eid="e157" opacity="0.25" r="1"></circle>
+<circle cx="340" cy="470" data-eid="e158" opacity="0.3" r="1.2"></circle><circle cx="420" cy="480" data-eid="e159" opacity="0.22" r="1"></circle>
+<circle cx="620" cy="70" data-eid="e160" opacity="0.35" r="1.3"></circle><circle cx="660" cy="150" data-eid="e161" opacity="0.25" r="1"></circle>
+<circle cx="640" cy="230" data-eid="e162" opacity="0.3" r="1.2"></circle><circle cx="670" cy="330" data-eid="e163" opacity="0.2" r="1"></circle>
+<circle cx="620" cy="420" data-eid="e164" opacity="0.35" r="1.3"></circle><circle cx="560" cy="480" data-eid="e165" opacity="0.22" r="1"></circle>
+<circle cx="480" cy="40" data-eid="e166" opacity="0.25" r="1"></circle><circle cx="230" cy="180" data-eid="e167" opacity="0.18" r="0.9"></circle>
+<circle cx="510" cy="230" data-eid="e168" opacity="0.18" r="0.9"></circle><circle cx="380" cy="330" data-eid="e169" opacity="0.16" r="0.9"></circle>
+<circle cx="150" cy="420" data-eid="e170" opacity="0.28" r="1.1"></circle><circle cx="600" cy="480" data-eid="e171" opacity="0.2" r="0.9"></circle>
+</g>
+<g data-eid="e172" id="clines"></g>
+</svg>
+<div data-eid="e173" id="cdots-labels"></div>
+<div data-eid="e174" id="carchetype-label" style="position:absolute;text-align:center;opacity:0;transition:opacity 1s ease;transform:translate(-50%,-50%);left:50%;top:50%;">
+<span data-eid="e175" style="font-size:14px;color:#FFDE7A;display:block;margin-bottom:4px;">✦</span>
+<span data-eid="e176" id="carch-name" style="font-family:'Cormorant Garamond',serif;font-size:11px;font-weight:300;letter-spacing:0.3em;text-transform:uppercase;color:#FFDE7A;"></span>
+</div>
+</div>
+</div>
+<div data-eid="e177" id="cbadge" style="margin-top:20px;display:inline-flex;align-items:center;gap:8px;border:1px solid rgba(255,222,122,0.35);padding:8px 20px;font-size:9px;letter-spacing:0.3em;text-transform:uppercase;color:#FFDE7A;opacity:0;transition:opacity 0.8s ease;font-family:'DM Sans',sans-serif;">✦   HIGH ALIGNMENT DETECTED</div>
+<p data-eid="e178" id="cdesc" style="margin-top:16px;max-width:560px;text-align:center;font-family:'Cormorant Garamond',serif;font-size:14px;font-style:italic;font-weight:300;color:#FFFFFF;line-height:1.8;opacity:0;transition:opacity 1s ease;padding:0 16px;font-size:16px;">Ophiuchus, the Serpent Bearer, is one of the largest constellations in the sky. A figure standing with arms wide, holding something ancient and powerful. It is the constellation of the healer, the teacher, and the one who makes difficult knowledge accessible to those who need it most.</p>
+<button data-eid="e179" id="creplay" onmouseout="this.style.borderColor='#2A2A2A';this.style.color='#555'" onmouseover="this.style.borderColor='#FFDE7A';this.style.color='#FFDE7A'" style="margin-top:14px;background:none;border:1px solid #2A2A2A;color:#FFFFFF;font-family:'DM Sans',sans-serif;font-size:10px;letter-spacing:0.3em;text-transform:uppercase;padding:8px 20px;cursor:pointer;transition:border-color 0.3s,color 0.3s;">↻   REPLAY</button>
+</div>
+</div>
 <style>
   .cnode-label { position:absolute; opacity:0; transition:opacity 0.6s ease; pointer-events:none; }
   .cnode-label.lit { opacity:1; }
@@ -444,7 +430,6 @@ img { display:block; width:100%; height:100%; object-fit:cover; }
   .cline { stroke:rgba(255,222,122,0.45); stroke-width:0.8; fill:none; stroke-dasharray:1000; stroke-dashoffset:1000; transition:stroke-dashoffset 1.2s ease; }
   .cline.drawn { stroke-dashoffset:0; }
 </style>
-
 <script>
 (function(){
   const CONSTELLATION_DATA = {
@@ -1160,15 +1145,15 @@ img { display:block; width:100%; height:100%; object-fit:cover; }
   // 0 What Pulls You / Energy, 1 What Follows You / Natural Strengths, 2 What Fascinates You / Curiosity,
   // 3 What Frustrates You / Purpose, 4 What Changed You / Experience, 5 Called to Share / Impact
   const CLIENT_CONSTELLATION_THEMES = [
-    '{{CONSTELLATION THEME 1 — What Pulls You / Energy}}',
-    '{{CONSTELLATION THEME 2 — What Follows You / Natural Strengths}}',
-    '{{CONSTELLATION THEME 3 — What Fascinates You / Curiosity}}',
-    '{{CONSTELLATION THEME 4 — What Frustrates You / Purpose}}',
-    '{{CONSTELLATION THEME 5 — What Changed You / Experience}}',
-    '{{CONSTELLATION THEME 6 — Called to Share / Impact}}'
+    'Creeks as classrooms',
+    'Restless groups going quiet',
+    'Watersheds and bird migration',
+    'Science class that stays indoors',
+    'Nineteen years, one nature club',
+    'Free lessons families use'
   ];
 
-  // Detect archetype from the .const-script element (contains {{ARCHETYPE NAME}} value)
+  // Detect archetype from the .const-script element (contains <span data-tok="t041">The Educator</span> value)
   function getArchKey() {
     const el = document.querySelector('.const-script');
     const raw = el ? el.textContent.toLowerCase() : '';
@@ -1289,165 +1274,152 @@ img { display:block; width:100%; height:100%; object-fit:cover; }
 })();
 </script>
 </section>
-
 <!-- PAGE 6 -->
-<section class="page light ecosystem">
-  <div>
-    <div class="page-num">06 <span class="numline"></span></div>
-    <h2>CONTENT<br>ECOSYSTEM</h2>
-    <p class="sub">{{PAGE 6 SUBTITLE}}</p>
-  </div>
-  <div class="eco-grid">
-    <div class="eco-box"><div class="label">Primary Content Pillars</div><p>{{PILLAR 1 NAME}}</p><p>{{PILLAR 2 NAME}}</p><p>{{PILLAR 3 NAME}}</p></div>
-    <div class="eco-box"><div class="label">Secondary Topics</div><p>{{TOPIC 1}}</p><p>{{TOPIC 2}}</p><p>{{TOPIC 3}}</p></div>
-    <div class="eco-box"><div class="label">Contrarian Beliefs</div><p>{{CONTRARIAN BELIEF 1 — a real belief that goes against mainstream wisdom in this niche}}</p><p>{{CONTRARIAN BELIEF 2}}</p></div>
-    <div class="eco-box"><div class="label">Stories to Document</div><p>{{STORY DIRECTION 1}}</p><p>{{STORY DIRECTION 2}}</p><p>{{STORY DIRECTION 3}}</p></div>
-  </div>
-  <div class="exp-strip">
-    <div class="exp-item"><div class="exp-icon">◎</div><p class="small">{{EXPERIENCE 1 — proof point}}</p></div>
-    <div class="exp-item"><div class="exp-icon">◎</div><p class="small">{{EXPERIENCE 2 — proof point}}</p></div>
-    <div class="exp-item"><div class="exp-icon">◎</div><p class="small">{{EXPERIENCE 3 — proof point}}</p></div>
-  </div>
+<section class="page light ecosystem" data-eid="e180">
+<div data-eid="e181">
+<div class="page-num" data-eid="e182">06 <span class="numline" data-eid="e183"></span></div>
+<h2 data-eid="e184">CONTENT<br data-eid="e185"/>ECOSYSTEM</h2>
+<p class="sub" data-eid="e186" style="translate:1px 41px;"><br/></p><p class="sub" data-eid="e186"><span data-tok="t042"><br/></span></p><p class="sub" data-eid="e186"><span data-tok="t042"><br/></span></p><p class="sub" data-eid="e186"><span data-tok="t042"><br/></span></p><p class="sub" data-eid="e186"><span data-tok="t042"><br/></span></p><p class="sub" data-eid="e186"><span data-tok="t042"><br/></span></p><p class="sub" data-eid="e186"><span data-tok="t042"><br/></span></p><p class="sub" data-eid="e186"><span data-tok="t042"><br/></span></p><p class="sub" data-eid="e186"><span data-tok="t042"><br/></span></p><p class="sub" data-eid="e186"><span data-tok="t042"><br/></span></p><p class="sub" data-eid="e186"><span data-tok="t042"><br/></span></p><p class="sub" data-eid="e186"><span data-tok="t042"><br/></span></p><p class="sub" data-eid="e186"><strong data-end="89" data-start="73" style="background-color: initial; color: rgb(17, 17, 17); font-size: 16px;">Proof Points</strong></p><p class="PDq2pG_selectionAnchorContainer" data-end="182" data-start="73" dir="auto"><br/></p><p class="PDq2pG_selectionAnchorContainer" data-end="182" data-start="73" dir="auto"><br/></p><p class="PDq2pG_selectionAnchorContainer" data-end="182" data-start="73" dir="auto">
+Three real experiences from your answers that show why you have credibility in your niche.<span aria-hidden="true" class="PDq2pG_selectionAnchor"></span></p>
+</div>
+<div class="eco-grid" data-eid="e187">
+<div class="eco-box" data-eid="e188"><div class="label" data-eid="e189" style="font-weight:700;font-size:12px;">Primary Content Pillars</div><p data-eid="e190"><span data-tok="t043">The Park Lesson</span></p><p data-eid="e191"><span data-tok="t044">Name What You See</span></p><p data-eid="e192"><span data-tok="t045">Permission And Logistics</span></p></div>
+<div class="eco-box" data-eid="e193"><div class="label" data-eid="e194" style="font-weight:700;font-size:12px;">Secondary Topics</div><p data-eid="e195"><span data-tok="t046">Nature club startup notes</span></p><p data-eid="e196"><span data-tok="t047">Seasonal watershed walks</span></p><p data-eid="e197"><span data-tok="t048">School garden on a shoestring</span></p></div>
+<div class="eco-box" data-eid="e198" style="translate:-4px -39px;"><div class="label" data-eid="e199" style="font-weight:700;font-size:12px;">Contrarian Beliefs</div><p data-eid="e200"><span data-tok="t049">An expensive STEM kit teaches less than a fallen log with a salamander under it.</span></p><p data-eid="e201"><span data-tok="t050">A single backyard holds enough material for a full year of science.</span></p></div>
+<div class="eco-box" data-eid="e202" style="translate:-1px -38px;"><div class="label" data-eid="e203" style="font-size:12px;font-weight:700;">Stories to Document</div><p data-eid="e204"><span data-tok="t051">The nature club salamander find, and the student who never spoke in class explaining its life cycle to the group.</span></p><p data-eid="e205"><span data-tok="t052">Running a school garden program through a full growing season on almost no funding.</span></p><p data-eid="e206"><span data-tok="t053">Solo days on the Ozark Trail and what they changed about how you teach pace and attention.</span></p></div>
+</div>
+<div class="exp-strip" data-eid="e207">
+<div class="exp-item" data-eid="e208"><div class="exp-icon" data-eid="e209">◎</div><p class="small" data-eid="e210"><span data-tok="t054">Nineteen years teaching middle school science</span></p></div>
+<div class="exp-item" data-eid="e211"><div class="exp-icon" data-eid="e212">◎</div><p class="small" data-eid="e213"><span data-tok="t055">Founded and ran an after school nature club</span></p></div>
+<div class="exp-item" data-eid="e214"><div class="exp-icon" data-eid="e215">◎</div><p class="small" data-eid="e216"><span data-tok="t056">Led a school garden program</span></p></div>
+</div>
 </section>
-
 <!-- PAGE 7 -->
-<section class="page light visual">
-  <div>
-    <div class="page-num">07 <span class="numline"></span></div>
-    <h2>VISUAL<br>IDENTITY</h2>
-    <p class="sub">{{PAGE 7 SUBTITLE — "The visual expression of your signal."}}</p>
-    <div class="vi-block"><div class="vi-label">Mood</div><div class="vi-value">{{MOOD — 3-5 words}}</div></div>
-    <div class="vi-block"><div class="vi-label">Keywords</div><div class="vi-value">{{KEYWORD 1}} | {{KEYWORD 2}} | {{KEYWORD 3}} | {{KEYWORD 4}} | {{KEYWORD 5}}</div></div>
-    <!-- Run the Brand-Color-Analysis-Agent.md prompt against the client's actual colors before filling this in. Only include the "Removed" row if colors were actually cut for a documented reason (contrast failure, redundancy, etc). -->
-    <div class="vi-block"><div class="vi-label">{{COLOR SECTION LABEL — "Color Direction" or "Color Correction — Why the Palette Changed" if colors were corrected}}</div><div class="vi-value">{{COLOR EXPLANATION — describe the working palette and the reasoning, with real contrast numbers if any colors were removed}}</div>
-      <div class="color-dots" style="margin-bottom:18px;">
-        <div class="dot" style="background:{{HEX 1}}"></div><div class="dot" style="background:{{HEX 2}}"></div><div class="dot" style="background:{{HEX 3}}"></div><div class="dot" style="background:{{HEX 4 or white}}"></div>
-      </div>
-      <!-- Optional: only if colors were removed -->
-      <div style="font-size:11px; letter-spacing:.15em; text-transform:uppercase; color:#111111; margin-bottom:10px;">{{REMOVED COLORS LABEL — omit this whole block if nothing was removed}}</div>
-      <div class="color-dots">
-        <div class="dot" style="background:{{REMOVED HEX 1}};"></div><div class="dot" style="background:{{REMOVED HEX 2}};"></div>
-      </div>
-    </div>
-    <div class="vi-block"><div class="vi-label">Photography Style</div><div class="vi-value">{{PHOTOGRAPHY STYLE — one sentence describing the style of photos that fits this brand}}</div></div>
-    <div class="vi-block"><div class="vi-label">Editing Style</div><div class="vi-value">{{EDITING STYLE — one sentence on contrast, warmth, tone}}</div></div>
-  </div>
-  <div class="vi-collage">
-    <div class="vi-img"><div class="photo-placeholder-box">Photo placeholder</div></div>
-    <div class="vi-img"><div class="photo-placeholder-box">Photo placeholder</div></div>
-    <div class="vi-img"><div class="photo-placeholder-box">Photo placeholder</div></div>
-    <div class="vi-img"><div class="photo-placeholder-box">Photo placeholder</div></div>
-    <div class="vi-img wide"><div class="photo-placeholder-box">Photo placeholder</div></div>
-  </div>
+<section class="page light visual" data-eid="e217">
+<div data-eid="e218">
+<div class="page-num" data-eid="e219">07 <span class="numline" data-eid="e220"></span></div>
+<h2 data-eid="e221">VISUAL<br data-eid="e222"/>IDENTITY</h2>
+<p class="sub" data-eid="e223"><span data-tok="t057">The visual expression of your signal.</span></p>
+<div class="vi-block" data-eid="e224"><div class="vi-label" data-eid="e225">Mood</div><div class="vi-value" data-eid="e226"><span data-tok="t058">Field guide, sunlit, exact, unhurried</span></div></div>
+<div class="vi-block" data-eid="e227"><div class="vi-label" data-eid="e228">Keywords</div><div class="vi-value" data-eid="e229"><span data-tok="t059">Olive canvas</span> | <span data-tok="t060">Brass hardware</span> | <span data-tok="t061">Park poster</span> | <span data-tok="t062">Creek light</span> | <span data-tok="t063">Hand drawn plates</span></div></div>
+<!-- Run the Brand-Color-Analysis-Agent.md prompt against the client's actual colors before filling this in. Only include the "Removed" row if colors were actually cut for a documented reason (contrast failure, redundancy, etc). -->
+<div class="vi-block" data-eid="e230"><div class="vi-label" data-eid="e231"><span data-tok="t064">Color Direction</span></div><div class="vi-value" data-eid="e232"><span data-tok="t065">The anchor is a deep forest green, which is your faded canvas field bag read at full strength. Against it sits a mid teal pulled from the old National Park posters you named, and that teal is what separates this palette from the sage and tan range that dominates nature for kids branding. Brass gold carries the buckles from that same bag as does the small accent work: rules, buttons, callouts, lesson numbers. A warm paper cream, close to old field guide stock, is the background for anything read at a distance, and a near black pine green sits under headlines and body type. Cream behind the deep green clears the 4.5:1 accessibility threshold with wide margin, so a lesson PDF stays legible when a teacher prints it in black and white.</span></div>
+<div class="color-dots" data-eid="e233" style="margin-bottom:18px;">
+<div class="dot" data-eid="e234" style="background:#1B3A2B"></div><div class="dot" data-eid="e235" style="background:#2E7D8F"></div><div class="dot" data-eid="e236" style="background:#C08A2E"></div><div class="dot" data-eid="e237" style="background:#F3EEE2"></div>
+</div>
+</div>
+<div class="vi-block" data-eid="e242"><div class="vi-label" data-eid="e243">Photography Style</div><div class="vi-value" data-eid="e244"><span data-tok="t073">Daylight documentary photographs taken at arm's length from the subject: bark, moving water, a journal page, a seed head, shot in overcast or early light so fine detail holds.</span></div></div>
+<div class="vi-block" data-eid="e245"><div class="vi-label" data-eid="e246" style="translate:426px -93px;">Editing Style</div><div class="vi-value" data-eid="e247" style="translate:425px -87px;"><span data-tok="t074">Warm and medium contrast, with greens held to their true color and shadows left open.</span></div></div>
+</div>
+<div class="vi-collage" data-eid="e248">
+<div class="vi-img" data-eid="e249"><img alt="" src="https://slateandsignal.studio/ri/morgan-testrun-41a654e08d45/vi1.jpg" style="width:100%; height:100%; object-fit:cover; object-position:center; display:block; filter:contrast(0.90) saturate(0.82) brightness(0.97);"/></div>
+<div class="vi-img" data-eid="e251"><img alt="" src="https://slateandsignal.studio/ri/morgan-testrun-41a654e08d45/vi2.jpg" style="width:100%; height:100%; object-fit:cover; object-position:center; display:block; filter:contrast(0.90) saturate(0.82) brightness(0.97);"/></div>
+<div class="vi-img" data-eid="e253"><img alt="" src="https://slateandsignal.studio/ri/morgan-testrun-41a654e08d45/vi3.jpg" style="width:100%; height:100%; object-fit:cover; object-position:center; display:block; filter:contrast(0.90) saturate(0.82) brightness(0.97);"/></div>
+<div class="vi-img" data-eid="e255"><img alt="" src="https://slateandsignal.studio/ri/morgan-testrun-41a654e08d45/vi4.jpg" style="width:100%; height:100%; object-fit:cover; object-position:center; display:block; filter:contrast(0.90) saturate(0.82) brightness(0.97);"/></div>
+<div class="vi-img wide" data-eid="e257"><img alt="" src="https://slateandsignal.studio/ri/morgan-testrun-41a654e08d45/vi0.png" style="width:100%; height:100%; object-fit:cover; object-position:center; display:block; filter:contrast(0.90) saturate(0.82) brightness(0.97);"/></div>
+</div>
 </section>
-
 <!-- PAGE 8 -->
-<section class="page dark photo-page">
-  <div class="photo-text">
-    <div class="page-num">08 <span class="numline"></span></div>
-    <h2>THE MARKET<br>OPPORTUNITY</h2>
-    <p class="body">{{MARKET OPPORTUNITY — paragraph 1: who the audience is, what they've tried, what they still can't find}}</p>
-    <p class="body" style="margin-top:22px;"><strong style="color:var(--gold);">{{SUB-LABEL 1}}:</strong> {{SUPPORTING DATA POINT}}</p>
-    <p class="body" style="margin-top:22px;"><strong style="color:var(--gold);">{{SUB-LABEL 2}}:</strong> {{SUPPORTING DATA POINT}}</p>
-    <p class="body" style="margin-top:22px;">{{CLOSING SENTENCE — what the work actually is}}</p>
-  </div>
-  <div class="photo-side market-charts" style="display:flex; flex-direction:column; justify-content:center; gap:36px; padding:48px 40px;">
-    <!-- Market Opportunity charts (Raquel 2026-09-13): 1-2 inline SVG charts, verified research numbers only, client palette at 100% opacity. No photo on this page. -->
-    {{MARKET CHART 1 — inline SVG, verified data only}}
-    {{MARKET CHART 2 — optional inline SVG, verified data only; delete if no second verified dataset}}
-  </div>
-</section>
+<section class="page dark photo-page" data-eid="e259">
+<div class="photo-text" data-eid="e260" style="padding:60px 70px 60px;">
+<div class="page-num" data-eid="e261">08 <span class="numline" data-eid="e262"></span></div>
+<h2 data-eid="e263">THE MARKET<br data-eid="e264"/>OPPORTUNITY</h2>
+<p class="body" data-eid="e265"><span data-tok="t075">Two groups of people are stuck on the same thing, and both of them are yours. Much of what follows comes from Reddit, a public website where people gather in open discussion groups by topic and talk to each other honestly, so you can read what teachers and parents say when no one is selling them anything. In a large discussion group for teachers, one teacher says outdoor education "seems broad and able to be interpreted many ways by many people," that it "seems hard to incorporate," and that "it is not state tested." In a similar group for Australian teachers, a teacher of fifteen years says the paperwork for taking students off campus got so heavy that the science, humanities and languages departments all cut back or stopped their trips. Parents come at it from the other side. In a parenting group, a mother of three who is trying to cut screen time asks "How can I create more of an interest in the outdoors for my kids? Animals, insects, flowers etc." In a group for mothers, parents who cannot afford summer camp describe filling entire weeks with the library and the park. Both groups have already decided they want this. What they are missing is one clear lesson they can actually run, tied to a real place and a real season, that costs nothing and was written by someone who has done it with real children.</span></p>
+<p class="body" data-eid="e266" style="margin-top:22px;"><strong data-eid="e267" style="color:var(--gold);"><span data-tok="t076">Cost of the alternative</span>:</strong> <span data-tok="t077">The money side of this is already in the open. A 2026 camp price guide from KidPlanr reports that brand name summer programs charge $400 to $700 a week, while city recreation departments, the YMCA and community nonprofits run full day programs for $100 to $250 a week, and some of those are free. Families who want this for their children are looking hard at that gap.</span></p>
+<p class="body" data-eid="e268" style="margin-top:22px;"><strong data-eid="e269" style="color:var(--gold);"><span data-tok="t078">Unanswered demand</span>:</strong> <span data-tok="t079">CommentShark, a service that studies YouTube comments, looked at 100,235 comments on education and how to videos. About 13 percent of them were genuine questions, and 77 percent of those questions never got a reply from the person who made the video. People are asking. Almost nobody is answering them.</span></p>
+<p class="body" data-eid="e270" style="margin-top:22px;"><span data-tok="t080">The work itself is a library of outdoor science lessons built around real places, written so a teacher can get one approved and a parent can run one on a Saturday morning.</span></p>
+</div>
 
+</section>
 <!-- PAGE 9 -->
-<section class="page dark dark-content">
-  <div class="page-num">09 <span class="numline"></span></div>
-  <h2>THE<br>NICHE GAP</h2>
-  <div style="max-width:640px; margin-bottom:44px;">
-    <p class="body" style="color:#fff;">{{NICHE GAP INTRO — 1-2 sentences on how this niche was identified}}</p>
-  </div>
-  <div class="dark-grid" style="grid-template-columns:1fr; gap:20px; margin-bottom:40px;">
-    <div class="dark-card gold-edge">
-      <div class="kicker" style="margin-bottom:14px;">RECOMMENDED NICHE</div>
-      <h3 style="font-size:24px;">{{RECOMMENDED NICHE NAME}}</h3>
-      <p>{{WHY THIS NICHE — 2-3 sentences on why it is the most underserved option for this person specifically}}</p>
-    </div>
-    <div class="dark-card">
-      <div class="kicker" style="margin-bottom:14px; color:#FFFFFF;">ALTERNATE DIRECTION</div>
-      <h3 style="font-size:22px;">{{ALTERNATE NICHE 1 NAME}}</h3>
-      <p>{{ONE SENTENCE ON WHY THIS COULD ALSO WORK}}</p>
-    </div>
-    <div class="dark-card">
-      <div class="kicker" style="margin-bottom:14px; color:#FFFFFF;">ALTERNATE DIRECTION</div>
-      <h3 style="font-size:22px;">{{ALTERNATE NICHE 2 NAME}}</h3>
-      <p>{{ONE SENTENCE ON WHY THIS COULD ALSO WORK}}</p>
-    </div>
-  </div>
-  <div class="dark-grid">
-    <div class="dark-card">
-      <h3>What Already Exists</h3>
-      <ul>
-        <li>{{EXISTING 1}}</li>
-        <li>{{EXISTING 2}}</li>
-        <li>{{EXISTING 3}}</li>
-        <li>{{EXISTING 4}}</li>
-      </ul>
-    </div>
-    <div class="dark-card gold-edge">
-      <h3>The Gap You Can Fill</h3>
-      <ul>
-        <li>{{GAP 1 — cite the real source, e.g. "common Reddit thread in r/[subreddit]"}}</li>
-        <li>{{GAP 2 — cite the real source}}</li>
-        <li>{{GAP 3 — cite the real source}}</li>
-        <li>{{GAP 4 — cite the real source}}</li>
-      </ul>
-    </div>
-  </div>
+<section class="page dark dark-content" data-eid="e272">
+<div class="page-num" data-eid="e273">09 <span class="numline" data-eid="e274"></span></div>
+<h2 data-eid="e275">THE<br data-eid="e276"/>NICHE GAP</h2>
+<div data-eid="e277" style="max-width:640px; margin-bottom:44px;">
+<p class="body" data-eid="e278" style="color:#fff;"><span data-tok="t083">This niche came from reading what teachers and parents ask for in the same week across teaching, parenting, gardening and nature study communities, then filtering for the overlap you can personally staff and want to sustain.</span></p>
+</div>
+<div class="dark-grid" data-eid="e279" style="grid-template-columns:1fr; gap:20px; margin-bottom:40px;">
+<div class="dark-card gold-edge" data-eid="e280">
+<div class="kicker" data-eid="e281" style="margin-bottom:14px;">RECOMMENDED NICHE</div>
+<h3 data-eid="e282" style="font-size:24px;"><span data-tok="t084">No Budget Outdoor Science Lessons for K-8 Teachers</span></h3>
+<p data-eid="e283"><span data-tok="t085">The teachers talking to each other on Reddit name two problems at once. They do not know exactly what outdoor education means, and the planning looks like more work than they can carry, so the idea stays on the shelf. In the Australian teachers group, whole departments are giving up on trips because of the approval paperwork, and the support that does exist sits at the institutional end, such as Garfield County Outdoors serving two districts with lesson planning support and the National Park Service Parks as Classrooms program tied to specific park sites. Your nineteen years, your garden program and your nature club let you supply the missing middle: a named lesson, held on school grounds or a nearby park, with the approval language written in advance.</span></p>
+</div>
+<div class="dark-card" data-eid="e284">
+<div class="kicker" data-eid="e285" style="margin-bottom:14px; color:#FFFFFF;">ALTERNATE DIRECTION</div>
+<h3 data-eid="e286" style="font-size:22px;"><span data-tok="t086">Screen Free Weekend Nature Guides for Parents</span></h3>
+<p data-eid="e287"><span data-tok="t087">In parenting groups, mothers are already asking how to get their children interested in animals, insects and flowers without spending money, and your nature club answers that question directly.</span></p>
+</div>
+<div class="dark-card" data-eid="e288">
+<div class="kicker" data-eid="e289" style="margin-bottom:14px; color:#FFFFFF;">ALTERNATE DIRECTION</div>
+<h3 data-eid="e290" style="font-size:22px;"><span data-tok="t088">Local Trail and Backyard Naturalist Guides</span></h3>
+<p data-eid="e291"><span data-tok="t089">Your field guide fluency and the Ozark Trail hike fit a seasonal, mapped guide to identification within walking distance of home.</span></p>
+</div>
+</div>
+<div class="dark-grid" data-eid="e292">
+<div class="dark-card" data-eid="e293">
+<h3 data-eid="e294">What Already Exists</h3>
+<ul data-eid="e295">
+<li data-eid="e296"><span data-tok="t090">Homeschool Nature Study publishes an ultimate guide to nature study resources with year round support for homeschool families.</span></li>
+<li data-eid="e297"><span data-tok="t091">Run Wild My Child runs large roundups of outdoor activities and nature school content for outdoorsy parents, including 100-plus activity lists with printable checklists.</span></li>
+<li data-eid="e298"><span data-tok="t092">The National Park Service Parks as Classrooms program at Golden Gate builds inquiry based, standards aligned park programs, with applications closed for the 2026-2027 school year.</span></li>
+<li data-eid="e299"><span data-tok="t093">Teachers Pay Teachers lists teacher made printable resources, including free plant and science sets filtered by grade band.</span></li>
+</ul>
+</div>
+<div class="dark-card gold-edge" data-eid="e300">
+<h3 data-eid="e301">The Gap You Can Fill</h3>
+<ul data-eid="e302">
+<li data-eid="e303"><span data-tok="t094">Teachers in the Reddit teaching group say the term outdoor education is unclear and the planning feels like a lot of work, so one named lesson with a time limit and a list of what to bring closes most of that distance.</span></li>
+<li data-eid="e304"><span data-tok="t095">Australian teachers describe approval paperwork pushing entire departments out of field trips, which makes a lesson that stays on school grounds, with the paperwork already written, worth a great deal.</span></li>
+<li data-eid="e305"><span data-tok="t096">In a gardening group, a special education teacher who was handed a garden club with no money and no gardening background asks for cheap projects that fit a club meeting once a month.</span></li>
+<li data-eid="e306"><span data-tok="t097">Free and low cost program guides such as the Treasure Coast roundup and the KidPlanr Bay Area guide list programs by county and price, leaving the question of what to observe once a family arrives entirely to the family.</span></li>
+</ul>
+</div>
+</div>
 </section>
-
 <!-- PAGE 10 -->
-<section class="page light ecosystem" style="grid-template-columns:1fr; gap:10px;">
-  <div>
-    <div class="page-num">10 <span class="numline"></span></div>
-    <h2>REVENUE<br>POTENTIAL</h2>
-    <p class="sub">{{PAGE 10 SUBTITLE}}</p>
-  </div>
-  <div class="eco-grid revenue-list">
-    <div class="eco-box"><div class="label">{{REVENUE STREAM 1 NAME}}</div><p>{{DESCRIPTION + PRICE RANGE + WHY}}</p><p style="font-size:14px; color:#111111; margin-top:10px;"><em>{{COMPARABLE — real, verifiable example}}. Source: {{SOURCE NAME/LINK}}, gathered {{MONTH DAY, YEAR}}.</em></p></div>
-    <div class="eco-box"><div class="label">{{REVENUE STREAM 2 NAME}}</div><p>{{DESCRIPTION + PRICE RANGE + WHY}}</p><p style="font-size:14px; color:#111111; margin-top:10px;"><em>{{COMPARABLE — real, verifiable example}}. Source: {{SOURCE NAME/LINK}}, gathered {{MONTH DAY, YEAR}}.</em></p></div>
-    <div class="eco-box"><div class="label">{{REVENUE STREAM 3 NAME}}</div><p>{{DESCRIPTION + PRICE RANGE + WHY}}</p><p style="font-size:14px; color:#111111; margin-top:10px;"><em>{{COMPARABLE — real, verifiable example}}. Source: {{SOURCE NAME/LINK}}, gathered {{MONTH DAY, YEAR}}.</em></p></div>
-    <div class="eco-box"><div class="label">{{REVENUE STREAM 4 NAME}}</div><p>{{DESCRIPTION + PRICE RANGE + WHY}}</p><p style="font-size:14px; color:#111111; margin-top:10px;"><em>{{COMPARABLE — real, verifiable example}}. Source: {{SOURCE NAME/LINK}}, gathered {{MONTH DAY, YEAR}}.</em></p></div>
-  </div>
+<section class="page light ecosystem" data-eid="e307" style="grid-template-columns:1fr; gap:10px;">
+<div data-eid="e308">
+<div class="page-num" data-eid="e309">10 <span class="numline" data-eid="e310"></span></div>
+<h2 data-eid="e311">REVENUE<br data-eid="e312"/>POTENTIAL</h2>
+<p class="sub" data-eid="e313"><span data-tok="t098">Verified paths from lessons to income.</span></p>
+</div>
+<div class="eco-grid revenue-list" data-eid="e314">
+<div class="eco-box" data-eid="e315"><div class="label" data-eid="e316"><span data-tok="t099">Paid Lesson Packs for Teachers</span></div><p data-eid="e317"><span data-tok="t100">Printable, standards aware outdoor lesson sets sold directly to classroom teachers. Teacher buying runs on a personal card at small ticket sizes, documented at a $12 printable bundle and a $79 classroom app, so the model works through volume and repeat purchase across grade bands. Your nineteen years of middle school science and your garden program give you the two things buyers judge fastest: correct content and a management plan that holds thirty kids together outdoors.</span></p><p data-eid="e318" style="font-size:14px; color:#111111; margin-top:10px;"><em data-eid="e319" style="color:#050505;"><span data-tok="t101">Teachers buy printable lesson units with their own money on Teachers Pay Teachers, and they hear about what to buy from other teachers in Facebook groups for their grade level and in the Reddit teaching group</span>. Source: <span data-tok="t102">Where to Find K-12 Teachers Customers, PainHuntr https://www.painhuntr.com/where-to-find-customers/education/k12-teachers</span>, gathered <span data-tok="t103">September 14, 2026</span>.</em></p></div>
+<div class="eco-box" data-eid="e320"><div class="label" data-eid="e321"><span data-tok="t104">Local Screen Free Nature Day Programs</span></div><p data-eid="e322"><span data-tok="t105">Half day and full day outdoor science sessions for families, priced into the community tier. Brand name programs post $400 to $700 per week while city recreation, YMCA and community nonprofit full day programs run $100 to $250 per week, and that lower band is where a one person program with a park and a field kit carries margin. Your nature club and your ability to settle a restless group in two minutes are the operating skills this tier runs on.</span></p><p data-eid="e323" style="font-size:14px; color:#111111; margin-top:10px;"><em data-eid="e324" style="color:#050505;"><span data-tok="t106">KidPlanr's 2026 Bay Area guide shows city recreation camps, YMCA branches and Boys &amp; Girls Clubs running good full day programs for $100 to $250 a week</span>. Source: <span data-tok="t107">Affordable Summer Camps Bay Area 2026, KidPlanr https://kidplanr.com/blog/affordable-summer-camps-bay-area-2026</span>, gathered <span data-tok="t108">September 14, 2026</span>.</em></p></div>
+<div class="eco-box" data-eid="e325"><div class="label" data-eid="e326"><span data-tok="t109">Scholarship-Funded Summer Naturalist Weeks</span></div><p data-eid="e327"><span data-tok="t110">Week-long outdoor science camps delivered through accredited channels with part of the fee covered by scholarship dollars. The American Camp Association reports fees ranging from less than $100 to more than $1,500 per week for accredited day and overnight camps, and ACA-accredited camps apply through the UltraCamp Foundation for Send a Child to Camp Fund support for families who need it. You can build a full week from your nature club material and run it at the lower fee tier with scholarship support closing the gap.</span></p><p data-eid="e328" style="font-size:14px; color:#111111; margin-top:10px;"><em data-eid="e329" style="color:#0a0a0a;"><span data-tok="t111">The American Camp Association lists accredited day and overnight camps through its Find a Camp directory, and it helps families pay through the Send a Child to Camp Fund</span>. Source: <span data-tok="t112">How to Afford Camp, American Camp Association https://www.acacamps.org/parents-families/planning-camp/preparing-camp/how-afford-camp</span>, gathered <span data-tok="t113">September 14, 2026</span>.</em></p></div>
+<div class="eco-box" data-eid="e330"><div class="label" data-eid="e331"><span data-tok="t114">District Outdoor Education Program Design</span></div><p data-eid="e332"><span data-tok="t115">Contracted program design for schools: lesson planning support, equipment specification, teacher guidance and feedback loops for outdoor learning spaces and school gardens. Garfield County Outdoors fills this role across two named districts, Garfield Re-2 and Garfield 16, providing direction, resources, lesson planning support, equipment and feedback so teachers can run safe outdoor lessons. Your nineteen years inside a middle school and the garden program you led mean you can write the plan and then stand in front of the staff who have to deliver it.</span></p><p data-eid="e333" style="font-size:14px; color:#111111; margin-top:10px;color:#0d0c0c;"><em data-eid="e334"><span data-tok="t116">Garfield County Outdoors supports teachers in the Garfield Re-2 and Garfield 16 districts, and Nancy Hauer, a 7th grade teacher at Rifle Middle School, describes what the field program taught her students</span>. Source: <span data-tok="t117">Educator Resources, Garfield County Outdoors https://sites.google.com/garfield16.org/garfield-county-outdoors/for-educators/educator-resources</span>, gathered <span data-tok="t118">September 14, 2026</span>.</em></p></div>
+</div>
 </section>
-
 <!-- PAGE 11 -->
-<section class="page dark next">
-  <div>
-    <div class="page-num">11 <span class="numline"></span></div>
-    <h2>WHAT<br>COMES NEXT</h2>
-    <p class="body">This report is your cornerstone. It does not expire, and it does not need to be finished in a week.</p>
-    <ul style="margin-top:22px; list-style:none; max-width:360px;">
-      <li style="padding:11px 0; border-bottom:1px solid rgba(255,255,255,.09); color:#ddd; font-size:14px; line-height:1.6;"><span style="color:var(--gold); margin-right:10px;">&#10022;</span>Come back to it before every caption, post, or offer you write.</li>
-      <li style="padding:11px 0; border-bottom:1px solid rgba(255,255,255,.09); color:#ddd; font-size:14px; line-height:1.6;"><span style="color:var(--gold); margin-right:10px;">&#10022;</span>Use your Signal Archetype to check any idea: does this sound like it, or does it sound like everyone else?</li>
-      <li style="padding:11px 0; color:#ddd; font-size:14px; line-height:1.6;"><span style="color:var(--gold); margin-right:10px;">&#10022;</span>Keep your Content Pillars nearby. When you are unsure what to post, one of these is the answer.</li>
-    </ul>
-  </div>
-  <div>
-    <div style="height:400px; margin-top:200px; border-radius:2px; overflow:hidden; box-shadow:0 30px 80px rgba(0,0,0,.35);"><img src="assets/closing-report-photo.png" alt="" style="width:100%; height:100%; object-fit:cover; display:block;"></div>
-    <div class="photo-quote">
-      <div class="photo-quote-rule"></div>
-      <p class="photo-quote-text">&ldquo;The creation of a thousand forests is in one acorn.&rdquo;</p>
-      <div class="photo-quote-name">Ralph Waldo Emerson</div>
-    </div>
-  </div>
+<section class="page dark next" data-eid="e335" style="translate:0px -15px;">
+<div data-eid="e336">
+<div class="page-num" data-eid="e337">11 <span class="numline" data-eid="e338"></span></div>
+<h2 data-eid="e339">WHAT<br data-eid="e340"/>COMES NEXT</h2>
+<p class="body" data-eid="e341" style="translate:1px -23px;">This report IS your brand.</p>
+<ul data-eid="e342" style="margin-top:22px; list-style:none; max-width:360px;">
+<li data-eid="e343" style="padding:11px 0; border-bottom:1px solid rgba(255,255,255,.09); color:#ddd; font-size:14px; line-height:1.6;font-size:13px;translate:-11px -36px;"><span data-eid="e344" style="color:var(--gold); margin-right:10px;">✦<strong> </strong></span>What started as a collection of questions has become a visual record of your brand, built from your answers and specific to you.<p data-end="518" data-start="339" dir="auto">All the elements that make your brand recognizable are  here. </p><p class="PDq2pG_selectionAnchorContainer" data-end="1576" data-start="1453" dir="auto"><span aria-hidden="true" class="PDq2pG_selectionAnchor"></span></p>
+<p data-end="1697" data-is-last-node="" data-is-only-node="" data-start="1578" dir="auto"></p><p class="PDq2pG_selectionAnchorContainer" data-end="1576" data-start="1453" dir="auto"><span aria-hidden="true" class="PDq2pG_selectionAnchor"></span></p>
+<p data-end="1697" data-is-last-node="" data-is-only-node="" data-start="1578" dir="auto"></p></li>
+<li data-eid="e345" style="padding:11px 0; border-bottom:1px solid rgba(255,255,255,.09); color:#ddd; font-size:14px; line-height:1.6;translate:-12px -41px;"><span data-eid="e346" style="color:var(--gold); margin-right:10px;">✦</span>If you are still unsure how you naturally create and communicate through content, you can complete the free <strong data-end="657" data-start="628" style="background-color: initial;">Content Style Guide.</strong><span style="background-color: initial;"> That will help you choose the kinds of content that fit you best. You can find it here </span>https://slateandsignal.studio/content-style<p class="PDq2pG_selectionAnchorContainer" data-end="724" data-start="520" dir="auto"><span aria-hidden="true" class="PDq2pG_selectionAnchor"></span></p>
+<p data-end="896" data-start="726" dir="auto"></p></li>
+<li data-eid="e347" style="padding:11px 0; color:#ddd; font-size:14px; line-height:1.6;translate:-12px -44px;"><span data-eid="e348" style="color:var(--gold); margin-right:10px;">✦</span>This brand portfolio belongs to you. Use it to make decisions, give direction to the people who help you, and keep what you build connected to the brand you started with.<p data-end="925" data-start="898" dir="auto"><strong data-end="925" data-start="898">                       Now it’s time to build!</strong></p>
+<p data-end="1228" data-is-last-node="" data-is-only-node="" data-start="927" dir="auto"></p></li>
+</ul>
+</div>
+<div data-eid="e349" style="height:400px; margin-top:200px; border-radius:2px; overflow:hidden; box-shadow:0 30px 80px rgba(0,0,0,.35);translate:-19px -93px;"><img alt="" data-eid="e350" src="https://slateandsignal.studio/report-assets/closing-report-photo.png" style="width:100%; height:100%; object-fit:cover; display:block;translate:3px 5px;"/></div>
+<div data-eid="e900" style="grid-column:2; margin-top:30px; text-align:center;translate:-28px -209px;">
+<div data-eid="e901" style="width:60px; height:1px; background:#FFDE7A; margin:0 auto 22px;"></div>
+<p data-eid="e902" style="font-family:var(--serif); font-style:italic; font-weight:300; font-size:22px; line-height:1.5; color:#FFDE7A; margin:0 0 14px;">“The creation of a thousand forests is in one acorn.”</p>
+<div data-eid="e903" style="font-size:10px; letter-spacing:.3em; text-transform:uppercase; color:#FFDE7A;">Ralph Waldo Emerson</div>
+</div>
 </section>
-
 <!-- BACK -->
-<section class="page dark back" style="min-height:740px; display:flex; flex-direction:column; align-items:center; justify-content:center; text-align:center; padding:100px 64px;">
-  <div style="font-family:var(--serif); font-size:clamp(36px,5vw,52px); font-weight:300; letter-spacing:.05em; line-height:1.1; margin-bottom:8px;">SLATE<br><img src="assets/wordmark-ampersand.png" alt="&amp;" style="height:100px; width:auto; display:inline-block; vertical-align:-24px; margin:10px 0;"><br>SIGNAL</div>
-  <div style="font-size:20px; color:var(--gold); margin:20px 0;">&#10022;</div>
-  <div style="font-size:11px; letter-spacing:.35em; text-transform:uppercase; color:#FFFFFF;">Clarity Reveals. Strategy Amplifies. You Lead.</div>
+<section class="page dark back" data-eid="e351" style="min-height:740px; display:flex; flex-direction:column; align-items:center; justify-content:center; text-align:center; padding:100px 64px;translate:0px -16px;">
+<div data-eid="e352" style="font-family:var(--serif); font-size:clamp(36px,5vw,52px); font-weight:300; letter-spacing:.05em; line-height:1.1; margin-bottom:8px;line-height:0.6;">SLATE<br data-eid="e353"/><img alt="&amp;" data-eid="e354" src="https://slateandsignal.studio/report-assets/wordmark-ampersand.png" style="height:100px; width:auto; display:inline-block; vertical-align:-24px; margin:10px 0;font-size:53px;"/><br data-eid="e355"/>SIGNAL</div>
+<div data-eid="e356" style="font-size:20px; color:var(--gold); margin:20px 0;">✦</div>
+<div data-eid="e357" style="font-size:11px; letter-spacing:.35em; text-transform:uppercase; color:#FFFFFF;">Clarity Reveals. Strategy Amplifies. You Lead.</div>
 </section>
-
 </div>
 </body>
 </html>
+
