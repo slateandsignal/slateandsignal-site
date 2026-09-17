@@ -27,7 +27,7 @@
   --dark:#111111;
   --ink:#111111;
   --white:#FFFFFF;
-  --soft:#F7F5F1;
+  --soft:#f7f6f3;
   --card:#FFFFFF;
   --gold:#FFDE7A;
   /* --amber MUST be overridden with this client's actual accent color before delivery (see Signal-Report-SOP.md Step 7). Left as loud red on purpose so a forgotten step is obvious, not invisible. */
@@ -128,7 +128,7 @@ img { display:block; width:100%; height:100%; object-fit:cover; }
 .signal-panel { margin-top:0; margin-bottom:20px; padding:30px 34px; min-height:auto; display:flex; flex-direction:column; }
 .signal-row { display:flex; align-items:flex-start; gap:16px; padding:14px 0; border-bottom:1px solid rgba(17,17,17,.08); }
 .signal-row:last-child { border-bottom:0; }
-.signal-row .icon { width:20px; height:20px; color:var(--amber); flex:0 0 auto; margin-top:2px; }
+.signal-row .icon { width:20px; height:20px; color:#FFDE7A; flex:0 0 auto; margin-top:2px; }
 .signal-row .icon svg { width:100%; height:100%; stroke:currentColor; fill:none; stroke-width:1.5; }
 .signal-row span { font-size:14px; line-height:1.55; color:#333; }
 .signal-row strong { color:#111; }
@@ -225,7 +225,7 @@ img { display:block; width:100%; height:100%; object-fit:cover; }
   .page { min-height:auto; }
   img, svg, canvas { max-width:100%; }
   /* Desktop nudges saved in the editor are measured in pixels and throw pieces off a narrow screen. */
-  .report [data-eid] { translate:none !important; }
+  .report [style*="translate"] { translate:none !important; }
   .cover { display:block; }
   .cover-photo { height:44vh; }
   .cover-photo::after { width:100%; background:linear-gradient(to bottom, rgba(10,10,10,0) 40%, #0a0a0a 100%); }
@@ -264,177 +264,164 @@ img { display:block; width:100%; height:100%; object-fit:cover; }
 </head>
 <body>
 <div class="report">
-
 <!-- PAGE 1 -->
 <section class="page dark cover">
-  <div class="cover-photo">
-    <img src="assets/report-cover-update.png" alt="" style="width:100%; height:100%; object-fit:cover; display:block;">
-  </div>
-  <div class="cover-right">
-    <div class="cover-logo" style="font-family:'Cormorant Garamond',serif; font-weight:300; letter-spacing:-0.02em;">SLATE<img src="assets/wordmark-ampersand.png" alt="&amp;" style="height:44px; width:auto; display:inline-block; vertical-align:-18px; margin:0 4px;">SIGNAL <span class="rule" style="display:inline-block; vertical-align:middle; margin-left:22px;"></span></div>
-    <div class="cover-main">
-      <h1>{{CLIENT NAME}}</h1>
-      <div class="kicker">THE SIGNAL REPORT</div>
-      <div class="cover-tagline">{{COVER TAGLINE — one sentence}}</div>
-    </div>
-    <div>
-      <div class="cover-date">{{DATE}}</div>
-      <div class="cover-bottom-rule"></div>
-    </div>
-  </div>
+<div class="cover-photo">
+<img alt="" src="assets/report-cover-update.png" style="width:100%; height:100%; object-fit:cover; display:block;"/>
+</div>
+<div class="cover-right">
+<div class="cover-logo" style="font-family:'Cormorant Garamond',serif; font-weight:300; letter-spacing:-0.02em;">SLATE<img alt="&amp;" src="assets/wordmark-ampersand.png" style="height:44px; width:auto; display:inline-block; vertical-align:-18px; margin:0 4px;"/>SIGNAL <span class="rule" style="display:inline-block; vertical-align:middle; margin-left:22px;"></span></div>
+<div class="cover-main">
+<h1>{{CLIENT NAME}}</h1>
+<div class="kicker">THE SIGNAL REPORT</div>
+<div class="cover-tagline">{{COVER TAGLINE — one sentence}}</div>
+</div>
+<div>
+<div class="cover-date">{{DATE}}</div>
+<div class="cover-bottom-rule"></div>
+</div>
+</div>
 </section>
-
-
 <!-- PAGE 2 -->
 <section class="page light overview" style="grid-template-columns:1fr;">
-  <div class="page-num">02 <span class="numline"></span></div>
-  <div class="top-star star">✦</div>
-  <h2 class="overview-title">HOW TO READ<br>THIS REPORT</h2>
-  <p class="sub">A few terms used throughout, explained plainly before you read the rest.</p>
-  <div class="card-grid">
-    <div class="card glass">
-      <div class="card-label">Signal</div>
-      <p class="small">The pattern that shows up again and again in what you're drawn to, what people come to you for, and what you've lived through. It was always there. This report exists to name it clearly enough that you can build around it on purpose.</p>
-    </div>
-    <div class="card glass">
-      <div class="card-label">Archetype</div>
-      <p class="small">The role your signal plays for other people. Not a personality label, a function. It answers the question "what does this person do for the people around them" in one recognizable shape, so an audience can understand you fast.</p>
-    </div>
-    <div class="card glass">
-      <div class="card-label">Constellation</div>
-      <p class="small">The visual map of your archetype. Each point of light is one real theme from your answers, and the shape they form together is the same shape as your archetype, because the archetype isn't assigned to you, it's built from the actual points. The constellation and the archetype match because one is the picture of the other.</p>
-    </div>
-    <div class="card glass">
-      <div class="card-label">Signal Strength</div>
-      <p class="small">A 1-10 score for how consistent and specific your signal is right now, not how good or marketable you are. A lower score usually means the signal is real but not yet fully claimed out loud, not that it's weak.</p>
-    </div>
-    <div class="card glass">
-      <div class="card-label">The Niche Gap</div>
-      <p class="small">Real research into what your specific audience is already asking for online, and where the honest answer is "nobody is fully addressing this yet." This is where you have room to become the clear answer, not just another voice in a crowded topic.</p>
-    </div>
-    <div class="card glass">
-      <div class="card-label">Contrarian Belief</div>
-      <p class="small">Something you believe, based on real experience, that goes against what most people in your space currently say. These are listed because a contrarian belief stated clearly and often is one of the fastest ways an audience remembers who you are.</p>
-    </div>
-  </div>
+<div class="page-num">02 <span class="numline"></span></div>
+<div class="top-star star">✦</div>
+<h2 class="overview-title">HOW TO READ<br/>THIS REPORT</h2>
+<p class="sub">A few terms that will be helpful to understand as you read your report.</p>
+<div class="card-grid">
+<div class="card glass">
+<div class="card-label" style="font-size:13px;">Signal</div>
+<p class="small">Your signal is what you naturally and unconsciously communicate to the world. The stronger it is, the more clearly your interests, instincts, and values work together to give your brand a solid foundation on which to build.</p>
+</div>
+<div class="card glass">
+<div class="card-label" style="font-size: 13px;font-size:13px;">Archetype</div>
+<p class="small"><p class="p1" style="font-size: 13px;">In psychology and storytelling, archetypes are familiar human patterns. This is particularly useful to know as you build your brand because it helps make your brand feel consistent and gives your brand a recognizable role. It helps people understand what they can expect from you and gives your voice, content, and visual choices a consistent direction.</p></p>
+</div>
+<div class="card glass">
+<div class="card-label" style="font-size:13px;">Constellation</div>
+<p class="small">The constellation in your report is a visual expression of your archetype. Each point of light represents a theme from your answers, brought together into a constellation unique to you. It tells the same story as your archetype.</p>
+</div>
+<div class="card glass">
+<div class="card-label" style="font-size:13px;">Signal Strength</div>
+<p class="small">A 1-10 score for how consistent and specific your signal is right now, not how good or marketable you are. A lower score usually means the signal is real but not yet fully claimed out loud, not that it's weak.</p>
+</div>
+<div class="card glass">
+<div class="card-label">The Niche Gap</div>
+<p class="small"><p class="p1" style="font-size: 13px;">Real research into what actual questions your audience is already asking. Especially the questions they’re not getting good answers to. Those gaps show you where there is room to say (or show) something useful and specific without repeating what everyone else is already saying. To stand out. An opportunity to become the authority within your niche.</p></p>
+</div>
+<div class="card glass">
+<div class="card-label">Contrarian Belief</div>
+<p class="small">Something you believe, based on real experience, that goes against what most people in your niche currently say. These are listed because a contrarian belief stated clearly and often is one of the fastest ways an audience remembers who you are.</p>
+</div>
+</div>
 </section>
-
 <!-- PAGE 3 -->
 <section class="page light overview">
-  <div class="page-num">03 <span class="numline"></span></div>
-  <div class="top-star star">✦</div>
-  <h2 class="overview-title">SIGNAL<br>OVERVIEW</h2>
-  <p class="sub">A snapshot of your natural pattern.</p>
-  <div class="card-grid">
-    <div class="card glass">
-      <div class="card-label">Signal Archetype</div>
-      <div class="card-value">{{ARCHETYPE NAME}}</div>
-      <p class="small" style="margin-top:18px;">{{ARCHETYPE — 3-5 sentences explaining the archetype with specific evidence, and why it is a natural strength}}</p>
-    </div>
-    <div class="card glass">
-      <div class="card-label">Signal Strength</div>
-      <div class="strength-num">{{SCORE}} / 10</div>
-      <div class="strength-track"><div class="strength-fill"></div></div>
-      <p class="small" style="margin-bottom:10px;"><strong>What raises it:</strong> {{ONE SENTENCE ON WHAT DRIVES THE SCORE UP}}</p>
-      <p class="small"><strong>What holds it down:</strong> {{ONE SENTENCE ON WHAT HOLDS THE SCORE DOWN}}</p>
-    </div>
-    <div class="card glass">
-      <div class="card-label">Primary Themes</div>
-      <ul class="bullets">
-        <li>{{PRIMARY THEME 1}}</li>
-        <li>{{PRIMARY THEME 2}}</li>
-        <li>{{PRIMARY THEME 3}}</li>
-        <li>{{PRIMARY THEME 4}}</li>
-        <li>{{PRIMARY THEME 5}}</li>
-      </ul>
-    </div>
-    <div class="card glass">
-      <div class="card-label">Natural Communication Style</div>
-      <div class="card-value" style="font-size:22px; line-height:1.4;">{{STYLE WORD 1}}<br>{{STYLE WORD 2}}<br>{{STYLE WORD 3}}</div>
-    </div>
-    <div class="card glass full">
-      <div class="card-label">Core Essence</div>
-      <p class="essence">{{CORE ESSENCE — one to two sentences capturing who this person is at their core, no em dashes unless grammatically required}}</p>
-    </div>
-  </div>
+<div class="page-num">03 <span class="numline"></span></div>
+<div class="top-star star">✦</div>
+<h2 class="overview-title">SIGNAL<br/>OVERVIEW</h2>
+<p class="sub">A snapshot of your unconscious trademark. It's who you are, naturally. </p>
+<div class="card-grid">
+<div class="card glass">
+<div class="card-label">Signal Archetype</div>
+<div class="card-value">{{ARCHETYPE NAME}}</div>
+<p class="small" style="margin-top:18px;">{{ARCHETYPE — 3-5 sentences explaining the archetype with specific evidence, and why it is a natural strength}}</p>
+</div>
+<div class="card glass">
+<div class="card-label">Signal Strength</div>
+<div class="strength-num">{{SCORE}} / 10</div>
+<div class="strength-track"><div class="strength-fill"></div></div>
+<p class="small" style="margin-bottom:10px;"><strong>What raises it:</strong> {{ONE SENTENCE ON WHAT DRIVES THE SCORE UP}}</p>
+<p class="small"><strong>What holds it down:</strong> {{ONE SENTENCE ON WHAT HOLDS THE SCORE DOWN}}</p>
+</div>
+<div class="card glass">
+<div class="card-label">Primary Themes</div>
+<ul class="bullets">
+<li>{{PRIMARY THEME 1}}</li>
+<li>{{PRIMARY THEME 2}}</li>
+<li>{{PRIMARY THEME 3}}</li>
+<li>{{PRIMARY THEME 4}}</li>
+<li>{{PRIMARY THEME 5}}</li>
+</ul>
+</div>
+<div class="card glass">
+<div class="card-label">Natural Communication Style</div>
+<div class="card-value" style="font-size:22px; line-height:1.4;">{{STYLE WORD 1}}<br/>{{STYLE WORD 2}}<br/>{{STYLE WORD 3}}</div>
+</div>
+<div class="card glass full">
+<div class="card-label">Core Essence</div>
+<p class="essence">{{CORE ESSENCE — one to two sentences capturing who this person is at their core, no em dashes unless grammatically required}}</p>
+</div>
+</div>
 </section>
-
 <!-- PAGE 4 -->
 <section class="page light signals">
-  <div class="page-num">04 <span class="numline"></span></div>
-  <div class="signals-copy">
-    <h2>SIGNATURE<br>SIGNAL</h2>
-    <p class="sub">{{PAGE 4 SUBTITLE — optional}}</p>
-    <div class="still-life-frame">
-      <div class="photo-placeholder-box">Lifestyle photo placeholder</div>
-    </div>
-  </div>
-  <div class="signal-panel glass">
-    <div class="signal-row"><div class="icon"><svg viewBox="0 0 24 24"><path d="M4 19c6-2 10-2 16 0V5c-6-2-10-2-16 0z"/><path d="M12 6v12"/></svg></div><span><strong>{{SIGNAL 1 NAME}}.</strong> {{SIGNAL 1 DESCRIPTION — one to two sentences, no em dashes}}</span></div>
-    <div class="signal-row"><div class="icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="8"/><path d="M12 4v16M4 12h16"/></svg></div><span><strong>{{SIGNAL 2 NAME}}.</strong> {{SIGNAL 2 DESCRIPTION — one to two sentences, no em dashes}}</span></div>
-    <div class="signal-row"><div class="icon"><svg viewBox="0 0 24 24"><path d="M12 21s7-6.4 7-12a7 7 0 0 0-14 0c0 5.6 7 12 7 12z"/><circle cx="12" cy="9" r="2"/></svg></div><span><strong>{{SIGNAL 3 NAME}}.</strong> {{SIGNAL 3 DESCRIPTION — one to two sentences, no em dashes}}</span></div>
-    <div class="signal-row"><div class="icon"><svg viewBox="0 0 24 24"><path d="M5 12h14"/><path d="M12 5l7 7-7 7"/></svg></div><span><strong>{{SIGNAL 4 NAME}}.</strong> {{SIGNAL 4 DESCRIPTION — one to two sentences, no em dashes}}</span></div>
-    <div class="signal-row"><div class="icon"><svg viewBox="0 0 24 24"><path d="M4 4h16v12H7l-3 3z"/></svg></div><span><strong>{{SIGNAL 5 NAME}}.</strong> {{SIGNAL 5 DESCRIPTION — one to two sentences, no em dashes}}</span></div>
-    <div class="signal-row"><div class="icon"><svg viewBox="0 0 24 24"><path d="M12 2l3 7 7 1-5 5 1 7-6-4-6 4 1-7-5-5 7-1z"/></svg></div><span><strong>{{SIGNAL 6 NAME}}.</strong> {{SIGNAL 6 DESCRIPTION — one to two sentences, no em dashes}}</span></div>
-  </div>
+<div class="page-num">04 <span class="numline"></span></div>
+<div class="signals-copy">
+<h2 style="translate:0px -116px;">SIGNATURE<br/>SIGNAL</h2>
+<p class="sub" style="translate:-1px -141px; font-size:15px;">The traits and patterns that consistently show up in how you work, communicate, and create.</p>
+<div class="still-life-frame" style="translate:-7px -73px;">
+<div class="photo-placeholder-box">Lifestyle photo placeholder</div>
+</div>
+</div>
+<div class="signal-panel glass" style="translate:-2px -15px; font-size:15px;">
+<div class="signal-row"><div class="icon"><svg style="color: rgb(18, 18, 17);color:#FFDE7A;" viewbox="0 0 24 24"><path d="M4 19c6-2 10-2 16 0V5c-6-2-10-2-16 0z"></path><path d="M12 6v12" style="color: rgb(8, 8, 8);color:#FFDE7A;"></path></svg></div><span style="translate: 0px;"><strong>{{SIGNAL 1 NAME}}.</strong> {{SIGNAL 1 DESCRIPTION — one to two sentences, no em dashes}}</span></div>
+<div class="signal-row"><div class="icon"><svg style="color: rgb(13, 13, 12);color:#FFDE7A;" viewbox="0 0 24 24"><circle cx="12" cy="12" r="8"></circle><path d="M12 4v16M4 12h16"></path></svg></div><span><strong>{{SIGNAL 2 NAME}}.</strong> {{SIGNAL 2 DESCRIPTION — one to two sentences, no em dashes}}</span></div>
+<div class="signal-row"><div class="icon"><svg style="color: rgb(10, 10, 10);color:#FFDE7A;" viewbox="0 0 24 24"><path d="M12 21s7-6.4 7-12a7 7 0 0 0-14 0c0 5.6 7 12 7 12z"></path><circle cx="12" cy="9" r="2"></circle></svg></div><span><strong>{{SIGNAL 3 NAME}}.</strong> {{SIGNAL 3 DESCRIPTION — one to two sentences, no em dashes}}</span></div>
+<div class="signal-row"><div class="icon"><svg style="color: rgb(5, 5, 5);color:#FFDE7A;" viewbox="0 0 24 24"><path d="M5 12h14" style="color: rgb(5, 5, 5);color:#FFDE7A;"></path><path d="M12 5l7 7-7 7"></path></svg></div><span><strong style="font-weight: 700;font-weight:700;">{{SIGNAL 4 NAME}}.</strong> {{SIGNAL 4 DESCRIPTION — one to two sentences, no em dashes}}</span></div>
+<div class="signal-row"><div class="icon"><svg style="color: rgb(5, 5, 5);color:#FFDE7A;" viewbox="0 0 24 24"><path d="M4 4h16v12H7l-3 3z"></path></svg></div><span><strong style="font-weight: 700;font-weight:700;">{{SIGNAL 5 NAME}}.</strong> {{SIGNAL 5 DESCRIPTION — one to two sentences, no em dashes}}</span></div>
+<div class="signal-row"><div class="icon"><svg style="color: rgb(3, 3, 3);color:#FFDE7A;" viewbox="0 0 24 24"><path d="M12 2l3 7 7 1-5 5 1 7-6-4-6 4 1-7-5-5 7-1z"></path></svg></div><span><strong style="font-weight: 700;font-weight:700;">{{SIGNAL 6 NAME}}.</strong> {{SIGNAL 6 DESCRIPTION — one to two sentences, no em dashes}}</span></div>
+</div>
 </section>
-
 <!-- PAGE 5 -->
 <section class="page dark constellation">
-  <div class="const-text">
-    <div class="page-num">05 <span class="numline"></span></div>
-    <h2>YOUR SIGNAL<br>CONSTELLATION</h2>
-    <p class="body">{{ONE SENTENCE TYING CLIENT TO THEIR ARCHETYPE}}</p>
-    <div class="const-script">{{ARCHETYPE NAME}}</div>
-    <div class="badge">&#10022; {{BADGE TEXT}}</div>
-  </div>
-  <div class="const-box glass" id="const-stage-wrap" style="position:relative;overflow:hidden;padding:0;background:#0D0D0D;display:flex;flex-direction:column;align-items:center;justify-content:center;">
-
-  <div id="cstage-outer" style="width:100%;height:100%;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:24px 16px;box-sizing:border-box;">
-
-    <div id="cstage-shrink" style="position:relative;overflow:hidden;">
-    <div id="cstage" style="position:absolute;top:0;left:0;width:700px;height:520px;">
-      <svg id="csvg" viewBox="0 0 700 520" style="position:absolute;top:0;left:0;width:100%;height:100%;">
-        <circle fill="none" stroke="rgba(255,255,255,0.05)" stroke-width="0.8" cx="350" cy="260" r="210"/>
-        <defs>
-          <radialGradient id="cglowgrad" cx="50%" cy="50%" r="50%">
-            <stop offset="0%" stop-color="#FFDE7A" stop-opacity="0.12"/>
-            <stop offset="100%" stop-color="#FFDE7A" stop-opacity="0"/>
-          </radialGradient>
-        </defs>
-        <circle id="ccenter-glow" cx="350" cy="260" r="80" fill="url(#cglowgrad)" opacity="0" style="transition:opacity 1s ease;"/>
-        <g id="cbgstars" fill="#fff">
-          <circle cx="60" cy="55" r="1" opacity="0.25"/><circle cx="130" cy="95" r="1.3" opacity="0.35"/>
-          <circle cx="90" cy="180" r="1" opacity="0.2"/><circle cx="45" cy="260" r="1.2" opacity="0.3"/>
-          <circle cx="120" cy="330" r="1" opacity="0.22"/><circle cx="70" cy="450" r="1.3" opacity="0.35"/>
-          <circle cx="200" cy="60" r="1" opacity="0.2"/><circle cx="270" cy="440" r="1" opacity="0.25"/>
-          <circle cx="340" cy="470" r="1.2" opacity="0.3"/><circle cx="420" cy="480" r="1" opacity="0.22"/>
-          <circle cx="620" cy="70" r="1.3" opacity="0.35"/><circle cx="660" cy="150" r="1" opacity="0.25"/>
-          <circle cx="640" cy="230" r="1.2" opacity="0.3"/><circle cx="670" cy="330" r="1" opacity="0.2"/>
-          <circle cx="620" cy="420" r="1.3" opacity="0.35"/><circle cx="560" cy="480" r="1" opacity="0.22"/>
-          <circle cx="480" cy="40" r="1" opacity="0.25"/><circle cx="230" cy="180" r="0.9" opacity="0.18"/>
-          <circle cx="510" cy="230" r="0.9" opacity="0.18"/><circle cx="380" cy="330" r="0.9" opacity="0.16"/>
-          <circle cx="150" cy="420" r="1.1" opacity="0.28"/><circle cx="600" cy="480" r="0.9" opacity="0.2"/>
-        </g>
-        <g id="clines"></g>
-      </svg>
-      <div id="cdots-labels"></div>
-      <div id="carchetype-label" style="position:absolute;text-align:center;opacity:0;transition:opacity 1s ease;transform:translate(-50%,-50%);left:50%;top:50%;">
-        <span style="font-size:14px;color:#FFDE7A;display:block;margin-bottom:4px;">&#10022;</span>
-        <span id="carch-name" style="font-family:'Cormorant Garamond',serif;font-size:11px;font-weight:300;letter-spacing:0.3em;text-transform:uppercase;color:#FFDE7A;"></span>
-      </div>
-    </div>
-    </div>
-
-    <div id="cbadge" style="margin-top:20px;display:inline-flex;align-items:center;gap:8px;border:1px solid rgba(255,222,122,0.35);padding:8px 20px;font-size:9px;letter-spacing:0.3em;text-transform:uppercase;color:#FFDE7A;opacity:0;transition:opacity 0.8s ease;font-family:'DM Sans',sans-serif;">&#10022; &nbsp; HIGH ALIGNMENT DETECTED</div>
-
-    <p id="cdesc" style="margin-top:16px;max-width:560px;text-align:center;font-family:'Cormorant Garamond',serif;font-size:14px;font-style:italic;font-weight:300;color:#FFFFFF;line-height:1.8;opacity:0;transition:opacity 1s ease;padding:0 16px;"></p>
-
-    <button id="creplay" style="margin-top:14px;background:none;border:1px solid #2A2A2A;color:#FFFFFF;font-family:'DM Sans',sans-serif;font-size:10px;letter-spacing:0.3em;text-transform:uppercase;padding:8px 20px;cursor:pointer;transition:border-color 0.3s,color 0.3s;" onmouseover="this.style.borderColor='#FFDE7A';this.style.color='#FFDE7A'" onmouseout="this.style.borderColor='#2A2A2A';this.style.color='#555'">&#8635; &nbsp; REPLAY</button>
-  </div>
-
+<div class="const-text">
+<div class="page-num">05 <span class="numline"></span></div>
+<h2 style="translate:-9px -12px; font-size:38px;">  <span style="letter-spacing: -0.02em; background-color: initial;">YOUR SIGNAL</span><div>CONSTELLATION</div></h2>
+<p class="body" style="font-size:16px;">{{ONE SENTENCE TYING CLIENT TO THEIR ARCHETYPE}}</p>
+<div class="const-script">{{ARCHETYPE NAME}}</div>
+<div class="badge" style="translate:-1px -17px; font-size:14px;">✦ {{BADGE TEXT}}</div>
 </div>
-
+<div class="const-box glass" id="const-stage-wrap" style="position:relative;overflow:hidden;padding:0;background:#0D0D0D;display:flex;flex-direction:column;align-items:center;justify-content:center;font-size:6px;">
+<div id="cstage-outer" style="width:100%;height:100%;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:24px 16px;box-sizing:border-box;">
+<div id="cstage-shrink" style="position:relative;overflow:hidden;">
+<div id="cstage" style="position:absolute;top:0;left:0;width:700px;height:520px;">
+<svg id="csvg" style="position:absolute;top:0;left:0;width:100%;height:100%;" viewbox="0 0 700 520">
+<circle cx="350" cy="260" fill="none" r="210" stroke="rgba(255,255,255,0.05)" stroke-width="0.8"></circle>
+<defs>
+<radialgradient cx="50%" cy="50%" id="cglowgrad" r="50%">
+<stop offset="0%" stop-color="#FFDE7A" stop-opacity="0.12"></stop>
+<stop offset="100%" stop-color="#FFDE7A" stop-opacity="0"></stop>
+</radialgradient>
+</defs>
+<circle cx="350" cy="260" fill="url(#cglowgrad)" id="ccenter-glow" opacity="0" r="80" style="transition:opacity 1s ease;"></circle>
+<g fill="#fff" id="cbgstars">
+<circle cx="60" cy="55" opacity="0.25" r="1"></circle><circle cx="130" cy="95" opacity="0.35" r="1.3"></circle>
+<circle cx="90" cy="180" opacity="0.2" r="1"></circle><circle cx="45" cy="260" opacity="0.3" r="1.2"></circle>
+<circle cx="120" cy="330" opacity="0.22" r="1"></circle><circle cx="70" cy="450" opacity="0.35" r="1.3"></circle>
+<circle cx="200" cy="60" opacity="0.2" r="1"></circle><circle cx="270" cy="440" opacity="0.25" r="1"></circle>
+<circle cx="340" cy="470" opacity="0.3" r="1.2"></circle><circle cx="420" cy="480" opacity="0.22" r="1"></circle>
+<circle cx="620" cy="70" opacity="0.35" r="1.3"></circle><circle cx="660" cy="150" opacity="0.25" r="1"></circle>
+<circle cx="640" cy="230" opacity="0.3" r="1.2"></circle><circle cx="670" cy="330" opacity="0.2" r="1"></circle>
+<circle cx="620" cy="420" opacity="0.35" r="1.3"></circle><circle cx="560" cy="480" opacity="0.22" r="1"></circle>
+<circle cx="480" cy="40" opacity="0.25" r="1"></circle><circle cx="230" cy="180" opacity="0.18" r="0.9"></circle>
+<circle cx="510" cy="230" opacity="0.18" r="0.9"></circle><circle cx="380" cy="330" opacity="0.16" r="0.9"></circle>
+<circle cx="150" cy="420" opacity="0.28" r="1.1"></circle><circle cx="600" cy="480" opacity="0.2" r="0.9"></circle>
+</g>
+<g id="clines"></g>
+</svg>
+<div id="cdots-labels"></div>
+<div id="carchetype-label" style="position:absolute;text-align:center;opacity:0;transition:opacity 1s ease;transform:translate(-50%,-50%);left:50%;top:50%;">
+<span style="font-size:14px;color:#FFDE7A;display:block;margin-bottom:4px;">✦</span>
+<span id="carch-name" style="font-family:'Cormorant Garamond',serif;font-size:11px;font-weight:300;letter-spacing:0.3em;text-transform:uppercase;color:#FFDE7A;"></span>
+</div>
+</div>
+</div>
+<div id="cbadge" style="margin-top:20px;display:inline-flex;align-items:center;gap:8px;border:1px solid rgba(255,222,122,0.35);padding:8px 20px;font-size:9px;letter-spacing:0.3em;text-transform:uppercase;color:#FFDE7A;opacity:0;transition:opacity 0.8s ease;font-family:'DM Sans',sans-serif;">✦   HIGH ALIGNMENT DETECTED</div>
+<p id="cdesc" style="margin-top:16px;max-width:560px;text-align:center;font-family:'Cormorant Garamond',serif;font-size:14px;font-style:italic;font-weight:300;color:#FFFFFF;line-height:1.8;opacity:0;transition:opacity 1s ease;padding:0 16px;font-size:16px;">Ophiuchus, the Serpent Bearer, is one of the largest constellations in the sky. A figure standing with arms wide, holding something ancient and powerful. It is the constellation of the healer, the teacher, and the one who makes difficult knowledge accessible to those who need it most.</p>
+<button id="creplay" onmouseout="this.style.borderColor='#2A2A2A';this.style.color='#555'" onmouseover="this.style.borderColor='#FFDE7A';this.style.color='#FFDE7A'" style="margin-top:14px;background:none;border:1px solid #2A2A2A;color:#FFFFFF;font-family:'DM Sans',sans-serif;font-size:10px;letter-spacing:0.3em;text-transform:uppercase;padding:8px 20px;cursor:pointer;transition:border-color 0.3s,color 0.3s;">↻   REPLAY</button>
+</div>
+</div>
 <style>
   .cnode-label { position:absolute; opacity:0; transition:opacity 0.6s ease; pointer-events:none; }
   .cnode-label.lit { opacity:1; }
@@ -448,7 +435,6 @@ img { display:block; width:100%; height:100%; object-fit:cover; }
   .cline { stroke:rgba(255,222,122,0.45); stroke-width:0.8; fill:none; stroke-dasharray:1000; stroke-dashoffset:1000; transition:stroke-dashoffset 1.2s ease; }
   .cline.drawn { stroke-dashoffset:0; }
 </style>
-
 <script>
 (function(){
   const CONSTELLATION_DATA = {
@@ -1293,165 +1279,151 @@ img { display:block; width:100%; height:100%; object-fit:cover; }
 })();
 </script>
 </section>
-
 <!-- PAGE 6 -->
 <section class="page light ecosystem">
-  <div>
-    <div class="page-num">06 <span class="numline"></span></div>
-    <h2>CONTENT<br>ECOSYSTEM</h2>
-    <p class="sub">{{PAGE 6 SUBTITLE}}</p>
-  </div>
-  <div class="eco-grid">
-    <div class="eco-box"><div class="label">Primary Content Pillars</div><p>{{PILLAR 1 NAME}}</p><p>{{PILLAR 2 NAME}}</p><p>{{PILLAR 3 NAME}}</p></div>
-    <div class="eco-box"><div class="label">Secondary Topics</div><p>{{TOPIC 1}}</p><p>{{TOPIC 2}}</p><p>{{TOPIC 3}}</p></div>
-    <div class="eco-box"><div class="label">Contrarian Beliefs</div><p>{{CONTRARIAN BELIEF 1 — a real belief that goes against mainstream wisdom in this niche}}</p><p>{{CONTRARIAN BELIEF 2}}</p></div>
-    <div class="eco-box"><div class="label">Stories to Document</div><p>{{STORY DIRECTION 1}}</p><p>{{STORY DIRECTION 2}}</p><p>{{STORY DIRECTION 3}}</p></div>
-  </div>
-  <div class="exp-strip">
-    <div class="exp-item"><div class="exp-icon">◎</div><p class="small">{{EXPERIENCE 1 — proof point}}</p></div>
-    <div class="exp-item"><div class="exp-icon">◎</div><p class="small">{{EXPERIENCE 2 — proof point}}</p></div>
-    <div class="exp-item"><div class="exp-icon">◎</div><p class="small">{{EXPERIENCE 3 — proof point}}</p></div>
-  </div>
+<div>
+<div class="page-num">06 <span class="numline"></span></div>
+<h2>CONTENT<br/>ECOSYSTEM</h2>
+<p class="sub" style="translate:1px 41px;"><br/></p><p class="sub"><br/></p><p class="sub"><br/></p><p class="sub"><br/></p><p class="sub"><br/></p><p class="sub"><br/></p><p class="sub"><br/></p><p class="sub"><br/></p><p class="sub"><br/></p><p class="sub"><br/></p><p class="sub"><br/></p><p class="sub"><br/></p><p class="sub"><strong style="background-color: initial; color: rgb(17, 17, 17); font-size: 16px;">Proof Points</strong></p><p><br/></p><p><br/></p><p>
+Three real experiences from your answers that show why you have credibility in your niche.</p>
+</div>
+<div class="eco-grid">
+<div class="eco-box"><div class="label" style="font-weight:700; font-size:12px;">Primary Content Pillars</div><p>{{PILLAR 1 NAME}}</p><p>{{PILLAR 2 NAME}}</p><p>{{PILLAR 3 NAME}}</p></div>
+<div class="eco-box"><div class="label" style="font-weight:700; font-size:12px;">Secondary Topics</div><p>{{TOPIC 1}}</p><p>{{TOPIC 2}}</p><p>{{TOPIC 3}}</p></div>
+<div class="eco-box" style="translate:-4px -39px;"><div class="label" style="font-weight:700; font-size:12px;">Contrarian Beliefs</div><p>{{CONTRARIAN BELIEF 1 — a real belief that goes against mainstream wisdom in this niche}}</p><p>{{CONTRARIAN BELIEF 2}}</p></div>
+<div class="eco-box" style="translate:-1px -38px;"><div class="label" style="font-size:12px; font-weight:700;">Stories to Document</div><p>{{STORY DIRECTION 1}}</p><p>{{STORY DIRECTION 2}}</p><p>{{STORY DIRECTION 3}}</p></div>
+</div>
+<div class="exp-strip">
+<div class="exp-item"><div class="exp-icon">◎</div><p class="small">{{EXPERIENCE 1 — proof point}}</p></div>
+<div class="exp-item"><div class="exp-icon">◎</div><p class="small">{{EXPERIENCE 2 — proof point}}</p></div>
+<div class="exp-item"><div class="exp-icon">◎</div><p class="small">{{EXPERIENCE 3 — proof point}}</p></div>
+</div>
 </section>
-
 <!-- PAGE 7 -->
 <section class="page light visual">
-  <div>
-    <div class="page-num">07 <span class="numline"></span></div>
-    <h2>VISUAL<br>IDENTITY</h2>
-    <p class="sub">{{PAGE 7 SUBTITLE — "The visual expression of your signal."}}</p>
-    <div class="vi-block"><div class="vi-label">Mood</div><div class="vi-value">{{MOOD — 3-5 words}}</div></div>
-    <div class="vi-block"><div class="vi-label">Keywords</div><div class="vi-value">{{KEYWORD 1}} | {{KEYWORD 2}} | {{KEYWORD 3}} | {{KEYWORD 4}} | {{KEYWORD 5}}</div></div>
-    <!-- Run the Brand-Color-Analysis-Agent.md prompt against the client's actual colors before filling this in. Only include the "Removed" row if colors were actually cut for a documented reason (contrast failure, redundancy, etc). -->
-    <div class="vi-block"><div class="vi-label">{{COLOR SECTION LABEL — "Color Direction" or "Color Correction — Why the Palette Changed" if colors were corrected}}</div><div class="vi-value">{{COLOR EXPLANATION — describe the working palette and the reasoning, with real contrast numbers if any colors were removed}}</div>
-      <div class="color-dots" style="margin-bottom:18px;">
-        <div class="dot" style="background:{{HEX 1}}"></div><div class="dot" style="background:{{HEX 2}}"></div><div class="dot" style="background:{{HEX 3}}"></div><div class="dot" style="background:{{HEX 4 or white}}"></div>
-      </div>
-      <!-- Optional: only if colors were removed -->
-      <div style="font-size:11px; letter-spacing:.15em; text-transform:uppercase; color:#111111; margin-bottom:10px;">{{REMOVED COLORS LABEL — omit this whole block if nothing was removed}}</div>
-      <div class="color-dots">
-        <div class="dot" style="background:{{REMOVED HEX 1}};"></div><div class="dot" style="background:{{REMOVED HEX 2}};"></div>
-      </div>
-    </div>
-    <div class="vi-block"><div class="vi-label">Photography Style</div><div class="vi-value">{{PHOTOGRAPHY STYLE — one sentence describing the style of photos that fits this brand}}</div></div>
-    <div class="vi-block"><div class="vi-label">Editing Style</div><div class="vi-value">{{EDITING STYLE — one sentence on contrast, warmth, tone}}</div></div>
-  </div>
-  <div class="vi-collage">
-    <div class="vi-img"><div class="photo-placeholder-box">Photo placeholder</div></div>
-    <div class="vi-img"><div class="photo-placeholder-box">Photo placeholder</div></div>
-    <div class="vi-img"><div class="photo-placeholder-box">Photo placeholder</div></div>
-    <div class="vi-img"><div class="photo-placeholder-box">Photo placeholder</div></div>
-    <div class="vi-img wide"><div class="photo-placeholder-box">Photo placeholder</div></div>
-  </div>
+<div>
+<div class="page-num">07 <span class="numline"></span></div>
+<h2>VISUAL<br/>IDENTITY</h2>
+<p class="sub">{{PAGE 7 SUBTITLE — "The visual expression of your signal."}}</p>
+<div class="vi-block"><div class="vi-label">Mood</div><div class="vi-value">{{MOOD — 3-5 words}}</div></div>
+<div class="vi-block"><div class="vi-label">Keywords</div><div class="vi-value">{{KEYWORD 1}} | {{KEYWORD 2}} | {{KEYWORD 3}} | {{KEYWORD 4}} | {{KEYWORD 5}}</div></div>
+<!-- Run the Brand-Color-Analysis-Agent.md prompt against the client's actual colors before filling this in. Only include the "Removed" row if colors were actually cut for a documented reason (contrast failure, redundancy, etc). -->
+<div class="vi-block"><div class="vi-label">{{COLOR SECTION LABEL — "Color Direction" or "Color Correction — Why the Palette Changed" if colors were corrected}}</div><div class="vi-value">{{COLOR EXPLANATION — describe the working palette and the reasoning, with real contrast numbers if any colors were removed}}</div>
+<div class="color-dots" style="margin-bottom:18px;">
+<div class="dot" style="background:{{HEX 1}}"></div><div class="dot" style="background:{{HEX 2}}"></div><div class="dot" style="background:{{HEX 3}}"></div><div class="dot" style="background:{{HEX 4 or white}}"></div>
+</div>
+<!-- Optional: only if colors were removed -->
+<div style="font-size:11px; letter-spacing:.15em; text-transform:uppercase; color:#111111; margin-bottom:10px;">{{REMOVED COLORS LABEL — omit this whole block if nothing was removed}}</div>
+<div class="color-dots">
+<div class="dot" style="background:{{REMOVED HEX 1}};"></div><div class="dot" style="background:{{REMOVED HEX 2}};"></div>
+</div>
+</div>
+<div class="vi-block"><div class="vi-label">Photography Style</div><div class="vi-value">{{PHOTOGRAPHY STYLE — one sentence describing the style of photos that fits this brand}}</div></div>
+<div class="vi-block"><div class="vi-label" style="translate:426px -93px;">Editing Style</div><div class="vi-value" style="translate:425px -87px;">{{EDITING STYLE — one sentence on contrast, warmth, tone}}</div></div>
+</div>
+<div class="vi-collage">
+<div class="vi-img"><div class="photo-placeholder-box">Photo placeholder</div></div>
+<div class="vi-img"><div class="photo-placeholder-box">Photo placeholder</div></div>
+<div class="vi-img"><div class="photo-placeholder-box">Photo placeholder</div></div>
+<div class="vi-img"><div class="photo-placeholder-box">Photo placeholder</div></div>
+<div class="vi-img wide"><div class="photo-placeholder-box">Photo placeholder</div></div>
+</div>
 </section>
-
 <!-- PAGE 8 -->
 <section class="page dark photo-page">
-  <div class="photo-text">
-    <div class="page-num">08 <span class="numline"></span></div>
-    <h2>THE MARKET<br>OPPORTUNITY</h2>
-    <p class="body">{{MARKET OPPORTUNITY — paragraph 1: who the audience is, what they've tried, what they still can't find}}</p>
-    <p class="body" style="margin-top:22px;"><strong style="color:var(--gold);">{{SUB-LABEL 1}}:</strong> {{SUPPORTING DATA POINT}}</p>
-    <p class="body" style="margin-top:22px;"><strong style="color:var(--gold);">{{SUB-LABEL 2}}:</strong> {{SUPPORTING DATA POINT}}</p>
-    <p class="body" style="margin-top:22px;">{{CLOSING SENTENCE — what the work actually is}}</p>
-  </div>
-  <div class="photo-side market-charts" style="display:flex; flex-direction:column; justify-content:center; gap:36px; padding:48px 40px;">
-    <!-- Market Opportunity charts (Raquel 2026-09-13): 1-2 inline SVG charts, verified research numbers only, client palette at 100% opacity. No photo on this page. -->
-    {{MARKET CHART 1 — inline SVG, verified data only}}
-    {{MARKET CHART 2 — optional inline SVG, verified data only; delete if no second verified dataset}}
-  </div>
+<div class="photo-text">
+<div class="page-num">08 <span class="numline"></span></div>
+<h2>THE MARKET<br/>OPPORTUNITY</h2>
+<p class="body">{{MARKET OPPORTUNITY — paragraph 1: who the audience is, what they've tried, what they still can't find}}</p>
+<p class="body" style="margin-top:22px;">{{MARKET DETAIL 1 — one full paragraph of plain connected sentences about one verified number showing the size of this market or the money in it, the source named in plain words inside the sentence, no label, no heading, no caption style}}</p>
+<p class="body" style="margin-top:22px;">{{MARKET DETAIL 2 — one full paragraph of plain connected sentences about one verified number showing the size of this market or the money in it, the source named in plain words inside the sentence, no label, no heading, no caption style}}</p>
+<p class="body" style="margin-top:22px;">{{CLOSING SENTENCE — what the work actually is}}</p>
+</div>
+<div class="photo-side market-charts" style="display:flex; flex-direction:column; justify-content:center; gap:36px; padding:48px 40px;"><!-- Market Opportunity key number cards (Raquel 2026-09-15). Assemble Report fills this from verified numbers only, and removes this whole column when there are none. --></div>
 </section>
-
 <!-- PAGE 9 -->
 <section class="page dark dark-content">
-  <div class="page-num">09 <span class="numline"></span></div>
-  <h2>THE<br>NICHE GAP</h2>
-  <div style="max-width:640px; margin-bottom:44px;">
-    <p class="body" style="color:#fff;">{{NICHE GAP INTRO — 1-2 sentences on how this niche was identified}}</p>
-  </div>
-  <div class="dark-grid" style="grid-template-columns:1fr; gap:20px; margin-bottom:40px;">
-    <div class="dark-card gold-edge">
-      <div class="kicker" style="margin-bottom:14px;">RECOMMENDED NICHE</div>
-      <h3 style="font-size:24px;">{{RECOMMENDED NICHE NAME}}</h3>
-      <p>{{WHY THIS NICHE — 2-3 sentences on why it is the most underserved option for this person specifically}}</p>
-    </div>
-    <div class="dark-card">
-      <div class="kicker" style="margin-bottom:14px; color:#FFFFFF;">ALTERNATE DIRECTION</div>
-      <h3 style="font-size:22px;">{{ALTERNATE NICHE 1 NAME}}</h3>
-      <p>{{ONE SENTENCE ON WHY THIS COULD ALSO WORK}}</p>
-    </div>
-    <div class="dark-card">
-      <div class="kicker" style="margin-bottom:14px; color:#FFFFFF;">ALTERNATE DIRECTION</div>
-      <h3 style="font-size:22px;">{{ALTERNATE NICHE 2 NAME}}</h3>
-      <p>{{ONE SENTENCE ON WHY THIS COULD ALSO WORK}}</p>
-    </div>
-  </div>
-  <div class="dark-grid">
-    <div class="dark-card">
-      <h3>What Already Exists</h3>
-      <ul>
-        <li>{{EXISTING 1}}</li>
-        <li>{{EXISTING 2}}</li>
-        <li>{{EXISTING 3}}</li>
-        <li>{{EXISTING 4}}</li>
-      </ul>
-    </div>
-    <div class="dark-card gold-edge">
-      <h3>The Gap You Can Fill</h3>
-      <ul>
-        <li>{{GAP 1 — cite the real source, e.g. "common Reddit thread in r/[subreddit]"}}</li>
-        <li>{{GAP 2 — cite the real source}}</li>
-        <li>{{GAP 3 — cite the real source}}</li>
-        <li>{{GAP 4 — cite the real source}}</li>
-      </ul>
-    </div>
-  </div>
+<div class="page-num">09 <span class="numline"></span></div>
+<h2>THE<br/>NICHE GAP</h2>
+<div style="max-width:640px; margin-bottom:44px;">
+<p class="body" style="color:#fff;">{{NICHE GAP INTRO — 1-2 sentences on how this niche was identified}}</p>
+</div>
+<div class="dark-grid" style="grid-template-columns:1fr; gap:20px; margin-bottom:40px;">
+<div class="dark-card gold-edge">
+<div class="kicker" style="margin-bottom:14px;">RECOMMENDED NICHE</div>
+<h3 style="font-size:24px;">{{RECOMMENDED NICHE NAME}}</h3>
+<p>{{WHY THIS NICHE — 2-3 sentences on why it is the most underserved option for this person specifically}}</p>
+</div>
+<div class="dark-card">
+<div class="kicker" style="margin-bottom:14px; color:#FFFFFF;">ALTERNATE DIRECTION</div>
+<h3 style="font-size:22px;">{{ALTERNATE NICHE 1 NAME}}</h3>
+<p>{{ONE SENTENCE ON WHY THIS COULD ALSO WORK}}</p>
+</div>
+<div class="dark-card">
+<div class="kicker" style="margin-bottom:14px; color:#FFFFFF;">ALTERNATE DIRECTION</div>
+<h3 style="font-size:22px;">{{ALTERNATE NICHE 2 NAME}}</h3>
+<p>{{ONE SENTENCE ON WHY THIS COULD ALSO WORK}}</p>
+</div>
+</div>
+<div class="dark-grid">
+<div class="dark-card">
+<h3>What Already Exists</h3>
+<ul>
+<li>{{EXISTING 1}}</li>
+<li>{{EXISTING 2}}</li>
+<li>{{EXISTING 3}}</li>
+<li>{{EXISTING 4}}</li>
+</ul>
+</div>
+<div class="dark-card gold-edge">
+<h3>The Gap You Can Fill</h3>
+<ul>
+<li>{{GAP 1 — cite the real source, e.g. "common Reddit thread in r/[subreddit]"}}</li>
+<li>{{GAP 2 — cite the real source}}</li>
+<li>{{GAP 3 — cite the real source}}</li>
+<li>{{GAP 4 — cite the real source}}</li>
+</ul>
+</div>
+</div>
 </section>
-
 <!-- PAGE 10 -->
 <section class="page light ecosystem" style="grid-template-columns:1fr; gap:10px;">
-  <div>
-    <div class="page-num">10 <span class="numline"></span></div>
-    <h2>REVENUE<br>POTENTIAL</h2>
-    <p class="sub">{{PAGE 10 SUBTITLE}}</p>
-  </div>
-  <div class="eco-grid revenue-list">
-    <div class="eco-box"><div class="label">{{REVENUE STREAM 1 NAME}}</div><p>{{DESCRIPTION + PRICE RANGE + WHY}}</p><p style="font-size:14px; color:#111111; margin-top:10px;"><em>{{COMPARABLE — real, verifiable example}}. Source: {{SOURCE NAME/LINK}}, gathered {{MONTH DAY, YEAR}}.</em></p></div>
-    <div class="eco-box"><div class="label">{{REVENUE STREAM 2 NAME}}</div><p>{{DESCRIPTION + PRICE RANGE + WHY}}</p><p style="font-size:14px; color:#111111; margin-top:10px;"><em>{{COMPARABLE — real, verifiable example}}. Source: {{SOURCE NAME/LINK}}, gathered {{MONTH DAY, YEAR}}.</em></p></div>
-    <div class="eco-box"><div class="label">{{REVENUE STREAM 3 NAME}}</div><p>{{DESCRIPTION + PRICE RANGE + WHY}}</p><p style="font-size:14px; color:#111111; margin-top:10px;"><em>{{COMPARABLE — real, verifiable example}}. Source: {{SOURCE NAME/LINK}}, gathered {{MONTH DAY, YEAR}}.</em></p></div>
-    <div class="eco-box"><div class="label">{{REVENUE STREAM 4 NAME}}</div><p>{{DESCRIPTION + PRICE RANGE + WHY}}</p><p style="font-size:14px; color:#111111; margin-top:10px;"><em>{{COMPARABLE — real, verifiable example}}. Source: {{SOURCE NAME/LINK}}, gathered {{MONTH DAY, YEAR}}.</em></p></div>
-  </div>
+<div>
+<div class="page-num">10 <span class="numline"></span></div>
+<h2>REVENUE<br/>POTENTIAL</h2>
+<p class="sub">{{PAGE 10 SUBTITLE}}</p>
+</div>
+<div class="eco-grid revenue-list">
+<div class="eco-box"><div class="label">{{REVENUE STREAM 1 NAME}}</div><p>{{DESCRIPTION + PRICE RANGE + WHY}}</p><p style="font-size:14px; color:#111111; margin-top:10px;"><em style="color:#050505;">{{COMPARABLE — real, verifiable example}}. Source: {{SOURCE NAME/LINK}}, gathered {{MONTH DAY, YEAR}}.</em></p></div>
+<div class="eco-box"><div class="label">{{REVENUE STREAM 2 NAME}}</div><p>{{DESCRIPTION + PRICE RANGE + WHY}}</p><p style="font-size:14px; color:#111111; margin-top:10px;"><em style="color:#050505;">{{COMPARABLE — real, verifiable example}}. Source: {{SOURCE NAME/LINK}}, gathered {{MONTH DAY, YEAR}}.</em></p></div>
+<div class="eco-box"><div class="label">{{REVENUE STREAM 3 NAME}}</div><p>{{DESCRIPTION + PRICE RANGE + WHY}}</p><p style="font-size:14px; color:#111111; margin-top:10px;"><em style="color:#0a0a0a;">{{COMPARABLE — real, verifiable example}}. Source: {{SOURCE NAME/LINK}}, gathered {{MONTH DAY, YEAR}}.</em></p></div>
+<div class="eco-box"><div class="label">{{REVENUE STREAM 4 NAME}}</div><p>{{DESCRIPTION + PRICE RANGE + WHY}}</p><p style="font-size:14px; color:#111111; margin-top:10px;color:#0d0c0c;"><em>{{COMPARABLE — real, verifiable example}}. Source: {{SOURCE NAME/LINK}}, gathered {{MONTH DAY, YEAR}}.</em></p></div>
+</div>
 </section>
-
 <!-- PAGE 11 -->
-<section class="page dark next">
-  <div>
-    <div class="page-num">11 <span class="numline"></span></div>
-    <h2>WHAT<br>COMES NEXT</h2>
-    <p class="body">This report is your cornerstone. It does not expire, and it does not need to be finished in a week.</p>
-    <ul style="margin-top:22px; list-style:none; max-width:360px;">
-      <li style="padding:11px 0; border-bottom:1px solid rgba(255,255,255,.09); color:#ddd; font-size:14px; line-height:1.6;"><span style="color:var(--gold); margin-right:10px;">&#10022;</span>Come back to it before every caption, post, or offer you write.</li>
-      <li style="padding:11px 0; border-bottom:1px solid rgba(255,255,255,.09); color:#ddd; font-size:14px; line-height:1.6;"><span style="color:var(--gold); margin-right:10px;">&#10022;</span>Use your Signal Archetype to check any idea: does this sound like it, or does it sound like everyone else?</li>
-      <li style="padding:11px 0; color:#ddd; font-size:14px; line-height:1.6;"><span style="color:var(--gold); margin-right:10px;">&#10022;</span>Keep your Content Pillars nearby. When you are unsure what to post, one of these is the answer.</li>
-    </ul>
-  </div>
-  <div>
-    <div style="height:400px; margin-top:200px; border-radius:2px; overflow:hidden; box-shadow:0 30px 80px rgba(0,0,0,.35);"><img src="assets/closing-report-photo.png" alt="" style="width:100%; height:100%; object-fit:cover; display:block;"></div>
-    <div class="photo-quote">
-      <div class="photo-quote-rule"></div>
-      <p class="photo-quote-text">&ldquo;The creation of a thousand forests is in one acorn.&rdquo;</p>
-      <div class="photo-quote-name">Ralph Waldo Emerson</div>
-    </div>
-  </div>
+<section class="page dark next" style="translate:0px -15px;">
+<div>
+<div class="page-num">11 <span class="numline"></span></div>
+<h2>WHAT<br/>COMES NEXT</h2>
+<p class="body" style="translate:1px -23px;">This report IS your brand.</p>
+<ul style="margin-top:22px; list-style:none; max-width:360px;">
+<li style="padding:11px 0; border-bottom:1px solid rgba(255,255,255,.09); color:#ddd; font-size:14px; line-height:1.6;font-size:13px; translate:-11px -36px;"><span style="color:var(--gold); margin-right:10px;">✦<strong> </strong></span>What started as a collection of questions has become a visual record of your brand, built from your answers and specific to you.<p>All the elements that make your brand recognizable are  here. </p><p></p>
+<p></p><p></p>
+<p></p></li>
+<li style="padding:11px 0; border-bottom:1px solid rgba(255,255,255,.09); color:#ddd; font-size:14px; line-height:1.6;translate:-12px -41px;"><span style="color:var(--gold); margin-right:10px;">✦</span>If you are still unsure how you naturally create and communicate through content, you can complete the free <strong style="background-color: initial;">Content Style Guide.</strong><span style="background-color: initial;"> That will help you choose the kinds of content that fit you best. You can find it here </span>https://slateandsignal.studio/content-style<p></p>
+<p></p></li>
+<li style="padding:11px 0; color:#ddd; font-size:14px; line-height:1.6;translate:-12px -44px;"><span style="color:var(--gold); margin-right:10px;">✦</span>This brand portfolio belongs to you. Use it to make decisions, give direction to the people who help you, and keep what you build connected to the brand you started with.<p><strong>                       Now it’s time to build!</strong></p>
+<p></p></li>
+</ul>
+</div>
+<div style="height:400px; margin-top:200px; border-radius:2px; overflow:hidden; box-shadow:0 30px 80px rgba(0,0,0,.35);translate:-19px -93px;"><img alt="" src="assets/closing-report-photo.png" style="width:100%; height:100%; object-fit:cover; display:block;translate:3px 5px;"/></div><div style="grid-column:2; margin-top:30px; text-align:center; translate:-28px -209px;"><div style="width:60px; height:1px; background:#FFDE7A; margin:0 auto 22px;"></div><p style="font-family:var(--serif); font-style:italic; font-weight:300; font-size:22px; line-height:1.5; color:#FFDE7A; margin:0 0 14px;">“The creation of a thousand forests is in one acorn.”</p><div style="font-size:10px; letter-spacing:.3em; text-transform:uppercase; color:#FFDE7A;">Ralph Waldo Emerson</div></div>
 </section>
-
 <!-- BACK -->
-<section class="page dark back" style="min-height:740px; display:flex; flex-direction:column; align-items:center; justify-content:center; text-align:center; padding:100px 64px;">
-  <div style="font-family:var(--serif); font-size:clamp(36px,5vw,52px); font-weight:300; letter-spacing:.05em; line-height:1.1; margin-bottom:8px;">SLATE<br><img src="assets/wordmark-ampersand.png" alt="&amp;" style="height:100px; width:auto; display:inline-block; vertical-align:-24px; margin:10px 0;"><br>SIGNAL</div>
-  <div style="font-size:20px; color:var(--gold); margin:20px 0;">&#10022;</div>
-  <div style="font-size:11px; letter-spacing:.35em; text-transform:uppercase; color:#FFFFFF;">Clarity Reveals. Strategy Amplifies. You Lead.</div>
+<section class="page dark back" style="min-height:740px; display:flex; flex-direction:column; align-items:center; justify-content:center; text-align:center; padding:100px 64px;translate:0px -16px;">
+<div style="font-family:var(--serif); font-size:clamp(36px,5vw,52px); font-weight:300; letter-spacing:.05em; line-height:1.1; margin-bottom:8px;line-height:0.6;">SLATE<br/><img alt="&amp;" src="assets/wordmark-ampersand.png" style="height:100px; width:auto; display:inline-block; vertical-align:-24px; margin:10px 0;font-size:53px;"/><br/>SIGNAL</div>
+<div style="font-size:20px; color:var(--gold); margin:20px 0;">✦</div>
+<div style="font-size:11px; letter-spacing:.35em; text-transform:uppercase; color:#FFFFFF;">Clarity Reveals. Strategy Amplifies. You Lead.</div>
 </section>
-
 </div>
 </body>
 </html>
