@@ -210,7 +210,11 @@ img { display:block; width:100%; height:100%; object-fit:cover; }
   .report { box-shadow:none; max-width:none; }
   .page { page-break-after:always; min-height:100vh; }
 }
-@media(max-width:900px) {
+/* Raquel 2026-09-18: this used to start at 900px, the report's own width, so a desktop window
+   even slightly narrower than the report (or a zoomed page, or a side panel) restacked page 4
+   and threw away her saved layout. It now starts at tablet width, so her edited desktop layout
+   holds on any real desktop window. Her page 4 layout is the master and stays as she made it. */
+@media(max-width:760px) {
   .cover,.signals,.constellation,.ecosystem,.visual,.photo-page,.next,.back { grid-template-columns:1fr; }
   .still-life-frame { position:relative; left:auto; bottom:auto; width:100%; height:360px; margin-top:30px; }
   .signal-panel { margin-top:30px; }
