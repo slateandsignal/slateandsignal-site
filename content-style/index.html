@@ -574,10 +574,14 @@ function result(fresh){
   document.getElementById("mastRight").innerHTML = '<strong>'+plainStyle+'</strong>'+BUILD_SHORT[S.build];
   document.getElementById("pdf").onclick = function(){ window.print(); };
   if(!VIEW_ONLY) document.getElementById("redo").onclick = function(){
-    S = {step:"how", i:0, name:S.name, email:S.email, a:[], build:null, vis:null, prod:null, tone:null}; save(); how();
+    S = {step:"how", i:0, name:S.name, email:S.email, a:[], build:null, vis:null, prod:null, tone:null, sent:false}; save(); how();
   };
 
-  if(fresh){
+  /* Safeguard (2026-09-24): send the result whenever it has not been sent from this device yet.
+     Katie's September 10 result lived only on her phone, because results shown again from the
+     phone's memory were never sent. S.sent marks a result as delivered. Never sends in view-only mode. */
+  if(!VIEW_ONLY && (fresh || !S.sent) && S.email){
+    S.sent = true; save();
     send({
       stage:"complete", first_name:S.name, email:S.email,
       content_style: top[0], content_style_second: top[1]||"",
