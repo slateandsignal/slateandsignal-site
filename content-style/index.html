@@ -103,6 +103,15 @@
   .line .l{font-size:15px;}
   .line .l small{display:block;font-style:italic;color:var(--muted);font-size:13px;}
   .line .v{text-align:right;font-size:15px;}
+  .scores{margin:0 0 44px;}
+  .scores .small{margin-bottom:18px;}
+  .score-row{display:grid;grid-template-columns:minmax(120px,40%) 1fr 22px;align-items:center;gap:14px;padding:8px 0;font-size:15px;border-bottom:1px solid var(--rule);}
+  .score-row .n b{display:block;width:fit-content;margin-top:4px;font-size:9.5px;letter-spacing:.24em;text-transform:uppercase;font-weight:500;background:var(--gold);color:var(--black);padding:2px 7px;}
+  .score-row.mine .n{font-weight:500;}
+  .score-row .track{height:6px;background:var(--rule);display:block;}
+  .score-row .fill{display:block;height:100%;background:#9A9A9A;}
+  .score-row.mine .fill{background:var(--black);}
+  .score-row .c{text-align:right;}
   .section{margin-bottom:44px;}
   .section p{font-size:16px;}
   .fmt{display:flex;justify-content:space-between;gap:16px;padding:12px 0;border-bottom:1px solid var(--rule);font-size:15px;}
@@ -489,8 +498,16 @@ function result(fresh){
     '<div class="line"><div class="l">Visibility</div><div class="v">'+VIS_SHORT[S.vis]+'</div></div>'+
     '<div class="line"><div class="l">Production</div><div class="v">'+PROD_SHORT[S.prod]+'</div></div>'+
     (S.tone!=null?'<div class="line"><div class="l">Teach or entertain</div><div class="v">'+TONE_SHORT[S.tone]+'</div></div>':'')+
-    '<div class="line"><div class="l">Your scores<small>Highest score is your strongest style. Within one point, keep both.</small></div><div class="v">'+
-      ORDER.map(function(c){ return c+' '+t[c]; }).join(' &middot; ')+'</div></div>'+
+  '</div>';
+
+  var maxScore = Math.max.apply(null, ORDER.map(function(c){ return t[c]; })) || 1;
+  html += '<div class="scores"><div class="label">How your '+S.a.length+' answers added up</div>'+
+    '<p class="small">Each style question points to one of six content styles. The style with the most answers is yours. When two styles are within one answer of each other, you get both.</p>'+
+    ORDER.slice().sort(function(x,y){ return t[y]-t[x] || ORDER.indexOf(x)-ORDER.indexOf(y); }).map(function(c){
+      var mine = top.indexOf(c)>-1;
+      return '<div class="score-row'+(mine?' mine':'')+'"><span class="n">'+STYLES[c].short+(mine?'<b>Yours</b>':'')+'</span>'+
+        '<span class="track"><span class="fill" style="width:'+Math.round(t[c]/maxScore*100)+'%"></span></span><span class="c">'+t[c]+'</span></div>';
+    }).join('')+
   '</div>';
 
   top.forEach(function(c){
