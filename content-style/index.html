@@ -133,7 +133,9 @@
     .screen{animation:none;}
     .section,.note,.cta{break-inside:avoid;}
   }
+.style-photo,.part-photo{display:block;width:100%;object-fit:cover;margin:0 auto 22px;background:#eee}.style-photo{aspect-ratio:3/2;max-width:none}.part-photo{aspect-ratio:4/5;max-width:320px;margin-bottom:26px}.pick-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:8px}.answer.pick{display:block!important;width:100%;min-height:0;margin:0;gap:0}.pick{border:1px solid var(--rule,#ddd);background:#fff;padding:0 0 12px;cursor:pointer;text-align:left;font:inherit;color:inherit}.pick img{display:block;width:100%;aspect-ratio:4/5;object-fit:cover;margin-bottom:10px}.pick strong{display:block;font-weight:500;padding:0 10px;font-size:14px}.pick em{display:block;font-style:normal;font-size:12px;color:#666;padding:2px 10px 0}.pick.picked{outline:2px solid #FFDE7A}@media(max-width:560px){.pick-grid{grid-template-columns:1fr}}.tone-photo{display:block;width:100%;max-width:none;aspect-ratio:3/2;object-fit:cover;margin:6px 0 16px}.tone-trio{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin:8px 0 20px}.tone-trio figure{margin:0;padding:0 0 8px;border:1px solid var(--rule,#ddd)}.tone-trio img{display:block;width:100%;aspect-ratio:4/5;object-fit:cover}.tone-trio figcaption{font-size:12px;line-height:1.4;padding:8px 8px 0;color:#555}.tone-trio figcaption b{display:block;font-weight:500;color:#171717;letter-spacing:.12em;text-transform:uppercase;font-size:10px;margin-top:4px}.tone-trio figure.mine{border:2px solid #FFDE7A}.tone-trio figure.mine figcaption{color:#171717}.tone-box{border:1px solid var(--rule,#ddd);padding:22px 22px 8px;margin:34px 0}.tone-box blockquote{margin:18px 0 14px;padding-left:14px;border-left:3px solid #FFDE7A;font-style:italic}.tone-box cite{display:block;font-style:normal;font-size:12px;letter-spacing:.12em;text-transform:uppercase;margin-top:6px}
 </style>
+
 <script>function loadScript(a){var b=document.getElementsByTagName("head")[0],c=document.createElement("script");c.type="text/javascript",c.src="https://tracker.metricool.com/resources/be.js",c.onreadystatechange=a,c.onload=a,b.appendChild(c)}loadScript(function(){beTracker.t({hash:"e1ec5ef17fb5951bb3b77b706c9ad04"})});</script>
 </head>
 <body>
@@ -156,43 +158,43 @@ var PROFILE_URL = "https://slateandsignal.studio/?utm_source=content-style&utm_m
 
 var STYLES = {
   EX:{name:"The Explainer", short:"Explainer",
-    desc:["You tend to make things easier to understand.","When you know something useful, your instinct is often to clarify it, demonstrate it, organize it, or help someone see how the pieces fit."],
+    desc:["You tend to make complicated ideas easier to understand.","When you learn a useful idea, method, or fact, your instinct is often to clarify it, demonstrate it, organize it, or help someone see how the pieces fit."],
     formats:[["Talking-head explanations",2,0,1],["Tutorials",1,0,2],["Demonstrations",1,0,2,"doc"],["Screen recordings",0,0,1],["Voiceover explainers",0,1,2],["Q&A",1,0,1],["Carousels",0,0,1,"write"],["Written guides or breakdowns",0,0,1,"write"]]},
   ST:{name:"The Storyteller", short:"Storyteller",
-    desc:["You tend to communicate through what happened.","Experiences, moments, people, changes, and details give you something to work with."],
+    desc:["You tend to communicate through what happened.","Experiences, moments, people, changes, and details give you material to work with."],
     formats:[["Storytime",2,0,1,"personal"],["Narrated video",0,1,2],["Vlogs",2,0,3,"personal"],["Written stories or essays",0,0,1,"write"],["Voiceover",0,1,1],["Photo stories",0,0,1],["Long-form video or audio",1,1,3],["Story-led carousels",0,0,2,"write"]]},
   SH:{name:"The Sharer", short:"Sharer",
-    desc:["You naturally bring other people into things you discover, enjoy, learn about, or care about.","You do not always need to teach or analyze something. Sometimes the value is simply noticing something worth passing along."],
+    desc:["You naturally bring other people into what you discover, enjoy, learn about, or care about.","You do not always need to teach or analyze what you share. Sometimes the value lies in noticing a find worth passing along."],
     formats:[["Recommendations",1,0,1],["Favorites",1,0,1],["Discoveries",1,0,1],["Lists",0,0,1,"write"],["Resource posts",0,0,1,"write"],["Personal picks",1,0,1],["Come-with-me content",1,0,2,"personal"],["Places, products, people, or ideas worth knowing about",0,0,1]]},
   CO:{name:"The Conversationalist", short:"Conversationalist",
     desc:["You tend to communicate through exchange.","Questions, reactions, other people’s experiences, and back-and-forth often help you find the interesting part."],
     formats:[["Interviews",1,1,2],["Q&A",1,0,1],["Podcast-style content",0,1,2],["Live conversations",2,0,1],["Response videos",2,0,1],["Audience questions",0,0,1],["Guest conversations",1,1,3],["Conversational talking head",2,0,1],["Comment-led posts",0,0,1,"write"]]},
   CM:{name:"The Commentator", short:"Commentator",
-    desc:["You tend to examine what something means, how it compares, whether it works, or what you think about it.","Your contribution is often the judgment, interpretation, or point of view you add."],
+    desc:["You tend to examine what an idea, product, or event means, how it compares, whether it works, and what you think of it.","Your contribution is often the judgment, interpretation, or point of view you add."],
     formats:[["Commentary",1,0,1],["Reviews",1,0,2],["Comparisons",0,0,2],["Analysis",0,0,2,"write"],["Reaction with explanation",2,0,1],["Opinion pieces",0,0,1,"write"],["Case studies",0,0,3,"write"],["Trend observations",1,0,1],["“What I noticed” content",1,0,1]]},
   DO:{name:"The Documenter", short:"Documenter",
-    desc:["You tend to communicate by showing something happening.","The process, progression, experiment, project, or experience itself can become the content."],
+    desc:["You tend to communicate by showing a process as it unfolds.","The process, progression, experiment, project, or experience itself can become the content."],
     formats:[["Behind the scenes",0,0,1,"doc"],["Process video",0,0,2,"doc"],["Progress updates",0,0,1,"doc"],["Build-in-public content",1,0,1,"doc"],["Before and after",0,0,1,"doc"],["Project diaries",1,0,2,"doc"],["Day-in-the-life",1,0,2,"doc personal"],["Experiments",1,0,2,"doc"],["Challenges",1,0,2,"doc"],["Recaps showing what changed",0,0,2,"doc"]]}
 };
 /* format tuple: [name, face 0 none / 1 optional / 2 required, needs voice, production 1 low / 2 medium / 3 high, flags] */
 
 var Q = [
- ["A friend asks how you learned to do something you’re now good at. What are you most likely to do?",["Tell them the easiest way I found to learn it.","Tell them how I got into it and what happened while I was learning.","Start telling them about the resources, people, or things I found along the way.","Ask what they’re trying to learn so we can talk through it."],["EX","ST","SH","CO"]],
- ["You try a new restaurant and really like it. A friend asks how it was. What are you most likely to say?",["Tell them what I thought was especially good and what I would skip.","Show them pictures or video so they can see what it was like.","Tell them they need to go because I think they’d love it.","Tell them what happened while I was there or something memorable about the experience."],["CM","DO","SH","ST"]],
- ["Someone brings up a subject you’ve recently gotten interested in. What happens most naturally?",["I start explaining something useful I’ve learned about it.","I start talking about what I think about it and why.","I want to hear what they know or think about it too.","I start telling them about all the interesting things I’ve found."],["EX","CM","CO","SH"]],
- ["You try something new and it goes badly. A few days later, what are you most likely to do with the experience?",["Tell the story because the whole thing is funny or ridiculous now.","Show what happened, especially if I try it again and it improves.","Explain what I learned so someone else could avoid the same problem.","Figure out what went wrong and whether the advice I followed was actually any good."],["ST","DO","EX","CM"]],
- ["You attend an event you really enjoyed. When you talk about it later, what are you most likely to focus on?",["The people I talked to and the conversations we had.","The things I discovered there that I think other people would like.","One or two moments that made the whole experience memorable.","What the event was actually like from beginning to end."],["CO","SH","ST","DO"]],
- ["A friend is trying to choose between two things you know quite a bit about. What are you most likely to do?",["Compare them and tell them what I think each one does better.","Explain the differences so the choice is easier to understand.","Ask what matters most to them before I give an opinion.","Show them examples of both so they can see the difference themselves."],["CM","EX","CO","DO"]],
- ["You find something online that you think is genuinely interesting. What makes you most likely to send it to someone?",["I immediately think of someone who would love it too.","There’s a good story behind it that I want them to hear.","It gives me an opinion or observation I want to talk about.","It explains something I’ve been trying to put into words."],["SH","ST","CM","EX"]],
- ["You start working on a project that will take several weeks. Which part are you most likely to share with someone along the way?",["Photos, clips, progress, or changes as it develops.","Questions or problems I’m running into so we can talk about them.","New things I’m finding that relate to the project.","Decisions I’m making and why I’m choosing one approach over another."],["DO","CO","SH","CM"]],
- ["Someone asks you about a hobby or subject you’ve spent a lot of time on. Where are you most likely to go first?",["Give them something useful that makes it easier to understand.","Tell them how I became interested in it in the first place.","Show them what I’ve done, made, or learned over time.","Ask what they want to know about it."],["EX","ST","DO","CO"]],
- ["You discover that something very popular is not nearly as good as everyone says it is. What are you most likely to do?",["Explain what I think people are overlooking.","Tell people about something else I think is much better.","Explain the difference so people understand why the two aren’t the same.","Tell the story of what happened when I finally tried it myself."],["CM","SH","EX","ST"]],
- ["You spend an afternoon learning about something completely new. Which part would you be most likely to talk about afterward?",["The conversation I would want to have with someone who knows more about it.","What the learning process actually looked like.","What surprised me or changed my opinion.","The best things I discovered while looking into it."],["CO","DO","CM","SH"]],
- ["Someone asks what you’ve been working on lately. What answer feels most natural?",["Tell them how the whole thing started and what’s happened so far.","Explain what I’m trying to accomplish and how it works.","Start talking with them about one of the questions or ideas I’m still working through.","Show them where it started, where it is now, or what I’ve made so far."],["ST","EX","CO","DO"]]
+ ["A friend asks how you learned a skill you’re now good at. What are you most likely to do?",["Tell them the easiest way I found to learn it.","Tell them how I got into it and what happened while I was learning.","Start telling them about the resources, people, and places I found along the way.","Ask what they’re trying to learn so we can talk through it."],["EX","ST","SH","CO"]],
+ ["You try a new restaurant and love it. A friend asks how it was. What are you most likely to say?",["Tell them what I thought was especially good and what I would skip.","Show them pictures or video so they can see what it was like.","Tell them they need to go because I think they’d love it.","Tell them what happened while I was there, or the most memorable moment of the visit."],["CM","DO","SH","ST"]],
+ ["Someone brings up a subject you’ve recently gotten interested in. What happens most naturally?",["I start explaining a useful lesson I’ve learned from it.","I start talking about what I think about it and why.","I want to hear what they know or think about it too.","I start telling them about all the interesting discoveries I’ve made."],["EX","CM","CO","SH"]],
+ ["You try a new activity, and it goes badly. A few days later, what are you most likely to do with the experience?",["Tell the story, because the whole episode is funny or ridiculous now.","Show what happened, especially if I try it again and it improves.","Explain what I learned so someone else could avoid the same problem.","Figure out what went wrong and whether the advice I followed was any good."],["ST","DO","EX","CM"]],
+ ["You attend an event and enjoy it. When you talk about it later, what are you most likely to focus on?",["The people I talked to and the conversations we had.","The discoveries I made there that other people would enjoy.","One or two moments that made the whole experience memorable.","What the event was like from beginning to end."],["CO","SH","ST","DO"]],
+ ["A friend is trying to choose between two options you know well. What are you most likely to do?",["Compare them and tell them what I think each one does better.","Explain the differences so the choice is easier to understand.","Ask what matters most to them before I give an opinion.","Show them examples of both so they can see the difference themselves."],["CM","EX","CO","DO"]],
+ ["You find an article, video, or post online that genuinely interests you. What makes you most likely to send it to someone?",["I immediately think of someone who would love it too.","There’s a good story behind it that I want them to hear.","It gives me an opinion or observation I want to talk about.","It explains an idea I’ve been trying to put into words."],["SH","ST","CM","EX"]],
+ ["You start working on a project that will take several weeks. Which part are you most likely to share with someone along the way?",["Photos, clips, progress, or changes as it develops.","Questions or problems I’m running into so we can talk about them.","New discoveries that relate to the project.","Decisions I’m making and why I’m choosing one approach over another."],["DO","CO","SH","CM"]],
+ ["Someone asks you about a hobby or subject you’ve spent a lot of time on. Where are you most likely to go first?",["Give them a useful starting point that makes the subject easier to understand.","Tell them how I became interested in it in the first place.","Show them what I’ve done, made, or learned over time.","Ask what they want to know about it."],["EX","ST","DO","CO"]],
+ ["You discover that a very popular product or trend falls short of everything people say about it. What are you most likely to do?",["Explain what I think people are overlooking.","Tell people about an alternative I think is much better.","Explain the difference so people understand why the two aren’t the same.","Tell the story of what happened when I finally tried it myself."],["CM","SH","EX","ST"]],
+ ["You spend an afternoon learning about a completely new subject. Which part would you be most likely to talk about afterward?",["The conversation I would want to have with someone who knows more about it.","What the learning process looked like.","What surprised me or changed my opinion.","The best discoveries I made while looking into it."],["CO","DO","CM","SH"]],
+ ["Someone asks what you’ve been working on lately. What answer feels most natural?",["Tell them how the project started and what has happened so far.","Explain what I’m trying to accomplish and how it works.","Start talking with them about one of the questions or ideas I’m still working through.","Show them where it started, where it is now, or what I’ve made so far."],["ST","EX","CO","DO"]]
 ];
 
 var BUILD = [
- ["A product","Something you have created or plan to create that people can buy. This could be a physical product, digital product, invention, app, course, collection, or other offer."],
+ ["A product","A product you have created or plan to create that people can buy. This could be a physical product, digital product, invention, app, course, collection, or other offer."],
  ["A service or expertise-based business","People hire you, book you, consult with you, learn from you, or pay for your expertise."],
  ["An audience","Your main goal right now is to become known, build a following, grow readership or viewership, or develop an audience before deciding exactly where it leads."],
  ["Creative work or a specific project","Art, writing, photography, music, film, design, a book, a collection, or another body of work you want people to discover."],
@@ -213,10 +215,10 @@ var VIS = [
 var VIS_SHORT = ["On camera regularly","On camera sometimes","Voice-first, little or no face","Show the work, not myself","Text, visuals, mostly faceless","As little exposure as possible"];
 
 var PROD = [
- ["I want something I can make quickly.","Short talking head, simple voiceover, Q&A, quick commentary, simple recommendations, or lightly edited footage may fit."],
+ ["I want content I can make quickly.","Short talking head, simple voiceover, Q&A, quick commentary, simple recommendations, or lightly edited footage may fit."],
  ["I would rather write.","Written posts, newsletters, articles, captions, text-led carousels, scripts, or written commentary may fit."],
- ["I want to create from things I am already doing.","Process footage, documenting, behind the scenes, day-in-the-life, demonstrations, progress, and real-world footage may fit."],
- ["I enjoy producing something more carefully.","Edited storytelling, longer video, interviews, visual essays, polished photography, documentary-style work, or designed content may fit."],
+ ["I want to create content from work and activities I am already doing.","Process footage, documenting, behind the scenes, day-in-the-life, demonstrations, progress, and real-world footage may fit."],
+ ["I enjoy producing polished, carefully made content.","Edited storytelling, longer video, interviews, visual essays, polished photography, documentary-style work, or designed content may fit."],
  ["I want the lowest-production option possible.","Simple footage, text, screenshots, voice notes, screen recordings, lists, recommendations, or repeatable templates may fit."],
  ["I’m willing to experiment before deciding.","Use your Content Style as the constant and test several formats until one feels sustainable."]
 ];
@@ -228,24 +230,24 @@ var DIR = {
   ["Let people see how your mind works.","Explain the problems you regularly encounter, the distinctions you make, the questions people should be asking, and the parts of your field that are often misunderstood."],
   ["Build around useful clarity.","Choose subjects you can explain repeatedly without forcing yourself. Notice what people save, share, ask about, or want you to explain further."],
   ["Open up the work.","Explain materials, technique, decisions, research, context, references, process, or the ideas behind what people are seeing."],
-  ["Give people useful things to work with together.","Recurring questions, shared resources, explanations, workshops, or concepts can give the community something concrete to discuss and use."],
+  ["Give people useful tools to work with together.","Recurring questions, shared resources, explanations, workshops, or concepts can give the community concrete material to discuss and use."],
   ["Teach the market around the company.","Help people understand the problem, the category, the choices available to them, and the decisions that matter before they ever need to hear a sales pitch."],
   ["Start with what people already ask you to explain.","The subjects that repeatedly produce good questions are useful clues."]],
  ST:[
-  ["Tell the story around the thing.","Why it exists. What led to it. The person it was made for. The decisions, setbacks, discoveries, or experiences that shaped it."],
-  ["Use real situations to show the work.","Tell stories that demonstrate the kinds of problems you encounter, what changed, what mattered, and what the experience actually looks like from the inside."],
-  ["Give people something they want to follow.","Personal experiences, projects, observations, travel, experiments, work, reinvention, or another recurring subject can create continuity from one piece of content to the next."],
+  ["Tell the story behind the idea.","Why it exists. What led to it. The person it was made for. The decisions, setbacks, discoveries, or experiences that shaped it."],
+  ["Use real situations to show the work.","Tell stories that demonstrate the kinds of problems you encounter, what changed, what mattered, and what the experience looks like from the inside."],
+  ["Give people a subject they want to follow.","Personal experiences, projects, observations, travel, experiments, work, reinvention, or another recurring subject can create continuity from one piece of content to the next."],
   ["Give the finished work a history.","Share where ideas began, what changed while you made it, the stories behind individual pieces, and the experiences that influenced the work."],
   ["Tell the stories of the people inside it.","Member experiences, gatherings, milestones, turning points, beginnings, and shared moments help other people understand what participation feels like."],
   ["Tell the human story surrounding the company.","Founding moments, customers, decisions, problems, milestones, people, and change can make the company more understandable than a list of claims."],
   ["Notice the stories you already repeat.","If certain experiences keep coming back into your conversations, there may be a larger subject underneath them."]],
  SH:[
-  ["Build a world around what you make.","Share the things that naturally sit beside your product: ideas, references, tools, places, materials, people, habits, complementary products, or discoveries your future customer would also care about."],
+  ["Build a world around what you make.","Share what naturally sits beside your product: ideas, references, tools, places, materials, people, habits, complementary products, or discoveries your future customer would also care about."],
   ["Become useful through what you find.","Share resources, tools, examples, research, recommendations, people, or ideas that help the same kinds of people who might eventually need your work."],
-  ["Give people a reason to trust what you choose.","Consistently surface things worth their time. Your subject may become clearer by noticing what you repeatedly find yourself sending, saving, recommending, or talking about."],
+  ["Give people a reason to trust what you choose.","Consistently surface ideas, tools, and resources worth their time. Your subject may become clearer by noticing what you repeatedly find yourself sending, saving, recommending, or talking about."],
   ["Share the world that feeds the work.","Books, places, objects, materials, artists, references, ideas, music, images, and discoveries can help people understand your taste and the world your work comes from."],
-  ["Keep the group connected to useful things.","Introduce members to resources, opportunities, people, work, events, ideas, and discoveries that are genuinely relevant to them."],
-  ["Become a useful source within the company’s world.","Share developments, examples, resources, customer stories, people, and useful things happening around the category rather than talking only about the business itself."],
+  ["Keep the group connected to useful resources.","Introduce members to resources, opportunities, people, work, events, ideas, and discoveries that are genuinely relevant to them."],
+  ["Become a useful source within the company’s world.","Share developments, examples, resources, customer stories, and people from across the category, rather than talking only about the business itself."],
   ["Look at what you already share without being asked.","Your repeated recommendations and discoveries may reveal the subject people could eventually know you for."]],
  CO:[
   ["Use conversation to uncover the world around the product.","Questions from customers, discussions with experts, conversations with people who experience the problem, reactions, objections, and feedback can all become content.|You do not have to talk about the product every time. Talk about the conversations that make the product relevant."],
@@ -257,35 +259,37 @@ var DIR = {
   ["Follow the conversations you want to keep having.","Pay attention to the subjects that make you ask another question instead of ending the discussion."]],
  CM:[
   ["Develop a point of view around the product’s category.","Compare approaches. Examine tradeoffs. Talk about what works, what does not, what people misunderstand, and what led you to build your solution differently."],
-  ["Show how you evaluate things.","Analyze situations, compare approaches, review common advice, interpret changes in your field, and explain what you notice that affects the people you work with."],
-  ["Choose subjects you genuinely have something to say about.","Do not simply report what happened. Add the part that comes from you: what you think it means, why it matters, what you disagree with, or what people may be missing."],
+  ["Show how you evaluate ideas, products, and advice.","Analyze situations, compare approaches, review common advice, interpret changes in your field, and explain what you notice that affects the people you work with."],
+  ["Choose subjects you have a genuine opinion about.","Do not only report what happened. Add the part that comes from you: what you think it means, why it matters, what you disagree with, or what people may be missing."],
   ["Talk about the ideas surrounding the work.","Influences, criticism, creative decisions, culture, comparisons, artistic choices, and observations can give people another way to understand what you are making."],
-  ["Give people something worth discussing.","Questions, current issues, differing approaches, trends, case studies, and thoughtful disagreement can generate useful conversation inside the group."],
+  ["Give people a subject worth discussing.","Questions, current issues, differing approaches, trends, case studies, and thoughtful disagreement can generate useful conversation inside the group."],
   ["Build a recognizable point of view around the company’s field.","Interpret what is happening in the market, explain changes, compare approaches, and help customers understand what deserves attention."],
   ["Notice what repeatedly makes you think, “I have thoughts about this.”","If you keep forming opinions about the same subject, there may be enough there to build around."]],
  DO:[
-  ["Show the thing becoming real.","Development, prototypes, sourcing, testing, versions, packaging, decisions, changes, mistakes, and launch preparation can all become content before the product is finished."],
+  ["Show the idea becoming real.","Development, prototypes, sourcing, testing, versions, packaging, decisions, changes, mistakes, and launch preparation can all become content before the product is finished."],
   ["Show the work where privacy allows.","Preparation, tools, process, decisions, workspaces, before-and-after thinking, and what happens behind the final result can make an otherwise invisible service easier to understand."],
-  ["Give people something real to follow.","Choose something you are doing, learning, changing, building, attempting, researching, or exploring and let the progression create the material."],
+  ["Give people a real project to follow.","Choose one project, skill, or change in progress, and let the progression create the material."],
   ["Let people watch it develop.","Drafts, sketches, rehearsals, research, edits, materials, rejected versions, experiments, and progress can become part of the experience of the finished work."],
-  ["Show what participation actually looks like.","Gatherings, projects, conversations, collaborations, preparation, member activity, and progress help people see the community in action."],
+  ["Show what participation looks like.","Gatherings, projects, conversations, collaborations, preparation, member activity, and progress help people see the community in action."],
   ["Let people see parts of the company being built.","Development, decisions, launches, experiments, customer feedback, operations, milestones, and changes can make the work itself worth following."],
-  ["Pick something already happening in your life and document it for a while.","You may discover the subject by paying attention to what you enjoy showing and what other people want to keep following."]]
+  ["Pick a project or change already happening in your life, and document it for a few weeks.","You may discover the subject by paying attention to what you enjoy showing and what other people want to keep following."]]
 };
 
 var COMBOS = {
  "EX+ST":"Explain through experiences and examples.",
  "EX+DO":"Show the process, then make sense of what is happening.",
  "ST+CM":"Tell what happened and add what you think it means.",
- "SH+CM":"Recommend things, but give people enough judgment to understand why you chose them.",
- "SH+CO":"Find interesting things and bring other people into the discovery.",
+ "SH+CM":"Recommend what you love, and explain enough of your judgment that people understand why you chose it.",
+ "SH+CO":"Find interesting ideas, places, and people, and bring others into the discovery.",
  "CO+CM":"Use questions, reactions, and discussion to develop a point of view.",
  "DO+ST":"Capture what happens, then shape the strongest moments into a story."
 };
 var ORDER = ["EX","ST","SH","CO","CM","DO"];
+var POS = {explainer:"center 30%","tone-laugh":"center 8%","tone-both":"center 12%","tone-teach":"center 55%",documenter:"center 40%"};
+var PHOTO = {EX:"explainer",ST:"storyteller",SH:"sharer",CO:"conversationalist",CM:"commentator",DO:"documenter"};
 
 /* ---------- state ---------- */
-var S = {step:"intro", i:0, name:"", email:"", a:[], build:null, vis:null, prod:null};
+var S = {step:"intro", i:0, name:"", email:"", a:[], build:null, vis:null, prod:null, tone:null};
 function save(){ try{ localStorage.setItem("ss-content-style", JSON.stringify(S)); }catch(e){} }
 function load(){ try{ var v = JSON.parse(localStorage.getItem("ss-content-style")); if(v && v.email) S = v; }catch(e){} }
 
@@ -307,16 +311,17 @@ function intro(){
     '<div class="label">A guide to your content creation direction</div>'+
     '<h1>Find Your Content Style</h1>'+
     '<blockquote class="quote"><p>‘What if I fall?’<br>Oh but my darling,<br>what if you fly?</p><cite>Erin Hanson</cite></blockquote>'+
-    '<div class="label">What this does</div>'+
-    '<p>There is no one way to do this. What worked for someone else may not be organic to you or the way you naturally present yourself to others.</p>'+
-    '<p>This guide looks at how you already communicate and what your brand goal is, then matches that to content formats that suit you.</p>'+
-    '<p>The result is a content style that is likely to fit you naturally, along with formats that make sense for the way you communicate and how visible you want to be.</p>'+
-    '<p>Knowing this part of your brand direction gives you a solid place to start, so you can spend less time cycling through content styles.</p>'+
+    '<div class="label">The Importance of Knowing Your Content Style</div>'+
+    '<p>78% of creators say burnout affects their motivation to create. <span class="small"><a href="https://stateofcreate.co/downloads/State%20of%20Create%202025.pdf" target="_blank" rel="noopener">Patreon, State of Create 2025</a></span></p>'+
+    '<p>When making content feels forced, it gets harder to keep making it. It becomes the roadblock for people to be able to know, like and trust you and trust is one of the biggest factors in what people choose to buy. In 2026, 88% of consumers said trust was an important or critical factor in a purchase decision. <span class="small"><a href="https://www.edelman.com/trust/2026/trust-barometer/special-report-brands" target="_blank" rel="noopener">Edelman Trust Barometer 2026</a></span></p>'+
+    '<p>The right content style can make ideas easier to find, posts easier to create, and the whole process more enjoyable. One idea starts leading to another, and your own work becomes a source of inspiration.</p>'+
+    '<p>When you complete this quiz, you’ll know your natural content style, the kinds of posts that fit you best, and which ones you can skip.</p>'+
+    '<p>May this save you a little time, a lot of frustration, and get you to the good part faster!</p>'+
     '<ol class="steps">'+
       '<li><span>1</span>How you naturally communicate</li>'+
       '<li><span>2</span>Which content formats fit that style</li>'+
       '<li><span>3</span>What you want your content to help you build</li>'+
-      '<li><span>4</span>How visible and involved you actually want to be</li>'+
+      '<li><span>4</span>How visible and involved you want to be</li>'+
     '</ol>'+
     '<p class="small" style="margin-bottom:30px">Fifteen taps. Your result is scored for you and sent to your inbox so you can come back to it.</p>'+
     '<form id="gate" novalidate>'+
@@ -342,7 +347,7 @@ function intro(){
 function how(){
   render(
     '<div class="label">How this works</div>'+
-    '<h2>Choose the answer that is closest to what you would <em>actually</em> do.</h2>'+
+    '<h2>Choose the answer closest to what you would <em>actually</em> do.</h2>'+
     '<p>Do not choose what sounds smartest, most useful, or most likely to perform online.</p>'+
     '<p style="margin-bottom:36px">If two answers could fit, choose the one you would probably do first.</p>'+
     '<button class="btn btn-block" id="go">Start the questions</button>'
@@ -373,21 +378,26 @@ function question(){
   });
 }
 
+var TONE = [["Making people laugh","Humor, funny moments, and posts that make people smile."],["Teaching a lesson","Showing people how, why, and what works."],["A bit of both","Teaching through stories and humor."]];
+var TONE_IMG = ["tone-laugh","tone-teach","tone-both"];
+var TONE_SHORT = ["Mostly entertaining","Mostly teaching","Teaching and entertaining"];
 var PARTS = {
-  build:{label:"Almost done &middot; 3 quick questions left", title:"What are you building toward?", intro:"Your Content Style tells you how you naturally communicate. Now decide what you want your content to help you build right now.", list:BUILD, prev:"q", next:"vis"},
-  vis:{label:"Almost done &middot; 2 quick questions left", title:"How visible do you want to be?", intro:"There is no rule that says a personal brand requires turning your private life into content. But people usually need some way to recognize the person, thinking, taste, work, or point of view behind what they are following.", list:VIS, prev:"build", next:"prod"},
-  prod:{label:"Last question", title:"What can you realistically keep making?", intro:"The best content format is not useful if you hate making it.", list:PROD, prev:"vis", next:"result"}
+  build:{img:"building", label:"Almost done &middot; 4 quick questions left", title:"What are you building toward?", intro:"Your Content Style tells you how you naturally communicate. Now decide what you want your content to help you build right now.", list:BUILD, prev:"q", next:"vis"},
+  vis:{img:"visibility", label:"Almost done &middot; 3 quick questions left", title:"How visible do you want to be?", intro:"There is no rule that says a personal brand requires turning your private life into content. But people usually need some way to recognize the person, thinking, taste, work, or point of view behind what they are following.", list:VIS, prev:"build", next:"prod"},
+  prod:{img:"making", label:"Almost done &middot; 2 quick questions left", title:"What can you realistically keep making?", intro:"The best content format is not useful if you hate making it.", list:PROD, prev:"vis", next:"tone"},
+  tone:{label:"Last question", title:"When you post, what feels more like you?", intro:"Most content either teaches a lesson or entertains an audience. Your audience comes to expect whichever one you lead with.", list:TONE, prev:"prod", next:"result"}
 };
 function choice(key){
   var P = PARTS[key], rows = "", letters = "ABCDEFG";
   P.list.forEach(function(o,k){
-    rows += '<button class="answer'+(S[key]===k?' picked':'')+'" data-k="'+k+'"><span class="k">'+letters[k]+'</span><span class="t"><strong>'+esc(o[0])+'</strong><em>'+esc(o[1])+'</em></span></button>';
+    if(key==="tone") rows += '<button class="answer pick'+(S[key]===k?' picked':'')+'" data-k="'+k+'"><img src="img/'+TONE_IMG[k]+'.jpg?v=6" alt=""><strong>'+esc(o[0])+'</strong><em>'+esc(o[1])+'</em></button>';
+    else rows += '<button class="answer'+(S[key]===k?' picked':'')+'" data-k="'+k+'"><span class="k">'+letters[k]+'</span><span class="t"><strong>'+esc(o[0])+'</strong><em>'+esc(o[1])+'</em></span></button>';
   });
   render(
     '<div class="q-meta"><div class="label">'+P.label+'</div><button class="back" id="back">Back</button></div>'+
-    '<h2>'+P.title+'</h2>'+
+    (P.img?'<img class="part-photo" src="img/'+P.img+'.jpg?v=6" alt="">':'')+'<h2>'+P.title+'</h2>'+
     '<p class="part-intro">'+P.intro+' Choose the closest.</p>'+
-    '<div class="answers">'+rows+'</div>'
+    '<div class="'+(key==="tone"?'pick-grid':'answers')+'">'+rows+'</div>'
   );
   document.getElementById("back").onclick = function(){
     if(P.prev==="q"){ S.step="q"; S.i=11; save(); question(); } else { S.step=P.prev; save(); choice(P.prev); }
@@ -414,7 +424,7 @@ function score(){
 }
 function comboLine(top){
   if(top.length<2) return null;
-  return COMBOS[top[0]+"+"+top[1]] || COMBOS[top[1]+"+"+top[0]] || "Look at the formats for both. The combination may actually be more useful than either one alone.";
+  return COMBOS[top[0]+"+"+top[1]] || COMBOS[top[1]+"+"+top[0]] || "Look at the formats for both. The combination may be more useful than either one alone.";
 }
 
 /* ---------- format filtering ---------- */
@@ -478,15 +488,24 @@ function result(fresh){
     '<div class="line"><div class="l">Building toward</div><div class="v">'+BUILD_SHORT[S.build]+'</div></div>'+
     '<div class="line"><div class="l">Visibility</div><div class="v">'+VIS_SHORT[S.vis]+'</div></div>'+
     '<div class="line"><div class="l">Production</div><div class="v">'+PROD_SHORT[S.prod]+'</div></div>'+
+    (S.tone!=null?'<div class="line"><div class="l">Teach or entertain</div><div class="v">'+TONE_SHORT[S.tone]+'</div></div>':'')+
     '<div class="line"><div class="l">Your scores<small>Highest score is your strongest style. Within one point, keep both.</small></div><div class="v">'+
       ORDER.map(function(c){ return c+' '+t[c]; }).join(' &middot; ')+'</div></div>'+
   '</div>';
 
   top.forEach(function(c){
-    html += '<div class="section"><div class="label">'+STYLES[c].name+'</div>'+
+    html += '<div class="section"><img class="style-photo" src="img/'+PHOTO[c]+'.jpg?v=6" style="object-position:'+(POS[PHOTO[c]]||'center')+'" alt=""><div class="label">'+STYLES[c].name+'</div>'+
       STYLES[c].desc.map(function(p){ return '<p>'+esc(p)+'</p>'; }).join('')+'</div>';
   });
 
+  if(S.tone!=null){
+    var toneLine = ["You lean toward humor. Your audience will come to expect the laugh, so let the laugh carry the lesson.","You lean toward teaching. Your audience will come to expect a useful takeaway, so make every post easy to apply.","You like doing both. Choose which one leads, so your audience knows what to expect from you."][S.tone];
+    html += '<div class="tone-box"><div class="label">Teach or entertain</div>'+
+      '<div class="tone-trio">'+[0,1,2].map(function(k){ return '<figure class="'+(k===S.tone?'mine':'')+'"><img src="img/'+TONE_IMG[k]+'.jpg?v=6" style="object-position:'+(POS[TONE_IMG[k]]||'center')+'" alt=""><figcaption>'+TONE_SHORT[k]+(k===S.tone?'<b>Yours</b>':'')+'</figcaption></figure>'; }).join('')+'</div>'+
+      '<p>Most content either teaches a lesson or entertains an audience. The best does both. A funny video can still teach people a new idea, and a lesson can still make them laugh.</p>'+
+      '<p><strong style="font-weight:500">'+toneLine+'</strong></p>'+
+      '<blockquote>I didn’t realize that there are only two types of posts and your audience is going to be different depending on what you choose.<cite>Michael Hilton</cite></blockquote></div>';
+  }
   top.forEach(function(c){
     var d = DIR[c][S.build];
     html += '<div class="section"><div class="label">Your direction &middot; '+STYLES[c].short+' + '+BUILD_SHORT[S.build]+'</div>'+
@@ -512,14 +531,14 @@ function result(fresh){
     html += '<div class="note"><div class="label">Faceless does not have to mean anonymous</div>'+
       '<p>There is a difference between “I do not want my private life to become content” and “I do not want anyone to know there is a person behind this.”</p>'+
       '<p style="margin-bottom:6px">A recognizable personal brand can come from more than a face. People can begin to recognize:</p>'+
-      '<ul class="recog"><li>Your voice</li><li>Your taste</li><li>Your way of explaining something</li><li>What you notice</li><li>What you choose to show</li><li>The subjects you return to</li><li>Your visual style</li><li>Your work</li><li>Your point of view</li></ul>'+
+      '<ul class="recog"><li>Your voice</li><li>Your taste</li><li>Your way of explaining an idea</li><li>What you notice</li><li>What you choose to show</li><li>The subjects you return to</li><li>Your visual style</li><li>Your work</li><li>Your point of view</li></ul>'+
       '<p>You decide how much access people get.</p></div>';
   }
 
   html += '<div class="section"><div class="label">What this does not decide</div>'+
     '<p>This assessment can help you identify the way you naturally communicate and narrow the kinds of content you may want to try.</p>'+
     '<p>It does not determine your niche. It does not tell you what makes your particular combination of experience, interests, strengths, and ideas valuable. It does not research your market, competition, opportunities, or positioning.</p>'+
-    '<p>Those are different questions.</p></div>';
+    '<p>Those are different parts of building a brand.</p></div>';
 
   html += '<div class="cta"><div class="label">If you know how you want to create, but not what your brand should be</div>'+
     '<p>The <strong style="font-weight:500">Signal Profile</strong> looks at you individually.</p>'+
@@ -538,7 +557,7 @@ function result(fresh){
   document.getElementById("mastRight").innerHTML = '<strong>'+plainStyle+'</strong>'+BUILD_SHORT[S.build];
   document.getElementById("pdf").onclick = function(){ window.print(); };
   document.getElementById("redo").onclick = function(){
-    S = {step:"how", i:0, name:S.name, email:S.email, a:[], build:null, vis:null, prod:null}; save(); how();
+    S = {step:"how", i:0, name:S.name, email:S.email, a:[], build:null, vis:null, prod:null, tone:null}; save(); how();
   };
 
   if(fresh){
@@ -556,6 +575,7 @@ function result(fresh){
       building_toward_choice: "ABCDEFG".charAt(S.build),
       visibility_choice: "ABCDEF".charAt(S.vis),
       production_choice: "ABCDEF".charAt(S.prod),
+      teach_or_entertain: S.tone!=null ? TONE_SHORT[S.tone] : "",
       formats_set_aside: f.out.map(function(x){ return x[0]; }).join(", ")
     });
   }
@@ -569,5 +589,6 @@ else if(PARTS[S.step] && S.email) choice(S.step);
 else if(S.step==="how" && S.email) how();
 else intro();
 </script>
+
 </body>
 </html>
