@@ -1,0 +1,870 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Signal Profile, Wren Halloway</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500&display=swap" rel="stylesheet">
+ <style>
+        *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+        :root {
+            --black:   #0D0D0D;
+            --dark:    #111111;
+            --card:    #1A1A1A;
+            --border:  #2A2A2A;
+            --white:   #FFFFFF;
+            --dim:     #E8E8E8;
+            --dimmer:  #FFFFFF;
+            --gold:    #F4D475;
+            --serif:   'Cormorant Garamond', Georgia, serif;
+            --sans:    'DM Sans', -apple-system, sans-serif;
+        }
+
+        html {
+            background: var(--black);
+            color: var(--white);
+            font-family: var(--sans);
+            font-weight: 300;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        .page {
+            max-width: 900px;
+            margin: 0 auto;
+            position: relative;
+        }
+
+        .section {
+            padding: 80px 64px;
+            border-bottom: 1px solid #1A1A1A;
+        }
+
+        .section-light {
+            background: #FFFFFF;
+            color: #111111;
+            border-bottom: 1px solid #E8E8E8;
+        }
+
+        .sec-num {
+            font-size: 10px;
+            letter-spacing: 0.5em;
+            text-transform: uppercase;
+            color: var(--gold);
+            margin-bottom: 12px;
+        }
+
+        .section-light .sec-num { color: var(--gold); }
+
+        .sec-title {
+            font-family: var(--serif);
+            font-size: 48px;
+            font-weight: 300;
+            line-height: 1.05;
+            letter-spacing: -0.02em;
+            color: var(--white);
+        }
+
+        .section-light .sec-title { color: #111111; }
+
+        .sec-sub {
+            font-size: 12px;
+            color: var(--dim);
+            line-height: 1.7;
+            margin-top: 16px;
+            max-width: 440px;
+        }
+
+        .section-light .sec-sub { color: #000000; }
+
+        #cover {
+            min-height: 100vh;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            border-bottom: 1px solid #1A1A1A;
+        }
+
+        .cover-left {
+            padding: 80px 64px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            border-right: 1px solid #1A1A1A;
+        }
+
+        .cover-right {
+            padding: 80px 64px;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+        }
+
+        .cover-brand {
+            font-size: 9px;
+            letter-spacing: 0.5em;
+            text-transform: uppercase;
+            color: var(--gold);
+        }
+
+        .cover-label {
+            font-size: 10px;
+            letter-spacing: 0.4em;
+            text-transform: uppercase;
+            color: var(--gold);
+            margin-bottom: 20px;
+        }
+
+        .cover-name {
+            font-family: var(--serif);
+            font-size: 72px;
+            font-weight: 300;
+            line-height: 0.95;
+            letter-spacing: -0.03em;
+            overflow-wrap: break-word;
+            word-break: break-word;
+        }
+
+        .cover-meta {
+            margin-top: 40px;
+        }
+
+        .cover-meta-row {
+            display: flex;
+            justify-content: space-between;
+            border-top: 1px solid #1A1A1A;
+            padding: 14px 0;
+            font-size: 11px;
+        }
+
+        .cover-meta-label { color: var(--gold); letter-spacing: 0.1em; text-transform: uppercase; }
+        .cover-meta-value { color: var(--white); }
+
+        .cover-archetype-card {
+            border: 1px solid #1A1A1A;
+            padding: 36px 40px;
+            margin-bottom: 32px;
+        }
+
+        .cover-archetype-label {
+            font-size: 9px;
+            letter-spacing: 0.4em;
+            text-transform: uppercase;
+            color: var(--gold);
+            margin-bottom: 16px;
+        }
+
+        .cover-archetype-name {
+            font-family: var(--serif);
+            font-size: 28px;
+            font-weight: 300;
+            font-style: italic;
+            line-height: 1.2;
+            color: var(--white);
+            margin-bottom: 16px;
+        }
+
+        .cover-archetype-desc {
+            font-size: 12px;
+            color: var(--dim);
+            line-height: 1.85;
+        }
+
+        .strength-display {
+            display: flex;
+            align-items: baseline;
+            gap: 8px;
+            margin-bottom: 8px;
+        }
+
+        .strength-number {
+            font-family: var(--serif);
+            font-size: 80px;
+            font-weight: 300;
+            line-height: 1;
+            color: var(--white);
+        }
+
+        .strength-denom {
+            font-size: 18px;
+            color: var(--dimmer);
+            font-family: var(--serif);
+        }
+
+        .strength-label {
+            font-size: 9px;
+            letter-spacing: 0.4em;
+            text-transform: uppercase;
+            color: var(--gold);
+            margin-bottom: 16px;
+        }
+
+        .strength-bar-wrap {
+            height: 2px;
+            background: #1A1A1A;
+            width: 100%;
+            margin-bottom: 8px;
+        }
+
+        .strength-bar {
+            height: 2px;
+            background: var(--gold);
+            width: 0;
+            transition: width 1.4s cubic-bezier(0.4,0,0.2,1);
+        }
+
+        .themes-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1px;
+            background: #E0E0E0;
+            margin-top: 48px;
+        }
+
+        .theme-card {
+            background: #FFFFFF;
+            padding: 32px 36px;
+        }
+
+        .theme-num {
+            font-size: 9px;
+            letter-spacing: 0.4em;
+            text-transform: uppercase;
+            color: #000000;
+            margin-bottom: 12px;
+        }
+
+        .theme-name {
+            font-family: var(--serif);
+            font-size: 22px;
+            font-weight: 400;
+            color: #111111;
+            margin-bottom: 12px;
+            line-height: 1.25;
+        }
+
+        .theme-desc {
+            font-size: 12px;
+            color: #000000;
+            line-height: 1.85;
+        }
+
+        .archetype-inner {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 80px;
+            margin-top: 48px;
+            align-items: start;
+        }
+
+        .archetype-main {
+            font-family: var(--serif);
+            font-size: 36px;
+            font-weight: 300;
+            font-style: italic;
+            line-height: 1.25;
+            color: var(--white);
+            margin-bottom: 20px;
+        }
+
+        .archetype-match {
+            font-size: 10px;
+            letter-spacing: 0.25em;
+            text-transform: uppercase;
+            color: var(--gold);
+            margin-bottom: 24px;
+        }
+
+        .archetype-body {
+            font-size: 13px;
+            color: var(--dim);
+            line-height: 1.95;
+        }
+
+        .statement-text {
+            font-family: var(--serif);
+            font-size: 27px;
+            font-weight: 300;
+            line-height: 1.65;
+            color: var(--white);
+            max-width: 720px;
+            margin-top: 48px;
+        }
+
+        .statement-text em {
+            font-style: italic;
+            color: var(--gold);
+        }
+
+        .pillars-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: 1px;
+            background: #E0E0E0;
+            margin-top: 48px;
+        }
+
+        .pillar-card {
+            background: #FFFFFF;
+            padding: 36px 28px;
+        }
+
+        .pillar-num {
+            font-size: 9px;
+            letter-spacing: 0.4em;
+            text-transform: uppercase;
+            color: #000000;
+            margin-bottom: 16px;
+        }
+
+        .pillar-name {
+            font-family: var(--serif);
+            font-size: 24px;
+            font-weight: 400;
+            color: #111111;
+            line-height: 1.2;
+            margin-bottom: 16px;
+        }
+
+        .pillar-desc {
+            font-size: 12px;
+            color: #000000;
+            line-height: 1.85;
+            margin-bottom: 20px;
+        }
+
+        .pillar-example {
+            font-size: 11px;
+            color: #000000;
+            line-height: 1.7;
+            border-top: 1px solid #F0F0F0;
+            padding-top: 16px;
+            font-style: italic;
+        }
+
+        .blind-spot-inner {
+            max-width: 660px;
+            margin-top: 48px;
+        }
+
+        .blind-spot-headline {
+            font-family: var(--serif);
+            font-size: 34px;
+            font-weight: 300;
+            line-height: 1.35;
+            color: var(--white);
+            margin-bottom: 32px;
+        }
+
+        .blind-spot-body {
+            font-size: 13px;
+            color: var(--dim);
+            line-height: 1.95;
+        }
+
+        .blind-spot-body p + p {
+            margin-top: 20px;
+        }
+
+        .first-move-headline {
+            font-family: var(--serif);
+            font-size: 42px;
+            font-weight: 300;
+            font-style: italic;
+            line-height: 1.3;
+            margin-bottom: 32px;
+        }
+
+        .first-move-body {
+            font-size: 13px;
+            color: #000000;
+            line-height: 1.95;
+            max-width: 580px;
+        }
+
+        .first-move-body p + p {
+            margin-top: 20px;
+        }
+
+        .vi-dark-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1px;
+            background: #1A1A1A;
+            margin-top: 48px;
+        }
+
+        .vi-dark-card {
+            background: #111111;
+            padding: 36px;
+        }
+
+        .vi-label-dark {
+            font-size: 9px;
+            letter-spacing: 0.4em;
+            text-transform: uppercase;
+            color: #FFFFFF;
+            margin-bottom: 14px;
+        }
+
+        .vi-value-dark {
+            font-family: var(--serif);
+            font-size: 22px;
+            font-weight: 400;
+            color: var(--white);
+            line-height: 1.3;
+            margin-bottom: 12px;
+        }
+
+        .vi-body-dark {
+            font-size: 12px;
+            color: #FFFFFF;
+            line-height: 1.85;
+        }
+
+        .color-swatch-row {
+            display: flex;
+            gap: 8px;
+            margin-top: 18px;
+        }
+
+        .color-swatch {
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+        }
+
+        .notes-list {
+            margin-top: 48px;
+            max-width: 680px;
+        }
+
+        .note-item {
+            border-left: 1px solid #E0E0E0;
+            padding: 4px 0 36px 32px;
+        }
+
+        .note-item:last-child { padding-bottom: 0; }
+
+        .note-num {
+            font-size: 9px;
+            letter-spacing: 0.4em;
+            text-transform: uppercase;
+            color: var(--gold);
+            margin-bottom: 12px;
+        }
+
+        .note-text {
+            font-size: 12px;
+            color: #000000;
+            line-height: 1.95;
+        }
+
+        .strength-two-col {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 80px;
+            align-items: start;
+            margin-top: 48px;
+        }
+
+        .back-name {
+            font-family: var(--serif);
+            font-size: 56px;
+            font-weight: 300;
+            line-height: 1.0;
+            letter-spacing: 0.08em;
+            margin-bottom: 24px;
+        }
+
+        .back-star {
+            color: var(--gold);
+            font-size: 24px;
+            margin-bottom: 24px;
+        }
+
+        .back-tagline {
+            font-size: 10px;
+            letter-spacing: 0.35em;
+            text-transform: uppercase;
+            color: var(--gold);
+        }
+
+        .primer-section {
+            padding: 64px 64px 72px;
+            background: #FFFFFF;
+            color: #111111;
+            border-bottom: 1px solid #E8E8E8;
+        }
+
+        .primer-intro {
+            font-family: var(--serif);
+            font-style: italic;
+            font-size: 17px;
+            color: #333;
+            max-width: 620px;
+            line-height: 1.7;
+            margin-bottom: 40px;
+        }
+
+        .primer-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1px;
+            background: #E0E0E0;
+        }
+
+        .primer-card {
+            background: #FFFFFF;
+            padding: 28px 32px;
+        }
+
+        .primer-term {
+            font-family: var(--serif);
+            font-size: 19px;
+            font-weight: 400;
+            color: #111111;
+            margin-bottom: 10px;
+        }
+
+        .primer-def {
+            font-size: 12.5px;
+            color: #000000;
+            line-height: 1.85;
+        }
+
+        @media (max-width: 700px) {
+            .primer-section { padding: 48px 24px 56px; }
+            .primer-grid { grid-template-columns: 1fr; }
+            .section { padding: 48px 24px; }
+            #cover { grid-template-columns: 1fr; min-height: auto; }
+            .cover-left, .cover-right { padding: 48px 24px; border-right: none; }
+            .cover-name { font-size: 42px; }
+            .sec-title { font-size: 32px; }
+            .themes-grid { grid-template-columns: 1fr; }
+            .archetype-inner { grid-template-columns: 1fr; gap: 32px; }
+            .pillars-grid { grid-template-columns: 1fr; }
+            .vi-dark-grid { grid-template-columns: 1fr; }
+            .strength-two-col { grid-template-columns: 1fr; gap: 32px; }
+            .next-grid { grid-template-columns: 1fr !important; gap: 32px !important; }
+            .statement-text { font-size: 20px; }
+            .strength-number { font-size: 56px; }
+            .archetype-main { font-size: 26px; }
+            .blind-spot-headline { font-size: 26px; }
+            .first-move-headline { font-size: 30px; }
+        }
+    </style>
+</head>
+<body>
+<div class="page">
+
+<div id="cover">
+    <div class="cover-left">
+        <div class="cover-brand">SLATE &amp; SIGNAL, Signal Profile</div>
+        <div>
+            <div class="cover-label">Signal Profile</div>
+            <div class="cover-name">Wren<br>Halloway</div>
+            <div class="cover-meta">
+                <div class="cover-meta-row">
+                    <span class="cover-meta-label">Date</span>
+                    <span class="cover-meta-value">September 2026</span>
+                </div>
+                <div class="cover-meta-row">
+                    <span class="cover-meta-label">Signal Strength</span>
+                    <span class="cover-meta-value">8 / 10</span>
+                </div>
+                <div class="cover-meta-row">
+                    <span class="cover-meta-label">Archetype</span>
+                    <span class="cover-meta-value">The Guide</span>
+                </div>
+            </div>
+        </div>
+        <div style="font-size:9px; letter-spacing:0.3em; text-transform:uppercase; color:#FFFFFF;">Confidential</div>
+    </div>
+    <div class="cover-right">
+        <div class="cover-archetype-card">
+            <div class="cover-archetype-label">Archetype</div>
+            <div class="cover-archetype-name">The Guide</div>
+            <div class="cover-archetype-desc">You walk people through the exact passage you once could not make alone. Cold water swimming for adults who were not raised doing it.</div>
+        </div>
+        <div>
+            <div class="strength-label">Signal Strength</div>
+            <div class="strength-display">
+                <div class="strength-number">8</div>
+                <div class="strength-denom">/ 10</div>
+            </div>
+            <div class="strength-bar-wrap">
+                <div class="strength-bar" id="coverBar"></div>
+            </div>
+            <div style="font-size:11px; color:#FFFFFF; margin-top:10px; line-height:1.75;">
+ Your answers are clear, consistent, and specific. The through-line from your own experience learning to swim late, to working on the water, to now coaching nervous adults through their first cold water swims is strong. You know what you want to talk about and who it is for. The score is an 8 rather than a 9 or 10 because your current state as a coaching-based offer means your audience is narrower by design, and there is less room to expand into adjacent topics without drifting from the core offer. That is a feature of focus. </div>
+        </div>
+    </div>
+</div>
+
+<div class="primer-section">
+    <div class="sec-num" style="color:var(--gold);">Before You Read</div>
+    <div class="sec-title" style="color:#111111;">Interpretation<br>Guide</div>
+    <div class="primer-intro">A quick guide to the words in this profile, so nothing here leaves you guessing what it actually means for you.</div>
+    <div class="primer-grid">
+        <div class="primer-card">
+            <div class="primer-term">Signal</div>
+            <div class="primer-def">The pattern already running through your story, work, and instincts, whether or not you've named it yet. It's what people already sense about you before you say a word. Building a brand or a following works better when you build on a signal that's natural to you, instead of inventing one or chasing a trend that might be completely discordant with who you actually are. There shouldn't be any friction between you and what you're creating.</div>
+        </div>
+        <div class="primer-card">
+            <div class="primer-term">Archetype</div>
+            <div class="primer-def">The recognizable role your signal plays in other people's stories, the reason a stranger could describe what you do in one sentence to a friend. It shapes what you post, how you sound, and who ends up following you because they recognize the role you play.</div>
+        </div>
+        <div class="primer-card">
+            <div class="primer-term">Signal Strength</div>
+            <div class="primer-def">A 1 to 10 read of how clear and consistent your pattern is right now, based only on what you wrote. A lower number isn't a bad grade, it just means the pattern needs more specificity before it's ready to build content on. A higher number means you already have enough to start posting from today.</div>
+        </div>
+        <div class="primer-card">
+            <div class="primer-term">Suggested Direction</div>
+            <div class="primer-def">An actual recommendation. Where your answers point in terms of niche and what kind of content format genuinely fits how you communicate, so you're not staring at a blank page wondering where to start.</div>
+        </div>
+        <div class="primer-card">
+            <div class="primer-term">Content Pillars</div>
+            <div class="primer-def">Three real categories your future posts can live in, pulled from what's already true about you rather than invented. Instead of watching a thousand other videos to see how everyone else does it, wondering where to start, what to talk about, and what people even want to see, you can pick a pillar from this profile and have a clear direction for what to create.</div>
+        </div>
+        <div class="primer-card">
+            <div class="primer-term">Blind Spot</div>
+            <div class="primer-def">The thing your answers point to that you probably can't see from where you're standing. Everyone has one. It's usually the gap between what you already know and what you're actually showing people, and naming it is the fastest way to close it. This is the most direct section in your profile, on purpose. The useful thing to hear is rarely the comfortable one.</div>
+        </div>
+    </div>
+</div>
+
+<div class="section section-light">
+    <div class="sec-num">01</div>
+    <div class="sec-title">Suggested<br>Direction</div>
+    <div class="sec-sub">Where these answers point, and how you could actually build with them.</div>
+
+    <div style="margin-top:48px;">
+        <div style="font-size:9px; letter-spacing:0.4em; text-transform:uppercase; color:var(--gold); margin-bottom:20px;">Niche Directions</div>
+        <div class="pillar-card" style="border:1px solid #E0E0E0; margin-bottom:1px;">
+            <div class="pillar-num">Direction 01</div>
+            <div class="pillar-name">Cold water coaching for late-start adults</div>
+            <div class="pillar-desc">This is the most direct line from your answers. You coach nervous adults through their first minute in cold water. You know what the panic feels like and how to get someone through it without rushing them. This is the core of what you already do and what you said you want to talk about.</div>
+        </div>
+        <div class="pillar-card" style="border:1px solid #E0E0E0; margin-bottom:1px;">
+            <div class="pillar-num">Direction 02</div>
+            <div class="pillar-name">Coastal access for ordinary people</div>
+            <div class="pillar-desc">This is a slightly wider frame around the same work. Your frustration with outdoor sport being sold as elite and extreme suggests an audience who has been told the coast is not for them. You could build content around making coastal swimming, small boat skills, and weather literacy accessible to people who were not raised doing it. This still centers your coaching work but opens the door to talk about tidal ecology, small boat repair, and coastal weather as part of the same world.</div>
+        </div>
+        <div class="pillar-card" style="border:1px solid #E0E0E0;">
+            <div class="pillar-num">Direction 03</div>
+            <div class="pillar-name">The psychology of cold water</div>
+            <div class="pillar-desc">This is the narrowest and most teaching-focused direction. Your interest in why people stop going outside after thirty, combined with your own experience of panic and swimming back anyway, suggests an audience interested in the mental side of cold water swimming. You could build content that unpacks the first minute panic, what happens in the body, and how to work with it rather than override it. This would still support your coaching work but would lean more heavily on explanation and less on the swim itself.</div>
+        </div>
+    </div>
+
+    <div style="margin-top:56px;">
+        <div style="font-size:9px; letter-spacing:0.4em; text-transform:uppercase; color:var(--gold); margin-bottom:20px;">Content Format</div>
+        <div class="pillar-card" style="border:1px solid #1A1A1A;">
+            <div class="pillar-name">Talking-head teaching and short swim footage</div>
+            <div class="pillar-desc">You said you talk things through out loud and would rather show the finished swim than explain it. That suggests short vertical video where you talk directly to camera about one specific thing (the first minute panic, what to do with your breathing, whether a wetsuit is worth it) and then cut to brief, unnarrated footage of the swim itself. You could post these as Instagram Reels or YouTube Shorts, and use them to fill your small group sessions. The weekly letter you mentioned could be a separate, longer-form piece on Substack or as an email, where you write about the coast in a way that builds trust and keeps you visible between sessions.</div>
+            <div class="pillar-example">A 60-second Reel where you talk to camera about what happens in the first minute of cold water (the gasp reflex, the panic, the instinct to turn around) and then show 10 seconds of you swimming out past the harbour wall at dawn. No music, no explanation over the swim footage, just the sound of the water. End with a single line of text: 'This is what it looks like when you stay.' Use that format to talk about one specific thing people ask you, post it twice a week, and let it feed your coaching waitlist.</div>
+        </div>
+    </div>
+
+    <div style="margin-top:32px; font-size:11px; color:#666; line-height:1.85; max-width:640px; font-style:italic;">
+ These directions are informed suggestions drawn from your own answers. The Signal Report is where they get tested against real market research and verifiable data: what's saturated, what's genuinely open, and color science run against your actual field. </div>
+</div>
+
+<div class="section">
+    <div class="sec-num">02</div>
+    <div class="sec-title">Signal<br>Archetype</div>
+    <div class="sec-sub" style="color:#FFFFFF;">An archetype is the recognizable role your brand plays in someone else's story. People follow a role they recognize and trust. Naming yours is the first step to building a brand people can actually describe to a friend.</div>
+    <div style="margin-top:48px; max-width:640px;">
+        <div class="archetype-main">The Guide</div>
+        <div class="archetype-body">
+ You learned to swim at twenty six, worked a season on a fishing boat, had a panic attack two hundred metres offshore and swam back anyway. Now you coach nervous adults through their first minute in cold water, the part where most people turn around or never start. You are drawn to tidal ecology, small boat repair, coastal weather, and cold water swimming. People ask you whether a wetsuit is worth it and what to do about the first minute panic. Getting a nervous adult into cold water without frightening them comes easy to you. You want small group sessions full without advertising and a weekly letter about the coast that people actually read. You would rather show the finished swim than explain it, and you talk things through out loud. Your brand lives in that exact crossing: from someone who was frightened to someone who can hold space for someone else's fear without rushing them past it. </div>
+    </div>
+</div>
+
+<div class="section section-light">
+    <div class="sec-num">03</div>
+    <div class="sec-title">Signal<br>Strength</div>
+    <div class="strength-two-col">
+        <div>
+            <div style="height:32px;"></div>
+            <div class="strength-label" style="color:#000000;">Score</div>
+            <div class="strength-display">
+                <div class="strength-number" style="color:#111111;">8</div>
+                <div class="strength-denom" style="color:#000000;">/ 10</div>
+            </div>
+            <div class="strength-bar-wrap" style="background:#E0E0E0;">
+                <div class="strength-bar" id="strengthBar"></div>
+            </div>
+            <div style="font-size:11px; color:#000000; margin-top:10px;">Clear, specific, and ready to build from.</div>
+        </div>
+        <div style="padding-top:40px;">
+            <div style="font-family:'Cormorant Garamond',serif; font-size:22px; font-weight:400; color:#111111; line-height:1.5; margin-bottom:20px;">
+ You know what you are here to do
+ </div>
+            <div style="font-size:12px; color:#000000; line-height:1.95;">
+                <p>Your answers are unusually consistent. The through-line from learning to swim late, to working on a fishing boat, to coaching nervous adults through cold water is clean and strong. You are not trying to be three different things. You know what you want to talk about and who it is for.</p>
+                <p style="margin-top:16px;">The specificity in your answers makes this easier to build. You named the exact moment people ask you for help with: the first minute panic. You named the bad advice that bothers you: just jump in and get it over with. You named what success looks like: small group sessions full without advertising, and a weekly letter about the coast that people actually read. That level of clarity gives you a real foundation.</p>
+                <p style="margin-top:16px;">The score is an 8 rather than a 9 or 10 because your current state as a coaching-based offer means your audience is narrower by design. You are the product, and that limits how wide you can cast without diluting the core offer. That is a feature of focus. It does mean your content will need to stay close to the coaching work itself, and there is less room to explore adjacent topics like tidal ecology or boat repair without those feeling like tangents. The signal is strong. The scope is intentionally contained.</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="section section-light">
+    <div class="sec-num">05</div>
+    <div class="sec-title">Content<br>Pillars</div>
+    <div class="sec-sub">Three areas where your signal is strongest and most transferable to an audience.</div>
+
+    <div class="pillars-grid">
+        <div class="pillar-card">
+            <div class="pillar-num">Pillar 01</div>
+            <div class="pillar-name">First Minute Coaching</div>
+            <div class="pillar-desc">This is where you talk about the exact thing people ask you for help with: the first minute panic, the gasp reflex, what to do with your breathing, whether a wetsuit helps, and how to get through it without turning around. Every post in this pillar should feel like a small piece of coaching someone could use the next time they stand at the water's edge.</div>
+            <div class="pillar-example">A post about what to do with your hands in the first thirty seconds of cold water, because most people clench them or flail, and neither one helps.</div>
+        </div>
+        <div class="pillar-card">
+            <div class="pillar-num">Pillar 02</div>
+            <div class="pillar-name">Coastal Literacy</div>
+            <div class="pillar-desc">This is where you share what you know about tidal ecology, coastal weather, small boat repair, and the practical skills that make someone competent around water. These posts are not coaching, they are teaching. They position you as someone who knows the coast well enough to help someone else learn it, and they give your audience something to follow you for even when they are not ready to book a session yet.</div>
+            <div class="pillar-example">A short post about how to read a tide table and why it matters if you are swimming from a beach, written plainly enough that someone who has never looked at one before could follow it.</div>
+        </div>
+        <div class="pillar-card">
+            <div class="pillar-num">Pillar 03</div>
+            <div class="pillar-name">Late Start Stories</div>
+            <div class="pillar-desc">This is where you talk about learning to swim at twenty six, working on a fishing boat, the panic attack offshore, and why people stop going outside after thirty. These posts are personal but not confessional. They are about the shape of starting something late and what it takes to keep going. They make your audience feel seen and remind them that you were once where they are now.</div>
+            <div class="pillar-example">A post about the first time you swam out past the harbour wall and realised you were not frightened any more, written as a moment rather than a lesson.</div>
+        </div>
+    </div>
+</div>
+
+<div class="section">
+    <div class="sec-num">06</div>
+    <div class="sec-title">Signal<br>Blind Spot</div>
+    <div class="blind-spot-inner">
+        <div class="blind-spot-headline">You assume people know you are not selling extreme sport</div>
+        <div class="blind-spot-body">
+            <p>Your frustration with outdoor sport being sold as elite and extreme is clear in your answers. That is the entire point of your work. The gap is that you have not yet built a visible body of content that makes that framing obvious to someone who does not already know you.</p>
+            <p>Right now, if someone stumbles across your work, they have no way to tell whether you are selling cold water swimming as a hardcore challenge or as something gentle and possible. The difference between those two framings is everything. One attracts people who want to prove something. The other attracts people who are nervous and need permission to start small. You are trying to reach the second group, but without content that explicitly names that, you risk attracting the first.</p>
+            <p>This matters because your coaching offer depends on trust. A nervous adult will not book a session with you unless they believe you understand their fear and will not rush them past it. That belief has to be built in public, in small pieces, over time. You cannot assume people will infer it from the fact that you exist. You have to say it plainly, repeatedly, in different shapes, until it is the first thing someone thinks when they hear your name.</p>
+            <p>The fix is straightforward. Start posting content that explicitly positions cold water swimming as something ordinary people can do. Name the fear. Name the bad advice. Show what it looks like to start small and stay. Do that enough times and the framing becomes inseparable from your name. That is when your small group sessions fill without advertising, because the right people already know what you stand for before they ever reach out.</p>
+        </div>
+    </div>
+</div>
+
+<div class="section section-light">
+    <div class="sec-num">07</div>
+    <div class="sec-title">First<br>Move</div>
+    <div style="margin-top:48px; max-width:640px;">
+        <div class="first-move-headline" style="color:#111111;">Post one piece of first-minute coaching every week</div>
+        <div class="first-move-body">
+            <p>You said you want to talk about the first minute in cold water and how to get through it. That is your starting point. Your first move is to post one short piece of coaching every week, talking directly to camera about one specific thing people ask you: what to do with the gasp reflex, whether a wetsuit helps, how to breathe through the panic, what to do if you want to turn around.</p>
+            <p>Each one should be 60 seconds or less. Talk to camera for 45 seconds, then cut to 10 or 15 seconds of unnarrated swim footage. No music, no voiceover, just the sound of the water. End with a single line of text that names the point. Post it as a Reel or a Short. Do this every week for three months and you will have twelve pieces of coaching content that make it obvious what you do and who it is for.</p>
+            <p>The weekly letter you mentioned can come later. Right now, you need a visible body of work that builds trust with nervous adults who do not yet know you. The letter is a retention tool for people who are already following you. The short coaching videos are the acquisition tool that gets them there in the first place. Start with the videos. Once you have a consistent posting rhythm and a small audience, add the letter.</p>
+            <p>Do not wait to have a full content plan or a perfect posting schedule. Start with one video this week. Talk about the first thing people ask you. Film it on your phone. Post it. Do it again next week. The consistency matters more than the production quality, and the specificity matters more than the reach. You are trying to build a body of work that makes the right people feel seen and safe enough to reach out.</p>
+        </div>
+    </div>
+</div>
+
+<div class="section">
+    <div class="sec-num">08</div>
+    <div class="sec-title">Visual<br>Identity</div>
+    <div class="sec-sub">A compass for the visual work ahead. Direction for how the visual world should feel.</div>
+
+    <div class="vi-dark-grid">
+        <div class="vi-dark-card">
+            <div class="vi-label-dark">Mood</div>
+            <div class="vi-value-dark">Quiet, competent, and unglamorous</div>
+            <div class="vi-body-dark">Your visual world should feel like early morning water, worn equipment, and the kind of coastal landscape that is not trying to sell you anything. Think weathered rope, painted hull red, chipped enamel, the light at dawn before anyone else is awake. Nothing polished or aspirational. Nothing that looks like a travel ad or an athletic brand. The mood is quiet competence, the aesthetic of someone who knows how to tie a knot and check the tide table and get in the water when it is cold. Unglamorous in the best sense. Real, worn-in, and trustworthy.</div>
+        </div>
+        <div class="vi-dark-card">
+            <div class="vi-label-dark">Photography Style</div>
+            <div class="vi-value-dark">Low, still, and unfiltered</div>
+            <div class="vi-body-dark">Shoot low to the water. Shoot in flat morning light or dusk. Avoid dramatic angles, bright colors, or anything that makes cold water swimming look heroic or extreme. Show the swim itself without narration or music. Show the wetsuit hanging on a hook, the boat pulled up on the beach, the harbour wall at dawn. Keep everything still and plain. No motion blur, no action shots, no one leaping off a rock. The photography should feel like documentation. Someone watching should think 'I could do that,' not 'I could never do that.'</div>
+        </div>
+        <div class="vi-dark-card">
+            <div class="vi-label-dark">Color Direction</div>
+            <div class="vi-value-dark">Harbour blue, weathered rope, hull red, enamel dusk</div>
+            <div class="vi-body-dark">Harbour blue, weathered rope, hull red, and enamel dusk: a coastal working palette built for quiet competence.</div>
+            <div class="color-swatch-row">
+                <div class="color-swatch" style="background:#34495e;"></div>
+                <div class="color-swatch" style="background:#a8714a;"></div>
+                <div class="color-swatch" style="background:#8b4a4a;"></div>
+                <div class="color-swatch" style="background:#d4cfc4;"></div>
+                <div class="color-swatch" style="background:#2c3e50;"></div>
+            </div>
+        </div>
+        <div class="vi-dark-card">
+            <div class="vi-label-dark">Tone of Voice</div>
+            <div class="vi-value-dark">Plain, steady, and unrushed</div>
+            <div class="vi-body-dark">You talk like someone who has done the thing and is now walking someone else through it. No hype, no urgency, no motivational language. You do not tell people to push through or get over it. You tell them what happens in the first minute, what to do with their breathing, and what it looks like when they stay. Your tone is steady, practical, and unrushed. You sound like someone who knows how to wait, who understands that fear is not a weakness, and who will not make someone feel small for being nervous. Write the way you would talk to someone standing at the water's edge who is not sure they can do it. Short sentences. Plain words. No drama. Just the next step, and then the one after that.</div>
+        </div>
+    </div>
+</div>
+
+<div class="section" style="background:#0D0D0D; color:#FFFFFF;">
+    <div style="display:grid; grid-template-columns:1fr 1fr; gap:80px; align-items:start;" class="next-grid">
+        <div>
+            <div class="sec-num">What Comes Next</div>
+            <div class="sec-title">Your<br>Next Move</div>
+            <div style="height:28px;"></div>
+            <div style="font-size:15px; color:var(--dim); line-height:1.9; max-width:340px;">
+ Your next step is a decision. How do you want to show up, and what is your niche? </div>
+            <div style="height:20px;"></div>
+            <div style="font-family:'Cormorant Garamond',serif; font-size:19px; font-weight:300; color:#FFFFFF; line-height:1.8; max-width:340px; font-style:italic;">
+ Once you decide, you already have enough here to start. </div>
+            <div style="height:28px;"></div>
+            <div style="font-size:12px; color:#FFFFFF; line-height:1.9; max-width:320px;">
+ No pressure, no rush. This one stands on its own. </div>
+        </div>
+        <div style="padding-top:52px; display:flex; flex-direction:column; gap:24px;">
+            <div style="border:1px solid #1A1A1A; padding:32px 36px;">
+                <div style="font-size:9px; letter-spacing:0.4em; text-transform:uppercase; color:var(--gold); margin-bottom:18px;">Once you know your direction</div>
+                <div style="font-family:'Cormorant Garamond',serif; font-size:14px; font-style:italic; color:#FFFFFF; line-height:1.85; margin-bottom:22px;">
+ Once you're clear on the direction, the content, and the colors you want, the Signal Report gives you the real research behind those specific choices. </div>
+                <div style="font-size:11px; color:#FFFFFF; line-height:2.3; border-top:1px solid #1A1A1A; padding-top:18px;">
+                    <div>Verified color science for your exact palette</div>
+                    <div>Real research on your chosen niche</div>
+                    <div>The underserved gap within it</div>
+                    <div>Market opportunity backed by real data</div>
+                    <div>Income comparables from your actual field</div>
+                </div>
+                <div style="height:22px;"></div>
+                <div style="font-size:9px; letter-spacing:0.3em; text-transform:uppercase; color:var(--gold);">
+ Available Soon
+ </div>
+            </div>
+            <div style="border:1px solid #1A1A1A; padding:32px 36px;">
+                <div style="font-size:9px; letter-spacing:0.4em; text-transform:uppercase; color:var(--gold); margin-bottom:18px;">Ready to actually start building?</div>
+                <div style="font-family:'Cormorant Garamond',serif; font-size:14px; font-style:italic; color:#FFFFFF; line-height:1.85; margin-bottom:22px;">
+ The Bridge Starter turns this signal into a real, day-to-day plan you can follow. </div>
+                <div style="font-size:9px; letter-spacing:0.3em; text-transform:uppercase; color:var(--gold);">
+ Available Soon
+ </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="section" style="background:#0D0D0D; color:#FFFFFF;">
+    <div class="back-name">SLATE<br>&amp; SIGNAL</div>
+    <div class="back-star">✦</div>
+    <div class="back-tagline">Clarity Reveals. Strategy Amplifies. You Lead.</div>
+</div>
+
+<div style="padding:24px 64px; font-size:9px; letter-spacing:0.2em; text-transform:uppercase; color:#F4D475; background:#0D0D0D; border-top:1px solid #1A1A1A;">Prepared exclusively for Wren Halloway &middot; hello@slateandsignal.studio &middot; September 2026</div>
+</div>
+
+<script>
+    window.addEventListener('load', () => {
+        setTimeout(() => {
+            const bars = ['coverBar', 'strengthBar'];
+            bars.forEach(id => {
+                const el = document.getElementById(id);
+                if (el) el.style.width = '80%';
+            });
+        }, 500);
+    });
+</script>
+
+</body>
+</html>
