@@ -485,7 +485,7 @@ function result(fresh){
   var html =
     '<div class="r-head">'+
       '<div class="col"><div class="label">Prepared for</div><p style="margin:0;font-size:17px">'+esc(S.name)+'</p></div>'+
-      '<div class="col right"><div class="label">Your result</div><p class="small" style="margin:0">'+new Date().toLocaleDateString("en-US",{month:"long",day:"numeric",year:"numeric"})+'</p></div>'+
+      '<div class="col right"><div class="label">Your result</div><p class="small" style="margin:0">'+(S.date ? new Date(S.date) : new Date()).toLocaleDateString("en-US",{month:"long",day:"numeric",year:"numeric"})+'</p></div>'+
     '</div>'+
     '<div class="label">Your content style</div>'+
     '<div class="r-style">'+styleName+'</div>';
@@ -566,14 +566,14 @@ function result(fresh){
 
   html += '<div class="actions no-print">'+
     '<button class="btn btn-line" id="pdf">Save as PDF</button>'+
-    '<button class="btn btn-line" id="redo">Retake</button>'+
+    (VIEW_ONLY ? '' : '<button class="btn btn-line" id="redo">Retake</button>')+
   '</div>'+
-  '<p class="small no-print" style="margin-top:16px">A copy of this result is on its way to '+esc(S.email)+'.</p>';
+  (VIEW_ONLY ? '' : '<p class="small no-print" style="margin-top:16px">A copy of this result is on its way to '+esc(S.email)+'.</p>');
 
   render(html);
   document.getElementById("mastRight").innerHTML = '<strong>'+plainStyle+'</strong>'+BUILD_SHORT[S.build];
   document.getElementById("pdf").onclick = function(){ window.print(); };
-  document.getElementById("redo").onclick = function(){
+  if(!VIEW_ONLY) document.getElementById("redo").onclick = function(){
     S = {step:"how", i:0, name:S.name, email:S.email, a:[], build:null, vis:null, prod:null, tone:null}; save(); how();
   };
 
@@ -598,13 +598,35 @@ function result(fresh){
   }
 }
 
+/* ---------- saved result links (content-style/?r=TOKEN) ----------
+   Every finished quiz gets a permanent private link. The answers live in n8n
+   (Content Style Quiz Responses); this rebuilds the same result from them. */
+var VIEW_ONLY = false;
+var SAVED_RESULT = "https://slateandsignal.app.n8n.cloud/webhook/content-style-result";
+function viewSaved(t){
+  app.innerHTML = '<div class="screen"><p class="small">Opening your result&hellip;</p></div>';
+  fetch(SAVED_RESULT+"?t="+encodeURIComponent(t)).then(function(r){ return r.json(); }).then(function(d){
+    if(!d || !d.ok || !d.answers){ app.innerHTML = '<div class="screen"><p>This result link is not recognized. <a href="./">Take the quiz</a> to see yours.</p></div>'; return; }
+    S = {step:"result", i:0, name:d.name||"", email:"", a:[], build:null, vis:null, prod:null, tone:null, date:d.date||null};
+    String(d.answers).split(" ").forEach(function(p){ var m = p.match(/^(\d+)([A-D])$/); if(m) S.a[+m[1]-1] = "ABCD".indexOf(m[2]); });
+    S.build = "ABCDEFG".indexOf(d.buildChoice); S.vis = "ABCDEF".indexOf(d.visChoice); S.prod = "ABCDEF".indexOf(d.prodChoice);
+    var ti = TONE_SHORT.indexOf(d.tone); S.tone = ti > -1 ? ti : null;
+    if(S.build<0 || S.vis<0 || S.prod<0){ app.innerHTML = '<div class="screen"><p>This result could not be opened. <a href="./">Take the quiz</a> to see yours.</p></div>'; return; }
+    VIEW_ONLY = true; result(false);
+  }).catch(function(){ app.innerHTML = '<div class="screen"><p>This result link could not be opened. <a href="./">Take the quiz</a> to see yours, or try the link again later.</p></div>'; });
+}
+
 /* ---------- boot ---------- */
-load();
-if(S.step==="result" && S.prod!==null) result(false);
-else if(S.step==="q" && S.email) question();
-else if(PARTS[S.step] && S.email) choice(S.step);
-else if(S.step==="how" && S.email) how();
-else intro();
+var RTOKEN = (location.search.match(/[?&]r=([a-f0-9]{16,64})/) || [])[1];
+if(RTOKEN) viewSaved(RTOKEN);
+else {
+  load();
+  if(S.step==="result" && S.prod!==null) result(false);
+  else if(S.step==="q" && S.email) question();
+  else if(PARTS[S.step] && S.email) choice(S.step);
+  else if(S.step==="how" && S.email) how();
+  else intro();
+}
 </script>
 
 </body>
