@@ -4,6 +4,7 @@ Allow: /
 # Client Signal Profiles live under /p/ at long random addresses.
 # They must never be indexed or appear in search results.
 Disallow: /p/
+Disallow: /r/
 
 Sitemap: https://slateandsignal.studio/sitemap.xml
 
