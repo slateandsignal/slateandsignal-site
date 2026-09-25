@@ -1,0 +1,1364 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta name="robots" content="noindex, nofollow">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Damon Kenrick: Command Center</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700;800&family=Space+Mono:wght@400;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --white:#FFFFFF;
+    --paper:#F6F6F2;
+    --olive:#5C6E3C;
+    --olive-dark:#3F4C29;
+    --olive-light:#8A9A5B;
+    --navy:#152747;
+    --navy-light:#28406B;
+    --charcoal:#1B1D1F;
+    --black:#000000;
+    --line:#D8DAD1;
+    --line-dark:#B9BCB0;
+  }
+  *{box-sizing:border-box;}
+  html,body{margin:0;padding:0;background:var(--white);color:var(--charcoal);font-family:'Inter',sans-serif;}
+  h1,h2,h3,h4{font-family:'Orbitron',sans-serif;letter-spacing:.03em;margin:0;}
+  .mono{font-family:'Space Mono',monospace;}
+
+  /* ---------- HEADER ---------- */
+  .hud-header{
+    background:var(--navy);
+    color:var(--white);
+    padding:28px 32px;
+    position:relative;
+    border-bottom:3px solid var(--olive);
+  }
+  .hud-header::before{
+    content:"";
+    position:absolute;top:0;left:0;right:0;bottom:0;
+    background-image:
+      linear-gradient(90deg, rgba(255,255,255,.05) 1px, transparent 1px),
+      linear-gradient(0deg, rgba(255,255,255,.05) 1px, transparent 1px);
+    background-size:26px 26px;
+    pointer-events:none;
+  }
+  .hud-top-row{display:flex;justify-content:space-between;align-items:flex-start;position:relative;z-index:1;flex-wrap:wrap;gap:16px;}
+  .hud-title{font-size:28px;font-weight:800;color:var(--white);}
+  .hud-title span{color:var(--olive-light);}
+  .hud-sub{font-family:'Space Mono',monospace;font-size:12px;color:var(--olive-light);margin-top:6px;letter-spacing:.08em;text-transform:uppercase;}
+  .hud-meta{font-family:'Space Mono',monospace;font-size:11px;color:var(--white);text-align:right;line-height:1.8;}
+  .hud-meta b{color:var(--olive-light);}
+  .edit-toggle{
+    background:var(--olive);
+    color:var(--white);
+    border:2px solid var(--olive-light);
+    font-family:'Space Mono',monospace;
+    font-size:12px;
+    padding:9px 16px;
+    cursor:pointer;
+    text-transform:uppercase;
+    letter-spacing:.08em;
+    margin-top:10px;
+  }
+  .edit-toggle:hover{background:var(--olive-dark);}
+  .edit-toggle.active{background:var(--charcoal);border-color:var(--white);}
+
+  /* ---------- TABS ---------- */
+  .tab-bar{
+    display:flex;
+    background:var(--charcoal);
+    border-bottom:3px solid var(--olive);
+    overflow-x:auto;
+    position:sticky;
+    top:0;
+    z-index:99;
+  }
+  .tab-btn{
+    font-family:'Space Mono',monospace;
+    font-size:12px;
+    letter-spacing:.06em;
+    text-transform:uppercase;
+    color:var(--white);
+    background:var(--charcoal);
+    border:none;
+    border-right:1px solid #333;
+    padding:16px 18px;
+    cursor:pointer;
+    white-space:nowrap;
+    flex-shrink:0;
+  }
+  .tab-btn:hover{background:#2a2c2f;}
+  .tab-btn.active{background:var(--olive);color:var(--white);font-weight:700;}
+
+  .tab-panel{display:none;padding:32px;max-width:1150px;margin:0 auto;}
+  .tab-panel.active{display:block;}
+
+  /* ---------- CARDS ---------- */
+  .card{
+    background:var(--paper);
+    border:1px solid var(--line);
+    border-left:4px solid var(--olive);
+    padding:20px 22px;
+    margin-bottom:18px;
+    position:relative;
+  }
+  .card.navy-edge{border-left-color:var(--navy);}
+  .card.charcoal-edge{border-left-color:var(--charcoal);}
+  .card h3{font-size:15px;color:var(--charcoal);margin-bottom:8px;}
+  .card p, .card li{font-size:14px;line-height:1.65;color:#333;}
+  .card .tag{
+    display:inline-block;
+    font-family:'Space Mono',monospace;
+    font-size:10px;
+    letter-spacing:.08em;
+    text-transform:uppercase;
+    padding:3px 9px;
+    border:1px solid var(--olive);
+    color:var(--olive-dark);
+    margin-bottom:10px;
+  }
+  .tag.navy{border-color:var(--navy);color:var(--navy);}
+  .tag.charcoal{border-color:var(--charcoal);color:var(--charcoal);}
+
+  section.block{margin-bottom:36px;}
+  section.block h2{font-size:20px;color:var(--charcoal);border-bottom:2px solid var(--olive);padding-bottom:10px;margin-bottom:18px;}
+  section.block .kicker{font-family:'Space Mono',monospace;font-size:11px;color:var(--olive-dark);text-transform:uppercase;letter-spacing:.1em;margin-bottom:4px;}
+
+  /* ---------- TABLES ---------- */
+  table{width:100%;border-collapse:collapse;margin-bottom:10px;font-size:13.5px;}
+  th{
+    background:var(--charcoal);
+    color:var(--white);
+    font-family:'Space Mono',monospace;
+    font-size:11px;
+    text-transform:uppercase;
+    letter-spacing:.05em;
+    text-align:left;
+    padding:10px 12px;
+  }
+  td{padding:10px 12px;border-bottom:1px solid var(--line);vertical-align:top;color:#2b2b2b;}
+  tr:nth-child(even) td{background:var(--paper);}
+
+  /* ---------- BADGES ---------- */
+  .badge{
+    display:inline-block;
+    font-family:'Space Mono',monospace;
+    font-size:10px;
+    letter-spacing:.06em;
+    text-transform:uppercase;
+    padding:3px 8px;
+    color:var(--white);
+  }
+  .badge.verified{background:var(--olive);}
+  .badge.unconfirmed{background:var(--charcoal);}
+  .badge.recommendation{background:var(--navy);}
+  .badge.gap{background:#8a4b2f;}
+
+  a{color:var(--navy);}
+  a:hover{color:var(--olive-dark);}
+
+  .phase-num{
+    font-family:'Orbitron',sans-serif;
+    font-size:26px;
+    font-weight:800;
+    color:var(--olive);
+    border:2px solid var(--olive);
+    width:46px;height:46px;
+    display:flex;align-items:center;justify-content:center;
+    flex-shrink:0;
+  }
+  .phase-row{display:flex;gap:16px;margin-bottom:16px;}
+  .phase-body{flex:1;}
+
+  [contenteditable="true"]{outline:none;}
+  .edit-mode [contenteditable="true"]:hover{background:#FFF7DE;cursor:text;}
+  .edit-mode [contenteditable="true"]:focus{background:#FFF2C2;}
+
+  .save-note{
+    font-family:'Space Mono',monospace;
+    font-size:11px;
+    color:var(--olive-dark);
+    background:var(--paper);
+    border:1px dashed var(--line-dark);
+    padding:10px 14px;
+    margin-bottom:20px;
+    display:none;
+  }
+  .edit-mode .save-note{display:block;}
+
+  .footer-bar{
+    background:var(--charcoal);
+    color:var(--white);
+    font-family:'Space Mono',monospace;
+    font-size:11px;
+    text-align:center;
+    padding:16px;
+    letter-spacing:.05em;
+  }
+  .footer-bar span{color:var(--olive-light);}
+
+  ul.clean{margin:6px 0;padding-left:18px;}
+  ul.clean li{margin-bottom:6px;}
+
+  /* ---------- CHECKLIST ---------- */
+  ul.checklist{list-style:none;margin:0;padding:0;}
+  ul.checklist li{display:flex;align-items:flex-start;gap:10px;margin-bottom:10px;font-size:14px;line-height:1.55;color:#333;}
+  ul.checklist input[type=checkbox]{margin-top:3px;accent-color:var(--olive);width:16px;height:16px;flex-shrink:0;cursor:pointer;}
+
+  /* ---------- PLATFORM PILLS ---------- */
+  .pill{display:inline-block;font-family:'Space Mono',monospace;font-size:10px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;padding:3px 9px;color:var(--white);margin-right:6px;}
+  .pill-yt{background:#a31c1c;}
+  .pill-ig{background:#a3452b;}
+  .pill-fb{background:var(--navy);}
+  .pill-tt{background:var(--charcoal);}
+  .pill-sub{background:var(--olive);}
+
+  /* ---------- KICKER GRID / SWATCH ---------- */
+  .grid-2{display:grid;grid-template-columns:1fr 1fr;gap:18px;}
+  .grid-3{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;}
+  @media(max-width:800px){.grid-2,.grid-3{grid-template-columns:1fr;}}
+
+  .rung{
+    background:var(--paper);
+    border:1px solid var(--line);
+    border-top:4px solid var(--olive);
+    padding:16px 18px;
+    margin-bottom:14px;
+  }
+  .rung .rung-label{font-family:'Space Mono',monospace;font-size:11px;text-transform:uppercase;letter-spacing:.08em;color:var(--olive-dark);margin-bottom:6px;}
+
+  details{border:1px solid var(--line);background:var(--white);margin-bottom:10px;}
+  summary{padding:12px 16px;cursor:pointer;font-family:'Space Mono',monospace;font-size:12px;font-weight:700;letter-spacing:.05em;text-transform:uppercase;color:var(--charcoal);list-style:none;}
+  summary::-webkit-details-marker{display:none;}
+  summary::before{content:"+ ";color:var(--olive);}
+  details[open] summary::before{content:"- ";}
+  details > div{padding:4px 16px 16px;font-size:14px;line-height:1.65;color:#333;}
+
+  @media(max-width:700px){
+    .hud-top-row{flex-direction:column;}
+    .hud-meta{text-align:left;}
+    .tab-panel{padding:20px 16px;}
+  }
+</style>
+</head>
+<body>
+
+<div class="hud-header">
+  <div class="hud-top-row">
+    <div>
+      <div class="hud-title">DAMON KENRICK <span>// COMMAND CENTER</span></div>
+      <div class="hud-sub">Personal Brand + AI-Film IP: Build &amp; Monetization System</div>
+      <button class="edit-toggle" id="editToggle">Enable Edit Mode</button>
+    </div>
+    <div class="hud-meta">
+      STATUS: <b>ACTIVE BUILD</b><br>
+      LAST UPDATED: <b>2026-09-24</b><br>
+      OWNER: <b>Raquel Covey / Slate &amp; Signal</b><br>
+      SUBJECT: <b>Damon Kenrick</b>
+    </div>
+  </div>
+</div>
+
+<div class="tab-bar" id="tabBar">
+  <button class="tab-btn active" data-tab="incomeplan">Income Plan</button>
+  <button class="tab-btn" data-tab="overview">Overview</button>
+  <button class="tab-btn" data-tab="foundation">Foundation</button>
+  <button class="tab-btn" data-tab="schedule">Posting Schedule</button>
+  <button class="tab-btn" data-tab="playbook">Content Playbook</button>
+  <button class="tab-btn" data-tab="seogeo">SEO &amp; GEO</button>
+  <button class="tab-btn" data-tab="monetization">Monetization &amp; Funnel</button>
+  <button class="tab-btn" data-tab="tools">Tool Stack</button>
+  <button class="tab-btn" data-tab="engagement">Who To Follow</button>
+  <button class="tab-btn" data-tab="verification">Verification Log</button>
+  <button class="tab-btn" data-tab="howto">How This Works</button>
+</div>
+
+<div class="save-note">EDIT MODE ON: click any highlighted text to change it, or check off a box. Changes save automatically to this browser only. Use "Export Edits" in How This Works to keep a permanent copy.</div>
+
+<!-- ================= OVERVIEW ================= -->
+<div class="tab-panel" id="overview">
+  <section class="block">
+    <div class="card navy-edge"><p><b>Updated 2026-09-22:</b> start with the Income Plan tab. The steps below are on hold until contract work replaces the $20 job.</p></div>
+    <div class="kicker">The original build order, on hold</div>
+    <h2>The Whole System, One Page</h2>
+    <div class="card">
+      <p contenteditable="true">Two content engines. Four platforms. One owned list. One order of operations, so nothing gets built out of sequence. Every other tab is a zoomed-in view of one row below.</p>
+    </div>
+
+    <table>
+      <tr><th>Step</th><th>What</th><th>Where the detail lives</th><th>Status</th></tr>
+      <tr>
+        <td contenteditable="true">1</td>
+        <td contenteditable="true">Close this week's four gaps: Facebook Page conversion, YouTube Studio numbers pulled, media kit built, Substack opened.</td>
+        <td contenteditable="true">Foundation tab, Phase 0</td>
+        <td contenteditable="true"><span class="badge unconfirmed">Not started</span></td>
+      </tr>
+      <tr>
+        <td contenteditable="true">2</td>
+        <td contenteditable="true">Set the posting cadence per platform and start batching a week of content at once.</td>
+        <td contenteditable="true">Posting Schedule tab</td>
+        <td contenteditable="true"><span class="badge unconfirmed">Not started</span></td>
+      </tr>
+      <tr>
+        <td contenteditable="true">3</td>
+        <td contenteditable="true">Write every title, description, and caption with one keyword and one AI-quotable answer sentence up front.</td>
+        <td contenteditable="true">SEO &amp; GEO tab</td>
+        <td contenteditable="true"><span class="badge unconfirmed">Not started</span></td>
+      </tr>
+      <tr>
+        <td contenteditable="true">4</td>
+        <td contenteditable="true">Set up email capture and the first lead magnet before pitching sponsors or listing products.</td>
+        <td contenteditable="true">Monetization &amp; Funnel tab</td>
+        <td contenteditable="true"><span class="badge unconfirmed">Not started</span></td>
+      </tr>
+      <tr>
+        <td contenteditable="true">5</td>
+        <td contenteditable="true">Open the income ladder in order: sponsorships first, Bible-art product line second, courses third, film industry attention last.</td>
+        <td contenteditable="true">Monetization &amp; Funnel tab</td>
+        <td contenteditable="true"><span class="badge unconfirmed">Not started</span></td>
+      </tr>
+      <tr>
+        <td contenteditable="true">6</td>
+        <td contenteditable="true">Fill in the remaining tool gaps only when a specific bottleneck justifies the cost.</td>
+        <td contenteditable="true">Tool Stack tab</td>
+        <td contenteditable="true"><span class="badge unconfirmed">Not started</span></td>
+      </tr>
+    </table>
+
+    <div class="card navy-edge">
+      <h3 contenteditable="true">The one rule that keeps this from overwhelming you</h3>
+      <p contenteditable="true">Only work the step you're on. The tabs ahead of your current step exist so you don't have to hold them in your head, not so you tackle them early. Check items off as you go. Nothing later matters until the step in front of it is real.</p>
+    </div>
+
+    <div class="card charcoal-edge">
+      <h3 contenteditable="true">Weekly rhythm, once the system is running</h3>
+      <ul class="checklist">
+        <li><input type="checkbox"><span contenteditable="true">One batch session: write and record a week of content in one sitting (see Content Playbook, Speed Up Production).</span></li>
+        <li><input type="checkbox"><span contenteditable="true">Post on the cadence set in Posting Schedule, all four platforms.</span></li>
+        <li><input type="checkbox"><span contenteditable="true">One email send: newsletter, lead magnet follow-up, or list nurture (see Monetization &amp; Funnel).</span></li>
+        <li><input type="checkbox"><span contenteditable="true">One check of YouTube Studio and Meta insights: what held retention, what didn't.</span></li>
+        <li><input type="checkbox"><span contenteditable="true">One community check-in: answer real questions in the places listed on Who To Follow. Those answers become next week's content ideas.</span></li>
+      </ul>
+    </div>
+  </section>
+</div>
+
+<!-- ================= FOUNDATION ================= -->
+<div class="tab-panel" id="foundation">
+
+  <section class="block">
+    <div class="kicker">Who this is for</div>
+    <h2>Two Brands, One Person</h2>
+    <div class="card">
+      <span class="tag">Engine 1</span>
+      <h3 contenteditable="true">AI Education (English, Spanish, Portuguese)</h3>
+      <p contenteditable="true">Practical AI tips for work: meeting recaps, task ownership, drop-down agendas, time tracking. Low production cost, high relatability, easy entry point. Damon's fluency in all three languages triples its addressable audience for the cost of a dub, not a rebuild.</p>
+    </div>
+    <div class="card navy-edge">
+      <span class="tag navy">Engine 2</span>
+      <h3 contenteditable="true">Creative Work: "Roxie Moonlight" + Bible-Story AI Art</h3>
+      <p contenteditable="true">Two projects, one engine, because both run through Damon's identity as an artist and illustrator rather than his teaching voice. "Roxie Moonlight" is the sci-fi film he's building and posting in public as he learns. Bible-story AI art is a separate, faster-to-monetize product line that draws on the same illustration skill. Keep these visually and tonally distinct from the AI Education engine so audiences self-select into the one they came for.</p>
+    </div>
+  </section>
+
+  <section class="block">
+    <div class="kicker">Strategic decision, already made</div>
+    <h2>No Age-Niche</h2>
+    <div class="card charcoal-edge">
+      <p contenteditable="true">Not niching down to the 51+ audience. That audience finds him naturally; narrowing to it caps reach for no upside. Content stays broad-audience, general AI/creative interest.</p>
+    </div>
+  </section>
+
+  <section class="block">
+    <div class="kicker">What Damon brings that most creators don't</div>
+    <h2>Core Assets</h2>
+    <table>
+      <tr><th>Asset</th><th>Why it matters</th></tr>
+      <tr><td contenteditable="true">Master's in Instructional Design</td><td contenteditable="true">Can package "how I did this" into real curriculum, not just tips. The credibility edge over most AI-tips creators.</td></tr>
+      <tr><td contenteditable="true">Trilingual: English, Portuguese, Spanish</td><td contenteditable="true">Same content, three markets. Roughly triples addressable audience for the teaching arm with translation/dubbing, not new content creation.</td></tr>
+      <tr><td contenteditable="true">Illustrator / artist background</td><td contenteditable="true">Feeds directly into character design for the film and the Bible-story art line.</td></tr>
+      <tr><td contenteditable="true">Existing Signal Report / Blueprint</td><td contenteditable="true">Prior brand work already done. This command center builds on it, doesn't replace it.</td></tr>
+    </table>
+  </section>
+
+  <section class="block">
+    <div class="kicker">The trigger event, now partly verified</div>
+    <h2>Log The Viral Posts</h2>
+    <div class="card">
+      <p contenteditable="true">The Facebook number is confirmed: 552 likes and 9 shares on a single post is real, solid engagement for one video. It's not the "skyrocketed" scale the original description implied, and that gap matters: a sponsorship pitch built on an inflated number falls apart the moment a brand asks for a screenshot. The YouTube figure is still an unverified self-report and needs to come straight out of YouTube Studio (total views, 24-hour views, average view duration) before it goes anywhere near a media kit.</p>
+      <table>
+        <tr><th>Platform</th><th>Video</th><th>Views (24hr)</th><th>Views (current)</th><th>Likes</th><th>Avg. retention</th></tr>
+        <tr><td contenteditable="true">YouTube Shorts</td><td contenteditable="true">[fill in]</td><td contenteditable="true">~53,000 (reported, still unverified)</td><td contenteditable="true">[fill in]</td><td contenteditable="true">[fill in]</td><td contenteditable="true">[fill in]</td></tr>
+        <tr><td contenteditable="true">Facebook (personal profile)</td><td contenteditable="true">[fill in title]</td><td contenteditable="true">Not pulled, profile insights are limited</td><td contenteditable="true">Not pulled</td><td contenteditable="true">552 likes, 9 shares</td><td contenteditable="true">Not available on a personal profile</td></tr>
+      </table>
+      <span class="badge verified">Facebook numbers verified, sourced screenshot</span>
+      <span class="badge unconfirmed">YouTube still unverified</span>
+    </div>
+    <div class="card charcoal-edge">
+      <h3 contenteditable="true">Blocker: Facebook is a personal profile, not a Page</h3>
+      <p contenteditable="true">Personal profiles can't run ads, can't connect to Meta Business Suite, can't access real analytics beyond basic counts, and can't be considered for Meta's Facebook Content Monetization program, which now merges the old In-Stream Ads, Ads on Reels, and Performance Bonus into one system covering Reels, long-form video, photos, and text posts. That program is Page-only and, per Meta's own help page, currently invite-only, so converting to a Page is what makes Damon eligible to be invited, not an automatic monetization switch. Most sponsorship and scheduling tools, including Blotato's posting features, also expect a Page. Converting is a five-minute task and it's the blocker sitting in front of almost everything else on Facebook. Do it before building the media kit, not after.</p>
+    </div>
+  </section>
+
+  <section class="block">
+    <div class="kicker">Operating principle</div>
+    <h2>North Star</h2>
+    <div class="card">
+      <p contenteditable="true">Organize first. Every piece flows toward monetization. Automate everything that can be automated so Damon is not chained to a screen to sustain this.</p>
+    </div>
+  </section>
+
+  <section class="block">
+    <div class="kicker">Build order</div>
+    <h2>Five Phases</h2>
+
+    <div class="phase-row">
+      <div class="phase-num">0</div>
+      <div class="phase-body card">
+        <h3 contenteditable="true">This Week: Close the Gaps, Then Move</h3>
+        <p contenteditable="true">The Facebook number is verified (552 likes, 9 shares); YouTube still isn't and needs a Studio pull before it goes in a media kit. Four actions unlock everything else this week: convert Facebook from a personal profile to a Page, open the Etsy shop, build the one-page media kit, and start a free email list. None of these depend on anything else being finished first. They can happen in parallel.</p>
+      </div>
+    </div>
+
+    <div class="phase-row">
+      <div class="phase-num">1</div>
+      <div class="phase-body card navy-edge">
+        <h3 contenteditable="true">Weeks 1-2: Foundation</h3>
+        <ul class="clean">
+          <li contenteditable="true">Finish the website skeleton (already started).</li>
+          <li contenteditable="true">Get the email list from Phase 0 sending consistently. This is what turns viral traffic into a list Damon actually owns.</li>
+          <li contenteditable="true">Pick ONE hub platform for long-term search value. Recommendation: YouTube, since it's where the reported spike happened and it's the only platform where content compounds in search over time through chapters, transcripts, and long-form depth.</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="phase-row">
+      <div class="phase-num">2</div>
+      <div class="phase-body card">
+        <h3 contenteditable="true">Weeks 2-4: Content Engine</h3>
+        <ul class="clean">
+          <li contenteditable="true">Batch-first system: one longer piece of film-progress or AI-tips content becomes several shorts across platforms in the same sitting.</li>
+          <li contenteditable="true">Apply the Content Playbook formats to every short.</li>
+          <li contenteditable="true">Batch write and film weekly; publish on the cadence set in Posting Schedule across YouTube, Instagram, Facebook, TikTok.</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="phase-row">
+      <div class="phase-num">3</div>
+      <div class="phase-body card navy-edge">
+        <h3 contenteditable="true">Weeks 4-8, Monetization Layer 1: Sponsorships + Bible-Story Art</h3>
+        <ul class="clean">
+          <li contenteditable="true">Send the media kit built in Phase 0 to AI-tool and creative-software brands. Samir Mallal is proof this works for AI-film creators specifically.</li>
+          <li contenteditable="true">List the first Bible-story art pieces on the Etsy shop opened in Phase 0. Shortest path to a real, Damon-specific number instead of relying on other people's reported figures.</li>
+          <li contenteditable="true">Launch a free lead magnet from the AI-tips content (a prompt template pack) that captures email subscribers.</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="phase-row">
+      <div class="phase-num">4</div>
+      <div class="phase-body card">
+        <h3 contenteditable="true">Weeks 8-12, Monetization Layer 2: Expand, Then Test Courses</h3>
+        <ul class="clean">
+          <li contenteditable="true">Expand Bible-story art into a YouTube read-along channel once the Etsy line has real sales data behind it.</li>
+          <li contenteditable="true">Only now, once the free email/YouTube audience exists, test a first paid mini-course from the AI-tips content in English. Hold off on the Portuguese/Spanish versions until the English version proves it sells.</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="phase-row">
+      <div class="phase-num">5</div>
+      <div class="phase-body card navy-edge">
+        <h3 contenteditable="true">Ongoing: Scale &amp; Automate</h3>
+        <p contenteditable="true">Turn each working process into a template or checklist (scripting format, editing pass, posting checklist) so production doesn't require Damon's direct hands-on time at every step. What makes the whole system scalable instead of a second full-time job.</p>
+      </div>
+    </div>
+  </section>
+
+</div>
+
+<!-- ================= POSTING SCHEDULE ================= -->
+<div class="tab-panel" id="schedule">
+  <section class="block">
+    <div class="kicker">How much, how often, when, on every platform</div>
+    <h2>Posting Schedule</h2>
+    <div class="card">
+      <p contenteditable="true">Every number below is a target range from current platform research, not a guarantee. Start at the low end of each range and only push toward the high end once batching (see Content Playbook) makes it sustainable without burning Damon out.</p>
+    </div>
+
+    <table>
+      <tr><th>Platform</th><th>Format</th><th>Cadence</th><th>Best windows</th></tr>
+      <tr><td contenteditable="true"><span class="pill pill-yt">YouTube</span>Shorts</td><td contenteditable="true">Daily tips, quick film-progress clips</td><td contenteditable="true">3-7 per week to start, scaling toward daily once batched</td><td contenteditable="true">Morning, matches earlier scroll peaks for Shorts specifically</td></tr>
+      <tr><td contenteditable="true"><span class="pill pill-yt">YouTube</span>Long-form</td><td contenteditable="true">Deeper AI-tips lessons, Roxie Moonlight progress and behind-the-scenes</td><td contenteditable="true">2-3 per week</td><td contenteditable="true">2-3 hours before the audience's peak viewing time, typically midday to early evening</td></tr>
+      <tr><td contenteditable="true"><span class="pill pill-ig">Instagram</span>Reels</td><td contenteditable="true">Repurposed Shorts, same-day cross-cut</td><td contenteditable="true">3-5 per week</td><td contenteditable="true">Mid-morning (9am-12pm) and evening (6-11pm); Tuesday through Thursday strongest, Sunday weakest</td></tr>
+      <tr><td contenteditable="true"><span class="pill pill-ig">Instagram</span>Feed / Carousel</td><td contenteditable="true">Illustration process, Bible-art previews</td><td contenteditable="true">3-5 per week</td><td contenteditable="true">Same windows as Reels above</td></tr>
+      <tr><td contenteditable="true"><span class="pill pill-fb">Facebook</span>Page feed</td><td contenteditable="true">Cross-post from Instagram, plus Page-native updates once converted</td><td contenteditable="true">Matches Instagram cadence via cross-post</td><td contenteditable="true">Feed posts peak 9-11am; Reels peak 6-9pm; midweek strongest</td></tr>
+      <tr><td contenteditable="true"><span class="pill pill-tt">TikTok</span>Shorts</td><td contenteditable="true">Fastest-turnaround daily tips, raw film progress</td><td contenteditable="true">Daily where possible; 1,000+ For You views and a 1+ minute runtime unlock Creator Rewards tier</td><td contenteditable="true">Evening peaks are the general pattern; test against Damon's own audience once he has 30 days of data</td></tr>
+      <tr><td contenteditable="true"><span class="pill pill-sub">Email list</span>Newsletter</td><td contenteditable="true">Weekly recap + lead magnet nurture</td><td contenteditable="true">1 per week minimum</td><td contenteditable="true">Consistent day/time matters more than the specific slot; pick one and hold it</td></tr>
+    </table>
+
+    <div class="card navy-edge">
+      <h3 contenteditable="true">Cross-posting reality check</h3>
+      <p contenteditable="true">Instagram and Facebook are linked through Meta, but they have genuinely different peak windows even on a linked account. A same-caption cross-post will always be timed closer to one platform's peak than the other's. Pick Instagram's window as the primary, since it's the platform with the larger existing audience, and treat Facebook's reach as a bonus rather than optimizing for both equally.</p>
+    </div>
+
+    <div class="card charcoal-edge">
+      <h3 contenteditable="true">Fill in before locking this in</h3>
+      <ul class="checklist">
+        <li><input type="checkbox"><span contenteditable="true">Current follower count on each of the four platforms</span></li>
+        <li><input type="checkbox"><span contenteditable="true">Average views per video over the last 30 days, per platform</span></li>
+        <li><input type="checkbox"><span contenteditable="true">TikTok Creator Rewards eligibility check: 10,000 followers, 100,000 video views in the trailing 30 days, 18+, account in good standing, Personal or Creator account (not Business)</span></li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="block">
+    <div class="kicker">Two engines, same week</div>
+    <h2>Sample Weekly Rhythm</h2>
+    <details open>
+      <summary>Monday</summary>
+      <div contenteditable="true"><span class="pill pill-yt">YT Short</span>AI tip of the week, English.<br><span class="pill pill-ig">IG Reel</span>Same tip, repurposed same day.<br><span class="pill pill-sub">Email</span>Weekly newsletter send.</div>
+    </details>
+    <details>
+      <summary>Tuesday</summary>
+      <div contenteditable="true"><span class="pill pill-tt">TikTok</span>Fast-turnaround tip or reaction.<br><span class="pill pill-fb">Facebook</span>Cross-post from Instagram.</div>
+    </details>
+    <details>
+      <summary>Wednesday</summary>
+      <div contenteditable="true"><span class="pill pill-yt">YT Long-form</span>Deeper lesson or Roxie Moonlight progress update.<br><span class="pill pill-ig">IG Carousel</span>Bible-art or illustration process preview.</div>
+    </details>
+    <details>
+      <summary>Thursday</summary>
+      <div contenteditable="true"><span class="pill pill-yt">YT Short</span>AI tip, Spanish or Portuguese dub of Monday's tip.<br><span class="pill pill-tt">TikTok</span>Fast-turnaround tip.</div>
+    </details>
+    <details>
+      <summary>Friday</summary>
+      <div contenteditable="true"><span class="pill pill-ig">IG Reel</span>Film behind-the-scenes or Bible-art reveal.<br><span class="pill pill-fb">Facebook</span>Cross-post.</div>
+    </details>
+    <details>
+      <summary>Saturday / Sunday</summary>
+      <div contenteditable="true">Light posting only. Weekend energy on TikTok if there's something real to say. No pressure to fill every slot.</div>
+    </details>
+  </section>
+</div>
+
+<!-- ================= CONTENT PLAYBOOK ================= -->
+<div class="tab-panel" id="playbook">
+
+  <section class="block">
+    <div class="kicker">Pulled after audit: named frameworks with no independent source behind them</div>
+    <h2>Hooks &amp; Structure</h2>
+    <div class="card charcoal-edge">
+      <p contenteditable="true">This section used to list several named frameworks as though they were established, sourced methodologies. The audit couldn't independently verify any of them as named frameworks with a real source behind the name, so they've been pulled rather than left in looking more solid than they are. The underlying instincts, open strong, deliver what was promised, give the viewer somewhere to go next, are still reasonable and worth doing. They just aren't a proven framework. Rebuild this section once there are real, sourced examples of what's working for Damon's own content specifically.</p>
+    </div>
+  </section>
+
+  <section class="block">
+    <div class="kicker">The two formats, side by side</div>
+    <h2>Curated vs. Educational Cuts</h2>
+    <div class="grid-2">
+      <div class="card">
+        <span class="tag">Curated / Cinematic</span>
+        <h3 contenteditable="true">Roxie Moonlight progress clips</h3>
+        <p contenteditable="true">Music-driven, visually polished, no talking-head explanation layered on top. This is the format that already works and should stay untouched. Post it as its own clean cut, not mixed with teaching commentary.</p>
+      </div>
+      <div class="card navy-edge">
+        <span class="tag navy">Educational / Direct</span>
+        <h3 contenteditable="true">The "how I made this" version</h3>
+        <p contenteditable="true">Same footage, separate cut, with Damon explaining one specific technique or tool decision directly to camera or in voiceover. This is the version that carries the AI-education audience and the SEO/GEO value, since search and AI answer engines need explicit, spoken or written explanation to cite, not just music and visuals.</p>
+      </div>
+    </div>
+    <div class="card">
+      <p contenteditable="true">Post both from the same source footage. The cinematic cut goes wide for reach and shareability. The educational cut goes deep for search, teaching credibility, and lead-magnet funnel traffic. Neither replaces the other.</p>
+    </div>
+  </section>
+
+  <section class="block">
+    <div class="kicker">Real, sourced tool for cutting production time</div>
+    <h2>Speed Up Daily-Tip Production</h2>
+    <ul class="clean">
+      <li contenteditable="true"><b>Batch scripting:</b> write every script or prompt for a week's worth of tips in one sitting. AI tools can shift tone or behavior between sessions, so writing in one block keeps the voice consistent across the batch.</li>
+      <li contenteditable="true"><b>CapCut's Smart Cut:</b> AI-assisted editing feature reported to cut editing time significantly versus manual cutting. Built-in auto-captions handle the on-screen text pass automatically.</li>
+      <li contenteditable="true"><b>Teleprompter note:</b> CapCut's teleprompter is mobile-only, not available on desktop. Plan the recording workflow around that if scripting on a laptop and filming on a phone.</li>
+      <li contenteditable="true"><b>Batch filming:</b> record a week of daily tips back to back in one outfit/setting session, then schedule the release through Blotato across the week. Cuts setup and teardown time to once instead of daily.</li>
+    </ul>
+  </section>
+
+</div>
+
+<!-- ================= SEO & GEO ================= -->
+<div class="tab-panel" id="seogeo">
+  <section class="block">
+    <div class="kicker">Embedded in everything, not a separate task</div>
+    <h2>SEO / GEO Fundamentals</h2>
+    <div class="card">
+      <p contenteditable="true"><b>SEO (search engines):</b> every title and description gets a real keyword pass, not just a catchy phrase. Consistent naming across every platform: always "Damon Kenrick," same spelling and handle everywhere.</p>
+      <p contenteditable="true"><b>GEO (AI answer engines):</b> Google's own current position is that optimizing for AI Overviews is still SEO, layered on top of the same crawlability and authority signals, not a separate discipline. AI Overviews now appear on a large share of Google searches, and tools like ChatGPT and Perplexity pull and cite sources that write clear, structured, self-contained answers near the top of the page or description. Perplexity specifically rewards recency.</p>
+      <p contenteditable="true">Practical rule: write the first two to three sentences of every description or caption as a self-contained, quotable answer to one specific question, not a teaser. "This shows how to turn a messy meeting into a task list in under two minutes using [tool]" beats a vague hook, because it's the sentence an AI answer engine can lift and cite directly.</p>
+    </div>
+  </section>
+
+  <section class="block">
+    <div class="kicker">Per-platform specifics</div>
+    <h2>YouTube SEO Checklist</h2>
+    <ul class="checklist">
+      <li><input type="checkbox"><span contenteditable="true">Title leads with one target keyword and states the outcome clearly. No keyword stuffing.</span></li>
+      <li><input type="checkbox"><span contenteditable="true">Description opens with the primary keyword in the first two sentences, then 200-300 words of real explanation, not a tag dump.</span></li>
+      <li><input type="checkbox"><span contenteditable="true">8-12 tags, mixing broad and niche terms. Tags matter far less than titles and descriptions now, so don't over-invest here.</span></li>
+      <li><input type="checkbox"><span contenteditable="true">Chapters on every video over five to ten minutes, with descriptive names instead of "Part 1." Chapters are a real ranking factor and individual chapter names can surface directly in search.</span></li>
+      <li><input type="checkbox"><span contenteditable="true">Watch-through rate is the top ranking signal in 2026, ahead of session time, freshness, and satisfaction. Editing for retention matters more than any metadata trick.</span></li>
+    </ul>
+  </section>
+
+  <section class="block">
+    <div class="kicker">The compounding-content strategy</div>
+    <h2>Pillar Pages: One Per Engine</h2>
+    <div class="card navy-edge">
+      <p contenteditable="true">A pillar page is one comprehensive page that ranks for a broad topic, linked to eight to twelve focused cluster posts underneath it. Together they form a topical authority hub, and AI answer engines specifically reward that kind of whole-topic mastery over a single, narrow ranked page. Sweet spot length is around 3,000 words for the pillar itself.</p>
+    </div>
+    <div class="grid-2">
+      <div class="rung">
+        <div class="rung-label">Pillar 1</div>
+        <h4 contenteditable="true">AI Tools For Work</h4>
+        <p contenteditable="true">One page covering the full landscape of using AI for meeting recaps, task ownership, and time tracking. Cluster posts underneath: one per specific tool or technique, in English first, then Spanish and Portuguese versions once the English pillar proves out.</p>
+      </div>
+      <div class="rung">
+        <div class="rung-label">Pillar 2</div>
+        <h4 contenteditable="true">Behind Roxie Moonlight / AI Filmmaking</h4>
+        <p contenteditable="true">One page covering the full process of building an AI-generated film start to finish. Cluster posts underneath: one per production technique (character consistency, voice work, editing pass, story structure).</p>
+      </div>
+    </div>
+    <div class="card charcoal-edge">
+      <p contenteditable="true">Build sequence: pick the pillar topic, map the cluster topics, build the pillar page, then publish supporting cluster content over three to four months. Don't try to write both pillars and all clusters at once. Keep the two pillars on separate pages entirely; mixing AI-tips and AI-film content on one page works against the single-topic depth that AI answer engines reward.</p>
+    </div>
+  </section>
+</div>
+
+<!-- ================= MONETIZATION & FUNNEL ================= -->
+<div class="tab-panel" id="monetization">
+  <section class="block">
+    <div class="kicker">Ranked by the team, based on what's now verified</div>
+    <h2>Monetization Map</h2>
+    <div class="card">
+      <p contenteditable="true">Sponsorships move first because they only need a media kit and a real number, not a built audience or a finished product. The fastest possible path to first dollar. Bible-story art moves ahead of courses because it's a physical/digital product Damon can list this week using a skill he already has, while a course needs an audience built first or it sells to no one. Courses move to third, after the free audience exists. Film stays last, not because it matters least, but because the real money in the AI film industry is coming from agency and studio attention, not direct fan payment, and that takes longer to build.</p>
+    </div>
+    <table>
+      <tr><th>#</th><th>Stream</th><th>What it needs first</th><th>Speed to $1</th><th>Comp / evidence</th></tr>
+      <tr>
+        <td contenteditable="true">1</td>
+        <td contenteditable="true">Sponsorships</td>
+        <td contenteditable="true">Verified analytics + Facebook Page conversion + a one-page media kit</td>
+        <td contenteditable="true">Fast (weeks)</td>
+        <td contenteditable="true">Samir Mallal: Coca-Cola and Samsung brand work, "Spiders in the Sky" AI news project. <span class="badge verified">Verified</span><br>Meta's Creator Fast Track, officially announced March 2026: creators with 100K+ followers on Instagram, TikTok, or YouTube can earn $1,000/month from Facebook for three months, $3,000/month at 1M+ followers, for building a Page presence there. Also unlocks eligibility for Facebook Content Monetization, which Meta's own help page describes as invite-only, not open enrollment. <span class="badge verified">Verified, re-checked live, invite-only noted</span></td>
+      </tr>
+      <tr>
+        <td contenteditable="true">2</td>
+        <td contenteditable="true">Bible-story AI art</td>
+        <td contenteditable="true">Illustration set + Etsy shop + print-on-demand setup</td>
+        <td contenteditable="true">Fast to medium</td>
+        <td contenteditable="true">Real, active market on Etsy. No independently verified dollar figures for Damon's category yet. Real opportunity, unproven ceiling until Damon has his own sales data. <span class="badge unconfirmed">Market real, figures unverified</span></td>
+      </tr>
+      <tr>
+        <td contenteditable="true">3</td>
+        <td contenteditable="true">Courses, EN / ES / PT</td>
+        <td contenteditable="true">Free audience built first, then a paid offer built on the instructional-design credential</td>
+        <td contenteditable="true">Medium (after audience exists)</td>
+        <td contenteditable="true">Standard creator income-ladder structure: low-ticket template pack before a full course, so a real buyer signal exists before building the bigger product. <span class="badge recommendation">Recommendation</span></td>
+      </tr>
+      <tr>
+        <td contenteditable="true">4</td>
+        <td contenteditable="true">Film: "Roxie Moonlight"</td>
+        <td contenteditable="true">Finished, consistent output; industry attention, not fan-funding</td>
+        <td contenteditable="true">Slow, long-term, but the highest ceiling of any stream here</td>
+        <td contenteditable="true">Shy Kids: one viral AI short led to signing with talent agency UTA, and they now produce for Disney, HBO, AMC, and Netflix. The realistic version of how the film pays off, through industry representation and studio work, not direct fan payment. <span class="badge verified">Verified</span></td>
+      </tr>
+    </table>
+  </section>
+
+  <section class="block">
+    <div class="kicker">Email list, not a revenue stream on its own, the connective tissue for all four</div>
+    <h2>Email List First</h2>
+    <div class="card navy-edge">
+      <p contenteditable="true">Every stream above depends on having people to sell to who aren't rented from an algorithm. An owned email list is where viral traffic turns into a real, controllable audience, and it's what makes the jump from one good week to a repeatable business.</p>
+    </div>
+    <table>
+      <tr><th>Platform</th><th>Free tier</th><th>Cost model</th><th>Best fit for Damon</th></tr>
+      <tr><td contenteditable="true">Kit (formerly ConvertKit)</td><td contenteditable="true">Up to 10,000 subscribers free</td><td contenteditable="true">Tiered by subscriber count; unlimited sends on all plans</td><td contenteditable="true">Strongest automation. Best fit given the ask for a real welcome sequence, a lead magnet delivery, and tagging subscribers by interest (education vs. film/art).</td></tr>
+      <tr><td contenteditable="true">Beehiiv</td><td contenteditable="true">2,500 subscribers free</td><td contenteditable="true">No platform fee on subscription revenue beyond payment processing</td><td contenteditable="true">Best if the newsletter itself becomes a paid product later (ads, paid tiers).</td></tr>
+      <tr><td contenteditable="true">Substack</td><td contenteditable="true">Free to publish</td><td contenteditable="true">Takes a percentage of paid subscription revenue plus payment processing fees</td><td contenteditable="true">Strongest organic discovery starting from zero audience, weakest automation.</td></tr>
+    </table>
+    <div class="card">
+      <h3 contenteditable="true">Recommendation: Kit</h3>
+      <p contenteditable="true">Kit's automation fits the ask for minimal complexity that still delivers a real sequence. Minimum viable setup: one automation triggered by a signup form, delivering the lead magnet immediately, followed by a three to five email welcome sequence, tagging each subscriber by interest so future sends split between the education list and the film/art list. Confirm current pricing tiers directly on Kit's site before committing.</p>
+    </div>
+  </section>
+
+  <section class="block">
+    <div class="kicker">What to offer free, what to charge for, in order</div>
+    <h2>Income Ladder, Per Engine</h2>
+
+    <h3 style="font-size:14px;font-family:'Space Mono',monospace;color:var(--olive-dark);text-transform:uppercase;letter-spacing:.06em;margin:20px 0 10px;">AI Education</h3>
+    <div class="rung"><div class="rung-label">Free</div><p contenteditable="true">Daily tip shorts and long-form lessons. Builds reach and credibility.</p></div>
+    <div class="rung"><div class="rung-label">Lead magnet, fully automatable</div><p contenteditable="true">A prompt template pack, delivered automatically through the Kit welcome sequence.</p></div>
+    <div class="rung"><div class="rung-label">Low-ticket</div><p contenteditable="true">A single template pack or short workshop, priced low enough to be an easy yes, still automatable through checkout and delivery.</p></div>
+    <div class="rung"><div class="rung-label">Mid-ticket</div><p contenteditable="true">Full course, English first. Automatable once built; the only manual work is periodic updates.</p></div>
+    <div class="rung"><div class="rung-label">High-ticket, not automatable</div><p contenteditable="true">One-on-one consulting or done-for-you AI workflow setup. Requires a live conversation, not a checkout page.</p></div>
+
+    <h3 style="font-size:14px;font-family:'Space Mono',monospace;color:var(--olive-dark);text-transform:uppercase;letter-spacing:.06em;margin:20px 0 10px;">Bible-Story AI Art</h3>
+    <div class="rung"><div class="rung-label">Free</div><p contenteditable="true">Sample illustrations and short read-along clips.</p></div>
+    <div class="rung"><div class="rung-label">Lead magnet, fully automatable</div><p contenteditable="true">One free printable illustration, delivered automatically.</p></div>
+    <div class="rung"><div class="rung-label">Low-ticket, close to fully automatable</div><p contenteditable="true">Etsy listings and print-on-demand products. Fulfillment runs through the print-on-demand partner, not Damon directly.</p></div>
+    <div class="rung"><div class="rung-label">Mid-ticket</div><p contenteditable="true">Bundles or a subscription set of illustrations.</p></div>
+    <div class="rung"><div class="rung-label">High-ticket, not automatable</div><p contenteditable="true">Custom commission work. Requires direct back-and-forth with the buyer.</p></div>
+
+    <h3 style="font-size:14px;font-family:'Space Mono',monospace;color:var(--olive-dark);text-transform:uppercase;letter-spacing:.06em;margin:20px 0 10px;">Roxie Moonlight (Film)</h3>
+    <div class="rung"><div class="rung-label">Free</div><p contenteditable="true">Behind-the-scenes and progress content, both the cinematic cut and the educational cut described in Content Playbook.</p></div>
+    <div class="rung"><div class="rung-label">Lead magnet, fully automatable</div><p contenteditable="true">Deleted scenes or concept art, delivered to email subscribers.</p></div>
+    <div class="rung"><div class="rung-label">Low-ticket</div><p contenteditable="true">Backer or supporter tier, if a platform like Patreon fits once there's a built audience.</p></div>
+    <div class="rung"><div class="rung-label">Mid-ticket</div><p contenteditable="true">Paid episodes or a box set once the film has a body of finished work.</p></div>
+    <div class="rung"><div class="rung-label">High-ticket, not automatable</div><p contenteditable="true">Sponsorship deals and agency or brand partnership work. Inherently relationship-driven, the Shy Kids and Samir Mallal path.</p></div>
+  </section>
+</div>
+
+<!-- ================= TOOL STACK ================= -->
+<div class="tab-panel" id="tools">
+  <section class="block">
+    <div class="kicker">Already in hand</div>
+    <h2>Current Stack</h2>
+    <div class="card">
+      <p contenteditable="true"><b>Blotato</b> (scheduling, cross-posting, and Perplexity research access) &middot; <b>Claude</b> (writing, strategy, this command center) &middot; <b>ChatGPT / OpenAI</b> &middot; <b>Canva</b> (graphics)</p>
+    </div>
+  </section>
+
+  <section class="block">
+    <div class="kicker">Recommended additions, by function</div>
+    <h2>Fill the Gaps</h2>
+    <table>
+      <tr><th>Function</th><th>Tool</th><th>Approx. cost</th><th>Why this one</th></tr>
+      <tr><td contenteditable="true">Cinematic AI video generation</td><td contenteditable="true">Runway</td><td contenteditable="true">$12-28/mo</td><td contenteditable="true">Best current tool for cinematic control and shot-to-shot consistency for the sci-fi film.</td></tr>
+      <tr><td contenteditable="true">Cinematic AI video generation (alt.)</td><td contenteditable="true">Google Veo</td><td contenteditable="true">$20-200/mo, via Google One AI Premium / AI Ultra</td><td contenteditable="true">Wide price range depending on tier. Worth pricing out against Runway before committing.</td></tr>
+      <tr><td contenteditable="true">Character consistency across scenes</td><td contenteditable="true">Midjourney (character sheets) + Runway reference workflow</td><td contenteditable="true">$10-30/mo (Midjourney)</td><td contenteditable="true">Character drift is the number one tell of low-effort AI film. This is the fix.</td></tr>
+      <tr><td contenteditable="true">AI voice / narration / dubbing</td><td contenteditable="true">ElevenLabs</td><td contenteditable="true">$6-22/mo</td><td contenteditable="true">Handles narration and solves the Portuguese/Spanish dubbing need through voice cloning.</td></tr>
+      <tr><td contenteditable="true">Video editing / assembly, fastest turnaround</td><td contenteditable="true">CapCut</td><td contenteditable="true">Free-$10/mo</td><td contenteditable="true">AI-assisted Smart Cut editing and built-in auto-captions. Cited as the fastest current option for daily-tip turnaround. Teleprompter feature is mobile-only.</td></tr>
+      <tr><td contenteditable="true">Video editing / assembly, text-based</td><td contenteditable="true">Descript</td><td contenteditable="true">$16-24/mo</td><td contenteditable="true">Text-based editing, strong fit for longer educational cuts specifically.</td></tr>
+      <tr><td contenteditable="true">Owned audience / email list</td><td contenteditable="true">Kit</td><td contenteditable="true">Free up to 10,000 subscribers</td><td contenteditable="true">Automation-first. See Monetization &amp; Funnel tab for the full comparison against Substack and Beehiiv.</td></tr>
+      <tr><td contenteditable="true">Digital product sales (templates, mini-courses)</td><td contenteditable="true">Gumroad or Podia</td><td contenteditable="true">Free-$39/mo</td><td contenteditable="true">Simplest path to selling template packs and courses without building a storefront from scratch.</td></tr>
+      <tr><td contenteditable="true">Bible-story shop</td><td contenteditable="true">Etsy</td><td contenteditable="true">Listing fees only</td><td contenteditable="true">Where this product category already sells.</td></tr>
+      <tr><td contenteditable="true">YouTube SEO/GEO tracking</td><td contenteditable="true">vidIQ or TubeBuddy</td><td contenteditable="true">Free-$29/mo</td><td contenteditable="true">Keyword and title optimization for search and AI answer-engine visibility.</td></tr>
+    </table>
+    <div class="card charcoal-edge">
+      <p contenteditable="true"><b>Budget guide:</b> a lean, functional stack runs roughly $50-150/mo. A fuller setup with avatar tools, premium voice, and design runs $150-300+/mo. Start lean, add tools only when a specific bottleneck justifies the cost.</p>
+    </div>
+  </section>
+</div>
+
+<!-- ================= WHO TO FOLLOW ================= -->
+<div class="tab-panel" id="engagement">
+  <section class="block">
+    <div class="kicker">Who we're actively modeling, and why</div>
+    <h2>Comps To Watch</h2>
+    <div class="card navy-edge">
+      <span class="tag navy">Hooks &amp; Offer Strategy</span>
+      <h3 contenteditable="true">Alex Hormozi</h3>
+      <p contenteditable="true">Reference for hook and offer construction: how to make a free offer feel valuable enough to act on and a paid offer feel worth the price. Useful for packaging Damon's free versus paid AI-education content once there's an audience to offer it to.</p>
+    </div>
+    <div class="card">
+      <span class="tag">AI-Film Comp: Primary</span>
+      <h3 contenteditable="true">Shy Kids</h3>
+      <p contenteditable="true">The clearest real path for how a viral AI short turns into a career: one breakout video led to signing with talent agency UTA, and they now produce for Disney, HBO, AMC, and Netflix. The model to point to when anyone asks how "Roxie Moonlight" could realistically pay off: through industry representation and studio work, not through ad revenue or fan subscriptions.</p>
+      <span class="badge verified">Verified</span>
+    </div>
+    <div class="card charcoal-edge">
+      <span class="tag charcoal">AI-Film Comp: Secondary</span>
+      <h3 contenteditable="true">Samir Mallal</h3>
+      <p contenteditable="true">Confirmed: Coca-Cola and Samsung ad work, and the "Spiders in the Sky" AI news project is real and citable. A second data point for brand-partnership-style monetization alongside the Shy Kids agency path.</p>
+      <span class="badge verified">Verified</span>
+    </div>
+  </section>
+
+  <section class="block">
+    <div class="kicker">Real, named, sourced this pass</div>
+    <h2>AI-Education Creators To Follow</h2>
+    <div class="card">
+      <span class="tag">English, practical AI-for-work tips</span>
+      <h3 contenteditable="true">Igor Pogany, "The AI Advantage" (@aiadvantage)</h3>
+      <p contenteditable="true">Credited with one of the most-viewed ChatGPT tutorials and the most-viewed Midjourney tutorial on YouTube. Confirmed via a direct Perplexity re-check: roughly 430K-461K subscribers as of a March 2026 snapshot, and confirmed still active as of 2026. Spoke at AI Day Aarhus 2025 and has worked with Microsoft. Closest direct comp to Damon's education engine: practical tool tutorials, not hype content.</p>
+      <span class="badge verified">Verified, re-checked live</span>
+    </div>
+    <div class="card">
+      <span class="tag">English, interview format</span>
+      <h3 contenteditable="true">Claire Vo, "How I AI" (@howiaipodcast)</h3>
+      <p contenteditable="true">Chief Product Officer at LaunchDarkly, founder of ChatPRD. Her channel interviews professionals across industries about how they actually use AI day to day at work, a case-study format rather than a tips list. Around 25,000 YouTube subscribers as of August 2025, the most recent figure found across two research passes. Worth studying for the interview-style alternative to Damon's direct-to-camera tips format.</p>
+      <span class="badge verified">Verified, count may be dated</span>
+    </div>
+    <div class="card navy-edge">
+      <span class="tag navy">Spanish-language</span>
+      <h3 contenteditable="true">@javadex and the Spanish AI-TikTok field</h3>
+      <p contenteditable="true">Ranked the top Spanish-language AI TikToker for 2026 by Upliora, 185K+ followers, content built around practical enterprise AI implementation and n8n automations. Other named accounts in the same ranking: @iafacil.es (ChatGPT tips/prompts by industry), @aprende_ia (advanced prompting, model comparisons), @techconpaula (creative visual explainers), @iaparatodos (beginner-accessible AI content). Only @javadex had a stated follower count in the source; the rest are real named accounts without a confirmed number. This is a single-source ranking, worth a second look before treating the list as fully cross-verified.</p>
+      <span class="badge verified">Verified, single source</span>
+    </div>
+    <div class="card charcoal-edge">
+      <span class="tag charcoal">Portuguese-language</span>
+      <h3 contenteditable="true">Thin lead, mostly still a gap</h3>
+      <p contenteditable="true">A third research pass surfaced one possible name, Thalita Milan, "Tech & Marketing Tips," a YouTube video specifically about an AI productivity workflow for solopreneurs. No follower count or channel handle was confirmed, and no second source corroborated this as an ongoing tips-focused channel rather than a single video. Three passes total have not found a well-established, high-following Portuguese-language creator in this exact niche. Read this as a genuine open lane: if nobody else has claimed it at scale yet, Damon's Portuguese fluency could make him one of the first in this specific niche rather than a follower in it.</p>
+      <span class="badge gap">Thin lead, largely still a gap</span>
+    </div>
+  </section>
+
+  <section class="block">
+    <div class="kicker">Real, named, sourced this pass</div>
+    <h2>AI-Film Comps To Watch</h2>
+    <div class="card navy-edge">
+      <span class="tag navy">Hooks &amp; Offer Strategy</span>
+      <h3 contenteditable="true">Alex Hormozi</h3>
+      <p contenteditable="true">Reference for hook and offer construction: how to make a free offer feel valuable enough to act on and a paid offer feel worth the price. Useful for packaging Damon's free versus paid AI-education content once there's an audience to offer it to.</p>
+    </div>
+    <div class="card">
+      <span class="tag">AI-Film Comp: Primary</span>
+      <h3 contenteditable="true">Shy Kids</h3>
+      <p contenteditable="true">The clearest real path for how a viral AI short turns into a career: one breakout video led to signing with talent agency UTA, and they now produce for Disney, HBO, AMC, and Netflix. The model to point to when anyone asks how "Roxie Moonlight" could realistically pay off: through industry representation and studio work, not through ad revenue or fan subscriptions.</p>
+      <span class="badge verified">Verified</span>
+    </div>
+    <div class="card charcoal-edge">
+      <span class="tag charcoal">AI-Film Comp: Secondary</span>
+      <h3 contenteditable="true">Samir Mallal</h3>
+      <p contenteditable="true">Confirmed: Coca-Cola and Samsung ad work, and the "Spiders in the Sky" AI news project is real and citable. A second data point for brand-partnership-style monetization alongside the Shy Kids agency path.</p>
+      <span class="badge verified">Verified</span>
+    </div>
+    <div class="card">
+      <span class="tag">AI-Film Comp: Process Content</span>
+      <h3 contenteditable="true">Gap: no ongoing process-vlog creator confirmed</h3>
+      <p contenteditable="true">Two research passes could not confirm a named individual creator who publicly documents building one ongoing AI-generated film or series over time, the way Shy Kids' "Air Head" story became known. One soft lead surfaced, a single how-to piece by a writer named Gabe Michael, but it reads as a one-off tutorial rather than an ongoing documented series, and it wasn't corroborated by a second source. Everything else found was tutorial/education brand content (AI Filmmaking Academy, AI Filmmaker's Lab), not a personal production diary. Read this as a real gap in the format itself, and as a reason Damon's public, ongoing "building Roxie Moonlight" documentation could be a genuine differentiator rather than something to copy from an existing model.</p>
+      <span class="badge gap">Gap, real opportunity</span>
+    </div>
+  </section>
+
+  <section class="block">
+    <div class="kicker">Real, named, sourced this pass</div>
+    <h2>Communities To Join</h2>
+    <table>
+      <tr><th>Community</th><th>Type</th><th>Size</th><th>Why join it</th></tr>
+      <tr><td contenteditable="true">Runway official Discord</td><td contenteditable="true">Discord</td><td contenteditable="true">~108,000 members per the Runway help center; a live Perplexity re-check could not independently confirm this figure from other sources, treat as reported-but-not-cross-verified</td><td contenteditable="true">Weekly-challenge contests and livestreams. Directly on-topic for Roxie Moonlight production questions and visibility among other AI filmmakers.</td></tr>
+      <tr><td contenteditable="true">ElevenLabs official Discord</td><td contenteditable="true">Discord</td><td contenteditable="true">~105,000 members per the ElevenLabs help center; a live Perplexity re-check could not independently confirm this figure from other sources, treat as reported-but-not-cross-verified</td><td contenteditable="true">Channels split by topic (speech synthesis, language processing). Relevant for the voice/dubbing side of both the education and film engines.</td></tr>
+      <tr><td contenteditable="true">Midjourney official Discord</td><td contenteditable="true">Discord</td><td contenteditable="true">20.44 million members, most recent live-checked figure, confirmed the largest Discord server in the world (other 2025-2026 snapshots range 19.8M-21.2M, figures shift by capture date)</td><td contenteditable="true">Massive scale means less individual visibility, but the highest-volume source of real questions about character consistency and illustration, directly relevant to the Bible-art line.</td></tr>
+      <tr><td contenteditable="true">r/StableDiffusion, r/aivideo, r/RunwayML, r/ArtificialIntelligence</td><td contenteditable="true">Subreddits</td><td contenteditable="true">Real, active, membership counts not independently pulled this pass, confirm directly on Reddit before citing a number</td><td contenteditable="true">Where AI-tool questions get asked in text form, easier to scan for content ideas than a live Discord chat.</td></tr>
+    </table>
+    <div class="card charcoal-edge">
+      <span class="badge gap">Not found</span>
+      <p contenteditable="true">No specific Facebook Group for AI filmmakers or AI content creators was confirmed as a real, named group in either research pass. That's an honest gap, not evidence none exist. Worth one more direct search inside Facebook itself rather than a general web search, since Facebook Groups are often not well indexed externally.</p>
+    </div>
+  </section>
+
+  <section class="block">
+    <div class="kicker">Real, named, sourced this pass</div>
+    <h2>Bible-Story AI Art: Comps &amp; Cautionary Tale</h2>
+    <div class="card charcoal-edge">
+      <span class="tag charcoal">Cautionary comp</span>
+      <h3 contenteditable="true">Pray.com's "AI Bible" project</h3>
+      <p contenteditable="true">A real, actively covered and controversial project. Pray.com posts several AI-generated Bible videos weekly, Old Testament and Book of Revelation content, with real voice actors and original scored music layered onto AI visuals. A company spokesperson frames it as "edutainment"; a theology professor at Abilene Christian University has publicly criticized it for reducing scripture to what he called "an action movie." Worth reading directly before building Damon's own Bible-art positioning: the controversy is specifically about tone and reverence, exactly the line Damon needs to walk carefully in the opposite direction.</p>
+      <span class="badge verified">Verified, NPR / Houston Public Media, Sept 2026</span>
+    </div>
+    <div class="card">
+      <h3 contenteditable="true">Etsy market category, no named top sellers confirmed</h3>
+      <p contenteditable="true">Etsy has a real, active "Bible Story Artist" market category with scripture art, gospel scene illustrations, and downloadable clipart. No individual named top sellers were confirmed in this pass, worth browsing the category directly before opening Damon's own shop.</p>
+      <span class="badge verified">Category confirmed, sellers not identified</span>
+    </div>
+    <div class="card navy-edge">
+      <p contenteditable="true">Mootion and Shai Creative are real commercial AI-video/art tools marketed specifically to churches and ministries for Bible content generation. These are competing tools, not creators or communities, worth knowing about as alternatives Damon's future customers might already be aware of.</p>
+    </div>
+  </section>
+
+  <section class="block">
+    <div class="kicker">Simple, repeatable</div>
+    <h2>Why This Matters For Content Ideas, Not Just Networking</h2>
+    <div class="card">
+      <p contenteditable="true">The goal of joining these communities isn't just visibility. It's watching what questions people actually ask, then answering them in a video. A real question from a real community member is a better content prompt than a guess at what the audience wants, and it works two ways: Damon can answer questions he finds, and he can build a reputation in these spaces that gets people bringing questions directly to him.</p>
+    </div>
+  </section>
+
+  <section class="block">
+    <div class="kicker">Simple, repeatable</div>
+    <h2>Weekly Engagement Checklist</h2>
+    <ul class="checklist">
+      <li><input type="checkbox"><span contenteditable="true">Spend 15-20 minutes in one AI-education community, answer one real question with a short comment or DM.</span></li>
+      <li><input type="checkbox"><span contenteditable="true">Spend 15-20 minutes in one AI-filmmaking community, same approach.</span></li>
+      <li><input type="checkbox"><span contenteditable="true">Turn the best question found into next week's video topic.</span></li>
+      <li><input type="checkbox"><span contenteditable="true">Reply to every real comment on the past week's posts across all four platforms.</span></li>
+    </ul>
+  </section>
+</div>
+
+<!-- ================= VERIFICATION LOG ================= -->
+<div class="tab-panel" id="verification">
+  <section class="block">
+    <div class="kicker">Transparency on every sourced claim in this document</div>
+    <h2>Verification Log</h2>
+    <div class="card">
+      <p contenteditable="true">This log reflects several research passes: initial Perplexity queries through Blotato, an early web-search pass verifying the highest-stakes claims directly, an independent audit run separately to close remaining gaps, a current-platform research pass (July 2026) covering posting cadence, SEO/GEO, monetization structure, and tools, two follow-up web-search passes to fill the named-creators-and-communities gap, and a final live Perplexity re-check (via Blotato) of the highest-stakes figures from those passes. Where the Perplexity re-check corrected or could not confirm an earlier figure, that's noted directly in the relevant tab, not just here. Anything not in this table should still be treated as directional, not verified.</p>
+    </div>
+    <table>
+      <tr><th>Claim</th><th>Status</th><th>Source</th></tr>
+      <tr>
+        <td contenteditable="true">Samir Mallal is a real filmmaker who has worked with Coca-Cola and Google</td>
+        <td><span class="badge verified">Verified</span></td>
+        <td contenteditable="true"><a href="https://en.wikipedia.org/wiki/Samir_Mallal" target="_blank">Wikipedia: Samir Mallal</a></td>
+      </tr>
+      <tr>
+        <td contenteditable="true">Shy Kids: viral AI short led to signing with talent agency UTA; now producing for Disney, HBO, AMC, and Netflix</td>
+        <td><span class="badge verified">Verified (per audit pass)</span></td>
+        <td contenteditable="true">Confirmed by the independent audit. Ask for the direct source link before citing this externally. Primary film-monetization comp.</td>
+      </tr>
+      <tr>
+        <td contenteditable="true">Damon's Facebook Short: 552 likes, 9 shares</td>
+        <td><span class="badge verified">Verified</span></td>
+        <td contenteditable="true">Damon's own screenshot of the post's insights, provided directly. Real, solid engagement, not the "skyrocketed overnight" scale implied earlier.</td>
+      </tr>
+      <tr>
+        <td contenteditable="true">Damon's Facebook is a personal profile, not a Business Page</td>
+        <td><span class="badge verified">Verified</span></td>
+        <td contenteditable="true">Directly observable on the account. Flagged as a blocker in the Foundation tab.</td>
+      </tr>
+      <tr>
+        <td contenteditable="true">YouTube: 3-7 Shorts/week plus 2-3 long-form/week as a sustainable cadence target</td>
+        <td><span class="badge verified">Verified</span></td>
+        <td contenteditable="true">Navigate Video and JoinBrands, 2026 posting-frequency research</td>
+      </tr>
+      <tr>
+        <td contenteditable="true">Watch-through rate is the top YouTube ranking signal in 2026</td>
+        <td><span class="badge verified">Verified</span></td>
+        <td contenteditable="true">JoinBrands, 2026 YouTube Shorts best practices research</td>
+      </tr>
+      <tr>
+        <td contenteditable="true">Chapters are a meaningful 2026 ranking factor and can lift average view duration</td>
+        <td><span class="badge verified">Verified</span></td>
+        <td contenteditable="true">Brimcove, 2026 YouTube SEO research</td>
+      </tr>
+      <tr>
+        <td contenteditable="true">Google's position: optimizing for AI Overviews is still SEO, not a separate discipline</td>
+        <td><span class="badge verified">Verified</span></td>
+        <td contenteditable="true">Enrich Labs, 2026 GEO research</td>
+      </tr>
+      <tr>
+        <td contenteditable="true">Meta's 2026 Content Monetization Program covers Reels, long-form, photos, and text posts, on Pages only</td>
+        <td><span class="badge verified">Verified</span></td>
+        <td contenteditable="true">Meta Newsroom, March 2026</td>
+      </tr>
+      <tr>
+        <td contenteditable="true">Meta Creator Fast Track: $1,000/month at 100K+ followers elsewhere, $3,000/month at 1M+</td>
+        <td><span class="badge verified">Verified</span></td>
+        <td contenteditable="true">Meta Newsroom, March 2026</td>
+      </tr>
+      <tr>
+        <td contenteditable="true">TikTok Creator Rewards eligibility: 10,000 followers, 100,000 video views trailing 30 days, 18+, Personal/Creator account only</td>
+        <td><span class="badge verified">Verified</span></td>
+        <td contenteditable="true">Benly and Kompozy, 2026 TikTok Creator Rewards research</td>
+      </tr>
+      <tr>
+        <td contenteditable="true">TikTok Creator Rewards RPM range, roughly $0.20-$1.00 per 1,000 qualified US views, trending down as more creators qualify</td>
+        <td><span class="badge unconfirmed">Wide, compressing range, treat as directional</span></td>
+        <td contenteditable="true">shortsfast.com and postlinkapp.com, 2026 research</td>
+      </tr>
+      <tr>
+        <td contenteditable="true">Pillar page strategy: one comprehensive page plus 8-12 cluster posts, roughly 3,000-word sweet spot, favored as an AI-citation target</td>
+        <td><span class="badge verified">Verified</span></td>
+        <td contenteditable="true">Rellify and sudhasolutions.com, 2026 pillar-page research</td>
+      </tr>
+      <tr>
+        <td contenteditable="true">Kit, Beehiiv, Substack pricing and free-tier comparison</td>
+        <td><span class="badge verified">Verified</span></td>
+        <td contenteditable="true">emailvendorselection.com, NodeSure, theauthenticmarketer.com, 2026 research</td>
+      </tr>
+      <tr>
+        <td contenteditable="true">CapCut Smart Cut significantly reduces editing time; teleprompter is mobile-only</td>
+        <td><span class="badge verified">Verified</span></td>
+        <td contenteditable="true">BIGVU, 2026 video-production tooling research</td>
+      </tr>
+      <tr>
+        <td contenteditable="true">Igor Pogany, "The AI Advantage": ~430K-461K YouTube subscribers, active as of 2026</td>
+        <td><span class="badge verified">Verified, live Perplexity re-check</span></td>
+        <td contenteditable="true">March 2026 analytics snapshot plus a 2026 community profile marking him active. See Who To Follow tab.</td>
+      </tr>
+      <tr>
+        <td contenteditable="true">Claire Vo, "How I AI": ~25,000 YouTube subscribers</td>
+        <td><span class="badge unconfirmed">Verified as of Aug 2025, current count not re-confirmed</span></td>
+        <td contenteditable="true">Her own August 2025 post celebrating the milestone. A live re-check could not locate a more current figure.</td>
+      </tr>
+      <tr>
+        <td contenteditable="true">@javadex: 185K+ followers, top-ranked Spanish-language AI TikToker for 2026</td>
+        <td><span class="badge verified">Verified, single source</span></td>
+        <td contenteditable="true">Upliora's 2026 ranking. Not independently cross-verified against a second outlet.</td>
+      </tr>
+      <tr>
+        <td contenteditable="true">Named Portuguese-language AI-tips creator</td>
+        <td><span class="badge gap">Thin lead, largely still a gap</span></td>
+        <td contenteditable="true">Three research passes, one possible name (Thalita Milan) surfaced with no confirmed follower count or second source. See Who To Follow tab.</td>
+      </tr>
+      <tr>
+        <td contenteditable="true">Named individual creator documenting one ongoing AI-film production over time (Shy Kids-style)</td>
+        <td><span class="badge gap">Not found, two passes</span></td>
+        <td contenteditable="true">Flagged as a real gap and a possible differentiation opportunity for Damon, not filled with an invented name. See Who To Follow tab.</td>
+      </tr>
+      <tr>
+        <td contenteditable="true">Midjourney official Discord: 20.44 million members, largest Discord server in the world</td>
+        <td><span class="badge verified">Verified, live Perplexity re-check</span></td>
+        <td contenteditable="true">2026 third-party Discord statistics trackers; other snapshots range 19.8M-21.2M depending on capture date.</td>
+      </tr>
+      <tr>
+        <td contenteditable="true">Runway and ElevenLabs official Discord member counts (~108K and ~105K respectively)</td>
+        <td><span class="badge unconfirmed">Reported by each platform's own help center, not independently cross-verified</span></td>
+        <td contenteditable="true">A live Perplexity re-check could not locate a second source confirming either number. Treat as directionally real, re-check before citing externally.</td>
+      </tr>
+      <tr>
+        <td contenteditable="true">Pray.com's "AI Bible" project and the related theological controversy</td>
+        <td><span class="badge verified">Verified</span></td>
+        <td contenteditable="true">NPR / Houston Public Media, September 2025, by Geoff Brumfiel. See Who To Follow tab for the framing implications for Damon's own Bible-art positioning.</td>
+      </tr>
+      <tr>
+        <td contenteditable="true">Facebook Content Monetization is currently invite-only, not open enrollment for every creator</td>
+        <td><span class="badge verified">Verified, live Perplexity re-check, correction</span></td>
+        <td contenteditable="true">Meta's own help page and March 2026 announcement. Corrects an earlier version of this doc that implied the program was broadly available once a Page exists.</td>
+      </tr>
+      <tr>
+        <td contenteditable="true">Instagram hashtag cap (5 max) is a Blotato scheduling-tool constraint, not confirmed as a native Instagram platform rule</td>
+        <td><span class="badge unconfirmed">Tool-specific, confirm against current Blotato docs</span></td>
+        <td contenteditable="true">2026 research pass; native Instagram itself allows far more, the cap appears to come from the scheduling tool</td>
+      </tr>
+      <tr>
+        <td contenteditable="true">Five named content frameworks (removed from Content Playbook)</td>
+        <td><span class="badge unconfirmed">Removed from doc</span></td>
+        <td contenteditable="true">Presented as established, sourced frameworks with no independent source behind the names. Pulled.</td>
+      </tr>
+      <tr>
+        <td contenteditable="true">Bible-art Etsy earnings and Bible-story YouTube channel earnings, previously cited figures</td>
+        <td><span class="badge unconfirmed">Removed from doc</span></td>
+        <td contenteditable="true">Creator-reported and third-party estimator figures, could not be independently confirmed. Pulled rather than left in looking more solid than they are.</td>
+      </tr>
+      <tr>
+        <td contenteditable="true">Tool pricing: Runway $12-28/mo, Google Veo $20-200/mo, ElevenLabs $6-22/mo, Descript $16-24/mo, Midjourney $10-30/mo</td>
+        <td><span class="badge verified">Corrected per audit</span></td>
+        <td contenteditable="true">Pricing changes often. Confirm current tier directly on each tool's site before committing budget.</td>
+      </tr>
+    </table>
+    <p class="mono" style="font-size:11px;color:var(--olive-dark);">Badge key: <span class="badge verified">Verified</span> = confirmed via a live source &middot; <span class="badge unconfirmed">Unconfirmed</span> = real opportunity or claim, no independently audited figure yet &middot; <span class="badge recommendation">Recommendation</span> = a judgment call, not a cited fact &middot; <span class="badge gap">Gap</span> = actively searched for and not found, flagged rather than guessed.</p>
+  </section>
+</div>
+
+<!-- ================= HOW THIS WORKS ================= -->
+<div class="tab-panel" id="howto">
+  <section class="block">
+    <div class="kicker">Using this document</div>
+    <h2>How This Works</h2>
+    <div class="card">
+      <h3>What each tab is</h3>
+      <ul class="clean">
+        <li><b>Overview:</b> the one-page look at everything, in order. Start here every session.</li>
+        <li><b>Foundation:</b> who Damon is, what he's built, the strategic calls already made, and the five-phase build order.</li>
+        <li><b>Posting Schedule:</b> exact cadence and best windows, per platform, plus a sample week.</li>
+        <li><b>Content Playbook:</b> the two content formats, and the real, sourced way to speed up daily-tip production.</li>
+        <li><b>SEO &amp; GEO:</b> the keyword and AI-citation rules to apply to every title, description, and caption, plus the two pillar-page topics to build toward.</li>
+        <li><b>Monetization &amp; Funnel:</b> every revenue path ranked by speed and ceiling, the email list as the connective layer, and the income ladder for each of the three product lines.</li>
+        <li><b>Tool Stack:</b> exactly what to use, category by category, with cost.</li>
+        <li><b>Who To Follow:</b> the comps to model, and the honest gap on named communities still to be filled.</li>
+        <li><b>Verification Log:</b> what's confirmed versus reported, with sources, for everything cited elsewhere in this doc.</li>
+      </ul>
+    </div>
+    <div class="card navy-edge">
+      <h3>Editing this document</h3>
+      <p>Click "Enable Edit Mode" at the top. Highlighted text becomes clickable, and checkboxes become checkable. Edit anything directly in the browser. Edits and checked boxes save automatically to this browser's local storage, so they'll still be there next time this same file opens on this same computer. They will <b>not</b> carry over on a different computer or browser.</p>
+      <p>To make edits permanent and shareable, bring this file back into a Cowork session with Claude and ask for the changes to be saved into the master copy.</p>
+    </div>
+    <div class="card charcoal-edge">
+      <h3>Keeping it accurate</h3>
+      <p>Every claim in this document is tagged Verified, Unconfirmed, Recommendation, or Gap (see Verification Log). Before using any Unconfirmed or Gap figure in a pitch, sponsorship deck, or financial decision, re-verify it or ask Claude to re-check it with live web search.</p>
+    </div>
+  </section>
+</div>
+
+<!-- ================= INCOME PLAN (added 2026-09-22, placed last in the file so saved edits keep their positions) ================= -->
+<div class="tab-panel active" id="incomeplan">
+  <section class="block">
+    <div class="kicker">Start here. Added 2026-09-22. This tab outranks every other tab until the job is replaced.</div>
+    <h2>The Plan That Fits His Actual Week</h2>
+    <div class="card">
+      <h3 contenteditable="true">Where things stand</h3>
+      <p contenteditable="true">Damon is now a manager at Lowe's (updated 2026-09-22; his new pay rate still needs confirming, and the math below uses the old $20 an hour until it is). Managing a store team is also training experience, and it belongs on the resume. The earlier version of this document asked for daily shorts, weekly long form video on camera, four platforms, an email list, a media kit, an Etsy shop and a course, all before any money came in. That is a full time creator's schedule stacked on top of a full time job, and the schedule was the problem.</p>
+      <p contenteditable="true">His Content Style result (quiz taken September 11, 2026) points a different way: <b>Storyteller plus Commentator</b>, <b>voice first with little or no face on camera</b>, and formats that are <b>quick to make</b>. He named creative work as the thing he is building toward. This plan puts money first, keeps the film moving on a schedule he can hold, and brings the tutorials back once hours open up.</p>
+    </div>
+    <div class="card navy-edge">
+      <h3 contenteditable="true">The one number that matters</h3>
+      <p contenteditable="true">At $20 an hour, 40 hours earns $800 a week. A remote instructional designer contract posted on Aquent on September 22, 2026 pays $35.87 to $39.86 an hour. At $38 an hour, 21 hours earns the same $800. That hands back about 19 hours a week for Roxie Moonlight and the tutorials, using the Master's degree he already holds.</p>
+      <p>Checked 2026-09-22: that posting was 40 hours a week for 3 months (Oct to Dec 2026, possible extension). Full time at $38 is about $1,520 a week, nearly double his pay. It asked for Articulate Rise 360, Camtasia, an LMS, and experience with translating learning content, with no portfolio required. <b>By 2026-09-24 Aquent had taken it down.</b> Postings like this one close within days, which is why his Aquent profile matters more than catching any single listing: once he has a profile, Aquent recruiters bring matching jobs to him.</p>
+    </div>
+  </section>
+
+
+  <section class="block">
+    <div class="kicker">Week 1 takes about an hour in total. From Week 2 on, 30 minutes a day, plus one 3 hour weekend block in Week 2. Do the steps in order; the days can shift around his Lowe's shifts.</div>
+    <h2>Resume Schedule, Step By Step</h2>
+    <div class="card navy-edge">
+      <p>His resume is rebuilt and saved as <b>Damon/Damon-Kenrick-Resume-2026.docx</b> (2026-09-22). The old PDF looked fine printed, but its hidden text dropped letter pairs ("Ar culate Storyline"), so job application software could miss his keywords. Only the red bracketed spots are left, and only Damon knows the answers to them. Always send the Word file to employers, never the old PDF.</p>
+    </div>
+
+    <div class="card">
+      <h3>Week 1, starting Monday September 28: finish the resume</h3>
+      <ul class="checklist">
+        <li><input type="checkbox"><span><b>15 minutes.</b> With a Lowe's pay stub in hand, fill in his exact job title, the store's city, and the month and year he started.</span></li>
+        <li><input type="checkbox"><span><b>15 minutes.</b> Fill in the three Lowe's bullets: how many people he manages, who he trains and on what (new hires, product knowledge, safety, systems), and one result with a number. Send the file to Raquel.</span></li>
+        <li><input type="checkbox"><span><b>10 minutes.</b> Request his free Employment Data Report from The Work Number (Equifax), the database employers use to check past jobs: register at employees.theworknumber.com or call 1-800-367-2884.</span></li>
+        <li><input type="checkbox"><span><b>20 minutes, once the report arrives.</b> Compare every job title and date on the report with the resume. Send any difference to Raquel so the resume matches the report exactly.</span></li>
+        <li><input type="checkbox"><span><b>Raquel's step.</b> She sends back the final resume with every red spot filled.</span></li>
+      </ul>
+    </div>
+
+    <div class="card">
+      <h3>Week 2, starting Monday October 5: put him where recruiters look, and start applying</h3>
+      <ul class="checklist">
+        <li><input type="checkbox"><span><b>20 minutes.</b> Create a talent profile on Aquent (aquent.com/find-work), upload the Word resume, and choose remote, contract, instructional design.</span></li>
+        <li><input type="checkbox"><span><b>15 minutes.</b> Update LinkedIn: headline "Instructional Designer | Articulate Storyline | English, Spanish, Portuguese," add the Lowe's job exactly as it reads on the resume, and turn on Open to Work for contract roles.</span></li>
+        <li><input type="checkbox"><span><b>10 minutes.</b> Ask the Aquent recruiter who contacts him whether he can use Aquent Gymnasium, their free online training, before he is placed. Aquent's job listings say its eligible talent get free training there.</span></li>
+        <li><input type="checkbox"><span><b>Weekend, 3 hours.</b> Start the Articulate 360 free trial (Storyline and Rise) on this weekend and no sooner, because the trial runs on a clock. Build the one portfolio piece, the short Storyline module, from a script Raquel gets from Claude beforehand.</span></li>
+        <li><input type="checkbox"><span><b>From this week on, 30 minutes a day.</b> Apply with the resume alone; the portfolio link gets added when it is ready. Recruiters hire from the resume, and the Aquent job at $38 an hour asked for no portfolio at all.</span></li>
+      </ul>
+    </div>
+
+    <div class="card">
+      <h3>Week 3, starting Monday October 12: post the portfolio piece</h3>
+      <ul class="checklist">
+        <li><input type="checkbox"><span><b>20 minutes.</b> Post the Storyline module on one portfolio page, then add the link to the resume, LinkedIn and the Aquent profile.</span></li>
+      </ul>
+    </div>
+
+    <div class="card charcoal-edge">
+      <h3>After Week 3</h3>
+      <p>Thirty minutes a day on applications, as laid out in Phase 2 below. The resume, profiles and portfolio piece are done by then and only need a refresh when something changes.</p>
+    </div>
+  </section>
+
+  <section class="block">
+    <div class="kicker">Snapshot of Aquent's instructional design listings, checked live 2026-09-24</div>
+    <h2>Open Jobs Right Now</h2>
+    <table>
+      <tr><th>Job</th><th>Pay</th><th>Where and when</th><th>Fit for Damon</th></tr>
+      <tr><td>Instructional Designer (#213214)</td><td>$35.87 to $39.86 an hour</td><td>Remote, US, 40 hours a week, Oct to Dec 2026</td><td><span class="badge gap">Closed</span> Taken down between Sept 22 and Sept 24.</td></tr>
+      <tr><td>Learning Developer (#213139)</td><td>$35 to $40 an hour</td><td>Remote on Eastern time, 8 AM to 5 PM, one year starting Oct 19, paid through payroll (W2)</td><td>Tools match: Storyline, Captivate, Camtasia, adult learning theory, AI features. It also requires 4 or more years of training development and experience in healthcare or medical devices, which he lacks, so software will likely screen him out.</td></tr>
+      <tr><td>Sr. Instructional Designer (#212779)</td><td>$58 to $60 an hour</td><td>Remote, Seattle or Spokane preferred</td><td>Location preference works against him. A target for later, once he has contract work behind him.</td></tr>
+      <tr><td>E-Learning Developer, Storyline and Rise (#211077)</td><td>$40 an hour</td><td>Remote, Canada, Eastern hours</td><td>Open to people in Canada only.</td></tr>
+      <tr><td>Instructional Writer</td><td>$55 to $58 an hour</td><td>Hybrid in California, New Jersey or Arkansas</td><td>Requires office days in those cities.</td></tr>
+    </table>
+    <div class="card">
+      <p>What the snapshot shows: the pay is real and steady at $35 to $60 an hour, and each listing stays open for only a short time. Finishing his profile gets him contacted about the next match.</p>
+    </div>
+  </section>
+
+  <section class="block">
+    <div class="kicker">Checked 2026-09-24 so nobody spends time chasing these</div>
+    <h2>Easy Freelance Work, And What It Pays</h2>
+    <div class="card navy-edge">
+      <p>The question: could Damon find freelance work that needs no portfolio, brings its own customers, and pays well for little effort? The research says no. When a platform supplies the customers and asks for no proof of skill, a crowd of sellers competes, and the crowd drives the price below his current wage. The $35 to $60 an hour contracts pay well because fewer people qualify for them, and his Master's degree and three languages are what qualify him.</p>
+    </div>
+    <table>
+      <tr><th>Work</th><th>What it pays</th><th>Verdict</th></tr>
+      <tr><td>Small Storyline jobs on Upwork (fixing courses, converting PowerPoints)</td><td>About $5 to $15 an hour, or around $150 a job. 48 Storyline jobs were posted.</td><td>Below his wage. <span class="badge unconfirmed">Research</span></td></tr>
+      <tr><td>Tutoring Portuguese or Spanish on italki</td><td>italki keeps 0% of trial lessons and 15% to 21% of regular lessons. It listed 395 Portuguese tutors, mostly native speakers, with trial lessons at $10 to $19.</td><td>Crowded, and priced low. <span class="badge verified">Checked live</span></td></tr>
+      <tr><td>Tutoring on Preply</td><td>Preply keeps 100% of every trial lesson, then 33% of each lesson, dropping to 18% as the tutor logs more hours.</td><td>New tutors earn little at first. <span class="badge unconfirmed">Research</span></td></tr>
+      <tr><td>Teaching group classes on Outschool</td><td>Outschool keeps 30% of the class price.</td><td>Income depends on filling classes. <span class="badge unconfirmed">Research</span></td></tr>
+      <tr><td>AI training work (DataAnnotation)</td><td>$20 an hour and up for multilingual work, with no selling.</td><td>The one true log in and work option. The work often dries up, so it fills spare evenings only. <span class="badge unconfirmed">Company published</span></td></tr>
+    </table>
+    <div class="card">
+      <p>The lighter path lives in the Resume Schedule above: apply with the resume in Week 2, build one portfolio piece instead of three, and let Aquent's recruiters bring the jobs to him.</p>
+    </div>
+  </section>
+
+  <section class="block">
+    <div class="kicker">Every skill he has, and what it can earn right now</div>
+    <h2>Skill By Skill</h2>
+    <table>
+      <tr><th>Skill</th><th>Role in the plan</th><th>Evidence</th></tr>
+      <tr>
+        <td contenteditable="true">M.Ed. in Instructional Design, Articulate Storyline, Camtasia, Canvas LMS, 12 years teaching</td>
+        <td contenteditable="true"><b>The main income. This replaces the job.</b></td>
+        <td contenteditable="true">Live on Aquent, checked 2026-09-22: Instructional Designer, remote US, $35.87 to $39.86 an hour (closed by 2026-09-24). Sr. Instructional Designer, remote, $58 to $60 an hour. <span class="badge verified">Verified live</span><br>Upwork rate guidance, via research: experienced instructional design freelancers commonly $45 to $75 an hour. <span class="badge unconfirmed">Research, recheck on Upwork</span></td>
+      </tr>
+      <tr>
+        <td contenteditable="true">Spanish and Portuguese, used inside course building</td>
+        <td contenteditable="true"><b>A multiplier on the main income.</b> One course built in English, Spanish and Portuguese.</td>
+        <td contenteditable="true">A line on his profile most instructional designers can't offer. No published premium rate was found, so he prices it as regular instructional design work and lets it win him the job. <span class="badge recommendation">Recommendation</span></td>
+      </tr>
+      <tr>
+        <td contenteditable="true">Spanish and Portuguese, interpreting</td>
+        <td contenteditable="true"><b>Skip for now.</b></td>
+        <td contenteditable="true">LanguageLine's posted Spanish interpreter range is $15 to $18 an hour, below his current wage. The BLS median for interpreters and translators is $28.93, and medical interpreter certification takes 6 to 18 months (AMN Healthcare). Too slow and too low for this stage. <span class="badge verified">Verified</span></td>
+      </tr>
+      <tr>
+        <td contenteditable="true">Spanish and Portuguese, AI training work</td>
+        <td contenteditable="true"><b>Filler for spare evenings only.</b></td>
+        <td contenteditable="true">DataAnnotation publishes $20 an hour and up for multilingual work, with an unpaid entry assessment, and workers commonly report the work drying up. Outlier listed Portuguese voice work at up to $10 an hour. Useful on a slow night, too unreliable to build on. <span class="badge unconfirmed">Company published, volume unreliable</span></td>
+      </tr>
+      <tr>
+        <td contenteditable="true">AI video, illustration, the Roxie Moonlight skills</td>
+        <td contenteditable="true"><b>Portfolio power now. Film income later.</b></td>
+        <td contenteditable="true">Sold alone on Fiverr, AI video gigs are crowded and commonly priced $15 to $190 a project, and 2026 Upwork research puts AI video creation around $27 an hour. That pays about what he earns now. Placed inside a training module (a narrated scene he produced himself), it's what makes his instructional design portfolio stand out. The film's real payoff remains industry attention, the Shy Kids path on the Monetization tab. <span class="badge unconfirmed">Research, prices shift</span></td>
+      </tr>
+      <tr>
+        <td contenteditable="true">Email marketing (IOMEGA, 2004 to 2011, $600K to $2.2M)</td>
+        <td contenteditable="true"><b>Parked.</b></td>
+        <td contenteditable="true">A strong record, and the tools have changed since 2011, so it would need a refresh before it could be sold as a service. Revisit once contract income is steady. <span class="badge recommendation">Recommendation</span></td>
+      </tr>
+      <tr>
+        <td contenteditable="true">HTML, CSS, JavaScript, Adobe Suite, Procreate</td>
+        <td contenteditable="true"><b>Supports the main income.</b></td>
+        <td contenteditable="true">List all of them on the resume and profiles. Storyline accepts custom JavaScript, and design tools help with course visuals. <span class="badge recommendation">Recommendation</span></td>
+      </tr>
+      <tr>
+        <td contenteditable="true">The teaching voice, tutorials</td>
+        <td contenteditable="true"><b>Phase 3</b>, once job hours drop.</td>
+        <td contenteditable="true">When they start, they follow his quiz result: screen recording plus his voiceover, no camera setup. <span class="badge recommendation">Recommendation</span></td>
+      </tr>
+    </table>
+  </section>
+
+  <section class="block">
+    <div class="kicker">About 8 hours a week on top of the job, until the first contract lands</div>
+    <h2>His Week</h2>
+    <table>
+      <tr><th>When</th><th>Time</th><th>What</th></tr>
+      <tr><td contenteditable="true">Monday to Friday</td><td contenteditable="true">30 minutes a day</td><td contenteditable="true">Two applications or proposals a day. Ten a week. Reply to any messages from recruiters or clients.</td></tr>
+      <tr><td contenteditable="true">Weekend block one</td><td contenteditable="true">3 hours</td><td contenteditable="true">Week 2: build the one portfolio piece (see the Resume Schedule). After that: client work once it arrives, or extra applications.</td></tr>
+      <tr><td contenteditable="true">Weekend block two</td><td contenteditable="true">2 to 3 hours</td><td contenteditable="true">Roxie Moonlight, plus the one weekly post described below. Starts this week and never waits on anything else.</td></tr>
+    </table>
+  </section>
+
+  <section class="block">
+    <div class="kicker">Three phases, in order</div>
+    <h2>The Steps</h2>
+
+    <div class="card">
+      <h3 contenteditable="true">Phase 1. Weeks 1 to 3: Resume, profiles and one portfolio piece (dates in the Resume Schedule above)</h3>
+      <ul class="checklist">
+        <li><input type="checkbox"><span>First, before the resume: pull his free Employment Data Report from The Work Number (Equifax), the database employers use to verify past jobs. Register at employees.theworknumber.com or call 1-800-367-2884. Every job title and date on his resume gets matched to that report so nothing conflicts.</span></li>
+        <li><input type="checkbox"><span>Update the skills with Articulate 360's free trial (Storyline and Rise 360). Building the pieces below during the trial is the skills refresh, so it happens once.</span></li>
+        <li><input type="checkbox"><span contenteditable="true">Piece one: a short interactive Storyline module, 5 to 10 minutes, on something he knows well. Suggested topic: turning messy meeting notes into a task list with AI. It shows instructional design and AI in one piece.</span></li>
+        <li><input type="checkbox"><span contenteditable="true">Later, optional, once contract work is coming in. Piece two: the same module in Spanish or Portuguese. One build, a second language, proof of the trilingual edge.</span></li>
+        <li><input type="checkbox"><span contenteditable="true">Later, optional. Piece three: a 60 to 90 second narrated training scene made with his AI film tools and his own voice. This is where the Roxie Moonlight skills start paying.</span></li>
+        <li><input type="checkbox"><span contenteditable="true">Put piece one on a portfolio page now, and add the others there if he builds them. One portfolio page on the website skeleton he already started.</span></li>
+        <li><input type="checkbox" checked><span contenteditable="true">Done 2026-09-22, Lowe's details still to fill. Rewrite the resume for contract instructional design: M.Ed., Storyline, Camtasia, Canvas LMS, 12 years of instruction, English, Spanish and Portuguese. One page.</span></li>
+      </ul>
+    </div>
+
+    <div class="card">
+      <h3 contenteditable="true">Phase 2. Week 2 onward (October 5): Get the contract</h3>
+      <ul class="checklist">
+        <li><input type="checkbox"><span contenteditable="true">Create a talent profile on Aquent (aquent.com/find-work) and save a search for "instructional designer," remote.</span></li>
+        <li><input type="checkbox"><span contenteditable="true">LinkedIn headline: Instructional Designer | Articulate Storyline | English, Spanish, Portuguese. Turn on Open to Work for contract roles.</span></li>
+        <li><input type="checkbox"><span contenteditable="true">Upwork profile at $40 an hour to win the first reviews, raised to $50 after three good reviews. Upwork charges a small fee to send proposals, so check the current cost before buying.</span></li>
+        <li><input type="checkbox"><span contenteditable="true">One Fiverr gig, set up once and left running: "I will build or translate your Articulate Storyline course into Spanish or Portuguese."</span></li>
+        <li><input type="checkbox"><span contenteditable="true">Optional filler: apply to DataAnnotation for multilingual work, used only on evenings with energy to spare.</span></li>
+        <li><input type="checkbox"><span contenteditable="true">Money note: Upwork and Fiverr pay as self employment income with no taxes taken out. Set part of every payment aside for taxes. Agency contracts through Aquent are usually paid through payroll; confirm on each offer.</span></li>
+      </ul>
+    </div>
+
+    <div class="card">
+      <h3 contenteditable="true">Phase 3. When contract money covers the bills: Cut the $20 job hours</h3>
+      <ul class="checklist">
+        <li><input type="checkbox"><span contenteditable="true">The rule: when contract income covers a full month of bills two months in a row, reduce hours at the job.</span></li>
+        <li><input type="checkbox"><span contenteditable="true">Freed hours go to Roxie Moonlight first and tutorials second.</span></li>
+        <li><input type="checkbox"><span contenteditable="true">Tutorials start in his quiz format: screen recording, his voice, one tool, one outcome per video.</span></li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="block">
+    <div class="kicker">One post a week, made in the same sitting as the film work</div>
+    <h2>Roxie Moonlight, On A Schedule He Can Hold</h2>
+    <div class="card navy-edge">
+      <p contenteditable="true">In weekend block two, he works on the film, saves one clip, and records a voiceover over it: what he decided in that scene and why. That single piece is the Storyteller and the Commentator at once, and his face stays optional. He schedules it once through Blotato to YouTube Shorts, Instagram and Facebook.</p>
+      <p contenteditable="true">That replaces the Posting Schedule tab's 20 or more posts a week. The film keeps moving, the audience watches it get built, and the clips pile up as portfolio pieces for the training work.</p>
+    </div>
+  </section>
+
+  <section class="block">
+    <div class="kicker">Still in this document, waiting for the hours</div>
+    <h2>On Hold</h2>
+    <div class="card charcoal-edge">
+      <p contenteditable="true">The daily Posting Schedule, the sponsorship media kit, the Etsy Bible art line, the course and the membership all need an audience or sales history before they pay, and each one needs hours he is spending at the $20 job. They stay in their tabs and come back in Phase 3.</p>
+      <p contenteditable="true">Contract work comes and goes, and nobody can promise the week a contract lands. The steady part, ten applications a week with a real portfolio behind them, is fully in his hands.</p>
+    </div>
+  </section>
+</div>
+
+<div class="footer-bar">DAMON KENRICK COMMAND CENTER <span>//</span> SLATE &amp; SIGNAL BRANDING <span>//</span> BUILT WITH CLAUDE</div>
+
+<script>
+  // Tab switching
+  const tabBtns = document.querySelectorAll('.tab-btn');
+  const panels = document.querySelectorAll('.tab-panel');
+  tabBtns.forEach(btn => {
+    btn.addEventListener('click', () => {
+      tabBtns.forEach(b => b.classList.remove('active'));
+      panels.forEach(p => p.classList.remove('active'));
+      btn.classList.add('active');
+      document.getElementById(btn.dataset.tab).classList.add('active');
+    });
+  });
+
+  // Edit mode toggle
+  const editToggle = document.getElementById('editToggle');
+  const body = document.body;
+  const STORAGE_KEY = 'damon_command_center_edits_v2';
+
+  editToggle.addEventListener('click', () => {
+    body.classList.toggle('edit-mode');
+    const isEditing = body.classList.contains('edit-mode');
+    editToggle.textContent = isEditing ? 'Disable Edit Mode' : 'Enable Edit Mode';
+    editToggle.classList.toggle('active', isEditing);
+    document.querySelectorAll('[contenteditable]').forEach(el => {
+      el.setAttribute('contenteditable', isEditing ? 'true' : 'false');
+    });
+  });
+
+  // Restore saved edits and checkbox states
+  function restoreEdits(){
+    try{
+      const saved = JSON.parse(localStorage.getItem(STORAGE_KEY) || '{}');
+      Object.keys(saved).forEach(id => {
+        const el = document.querySelector('[data-eid="' + id + '"]');
+        if(el){
+          if(el.type === 'checkbox'){ el.checked = saved[id]; }
+          else{ el.innerHTML = saved[id]; }
+        }
+      });
+    }catch(e){}
+  }
+
+  // Assign stable ids to editable elements and save on blur
+  document.querySelectorAll('[contenteditable]').forEach((el, i) => {
+    el.setAttribute('data-eid', 'e' + i);
+    el.setAttribute('contenteditable', 'false');
+    el.addEventListener('blur', () => {
+      try{
+        const saved = JSON.parse(localStorage.getItem(STORAGE_KEY) || '{}');
+        saved[el.getAttribute('data-eid')] = el.innerHTML;
+        localStorage.setItem(STORAGE_KEY, JSON.stringify(saved));
+      }catch(e){}
+    });
+  });
+
+  // Save checkbox states
+  document.querySelectorAll('.checklist input[type=checkbox]').forEach((el, i) => {
+    el.setAttribute('data-eid', 'cb' + i);
+    el.addEventListener('change', () => {
+      try{
+        const saved = JSON.parse(localStorage.getItem(STORAGE_KEY) || '{}');
+        saved[el.getAttribute('data-eid')] = el.checked;
+        localStorage.setItem(STORAGE_KEY, JSON.stringify(saved));
+      }catch(e){}
+    });
+  });
+
+  restoreEdits();
+</script>
+
+</body>
+</html>
