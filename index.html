@@ -188,6 +188,15 @@
   .signup{padding:150px 0;text-align:center;background:var(--white);}
   .signup-inner{max-width:600px;margin:0 auto;}
   .signup-inner h2{max-width:12em;margin:20px auto 0;}
+  .signup .label{color:var(--black);}
+  .signup-form{display:flex;gap:0;max-width:480px;margin:40px auto 0;}
+  .signup-form input{flex:1;min-width:0;padding:16px 18px;border:1px solid var(--black);border-right:0;background:var(--white);font-family:var(--sans);font-size:15px;color:var(--black);border-radius:0;}
+  .signup-form input:focus{outline:2px solid var(--gold);outline-offset:0;}
+  .signup-btn{background:var(--black);color:var(--white);border:1px solid var(--black);cursor:pointer;font-family:var(--sans);border-radius:0;}
+  .signup-btn:hover{background:var(--gold);color:var(--black);}
+  .signup-done{margin-top:32px;font-size:16px;}
+  .sr-only{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap;}
+  @media(max-width:560px){.signup-form{flex-direction:column;}.signup-form input{border-right:1px solid var(--black);border-bottom:0;}}
   .signup-inner p{margin-top:24px;font-size:16.5px;color:rgba(13,13,13,.8);}
   .signup-form{margin-top:44px;}
 
@@ -271,7 +280,7 @@
     <div class="nav-links">
       <a href="#profile">Signal Profile</a>
       <a href="/report/">Signal Report</a>
-      <a href="#list">The List</a>
+      <a href="#list">Subscribe</a>
       <a href="/about/">About</a>
       <a href="/blog/">Blog</a>
       <a class="nav-btn" href="#begin">Begin</a>
@@ -445,14 +454,29 @@
 
 <section class="signup" id="list">
   <div class="wrap signup-inner">
-    <div class="label">The List</div>
-    <h2>Get the Signal method, before you need it.</h2>
-    <p>Short, direct notes on how the reports work, drawn from real research and real reports. No noise between sends.</p>
-    <div class="signup-form">
-      <script async data-uid="0b072f5233" src="https://slate-signal.kit.com/0b072f5233/index.js"></script>
-    </div>
+    <div class="label">Subscribe to new articles</div>
+    <h2>Read new essays on founder positioning.</h2>
+    <p>Enter your email to receive my latest writings on personal brand strategy and finding your foundation sent straight to your inbox whenever I publish.</p>
+    <form class="signup-form" id="list-form" action="https://app.kit.com/forms/9770466/subscriptions" method="post">
+      <label class="sr-only" for="list-email">Email address</label>
+      <input id="list-email" type="email" name="email_address" placeholder="Email address" autocomplete="email" required>
+      <button class="btn signup-btn" type="submit">Subscribe</button>
+    </form>
+    <p class="signup-done" id="list-done" hidden>Thank you. Check your inbox to confirm your subscription.</p>
   </div>
 </section>
+<script>
+(function(){
+  var f=document.getElementById("list-form"), done=document.getElementById("list-done");
+  f.addEventListener("submit",function(e){
+    e.preventDefault();
+    var b=f.querySelector("button"); b.disabled=true;
+    fetch(f.action,{method:"POST",body:new FormData(f),headers:{"Accept":"application/json"}})
+      .then(function(r){ if(!r.ok) throw 0; f.hidden=true; done.hidden=false; })
+      .catch(function(){ f.submit(); });
+  });
+})();
+</script>
 
 <hr class="hairline">
 
