@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Leave a Review | Slate &amp; Signal</title>
+<meta name="description" content="Tell Raquel what Slate &amp; Signal helped you see.">
+<meta name="robots" content="noindex, follow">
+<link rel="canonical" href="https://slateandsignal.studio/review/">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Leave a Review | Slate &amp; Signal">
+<meta property="og:description" content="Tell Raquel what Slate &amp; Signal helped you see.">
+<meta property="og:url" content="https://slateandsignal.studio/review/">
+<meta property="og:image" content="https://slateandsignal.studio/images/hero.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --black:#0D0D0D;
+    --white:#FFFFFF;
+    --gold:#FFDE7A;
+    --gold-deep:#C9A227;
+    --serif:'Cormorant Garamond', Georgia, serif;
+    --sans:'DM Sans', -apple-system, sans-serif;
+  }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{background:var(--white);color:var(--black);font-family:var(--sans);font-weight:300;line-height:1.8;}
+  a{color:inherit;text-decoration:none;}
+  img{max-width:100%;display:block;}
+  .wrap{max-width:1140px;margin:0 auto;padding:0 32px;}
+
+  nav{position:fixed;top:0;left:0;right:0;z-index:50;background:var(--white);border-bottom:1px solid rgba(13,13,13,.08);}
+  .nav-inner{display:flex;justify-content:space-between;align-items:center;height:80px;}
+  .nav-logo img{height:56px;width:auto;}
+  .nav-links{display:flex;gap:38px;align-items:center;font-size:12px;letter-spacing:.18em;text-transform:uppercase;}
+  .nav-links a:hover{color:var(--gold-deep);}
+  .nav-btn{border:1px solid var(--black);padding:10px 24px;}
+  .nav-btn:hover{background:var(--black);color:var(--white);}
+  .nav-toggle{display:none;}
+  .nav-toggle-label{display:none;cursor:pointer;font-size:24px;line-height:1;padding:8px;}
+
+  .btn{display:inline-block;padding:16px 40px;font-size:12px;letter-spacing:.22em;text-transform:uppercase;font-weight:500;transition:all .25s;}
+  .btn-gold{background:var(--gold);color:var(--black);}
+  .btn-gold:hover{background:var(--white);border:1px solid var(--black);}
+
+  article{max-width:720px;margin:0 auto;padding:150px 32px 0;}
+  .eyebrow{font-size:11px;letter-spacing:.3em;text-transform:uppercase;color:var(--gold-deep);font-weight:500;margin-bottom:18px;}
+  h1{font-family:var(--serif);font-weight:500;font-size:clamp(34px,4.6vw,54px);line-height:1.12;margin-bottom:20px;}
+  p.dek{font-family:var(--serif);font-style:italic;font-size:20px;color:#333;border-left:3px solid var(--gold);padding-left:16px;margin-bottom:48px;}
+  article p{font-size:17px;color:rgba(13,13,13,.85);margin-bottom:22px;}
+  .pull{font-family:var(--serif);font-style:italic;font-size:24px;color:var(--black);margin:52px 0;text-align:center;}
+
+  p.lede{font-family:var(--serif);font-style:italic;font-size:21px;color:rgba(13,13,13,.6);margin-bottom:14px;}
+  .sample{margin:52px auto;max-width:340px;}
+  .sample img{border:1px solid rgba(13,13,13,.12);}
+  .sample figcaption{font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:rgba(13,13,13,.45);margin-top:12px;text-align:center;}
+  .list-intro{margin-bottom:0;}
+  .cta-wrap{text-align:center;margin:8px 0 90px;}
+
+  .contents{border-top:1px solid rgba(13,13,13,.12);border-bottom:1px solid rgba(13,13,13,.12);padding:32px 0;margin:44px 0;}
+  .contents li{list-style:none;font-size:17px;color:rgba(13,13,13,.85);padding:9px 0 9px 22px;position:relative;}
+  .contents li:before{content:"";position:absolute;left:0;top:19px;width:8px;height:1px;background:var(--gold-deep);}
+
+  .price-row{display:flex;align-items:baseline;justify-content:center;gap:16px;margin:0 0 30px;}
+  .price-was{font-family:var(--serif);font-size:26px;color:rgba(13,13,13,.4);text-decoration:line-through;}
+  .price-now{font-family:var(--serif);font-size:56px;line-height:1;}
+  .price-note{text-align:center;font-size:13px;letter-spacing:.16em;text-transform:uppercase;color:var(--gold-deep);margin:56px 0 10px;}
+  .price-sub{text-align:center;font-size:15px;color:rgba(13,13,13,.6);margin-bottom:36px;}
+
+  .cta-box{margin:0 0 40px;padding:48px 40px;background:var(--black);color:var(--white);text-align:center;}
+  .cta-box h3{font-family:var(--serif);font-weight:500;font-size:28px;margin-bottom:14px;}
+  .cta-box p{color:rgba(255,255,255,.75);margin-bottom:28px;font-size:16px;}
+
+  .quote{max-width:720px;margin:0 auto 90px;padding:0 32px;text-align:center;}
+  .quote blockquote{font-family:var(--serif);font-style:italic;font-size:22px;line-height:1.6;color:var(--black);}
+  .quote cite{display:block;font-style:normal;font-size:11px;letter-spacing:.24em;text-transform:uppercase;color:rgba(13,13,13,.5);margin-top:18px;}
+
+  footer{background:var(--black);color:rgba(255,255,255,.65);padding:70px 0;font-size:12px;letter-spacing:.12em;}
+  .foot-inner{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:26px;}
+  .foot-logo img{height:72px;width:auto;}
+  .foot-links{display:flex;gap:28px;flex-wrap:wrap;align-items:center;}
+  .foot-links a{color:rgba(255,255,255,.65);transition:color .2s;}
+  .foot-links a:hover{color:var(--gold);}
+
+  @media(max-width:920px){
+    .nav-inner{position:relative;}
+    .nav-links{position:fixed;top:80px;left:0;right:0;background:var(--white);flex-direction:column;align-items:stretch;gap:0;max-height:0;overflow:hidden;transition:max-height .3s ease;border-bottom:1px solid rgba(13,13,13,.08);}
+    .nav-links a{padding:18px 32px;border-top:1px solid rgba(13,13,13,.06);}
+    .nav-links a:not(.nav-btn){display:block;}
+    .nav-links .nav-btn{margin:16px 32px;text-align:center;border-top:none;}
+    .nav-toggle-label{display:block;}
+    .nav-toggle:checked ~ .nav-links{max-height:500px;}
+    article{padding-top:120px;}
+  }
+  .thanks{max-width:640px;margin:0 auto;padding:190px 32px 170px;text-align:center;}
+  .thanks .label{font-size:11px;letter-spacing:.34em;text-transform:uppercase;font-weight:500;color:var(--black);}
+  .thanks h1{margin:22px 0 26px;}
+  .thanks p{font-size:17px;color:rgba(13,13,13,.85);margin:0 auto 44px;max-width:34em;}
+  .btn-dark{background:var(--black);color:var(--white);border:1px solid var(--black);}
+  .btn-dark:hover{background:var(--gold);color:var(--black);}
+  .rv{max-width:680px;margin:0 auto;padding:150px 32px 110px;}
+  .rv .label{font-size:11px;letter-spacing:.34em;text-transform:uppercase;font-weight:500;}
+  .rv h1{margin:18px 0 18px;}
+  .rv .intro{font-size:17px;color:rgba(13,13,13,.85);margin-bottom:44px;}
+  .q{margin-bottom:34px;}
+  .q label.t{display:block;font-family:var(--serif);font-size:22px;font-weight:500;line-height:1.3;margin-bottom:6px;}
+  .q .hint{font-size:14px;color:rgba(13,13,13,.6);margin-bottom:10px;}
+  .q input[type=text],.q textarea{width:100%;font-family:var(--sans);font-size:16px;font-weight:300;color:var(--black);border:1px solid rgba(13,13,13,.25);padding:12px 14px;background:var(--white);}
+  .q textarea{min-height:120px;resize:vertical;}
+  .q input:focus,.q textarea:focus{outline:none;border-color:var(--black);}
+  .opt{display:flex;gap:12px;align-items:flex-start;font-size:16px;padding:6px 0;cursor:pointer;}
+  .opt input{margin-top:6px;accent-color:var(--black);}
+  .trap{position:absolute;left:-9999px;}
+  .err{color:#8A1C1C;font-size:14px;margin-top:8px;display:none;}
+  .done{display:none;text-align:center;padding:40px 0;}
+  .done h2{font-family:var(--serif);font-weight:500;font-size:36px;margin-bottom:16px;}
+  button.btn{border:1px solid var(--black);cursor:pointer;font-family:var(--sans);}
+</style>
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-656HKKYWBH"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-656HKKYWBH');
+  </script>
+
+<script>function loadScript(a){var b=document.getElementsByTagName("head")[0],c=document.createElement("script");c.type="text/javascript",c.src="https://tracker.metricool.com/resources/be.js",c.onreadystatechange=a,c.onload=a,b.appendChild(c)}loadScript(function(){beTracker.t({hash:"e1ec5ef17fb5951bb3b77b706c9ad04"})});</script>
+  <link rel="alternate" type="application/rss+xml" title="Slate &amp; Signal" href="https://slateandsignal.studio/feed.xml">
+</head>
+<body>
+
+<nav>
+  <div class="wrap nav-inner">
+    <a class="nav-logo" href="/" aria-label="Slate and Signal home"><img src="../images/logo-dark.png" alt="Slate &amp; Signal Personal Brand Research Practice Logo"></a>
+    <input type="checkbox" id="nav-toggle" class="nav-toggle">
+    <label for="nav-toggle" class="nav-toggle-label">&#9776;</label>
+    <div class="nav-links">
+      <a href="/#profile">Signal Profile</a>
+      <a href="/report/">Signal Report</a>
+      <a href="/about/">About</a>
+      <a href="/blog/">Blog</a>
+      <a class="nav-btn" href="/#begin">Begin</a>
+    </div>
+  </div>
+</nav>
+
+<main class="rv">
+  <div id="formWrap">
+  <div class="label">Review</div>
+  <h1>The goal of Slate &amp; Signal is to make the process of building a personal brand more clear and tailored to YOU.</h1>
+  <p class="intro">Your answers help me improve what I make. With your permission, they also help other people decide whether Slate &amp; Signal is right for them. You choose how your name appears, and you can ask me to keep your review private.</p>
+  <form id="rv" novalidate>
+    <input class="trap" type="text" name="website" tabindex="-1" autocomplete="off" aria-hidden="true">
+    <div class="q"><label class="t" for="full_name">1. Your name</label><input type="text" id="full_name" name="full_name" required autocomplete="name"></div>
+    <div class="q"><span class="t" style="display:block;font-family:var(--serif);font-size:22px;font-weight:500;margin-bottom:10px;">2. Which Slate &amp; Signal products did you receive?</span><p class="hint" style="font-size:14px;color:rgba(13,13,13,.6);margin-bottom:10px;">Check each one that applies.</p>
+      <label class="opt"><input type="checkbox" name="products" value="Signal Profile"> Signal Profile</label>
+      <label class="opt"><input type="checkbox" name="products" value="Signal Report"> Signal Report</label>
+      <label class="opt"><input type="checkbox" name="products" value="Content Style quiz result"> Content Style quiz result</label></div>
+    <div class="q"><label class="t" for="most_helpful">3. What did you see as being the most helpful to you?</label><p class="hint">Please name the section or the sentence.</p><textarea id="most_helpful" name="most_helpful"></textarea></div>
+    <div class="q"><label class="t" for="what_it_showed">4. What did it help you see about yourself or your brand that you hadn&rsquo;t seen before?</label><textarea id="what_it_showed" name="what_it_showed"></textarea></div>
+    <div class="q"><label class="t" for="what_changed">5. If you&rsquo;ve had time to use it: what did you do, change or decide because of it?</label><p class="hint">Optional</p><textarea id="what_changed" name="what_changed"></textarea></div>
+    <div class="q"><label class="t" for="stuck_before">6. Before Slate &amp; Signal, what was the most difficult part of building your brand?</label><textarea id="stuck_before" name="stuck_before"></textarea></div>
+    <div class="q"><label class="t" for="more_helpful">7. Is there anything that could have made this more useful?</label><p class="hint">This answer stays unpublished.</p><textarea id="more_helpful" name="more_helpful"></textarea></div>
+    <div class="q"><span class="t" style="display:block;font-family:var(--serif);font-size:22px;font-weight:500;margin-bottom:10px;">8. How should your name appear if your review is shared?</span>
+      <label class="opt"><input type="radio" name="name_display" value="Full name"> Full name</label>
+      <label class="opt"><input type="radio" name="name_display" value="First name and last initial"> First name and last initial</label>
+      <label class="opt"><input type="radio" name="name_display" value="Initials only"> Initials only</label>
+      <label class="opt"><input type="radio" name="name_display" value="Keep my review private"> Please keep my review private</label></div>
+    <div class="q"><label class="opt"><input type="checkbox" id="permission" name="permission" value="yes"> You may quote my answers to questions 3, 4, 5 and 6 on the Slate &amp; Signal website and social media.</label></div>
+    <button class="btn btn-dark" type="submit">Send My Review</button>
+    <p class="err" id="err"></p>
+  </form>
+  </div>
+  <div class="done" id="done"><div class="label">Review received</div><h2>Thank you.</h2><p style="font-size:17px;margin-bottom:36px;">Your review has been sent to Raquel.</p><a class="btn btn-dark" href="/">Return to Homepage</a></div>
+</main>
+<script>
+(function(){
+  var f=document.getElementById('rv'),err=document.getElementById('err');
+  f.addEventListener('submit',function(e){
+    e.preventDefault(); err.style.display='none';
+    var d=new FormData(f), v=function(k){return (d.get(k)||'').toString().trim();};
+    if(!v('full_name')){err.textContent='Please enter your name.';err.style.display='block';return;}
+    if(!v('most_helpful')&&!v('what_it_showed')){err.textContent='Please answer question 3 or question 4.';err.style.display='block';return;}
+    var src='website'; try{var p=new URLSearchParams(location.search).get('src'); if(p&&/^[a-z0-9_-]{1,40}$/i.test(p)) src=p;}catch(x){}
+    var body={website:v('website'),full_name:v('full_name'),products:d.getAll('products'),most_helpful:v('most_helpful'),what_it_showed:v('what_it_showed'),what_changed:v('what_changed'),stuck_before:v('stuck_before'),more_helpful:v('more_helpful'),name_display:v('name_display'),permission:d.get('permission')==='yes',source:src};
+    var b=f.querySelector('button'); b.disabled=true; b.textContent='Sending';
+    fetch('https://slateandsignal.app.n8n.cloud/webhook/review',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(body)})
+      .then(function(r){ if(!r.ok) throw 0; document.getElementById('formWrap').style.display='none'; document.getElementById('done').style.display='block'; window.scrollTo(0,0); })
+      .catch(function(){ b.disabled=false; b.textContent='Send My Review'; err.textContent='Your review did not send. Please try again, or email it to hello@slateandsignal.studio.'; err.style.display='block'; });
+  });
+})();
+</script>
+
+
+
+<footer>
+  <div class="wrap foot-inner">
+    <a class="foot-logo" href="/"><img src="../images/logo-white.png" alt="Slate &amp; Signal Personal Brand Research Practice Logo"></a>
+    <div class="foot-links">
+      <a href="/about/">About</a>
+      <a href="/blog/">Blog</a>
+      <a href="https://slateandsignal.substack.com/" target="_blank" rel="noopener">Substack</a>
+      <a href="https://www.instagram.com/slateandsignal/" target="_blank" rel="noopener">Instagram</a>
+      <a href="https://www.tiktok.com/@slateandsignal" target="_blank" rel="noopener">TikTok</a>
+      <a href="https://www.pinterest.com/SlateandSignal/" target="_blank" rel="noopener">Pinterest</a>
+      <a href="https://www.linkedin.com/company/135758054/" target="_blank" rel="noopener">LinkedIn</a>
+      <a href="https://www.facebook.com/profile.php?id=61592240619564" target="_blank" rel="noopener">Facebook</a>
+      <a href="mailto:hello@slateandsignal.studio">hello@slateandsignal.studio</a>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
