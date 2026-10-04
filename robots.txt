@@ -6,6 +6,9 @@ Allow: /
 Disallow: /p/
 Disallow: /r/
 
+# Private client command centers, password protected, never indexed.
+Disallow: /cc/
+
 Sitemap: https://slateandsignal.studio/sitemap.xml
 
 # Signal Report lookup page, passcode only, never indexed.
