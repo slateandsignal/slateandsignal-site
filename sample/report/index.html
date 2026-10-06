@@ -3,15 +3,15 @@
 {
   "name": "Slate & Signal Individual Report Template",
   "schemaVersion": 1,
-  "description": "Slate & Signal master report template with all 7 constellations inlined. Constellation page auto-animates based on The Curator — no iframes, no external files required."
+  "description": "Slate & Signal master report template with all 7 constellations inlined. Constellation page auto-animates based on The Guide — no iframes, no external files required."
 }
 </script>
 <html lang="en">
 <head>
-<meta name="robots" content="noindex">
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Avery Lane, Sample Signal Report</title>
+<title>Sample Signal Report | Slate &amp; Signal</title>
+<meta name="robots" content="noindex">
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600&display=swap" rel="stylesheet">
 <style>
 @font-face {
@@ -32,7 +32,7 @@
   --card:#FFFFFF;
   --gold:#FFDE7A;
   /* --amber MUST be overridden with this client's actual accent color before delivery (see Signal-Report-SOP.md Step 7). Left as loud red on purpose so a forgotten step is obvious, not invisible. */
-  --amber:#C97B5A;
+  --amber:#B23A2C;
   --line:rgba(17,17,17,.12);
   --lineDark:rgba(255,255,255,.14);
   --shadow:0 24px 70px rgba(0,0,0,.18);
@@ -157,7 +157,7 @@ img { display:block; width:100%; height:100%; object-fit:cover; }
 .market-charts::before { display:none !important; }
 .market-charts > div, .market-cards { display:grid; grid-template-columns:repeat(auto-fit, minmax(220px, 1fr)); gap:34px; }
 
-.exp-strip { position:absolute; left:70px; right:70px; bottom:18px; border:1px solid rgba(17,17,17,.12); border-radius:8px; padding:14px 34px; display:grid; grid-template-columns:repeat(3,1fr); gap:18px; background:rgba(255,255,255,.55); }
+.exp-strip { position:absolute; left:70px; right:70px; bottom:56px; border:1px solid rgba(17,17,17,.12); border-radius:8px; padding:30px 34px; display:grid; grid-template-columns:repeat(3,1fr); gap:18px; background:rgba(255,255,255,.55); }
 .exp-item { display:flex; gap:16px; align-items:center; border-right:1px solid rgba(17,17,17,.10); padding-right:22px; }
 .exp-item:last-child { border-right:0; }
 .exp-icon { color:var(--gold); font-size:28px; }
@@ -272,17 +272,17 @@ img { display:block; width:100%; height:100%; object-fit:cover; }
 <!-- PAGE 1 -->
 <section class="page dark cover">
 <div class="cover-photo">
-<img alt="" src="/report-assets/report-cover-update.png" style="width:100%; height:100%; object-fit:cover; display:block;"/>
+<img alt="" src="https://slateandsignal.studio/report-assets/report-cover-update.png" style="width:100%; height:100%; object-fit:cover; display:block;"/>
 </div>
 <div class="cover-right">
-<div class="cover-logo" style="font-family:'Cormorant Garamond',serif; font-weight:300; letter-spacing:-0.02em;">SLATE<img alt="&amp;" src="/report-assets/wordmark-ampersand.png" style="height:44px; width:auto; display:inline-block; vertical-align:-18px; margin:0 4px;"/>SIGNAL <span class="rule" style="display:inline-block; vertical-align:middle; margin-left:22px;"></span></div>
+<div class="cover-logo" style="font-family:'Cormorant Garamond',serif; font-weight:300; letter-spacing:-0.02em;">SLATE<img alt="&amp;" src="https://slateandsignal.studio/report-assets/wordmark-ampersand.png" style="height:44px; width:auto; display:inline-block; vertical-align:-18px; margin:0 4px;"/>SIGNAL <span class="rule" style="display:inline-block; vertical-align:middle; margin-left:22px;"></span></div>
 <div class="cover-main">
-<h1>Avery Lane</h1>
+<h1>Wren Halloway</h1>
 <div class="kicker">THE SIGNAL REPORT</div>
-<div class="cover-tagline">The person who knows what to take away.</div>
+<div class="cover-tagline">You are the person who stays calm beside someone who is frightened, and makes the frightening thing look ordinary.</div>
 </div>
 <div>
-<div class="cover-date">Sample Report, fictional client</div>
+<div class="cover-date">Sample report, fictional client</div>
 <div class="cover-bottom-rule"></div>
 </div>
 </div>
@@ -329,33 +329,33 @@ img { display:block; width:100%; height:100%; object-fit:cover; }
 <div class="card-grid">
 <div class="card glass">
 <div class="card-label">Signal Archetype</div>
-<div class="card-value">The Curator</div>
-<p class="small" style="margin-top:18px;">A Curator decides what stays. Avery has spent 14 years choosing which stems earn a place in an arrangement, and her answers show the same instinct at a friend's bookshelf, a sister's kitchen and her own shop window. She sees the one thing crowding a space before anyone else does. That judgment is rare, and people already trust it without being asked to.</p>
+<div class="card-value">The Guide</div>
+<p class="small" style="margin-top:18px;">You walk beside people at the exact moment they are most afraid, and you do it in water. Three people told you your strength is making people feel safe enough to try something that scares them, and your own answers back that up with method: you get a nervous adult into cold water without frightening them, you talk someone down from panic two hundred metres offshore, and you build competence in very small pieces. The market advantage here is specific. Cold water is a field full of extreme branding and fast advice, so the person who can stand on a beach and make the first minute survivable owns the part of the experience that beginners actually pay for. Your credibility comes from having learned to swim at twenty six after a childhood of avoiding water, which means you know the inside of the fear as well as the fix.</p>
 </div>
 <div class="card glass">
 <div class="card-label">Signal Strength</div>
 <div class="strength-num">8 / 10</div>
 <div class="strength-track"><div class="strength-fill"></div></div>
-<p class="small" style="margin-bottom:10px;"><strong>What raises it:</strong> The same editing instinct appears in every answer, across flowers, rooms and closets.</p>
-<p class="small"><strong>What holds it down:</strong> She has never said it publicly, so only her close circle knows to ask her.</p>
+<p class="small" style="margin-bottom:10px;"><strong>What raises it:</strong> Cold water, fear of water, coastal skill and teaching beginners all show up together across what you talk about, what people ask you for, what comes easily and what you are already building.</p>
+<p class="small"><strong>What holds it down:</strong> You have named the uncertainty yourself in your answers, which is whether the thing you teach is swimming or nerve, and until you pick one sentence for it the sessions will be harder to describe than to run.</p>
 </div>
 <div class="card glass">
 <div class="card-label">Primary Themes</div>
 <ul class="bullets">
-<li>Editing by subtraction</li>
-<li>Florist design rules</li>
-<li>Rooms that feel lived in</li>
-<li>Quiet authority</li>
-<li>Hands at work</li>
+<li>Cold water entry and the first minute</li>
+<li>Fear of water and how it is taught</li>
+<li>Tides, swell and coastal weather</li>
+<li>Repair over replacement</li>
+<li>Adults who believe they are not outdoors people</li>
 </ul>
 </div>
 <div class="card glass">
 <div class="card-label">Natural Communication Style</div>
-<div class="card-value" style="font-size:22px; line-height:1.4;">Certain<br/>Brief<br/>Warm</div>
+<div class="card-value" style="font-size:22px; line-height:1.4;">Calm<br/>Plain<br/>Steady</div>
 </div>
 <div class="card glass full">
 <div class="card-label">Core Essence</div>
-<p class="essence">Avery looks at a crowded room and sees the version of it that already works. Her gift is the permission she gives people to let things go.</p>
+<p class="essence">You are a person who gets close to other people's fear without adding to it. Your instinct is to break a frightening thing into small pieces and hand them over one at a time.</p>
 </div>
 </div>
 </section>
@@ -366,16 +366,16 @@ img { display:block; width:100%; height:100%; object-fit:cover; }
 <h2 style="translate:0px -116px;">SIGNATURE<br/>SIGNAL</h2>
 <p class="sub" style="translate:-1px -141px; font-size:15px;">The traits and patterns that consistently show up in how you work, communicate, and create.</p>
 <div class="still-life-frame" style="translate:-7px -73px;">
-<div class="photo-placeholder-box">Photo generated for each client</div>
+<img src="https://slateandsignal.studio/ri/wren-halloway-907896cb0b76/signature.jpg" alt="" style="width:100%; height:100%; object-fit:cover; object-position:center; display:block; filter:contrast(0.90) saturate(0.82) brightness(0.97);">
 </div>
 </div>
 <div class="signal-panel glass" style="translate:-2px -15px; font-size:15px;">
-<div class="signal-row"><div class="icon"><svg style="color: rgb(18, 18, 17);color:#FFDE7A;" viewbox="0 0 24 24"><path d="M4 19c6-2 10-2 16 0V5c-6-2-10-2-16 0z"></path><path d="M12 6v12" style="color: rgb(8, 8, 8);color:#FFDE7A;"></path></svg></div><span style="translate: 0px;"><strong>The first glance.</strong> She names the problem in a space within seconds of walking in.</span></div>
-<div class="signal-row"><div class="icon"><svg style="color: rgb(13, 13, 12);color:#FFDE7A;" viewbox="0 0 24 24"><circle cx="12" cy="12" r="8"></circle><path d="M12 4v16M4 12h16"></path></svg></div><span><strong>Rules she can name.</strong> Odd numbers, one focal point, room to breathe. She can explain every choice she makes.</span></div>
-<div class="signal-row"><div class="icon"><svg style="color: rgb(10, 10, 10);color:#FFDE7A;" viewbox="0 0 24 24"><path d="M12 21s7-6.4 7-12a7 7 0 0 0-14 0c0 5.6 7 12 7 12z"></path><circle cx="12" cy="9" r="2"></circle></svg></div><span><strong>Rooted in place.</strong> Her work is grounded in a real shop on a real main street, with 14 years of regulars.</span></div>
-<div class="signal-row"><div class="icon"><svg style="color: rgb(5, 5, 5);color:#FFDE7A;" viewbox="0 0 24 24"><path d="M5 12h14" style="color: rgb(5, 5, 5);color:#FFDE7A;"></path><path d="M12 5l7 7-7 7"></path></svg></div><span><strong style="font-weight: 700;font-weight:700;">Removal first.</strong> Her first move is always to take something out.</span></div>
-<div class="signal-row"><div class="icon"><svg style="color: rgb(5, 5, 5);color:#FFDE7A;" viewbox="0 0 24 24"><path d="M4 4h16v12H7l-3 3z"></path></svg></div><span><strong style="font-weight: 700;font-weight:700;">Short and sure.</strong> She gives one clear recommendation and trusts people to follow it.</span></div>
-<div class="signal-row"><div class="icon"><svg style="color: rgb(3, 3, 3);color:#FFDE7A;" viewbox="0 0 24 24"><path d="M12 2l3 7 7 1-5 5 1 7-6-4-6 4 1-7-5-5 7-1z"></path></svg></div><span><strong style="font-weight: 700;font-weight:700;">Hands in frame.</strong> She thinks while she moves objects, which makes her process easy to film.</span></div>
+<div class="signal-row"><div class="icon"><svg style="color: rgb(18, 18, 17);color:#FFDE7A;" viewbox="0 0 24 24"><path d="M4 19c6-2 10-2 16 0V5c-6-2-10-2-16 0z"></path><path d="M12 6v12" style="color: rgb(8, 8, 8);color:#FFDE7A;"></path></svg></div><span style="translate: 0px;"><strong>Safe Entry.</strong> You get a nervous adult into cold water without frightening them. That is a teachable procedure, and you already run it.</span></div>
+<div class="signal-row"><div class="icon"><svg style="color: rgb(13, 13, 12);color:#FFDE7A;" viewbox="0 0 24 24"><circle cx="12" cy="12" r="8"></circle><path d="M12 4v16M4 12h16"></path></svg></div><span><strong>The First Minute.</strong> You treat cold shock as a predictable physical response with a known shape. You talk people through it while it is happening.</span></div>
+<div class="signal-row"><div class="icon"><svg style="color: rgb(10, 10, 10);color:#FFDE7A;" viewbox="0 0 24 24"><path d="M12 21s7-6.4 7-12a7 7 0 0 0-14 0c0 5.6 7 12 7 12z"></path><circle cx="12" cy="9" r="2"></circle></svg></div><span><strong>Small Pieces.</strong> You build competence in very small steps, so a person can do today's step without needing to imagine the last one.</span></div>
+<div class="signal-row"><div class="icon"><svg style="color: rgb(5, 5, 5);color:#FFDE7A;" viewbox="0 0 24 24"><path d="M5 12h14" style="color: rgb(5, 5, 5);color:#FFDE7A;"></path><path d="M12 5l7 7-7 7"></path></svg></div><span><strong style="font-weight: 700;font-weight:700;">Coastal Reading.</strong> You read tide tables, swell and coastal weather and decide which beach is safe today. People ask you this before they ask anything else.</span></div>
+<div class="signal-row"><div class="icon"><svg style="color: rgb(5, 5, 5);color:#FFDE7A;" viewbox="0 0 24 24"><path d="M4 4h16v12H7l-3 3z"></path></svg></div><span><strong style="font-weight: 700;font-weight:700;">Repair Instinct.</strong> You fix things instead of replacing them, from a small outboard engine to a beginner's confidence. Both work the same way.</span></div>
+<div class="signal-row"><div class="icon"><svg style="color: rgb(3, 3, 3);color:#FFDE7A;" viewbox="0 0 24 24"><path d="M12 2l3 7 7 1-5 5 1 7-6-4-6 4 1-7-5-5 7-1z"></path></svg></div><span><strong style="font-weight: 700;font-weight:700;">Plain Words.</strong> You describe hard physical things in ordinary language. That is why people believe you on a cold beach at seven in the morning.</span></div>
 </div>
 </section>
 <!-- PAGE 5 -->
@@ -383,9 +383,9 @@ img { display:block; width:100%; height:100%; object-fit:cover; }
 <div class="const-text">
 <div class="page-num">05 <span class="numline"></span></div>
 <h2 style="translate:-9px -12px; font-size:38px;">  <span style="letter-spacing: -0.02em; background-color: initial;">YOUR SIGNAL</span><div>CONSTELLATION</div></h2>
-<p class="body" style="font-size:16px;">Every point in Avery's constellation leads back to one act: choosing what stays.</p>
-<div class="const-script">The Curator</div>
-<div class="badge" style="translate:-1px -17px; font-size:14px;">✦ High Alignment</div>
+<p class="body" style="font-size:16px;">You take people to the edge of the thing that scares them and stay beside them while they get in.</p>
+<div class="const-script">The Guide</div>
+<div class="badge" style="translate:-1px -17px; font-size:14px;">✦ The Guide</div>
 </div>
 <div class="const-box glass" id="const-stage-wrap" style="position:relative;overflow:hidden;padding:0;background:#0D0D0D;display:flex;flex-direction:column;align-items:center;justify-content:center;font-size:6px;">
 <div id="cstage-outer" style="width:100%;height:100%;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:24px 16px;box-sizing:border-box;">
@@ -1155,15 +1155,15 @@ img { display:block; width:100%; height:100%; object-fit:cover; }
   // 0 What Pulls You / Energy, 1 What Follows You / Natural Strengths, 2 What Fascinates You / Curiosity,
   // 3 What Frustrates You / Purpose, 4 What Changed You / Experience, 5 Called to Share / Impact
   const CLIENT_CONSTELLATION_THEMES = [
-    'A room finally settling',
-    'Seeing the one extra thing',
-    'Why some rooms feel calm',
-    'Storage sold as the answer',
-    'Fourteen years of arranging',
-    'Permission to let go'
+    'Cold water at dawn',
+    'Calm beside someone\'s panic',
+    'Tides, weather and repair',
+    'Outdoor sport sold as elite',
+    'Learning to swim at twenty six',
+    'Nervous adults swimming all winter'
   ];
 
-  // Detect archetype from the .const-script element (contains The Curator value)
+  // Detect archetype from the .const-script element (contains The Guide value)
   function getArchKey() {
     const el = document.querySelector('.const-script');
     const raw = el ? el.textContent.toLowerCase() : '';
@@ -1293,15 +1293,15 @@ img { display:block; width:100%; height:100%; object-fit:cover; }
 Three real experiences from your answers that show why you have credibility in your niche.</p>
 </div>
 <div class="eco-grid">
-<div class="eco-box"><div class="label" style="font-weight:700; font-size:12px;">Primary Content Pillars</div><p>One rule at a time</p><p>What I would remove</p><p>Stories from the shop</p></div>
-<div class="eco-box"><div class="label" style="font-weight:700; font-size:12px;">Secondary Topics</div><p>Seasonal resets using what is already in the house</p><p>Florist tricks for grocery store flowers</p><p>Styling a rental with nothing new</p></div>
-<div class="eco-box" style="translate:-4px -39px;"><div class="label" style="font-weight:700; font-size:12px;">Contrarian Beliefs</div><p>A cluttered room needs fewer things on display. More storage only hides the crowd.</p><p>Taste can be taught. It is a short list of rules most people were never shown.</p></div>
-<div class="eco-box" style="translate:-1px -38px;"><div class="label" style="font-size:12px; font-weight:700;">Stories to Document</div><p>The funeral arrangement a family asked her to remake three times, and what the third one taught her.</p><p>The eleven minute bookshelf fix at a friend's party that started people asking for help.</p><p>Resetting her own shop window each season, filmed from first object to last.</p></div>
+<div class="eco-box"><div class="label" style="font-weight:700; font-size:12px;">Primary Content Pillars</div><p>The First Minute</p><p>Reading Water Safely</p><p>Repair Over Replace</p></div>
+<div class="eco-box"><div class="label" style="font-weight:700; font-size:12px;">Secondary Topics</div><p>How to read a tide table before your first sea swim</p><p>Wetsuit or bare skin for a first winter dip</p><p>Small outboard fixes that keep an old boat running</p></div>
+<div class="eco-box" style="translate:-4px -39px;"><div class="label" style="font-weight:700; font-size:12px;">Contrarian Beliefs</div><p>Jumping straight in is the worst way to start. Cold shock peaks in the first minute, so walk in slowly and let your breathing settle.</p><p>Expensive gear is optional. A short dip, dry clothes and one person on the bank do more for a beginner than a wetsuit.</p></div>
+<div class="eco-box" style="translate:-1px -38px;"><div class="label" style="font-size:12px; font-weight:700;">Stories to Document</div><p>Learning to swim at twenty six after a childhood of avoiding water, and what the first lesson actually felt like from the inside.</p><p>The panic attack two hundred metres offshore, and the decision to swim back to the harbour wall anyway.</p><p>A February dawn past the harbour wall, the morning you noticed the fear had gone.</p></div>
 </div>
 <div class="exp-strip">
-<div class="exp-item"><div class="exp-icon">◎</div><p class="small">14 years running a florist shop</p></div>
-<div class="exp-item"><div class="exp-icon">◎</div><p class="small">Weekly window displays for her main street</p></div>
-<div class="exp-item"><div class="exp-icon">◎</div><p class="small">Friends' homes restyled with what they owned</p></div>
+<div class="exp-item"><div class="exp-icon">◎</div><p class="small">Learned to swim at twenty six after avoiding water</p></div>
+<div class="exp-item"><div class="exp-icon">◎</div><p class="small">Worked a full season on a fishing boat</p></div>
+<div class="exp-item"><div class="exp-icon">◎</div><p class="small">Runs small group cold water sessions year round</p></div>
 </div>
 </section>
 <!-- PAGE 7 -->
@@ -1310,28 +1310,24 @@ Three real experiences from your answers that show why you have credibility in y
 <div class="page-num">07 <span class="numline"></span></div>
 <h2>VISUAL<br/>IDENTITY</h2>
 <p class="sub">The visual expression of your signal.</p>
-<div class="vi-block"><div class="vi-label">Mood</div><div class="vi-value">Quiet, warm, lived in</div></div>
-<div class="vi-block"><div class="vi-label">Keywords</div><div class="vi-value">Daylight | Stems | Linen | Clay | Open space</div></div>
+<div class="vi-block"><div class="vi-label">Mood</div><div class="vi-value">Cold, plain, steady, coastal</div></div>
+<div class="vi-block"><div class="vi-label">Keywords</div><div class="vi-value">Harbour | Enamel | Cold water | Salt bleached timber | Winter light</div></div>
 <!-- Run the Brand-Color-Analysis-Agent.md prompt against the client's actual colors before filling this in. Only include the "Removed" row if colors were actually cut for a documented reason (contrast failure, redundancy, etc). -->
-<div class="vi-block"><div class="vi-label">Color Correction: Why the Palette Changed</div><div class="vi-value">The working palette is stem green, warm charcoal, clay and linen. Green on linen measures 6.2 to 1 and charcoal on linen 12.5 to 1, so both carry text easily. Clay measures 2.9 to 1, so it is kept for large type and color blocks. Sage and sand were removed because they measured 2.6 and 1.4 to 1 against linen, too faint to read.</div>
+<div class="vi-block"><div class="vi-label">Color Direction</div><div class="vi-value">The palette comes straight from your own answers. The anchor is the deep harbour blue you named first, and it matches the chipped enamel mug the colour of a harbour at dusk that you described as the real object. The second blue is lighter and greyer, the colour of the same water under winter cloud, and it carries backgrounds and long text. The accent is painted hull red, the one colour in a working harbour that reads from a distance, and it does the work on buttons, session dates and anything a beginner needs to find fast. The light ground is salt bleached timber, close to white with the warmth taken out. Cold water brands lean heavily on ice blue, cyan and black with neon, so keeping the reds and the bleached timber in play separates you on sight. Deep harbour blue on the light ground reaches well past the 4.5 to 1 contrast standard for body text, and the hull red on the same ground measures about 5.2 to 1, so it is safe for headings and links.</div>
 <div class="color-dots" style="margin-bottom:18px;">
-<div class="dot" style="background:#4A5D4E"></div><div class="dot" style="background:#2B2B28"></div><div class="dot" style="background:#C97B5A"></div><div class="dot" style="background:#F4F0E8"></div>
+<div class="dot" style="background:#12303D"></div><div class="dot" style="background:#B23A2C"></div><div class="dot" style="background:#5B8794"></div><div class="dot" style="background:#F2EFE7"></div>
 </div>
-<!-- Optional: only if colors were removed -->
-<div style="font-size:11px; letter-spacing:.15em; text-transform:uppercase; color:#111111; margin-bottom:10px;">Removed colors</div>
-<div class="color-dots">
-<div class="dot" style="background:#8C9A8E;"></div><div class="dot" style="background:#D9C9A8;"></div>
+
 </div>
-</div>
-<div class="vi-block"><div class="vi-label">Photography Style</div><div class="vi-value">Natural window light, close crops, and her hands in most frames.</div></div>
-<div class="vi-block"><div class="vi-label" style="translate:426px -93px;">Editing Style</div><div class="vi-value" style="translate:425px -87px;">Soft contrast, warm whites, true greens.</div></div>
+<div class="vi-block"><div class="vi-label">Photography Style</div><div class="vi-value">Real coastal light, shot close and plain: harbour walls, wet steps, enamel mugs, painted hulls, hands kept out of frame and weather left in.</div></div>
+<div class="vi-block"><div class="vi-label" style="translate:426px -93px;">Editing Style</div><div class="vi-value" style="translate:425px -87px;">Cool and true, with real contrast, blues kept cold, reds left saturated, and no warm filter over the top.</div></div>
 </div>
 <div class="vi-collage">
-<div class="vi-img"><div class="photo-placeholder-box">Photo generated for each client</div></div>
-<div class="vi-img"><div class="photo-placeholder-box">Photo generated for each client</div></div>
-<div class="vi-img"><div class="photo-placeholder-box">Photo generated for each client</div></div>
-<div class="vi-img"><div class="photo-placeholder-box">Photo generated for each client</div></div>
-<div class="vi-img wide"><div class="photo-placeholder-box">Photo generated for each client</div></div>
+<div class="vi-img"><img src="https://slateandsignal.studio/ri/wren-halloway-907896cb0b76/vi1.jpg" alt="" style="width:100%; height:100%; object-fit:cover; object-position:center; display:block; filter:contrast(0.90) saturate(0.82) brightness(0.97);"></div>
+<div class="vi-img"><img src="https://slateandsignal.studio/ri/wren-halloway-907896cb0b76/vi2.jpg" alt="" style="width:100%; height:100%; object-fit:cover; object-position:center; display:block; filter:contrast(0.90) saturate(0.82) brightness(0.97);"></div>
+<div class="vi-img"><img src="https://slateandsignal.studio/ri/wren-halloway-907896cb0b76/vi3.jpg" alt="" style="width:100%; height:100%; object-fit:cover; object-position:center; display:block; filter:contrast(0.90) saturate(0.82) brightness(0.97);"></div>
+<div class="vi-img"><img src="https://slateandsignal.studio/ri/wren-halloway-907896cb0b76/vi4.jpg" alt="" style="width:100%; height:100%; object-fit:cover; object-position:center; display:block; filter:contrast(0.90) saturate(0.82) brightness(0.97);"></div>
+<div class="vi-img wide"><img src="https://slateandsignal.studio/ri/wren-halloway-907896cb0b76/vi0.png" alt="" style="width:100%; height:100%; object-fit:cover; object-position:center; display:block; filter:contrast(0.90) saturate(0.82) brightness(0.97);"></div>
 </div>
 </section>
 <!-- PAGE 8 -->
@@ -1339,54 +1335,54 @@ Three real experiences from your answers that show why you have credibility in y
 <div class="photo-text">
 <div class="page-num">08 <span class="numline"></span></div>
 <h2>THE MARKET<br/>OPPORTUNITY</h2>
-<p class="body">Avery's audience is the person standing in a room they do not like. They have bought the bins, watched the decluttering videos and tidied the surfaces, and the room still feels crowded. What they cannot find is someone who will look at their things and say which three to keep out.</p>
-<p class="body" style="margin-top:22px;">A statistics roundup from ZipDo puts the United States home organization market at 12.1 billion dollars in 2023, with 11.8 billion of that in retail sales. Most of that money goes to containers and storage, which is the exact habit Avery's method asks people to question.</p>
-<p class="body" style="margin-top:22px;">People already pay for this kind of judgment. KonMari charges 2,998 dollars to train a certified tidying consultant, plus a 500 dollar yearly membership, and Havenly sells an online design package for 159 dollars. Both show buyers paying for someone else's eye.</p>
-<p class="body" style="margin-top:22px;">The work is teaching people to see their own rooms the way Avery already does.</p>
+<p class="body">Your audience is adults who decided at some point that outdoor water is for other people, plus pool swimmers and first time triathletes who are surprised by their own reaction in open water. They are not short of information. In an open water swimming discussion on Reddit, a former competitive swimmer, synchronised swimmer and lifeguard describes freaking out on a first open water session, sprinting, rolling onto a safety float and getting out at 250 metres. In another discussion in the same group, a swimmer asks how to stop hyperventilating in freezing water while already wearing a wetsuit, six weeks before a race. In a third, a pool swimmer describes putting her face in a lake and having to fight the impulse to pull her head straight back out, with all the right gear already bought. What these people lack is a person on the shore during the first minute, saying the next small thing to do. That is the skill you already have and already give away for free.</p>
+<p class="body" style="margin-top:22px;">The paid version of this work already has a measured market. The Ice Bath Workshops Market research report values the global ice bath workshops market at $420 million in 2024 and projects $1.12 billion by 2033, a rate of 11.2 percent a year, with in person workshops, corporate workshops and retreats named as the formats people buy. Your small group sessions sit inside that category today, priced at nothing.</p>
+<p class="body" style="margin-top:22px;">There is a second buyer behind the individual. Emergen Research puts the global corporate wellness market at USD 68.41 billion in 2025, growing at 5.6 percent a year to USD 118.21 billion by 2035, with stress management and fitness programmes among the services counted. Employers buying group sessions want a facilitator who can keep frightened adults safe in water, which is the exact thing your answers describe you doing.</p>
+<p class="body" style="margin-top:22px;">The work is teaching an adult to enter cold water on purpose, breathe through the first minute, and get out warm and steady.</p>
 </div>
-<div class="photo-side market-charts" style="display:flex; flex-direction:column; justify-content:center; gap:36px; padding:48px 40px;"><div class="market-cards"><div><div style="font-family:var(--serif);font-size:48px;color:#FFDE7A;line-height:1;">$12.1B</div><p style="color:#ddd;font-size:14px;line-height:1.6;margin-top:10px;">US home organization market, 2023. Source: ZipDo</p></div><div><div style="font-family:var(--serif);font-size:48px;color:#FFDE7A;line-height:1;">$2,998</div><p style="color:#ddd;font-size:14px;line-height:1.6;margin-top:10px;">KonMari consultant certification. Source: konmari.com</p></div></div></div>
+
 </section>
 <!-- PAGE 9 -->
 <section class="page dark dark-content">
 <div class="page-num">09 <span class="numline"></span></div>
 <h2>THE<br/>NICHE GAP</h2>
 <div style="max-width:640px; margin-bottom:44px;">
-<p class="body" style="color:#fff;">This niche came from live research into what people ask on Reddit about fixing a room, compared against what the organizing and styling space already sells.</p>
+<p class="body" style="color:#fff;">This niche came out of the overlap between what you already do without charging, what people already come to you for, and what adults are openly asking for in open water swimming discussions online.</p>
 </div>
 <div class="dark-grid" style="grid-template-columns:1fr; gap:20px; margin-bottom:40px;">
 <div class="dark-card gold-edge">
 <div class="kicker" style="margin-bottom:14px;">RECOMMENDED NICHE</div>
-<h3 style="font-size:24px;">Styling by subtraction: the florist's method for rooms</h3>
-<p>The organizing space sells containers and the decor space sells new things. Almost nobody teaches people how to choose what to take away, and Avery has 14 years of practice doing exactly that. Her florist rules give her a method nobody else in the space can claim.</p>
+<h3 style="font-size:24px;">Cold Water Swim Confidence for Nervous Adult Beginners</h3>
+<p>The questions being asked publicly are about panic, breathing and the first minute, and the answers on offer are other swimmers' personal habits. You hold the two things the asking adults need at once: the physiology of cold shock, and the manner that keeps a frightened person calm while it happens. You also came to water late yourself, at twenty six, so the beginner's starting point is familiar ground you have stood on.</p>
 </div>
 <div class="dark-card">
 <div class="kicker" style="margin-bottom:14px; color:#FFFFFF;">ALTERNATE DIRECTION</div>
-<h3 style="font-size:22px;">Rental styling with nothing new</h3>
-<p>Renters cannot paint or replace furniture, so an editing method fits them perfectly.</p>
+<h3 style="font-size:22px;">Small Boat and Outboard Repair Nights</h3>
+<p>Owners of old boats openly debate rebuilding against replacing on marine engine forums, and you can fix a small outboard and run the repair night you are already building.</p>
 </div>
 <div class="dark-card">
 <div class="kicker" style="margin-bottom:14px; color:#FFFFFF;">ALTERNATE DIRECTION</div>
-<h3 style="font-size:22px;">Grocery store flowers, arranged well</h3>
-<p>Her shop gives her daily material, and the florist rules are the same ones she teaches for rooms.</p>
+<h3 style="font-size:22px;">Coastal Reading for Swimmers and Small Boat Owners</h3>
+<p>Tides, swell and the shipping forecast are asked about constantly and explained badly, and you read all three as a matter of routine.</p>
 </div>
 </div>
 <div class="dark-grid">
 <div class="dark-card">
 <h3>What Already Exists</h3>
 <ul>
-<li>Storage and container brands selling organization as a purchase</li>
-<li>Decluttering methods focused on what to discard, with no styling</li>
-<li>Online design services built around buying new furniture</li>
-<li>Resourceful styling courses, such as Lisa Dawson's on Create Academy</li>
+<li>Beginner articles that explain cold water shock and advise acclimatising over several sessions, keeping first swims short and never swimming alone, such as the My Swimming Guide starter piece.</li>
+<li>Temperature bands published by a New Zealand surf lifesaving club, from cool water at 15 to 21 degrees down to ice swimming below 5 degrees.</li>
+<li>Branded cold exposure certification programmes, including the Wim Hof Method instructor scheme with its own licensed activity names and levels.</li>
+<li>Open water swimming discussion threads where strangers answer panic questions with their own personal habits, such as merino swim caps, cold showers and wetting your face before you start.</li>
 </ul>
 </div>
 <div class="dark-card gold-edge">
 <h3>The Gap You Can Fill</h3>
 <ul>
-<li>How to make a room look good without buying anything, a recurring request in r/DesignMyRoom</li>
-<li>How to decide what to remove, asked again and again in r/declutter and r/organization</li>
-<li>Why a room still feels cluttered after cleaning, a common thread in r/malelivingspace</li>
-<li>Where to start, the most repeated beginner question in r/declutter</li>
+<li>An open water swimming discussion on Reddit where a lifelong competitive swimmer freaked out on a first open water session and got out at 250 metres, and the replies stayed on the subject of predators.</li>
+<li>A second discussion in the same open water swimming group asking how to stop hyperventilating in freezing water while already wearing a wetsuit, six weeks before a race.</li>
+<li>A third discussion in that group from a pool swimmer who puts her face in the lake and has to fight the impulse to yank her head out, with a kayak alongside and all the gear already bought.</li>
+<li>The My Swimming Guide beginner article states the shock is most intense in the first minute and then eases, which is the exact minute nobody is standing on the shore coaching people through.</li>
 </ul>
 </div>
 </div>
@@ -1396,13 +1392,13 @@ Three real experiences from your answers that show why you have credibility in y
 <div>
 <div class="page-num">10 <span class="numline"></span></div>
 <h2>REVENUE<br/>POTENTIAL</h2>
-<p class="sub">Four ways this work can earn, each one priced against real, published offers.</p>
+<p class="sub">Where the money in this work actually sits.</p>
 </div>
 <div class="eco-grid revenue-list">
-<div class="eco-box"><div class="label">Virtual room edit</div><p>Clients send photos of one room and receive a short video naming what to remove and where to move what stays. Priced near 150 to 200 dollars, it serves people anywhere.</p><p style="font-size:14px; color:#111111; margin-top:10px;"><em style="color:#050505;">Havenly's online design package, listed at 159 dollars. Source: havenly.com/pricing, gathered September 22, 2026.</em></p></div>
-<div class="eco-box"><div class="label">Home styling session</div><p>Avery restyles one room in person using only what the client owns. Priced near 400 to 500 dollars for a local client.</p><p style="font-size:14px; color:#111111; margin-top:10px;"><em style="color:#050505;">Havenly's in-person design package, listed at 499 dollars. Source: havenly.com/pricing, gathered September 22, 2026.</em></p></div>
-<div class="eco-box"><div class="label">Online course</div><p>A course at your own pace teaching her florist rules for rooms, priced between 47 and 67 dollars.</p><p style="font-size:14px; color:#111111; margin-top:10px;"><em style="color:#0a0a0a;">Lisa Dawson's resourceful interior styling course, 67 dollars on Create Academy. Source: createacademy.com, gathered September 22, 2026.</em></p></div>
-<div class="eco-box"><div class="label">Rule cards and guides</div><p>A small digital guide of her rules, one per card, at an entry price near 47 dollars.</p><p style="font-size:14px; color:#111111; margin-top:10px;color:#0d0c0c;"><em>Joyful Derivatives' Redecorate Repurpose Restyle course, 47 dollars. Source: joyfulderivatives.com, gathered September 22, 2026.</em></p></div>
+<div class="eco-box"><div class="label">Small Group Cold Water Sessions</div><p>Paid blocks of in person beginner sessions, sold as a course of several mornings. The Ice Bath Workshops Market research report values this category at $420 million in 2024 with a forecast of $1.12 billion by 2033 at 11.2 percent a year, and names in person, corporate and retreat workshops as the paid formats. You run these sessions already and hold the one skill the format depends on, which is getting a frightened adult through the first minute.</p><p style="font-size:14px; color:#111111; margin-top:10px;"><em style="color:#050505;">Certified Wim Hof Method instructors, who sell cold exposure workshops under a licensed certification with fixed activity names. Source: The Wim Hof Method instructor manifesto https://activities.wimhofmethod.com/Wim_Hof_Method_Manifesto_2025.pdf, gathered September 19, 2026.</em></p></div>
+<div class="eco-box"><div class="label">A Self Paced Beginner Course</div><p>A recorded course covering how to get in, how to breathe and how to get out safely, sold to people who live nowhere near you. The Wim Hof Method Fundamentals video course lists at $297 with a launch price of $193, and the earlier ten week video course was taken by more than 28,000 people after its 2013 launch. Your workshop outline is already a course spine, and the shore talk is the part nobody else is recording.</p><p style="font-size:14px; color:#111111; margin-top:10px;"><em style="color:#050505;">The Wim Hof Method Fundamentals Video Course, priced at $297 with a $193 launch offer. Source: The Wim Hof Method Fundamentals course page https://explore.wimhofmethod.com/live/, gathered September 19, 2026.</em></p></div>
+<div class="eco-box"><div class="label">Multi Day Coastal Swim Weeks</div><p>Guided swim weeks on your own coastline, with boat support, tide planning and small groups. SwimTrek sells seven day guided swimming holidays on the Dalmatian Coast, and Swim Trek Ltd reported shareholders' funds of £1,661,106 and 32 employees in its accounts to 31 December 2025, which shows the scale this format reaches. Your fishing boat season, tide reading and engine skills cover the logistics most swim coaches have to buy in.</p><p style="font-size:14px; color:#111111; margin-top:10px;"><em style="color:#0a0a0a;">SwimTrek, the Brighton based operator running seven day guided swim trips on the Dalmatian Coast. Source: Companies House record for Swim Trek Ltd https://www.companiesintheuk.co.uk/ltd/swim-trek, gathered September 19, 2026.</em></p></div>
+<div class="eco-box"><div class="label">Corporate And Hotel Group Programmes</div><p>Booked group sessions for employers and for hotels running guest wellness weekends. Emergen Research puts the global corporate wellness market at USD 68.41 billion in 2025, growing 5.6 percent a year to USD 118.21 billion by 2035, with fitness programmes and stress management among the counted services. These buyers need a facilitator who can keep nervous adults safe in open water and explain the risk plainly, which is your daily work.</p><p style="font-size:14px; color:#111111; margin-top:10px;color:#0d0c0c;"><em>One&amp;Only Palmilla in Los Cabos, which hosted a health, wellness and adventure weekend led by Laird Hamilton and Gabrielle Reece. Source: A Forbes article on the One&amp;Only Palmilla fitness weekend https://www.forbes.com/sites/alexandrakirkman/2016/05/26/the-ultimate-summer-weekend-shape-up-at-oneonly-palmilla-with-laird-hamilton-and-gabby-reece/, gathered September 19, 2026.</em></p></div>
 </div>
 </section>
 <!-- PAGE 11 -->
@@ -1421,11 +1417,11 @@ Three real experiences from your answers that show why you have credibility in y
 <p></p></li>
 </ul>
 </div>
-<div style="height:400px; margin-top:200px; border-radius:2px; overflow:hidden; box-shadow:0 30px 80px rgba(0,0,0,.35);translate:-19px -93px;"><img alt="" src="/report-assets/closing-report-photo.png" style="width:100%; height:100%; object-fit:cover; display:block;translate:3px 5px;"/></div><div style="grid-column:2; margin-top:30px; text-align:center; translate:-28px -209px;"><div style="width:60px; height:1px; background:#FFDE7A; margin:0 auto 22px;"></div><p style="font-family:var(--serif); font-style:italic; font-weight:300; font-size:22px; line-height:1.5; color:#FFDE7A; margin:0 0 14px;">“The creation of a thousand forests is in one acorn.”</p><div style="font-size:10px; letter-spacing:.3em; text-transform:uppercase; color:#FFDE7A;">Ralph Waldo Emerson</div></div>
+<div style="height:400px; margin-top:200px; border-radius:2px; overflow:hidden; box-shadow:0 30px 80px rgba(0,0,0,.35);translate:-19px -93px;"><img alt="" src="https://slateandsignal.studio/report-assets/closing-report-photo.png" style="width:100%; height:100%; object-fit:cover; display:block;translate:3px 5px;"/></div><div style="grid-column:2; margin-top:30px; text-align:center; translate:-28px -209px;"><div style="width:60px; height:1px; background:#FFDE7A; margin:0 auto 22px;"></div><p style="font-family:var(--serif); font-style:italic; font-weight:300; font-size:22px; line-height:1.5; color:#FFDE7A; margin:0 0 14px;">“The creation of a thousand forests is in one acorn.”</p><div style="font-size:10px; letter-spacing:.3em; text-transform:uppercase; color:#FFDE7A;">Ralph Waldo Emerson</div></div>
 </section>
 <!-- BACK -->
 <section class="page dark back" style="min-height:740px; display:flex; flex-direction:column; align-items:center; justify-content:center; text-align:center; padding:100px 64px;translate:0px -16px;">
-<div style="font-family:var(--serif); font-size:clamp(36px,5vw,52px); font-weight:300; letter-spacing:.05em; line-height:1.1; margin-bottom:8px;line-height:0.6;">SLATE<br/><img alt="&amp;" src="/report-assets/wordmark-ampersand.png" style="height:100px; width:auto; display:inline-block; vertical-align:-24px; margin:10px 0;font-size:53px;"/><br/>SIGNAL</div>
+<div style="font-family:var(--serif); font-size:clamp(36px,5vw,52px); font-weight:300; letter-spacing:.05em; line-height:1.1; margin-bottom:8px;line-height:0.6;">SLATE<br/><img alt="&amp;" src="https://slateandsignal.studio/report-assets/wordmark-ampersand.png" style="height:100px; width:auto; display:inline-block; vertical-align:-24px; margin:10px 0;font-size:53px;"/><br/>SIGNAL</div>
 <div style="font-size:20px; color:var(--gold); margin:20px 0;">✦</div>
 <div style="font-size:11px; letter-spacing:.35em; text-transform:uppercase; color:#FFFFFF;">Clarity Reveals. Strategy Amplifies. You Lead.</div>
 </section>
