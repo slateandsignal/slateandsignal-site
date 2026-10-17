@@ -23,28 +23,7 @@
 <meta name="twitter:description" content="Changing your brand fonts, colors, and messaging every few months can signal a missing strategic baseline. Here is how evidence-based strategy replaces guesswork.">
 <meta name="twitter:image" content="https://slateandsignal.studio/images/blog/slate-and-signal-unshakeable-baseline-essay-sea-og.jpg">
 
-<!--
-  ══════════════════════════════════════════════════════════════════════
-  SCHEMA. THREE BLOCKS, REQUIRED ON EVERY POST. Added 2026-09-07.
-
-  Schema is a description of the page written for machines. Google and
-  the AI assistants read it to know what the page is, who wrote it, when,
-  and which questions it answers. Without it they have to guess.
-
-  All four posts published before this date shipped with none of it and
-  were backfilled on 2026-09-07. Do not publish a post without it again.
-
-  · BlogPosting  — what this page is, who wrote it, when.
-  · FAQPage      — the questions this post answers, in the reader's own
-                   search words, each answered in 2 to 4 plain sentences
-                   drawn from the post itself. THIS IS THE ONE THAT GETS
-                   THE BRAND QUOTED BY AI ASSISTANTS. Never write an
-                   answer here that is not genuinely in the post.
-  · BreadcrumbList — makes Google show Home > Blog > Post.
-
-  Validate before publishing at search.google.com/test/rich-results
-  ══════════════════════════════════════════════════════════════════════
--->
+<!-- Structured data describes the visible article. Only add FAQ markup for a matching visible FAQ. -->
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -75,20 +54,6 @@
     { "@type": "Thing", "name": "Brand strategy" }
   ],
   "keywords": "personal brand baseline, rebranding, brand signal extraction, brand strategy for founders, Signal Report"
-}
-</script>
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "FAQPage",
-  "mainEntity": [
-    { "@type": "Question", "name": "Why do people keep rebranding their personal brand?",
-      "acceptedAnswer": { "@type": "Answer", "text": "Changing your brand fonts, colors, and messaging every few months signifies a lack of a strategic baseline. Most personal brands begin with guesswork: a niche picked from a short-lived trend, colors from a generic mood board, and a voice borrowed from whoever speaks loudest in your feed. Every change erases the momentum you built and restarts the trust-building process." } },
-    { "@type": "Question", "name": "What is brand signal extraction?",
-      "acceptedAnswer": { "@type": "Answer", "text": "Brand signal extraction decodes what is already true about you rather than inventing a new persona. Slate & Signal combines narrative psychology, aptitude theory, behavioral patterns, and real-time market data to identify the recurring themes in your experience and map your exact position." } },
-    { "@type": "Question", "name": "What is a brand baseline?",
-      "acceptedAnswer": { "@type": "Answer", "text": "A brand baseline is a permanent reference point for every future choice. When you wonder what to post, what offer to build, or how your brand should look, you compare every option against it. Having a verified reference point eliminates decision fatigue consistently." } }
-  ]
 }
 </script>
 <script type="application/ld+json">
@@ -170,6 +135,16 @@
   .post-figure img{width:100%;height:auto;aspect-ratio:4/5;object-fit:cover;}
   .post-figure figcaption{font-size:13px;line-height:1.6;font-style:italic;color:rgba(13,13,13,.62);text-align:center;margin-top:12px;}
 </style>
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-656HKKYWBH"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-656HKKYWBH');
+  </script>
+
+<script>function loadScript(a){var b=document.getElementsByTagName("head")[0],c=document.createElement("script");c.type="text/javascript",c.src="https://tracker.metricool.com/resources/be.js",c.onreadystatechange=a,c.onload=a,b.appendChild(c)}loadScript(function(){beTracker.t({hash:"e1ec5ef17fb5951bb3b77b706c9ad04"})});</script>
 </head>
 <body>
 
@@ -179,7 +154,7 @@
     <input type="checkbox" id="nav-toggle" class="nav-toggle">
     <label for="nav-toggle" class="nav-toggle-label">&#9776;</label>
     <div class="nav-links">
-      <a href="/#profile">Signal Profile</a>
+      <a href="/profile/">Signal Profile</a>
       <a href="/report/">Signal Report</a>
       <a href="/about/">About</a>
       <a href="/blog/">Blog</a>
@@ -275,8 +250,17 @@
   <div class="post-cta">
     <h3>Ready to establish your unshakeable brand baseline?</h3>
     <p>Request your Signal Profile to receive your customized brand direction.</p>
-    <a class="btn btn-dark" href="/#profile" style="background:var(--gold);color:var(--black);">Get Your Signal Profile</a>
+    <a class="btn btn-dark" href="/profile/" style="background:var(--gold);color:var(--black);">Get Your Signal Profile</a>
   </div>
+
+  <section aria-labelledby="related-reading" style="margin-top:40px;">
+    <h2 id="related-reading">Related reading</h2>
+    <ul>
+      <li><a href="/blog/agency-vs-signal-extraction/">Traditional Branding Agency vs. Brand Signal Extraction</a></li>
+      <li><a href="/blog/best-personal-brand-discovery-services/">The Best Personal Brand Discovery Services for Founders</a></li>
+      <li><a href="/blog/traditional-branding-agency-alternatives/">Traditional Branding Agency Alternatives for High-Ticket Founders</a></li>
+    </ul>
+  </section>
 
   <a class="back-link" href="/blog/">&larr; Back to the Blog</a>
 </article>
