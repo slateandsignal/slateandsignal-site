@@ -145,7 +145,8 @@
 .style-photo,.part-photo{display:block;width:100%;object-fit:cover;margin:0 auto 22px;background:#eee}.style-photo{aspect-ratio:3/2;max-width:none}.part-photo{aspect-ratio:4/5;max-width:320px;margin-bottom:26px}.pick-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:8px}.answer.pick{display:block!important;width:100%;min-height:0;margin:0;gap:0}.pick{border:1px solid var(--rule,#ddd);background:#fff;padding:0 0 12px;cursor:pointer;text-align:left;font:inherit;color:inherit}.pick img{display:block;width:100%;aspect-ratio:4/5;object-fit:cover;margin-bottom:10px}.pick strong{display:block;font-weight:500;padding:0 10px;font-size:14px}.pick em{display:block;font-style:normal;font-size:12px;color:#666;padding:2px 10px 0}.pick.picked{outline:2px solid #FFDE7A}@media(max-width:560px){.pick-grid{grid-template-columns:1fr}}.tone-photo{display:block;width:100%;max-width:none;aspect-ratio:3/2;object-fit:cover;margin:6px 0 16px}.tone-trio{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin:8px 0 20px}.tone-trio figure{margin:0;padding:0 0 8px;border:1px solid var(--rule,#ddd)}.tone-trio img{display:block;width:100%;aspect-ratio:4/5;object-fit:cover}.tone-trio figcaption{font-size:12px;line-height:1.4;padding:8px 8px 0;color:#555}.tone-trio figcaption b{display:block;font-weight:500;color:#171717;letter-spacing:.12em;text-transform:uppercase;font-size:10px;margin-top:4px}.tone-trio figure.mine{border:2px solid #FFDE7A}.tone-trio figure.mine figcaption{color:#171717}.tone-box{border:1px solid var(--rule,#ddd);padding:22px 22px 8px;margin:34px 0}.tone-box blockquote{margin:18px 0 14px;padding-left:14px;border-left:3px solid #FFDE7A;font-style:italic}.tone-box cite{display:block;font-style:normal;font-size:12px;letter-spacing:.12em;text-transform:uppercase;margin-top:6px}
 </style>
 
-<script>function loadScript(a){var b=document.getElementsByTagName("head")[0],c=document.createElement("script");c.type="text/javascript",c.src="https://tracker.metricool.com/resources/be.js",c.onreadystatechange=a,c.onload=a,b.appendChild(c)}loadScript(function(){beTracker.t({hash:"e1ec5ef17fb5951bb3b77b706c9ad04"})});</script>
+
+<script src="/assets/site-analytics.js"></script>
 </head>
 <body>
 <main class="page">
@@ -303,6 +304,10 @@ function save(){ try{ localStorage.setItem("ss-content-style", JSON.stringify(S)
 function load(){ try{ var v = JSON.parse(localStorage.getItem("ss-content-style")); if(v && v.email) S = v; }catch(e){} }
 
 function send(payload){
+  if (window.ssTrack && !VIEW_ONLY) {
+    if (payload.stage === "start") window.ssTrack("quiz_start", "content_style");
+    if (payload.stage === "complete") window.ssTrack("quiz_result_shown", "content_style");
+  }
   if(!WEBHOOK) return;
   try{
     var body = new URLSearchParams(payload);
