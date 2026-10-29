@@ -1,4 +1,4 @@
-/* Slate & Signal: production-only, metadata-only measurement. */
+/* Slate & Signal measurement v2: public acquisition only; no client identities or results. */
 (function () {
   'use strict';
   var loc = window.location, params = new URLSearchParams(loc.search);
@@ -12,10 +12,15 @@
   var privatePage = /^\/(p|r|cc|profiles|my-report|review|friend)(\/|$)/.test(loc.pathname) || params.has('r') || params.has('token') || params.has('t');
   var cohort = 'unclassified';
   try {
-    if (['invited', 'test'].indexOf(params.get('audience')) !== -1) sessionStorage.setItem('ss-traffic-cohort', params.get('audience'));
+    if (['invited', 'test', 'client'].indexOf(params.get('audience')) !== -1) sessionStorage.setItem('ss-traffic-cohort', params.get('audience'));
     cohort = sessionStorage.getItem('ss-traffic-cohort') || 'unclassified';
   } catch (_) { cohort = params.get('audience') || 'unclassified'; }
-  if (['invited', 'test'].indexOf(cohort) === -1) cohort = 'unclassified';
+  if (['invited', 'test', 'client'].indexOf(cohort) === -1) cohort = 'unclassified';
+  // Private delivery visits never load trackers. Public follow-on visits keep only a coarse label.
+  if (privatePage && cohort !== 'test') {
+    cohort = /^\/friend(\/|$)/.test(loc.pathname) ? 'invited' : 'client';
+    try { sessionStorage.setItem('ss-traffic-cohort', cohort); } catch (_) {}
+  }
   if (!production || blocked || privatePage || cohort === 'test') return;
   var allowedQuery = ['utm_source', 'utm_medium', 'utm_campaign', 'utm_content', 'utm_term', 'audience', 'analytics'];
   // Do not expose unrecognized query strings to a tracker that reads the URL.
@@ -47,9 +52,9 @@
     document.head.appendChild(element);
   }
   script('https://www.googletagmanager.com/gtag/js?id=G-656HKKYWBH');
-  if (params.has('audience') && ['invited','test'].indexOf(params.get('audience')) === -1) metricoolSafe = false;
+  if (params.has('audience') && ['invited','test','client'].indexOf(params.get('audience')) === -1) metricoolSafe = false;
   if (params.has('analytics') && ['on','off'].indexOf(params.get('analytics')) === -1) metricoolSafe = false;
-  if (metricoolSafe && cohort !== 'invited') script('https://tracker.metricool.com/resources/be.js', function () {
+  if (metricoolSafe && cohort === 'unclassified') script('https://tracker.metricool.com/resources/be.js', function () {
     if (window.beTracker) window.beTracker.t({hash:'e1ec5ef17fb5951bb3b77b706c9ad04'});
   });
   var allowedEvents = ['service_click', 'checkout_click', 'quiz_start', 'quiz_result_shown'];
