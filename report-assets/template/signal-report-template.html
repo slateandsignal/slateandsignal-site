@@ -168,6 +168,8 @@ img { display:block; width:100%; height:100%; object-fit:cover; }
 .vi-label { font-size:11px; letter-spacing:.24em; text-transform:uppercase; font-weight:700; margin-bottom:8px; }
 .vi-value { font-size:18px; line-height:1.6; max-width:430px; }
 .color-dots { display:flex; gap:12px; margin-top:14px; }
+.dot-item { display:flex; flex-direction:column; align-items:center; gap:6px; }
+.dot-hex { font-size:10px; letter-spacing:.06em; color:#111111; text-transform:uppercase; }
 .dot { width:38px; height:38px; border-radius:99px; border:1px solid rgba(0,0,0,.14); box-shadow:0 5px 14px rgba(0,0,0,.08); }
 .vi-collage { display:grid; grid-template-columns:1fr 1fr; grid-template-rows:270px 270px 420px; gap:10px; margin-top:220px; }
 .vi-img { border-radius:7px; overflow:hidden; box-shadow:0 12px 38px rgba(0,0,0,.12); }
@@ -1314,12 +1316,12 @@ Three real experiences from your answers that show why you have credibility in y
 <!-- Run the Brand-Color-Analysis-Agent.md prompt against the client's actual colors before filling this in. Only include the "Removed" row if colors were actually cut for a documented reason (contrast failure, redundancy, etc). -->
 <div class="vi-block"><div class="vi-label">{{COLOR SECTION LABEL — "Color Direction" or "Color Correction — Why the Palette Changed" if colors were corrected}}</div><div class="vi-value">{{COLOR EXPLANATION — describe the working palette and the reasoning, with real contrast numbers if any colors were removed}}</div>
 <div class="color-dots" style="margin-bottom:18px;">
-<div class="dot" style="background:{{HEX 1}}"></div><div class="dot" style="background:{{HEX 2}}"></div><div class="dot" style="background:{{HEX 3}}"></div><div class="dot" style="background:{{HEX 4 or white}}"></div>
+<div class="dot-item"><div class="dot" style="background:{{HEX 1}}"></div><div class="dot-hex"></div></div><div class="dot-item"><div class="dot" style="background:{{HEX 2}}"></div><div class="dot-hex"></div></div><div class="dot-item"><div class="dot" style="background:{{HEX 3}}"></div><div class="dot-hex"></div></div><div class="dot-item"><div class="dot" style="background:{{HEX 4 or white}}"></div><div class="dot-hex"></div></div>
 </div>
 <!-- Optional: only if colors were removed -->
 <div style="font-size:11px; letter-spacing:.15em; text-transform:uppercase; color:#111111; margin-bottom:10px;">{{REMOVED COLORS LABEL — omit this whole block if nothing was removed}}</div>
 <div class="color-dots">
-<div class="dot" style="background:{{REMOVED HEX 1}};"></div><div class="dot" style="background:{{REMOVED HEX 2}};"></div>
+<div class="dot-item"><div class="dot" style="background:{{REMOVED HEX 1}};"></div><div class="dot-hex"></div></div><div class="dot-item"><div class="dot" style="background:{{REMOVED HEX 2}};"></div><div class="dot-hex"></div></div>
 </div>
 </div>
 <div class="vi-block"><div class="vi-label">Photography Style</div><div class="vi-value">{{PHOTOGRAPHY STYLE — one sentence describing the style of photos that fits this brand}}</div></div>
@@ -1333,10 +1335,25 @@ Three real experiences from your answers that show why you have credibility in y
 <div class="vi-img wide"><div class="photo-placeholder-box">Photo placeholder</div></div>
 </div>
 </section>
+<!-- PAGE 8 NEW: SIGNAL BLIND SPOT (added 2026-11-04 at Raquel's direction, placed after Visual Identity).
+     Headline and body come from the client's Signal Profile word for word when one exists; otherwise written fresh. The two researched boxes (class bs-opt) are removed automatically when research found nothing verifiable. Sources are added with the gathered date by the assembler. -->
+<section class="page light ecosystem" style="grid-template-columns:1fr; gap:10px;">
+<div>
+<div class="page-num">08 <span class="numline"></span></div>
+<h2>SIGNAL<br/>BLIND SPOT</h2>
+<p class="sub">{{BLIND SPOT HEADLINE — one or two sentences naming the overlooked strength}}</p>
+</div>
+<div class="eco-grid revenue-list">
+<div class="eco-box"><div class="label">Here Is Your Blind Spot</div><p class="bs-body">{{BLIND SPOT BODY — two to four short paragraphs separated by a blank line, one insight only}}</p></div>
+<div class="eco-box bs-opt"><div class="label">Research That Supports Your Strength</div><p class="bs-body">{{BLIND SPOT FINDING (optional) — one paragraph, 60 words at most, what a verified source says about this strength in this niche; empty if no verified source supports it}}</p><p class="bs-src" style="font-size:14px; color:#111111; margin-top:10px;"><em style="color:#050505;">Source: {{BLIND SPOT FINDING SOURCE (optional) — source title followed by its full verified URL}}</em></p></div>
+<div class="eco-box bs-opt"><div class="label">Others Who Have Capitalized On This Same Strength</div><p class="bs-body">{{BLIND SPOT COMPARABLE (optional) — one paragraph, 60 words at most, a real named creator or business from a verified excerpt that built on this same strength and what happened; empty if none}}</p><p class="bs-src" style="font-size:14px; color:#111111; margin-top:10px;"><em style="color:#050505;">Source: {{BLIND SPOT COMPARABLE SOURCE (optional) — source title followed by its full verified URL}}</em></p></div>
+<div class="eco-box"><div class="label">This Is How You Can Use It</div><p class="bs-body">{{BLIND SPOT USE — 60 words at most, the specific first use of this strength in the client's content or offer, second person}}</p></div>
+</div>
+</section>
 <!-- PAGE 8 -->
 <section class="page dark photo-page">
 <div class="photo-text">
-<div class="page-num">08 <span class="numline"></span></div>
+<div class="page-num">09 <span class="numline"></span></div>
 <h2>THE MARKET<br/>OPPORTUNITY</h2>
 <p class="body">{{MARKET OPPORTUNITY — paragraph 1: who the audience is, what they've tried, what they still can't find}}</p>
 <p class="body" style="margin-top:22px;">{{MARKET DETAIL 1 — one full paragraph of plain connected sentences about one verified number showing the size of this market or the money in it, the source named in plain words inside the sentence, no label, no heading, no caption style}}</p>
@@ -1347,7 +1364,7 @@ Three real experiences from your answers that show why you have credibility in y
 </section>
 <!-- PAGE 9 -->
 <section class="page dark dark-content">
-<div class="page-num">09 <span class="numline"></span></div>
+<div class="page-num">10 <span class="numline"></span></div>
 <h2>THE<br/>NICHE GAP</h2>
 <div style="max-width:640px; margin-bottom:44px;">
 <p class="body" style="color:#fff;">{{NICHE GAP INTRO — 1-2 sentences on how this niche was identified}}</p>
@@ -1393,7 +1410,7 @@ Three real experiences from your answers that show why you have credibility in y
 <!-- PAGE 10 -->
 <section class="page light ecosystem" style="grid-template-columns:1fr; gap:10px;">
 <div>
-<div class="page-num">10 <span class="numline"></span></div>
+<div class="page-num">11 <span class="numline"></span></div>
 <h2>REVENUE<br/>POTENTIAL</h2>
 <p class="sub">{{PAGE 10 SUBTITLE}}</p>
 </div>
@@ -1407,7 +1424,7 @@ Three real experiences from your answers that show why you have credibility in y
 <!-- PAGE 11 -->
 <section class="page dark next" style="translate:0px -15px;">
 <div>
-<div class="page-num">11 <span class="numline"></span></div>
+<div class="page-num">12 <span class="numline"></span></div>
 <h2>WHAT<br/>COMES NEXT</h2>
 <p class="body" style="translate:1px -23px;">This report IS your brand.</p>
 <ul style="margin-top:22px; list-style:none; max-width:360px;">
