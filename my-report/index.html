@@ -158,7 +158,8 @@
 
   form.addEventListener('submit', async (e) => {
     e.preventDefault();
-    const passcode = input.value.trim();
+    // Every passcode is lowercase words and digits, so typing it in capitals still works.
+    const passcode = input.value.trim().toLowerCase();
     if (!passcode) return;
     btn.disabled = true;
     msg.textContent = '';
