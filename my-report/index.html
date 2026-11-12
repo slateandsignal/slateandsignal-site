@@ -80,6 +80,8 @@
   // Each client's list of other items lives in k/<id>.json, encrypted with their passcode.
   // id = first 40 hex characters of SHA-256("ss-portal:" + passcode). Without the passcode the file cannot be read.
   const LIST_DIR = 'k/';
+  // Phone wrap fix for reports built before 2026-11-12 (long source links ran off the right edge).
+  const WRAP_FIX = '<style id="ss-wrap-fix">/* Raquel 2026-11-12: long source links and grid boxes must wrap inside a phone screen (blind spot page ran off the right edge). */.eco-grid>*,.eco-box{min-width:0;}.eco-box p,.bs-src,.bs-src em{overflow-wrap:anywhere;word-break:break-word;}</style>';
 
   const form = document.getElementById('lookup');
   const input = document.getElementById('code');
@@ -137,7 +139,7 @@
   }
 
   function showReport() {
-    frame.srcdoc = reportHtml;
+    frame.srcdoc = reportHtml.includes('ss-wrap-fix') ? reportHtml : reportHtml.replace('</head>', WRAP_FIX + '</head>');
     document.body.classList.remove('home-on');
     document.body.classList.add('report-on');
     window.scrollTo(0, 0);
