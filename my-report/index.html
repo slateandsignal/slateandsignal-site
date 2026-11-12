@@ -21,9 +21,32 @@
   button{font-family:var(--sans);font-size:13px;letter-spacing:.2em;text-transform:uppercase;padding:14px;background:var(--gold);color:var(--black);border:0;border-radius:2px;cursor:pointer;}
   button:disabled{cursor:wait;}
   .msg{font-size:16px;text-align:center;color:#DDDDDD;min-height:24px;}
-  .report{display:none;width:100%;height:100vh;border:0;background:#d9d6cf;}
-  body.showing .entry{display:none;}
-  body.showing .report{display:block;}
+
+  /* Welcome page: one passcode opens a list of everything this person has. */
+  .home{display:none;min-height:100%;padding:72px 16px 56px;}
+  .home-inner{max-width:640px;margin:0 auto;}
+  .brand{font-size:12px;letter-spacing:.3em;text-transform:uppercase;color:var(--gold);margin-bottom:28px;}
+  .home h1{font-family:var(--serif);font-weight:400;font-size:52px;line-height:1.05;margin-bottom:14px;}
+  .lede{font-size:17px;line-height:1.6;color:#DDDDDD;margin-bottom:36px;}
+  .items{list-style:none;border-top:1px solid #2A2A2A;}
+  .items li{border-bottom:1px solid #2A2A2A;}
+  .item{display:flex;gap:18px;align-items:center;justify-content:space-between;width:100%;padding:22px 2px;background:none;border:0;color:var(--white);text-align:left;text-decoration:none;font:inherit;letter-spacing:0;text-transform:none;cursor:pointer;}
+  .item:hover .item-title,.item:focus-visible .item-title{color:var(--gold);}
+  .item-title{display:block;font-family:var(--serif);font-size:28px;font-weight:400;line-height:1.15;}
+  .item-desc{display:block;font-size:15px;line-height:1.55;color:#CFCFCF;margin-top:6px;}
+  .item-note{display:block;font-size:14px;color:var(--gold);margin-top:6px;}
+  .arrow{flex:none;font-size:22px;color:var(--gold);}
+  .signout{margin-top:40px;background:none;color:#BBBBBB;border:1px solid #2A2A2A;padding:12px 18px;}
+
+  .viewer{display:none;}
+  .back{position:fixed;top:12px;left:12px;z-index:5;padding:10px 14px;font-size:11px;background:var(--black);color:var(--gold);border:1px solid var(--gold);}
+  .report{width:100%;height:100vh;border:0;background:#d9d6cf;display:block;}
+
+  body.home-on .entry{display:none;}
+  body.home-on .home{display:block;}
+  body.report-on .entry, body.report-on .home{display:none;}
+  body.report-on .viewer{display:block;}
+  @media (max-width:520px){ .home{padding-top:48px;} .home h1{font-size:40px;} .item-title{font-size:24px;} }
 </style>
 </head>
 <body>
@@ -34,24 +57,55 @@
     <p class="msg" id="msg" role="status"></p>
   </form>
 </main>
-<!-- The report renders in a sandboxed frame so it keeps the Signal Report template's own CSS and scripts exactly as designed. -->
-<iframe class="report" id="report" title="Signal Report" sandbox="allow-scripts"></iframe>
+
+<section class="home" id="home" aria-live="polite">
+  <div class="home-inner">
+    <p class="brand">Slate &amp; Signal</p>
+    <h1 id="welcome">Welcome</h1>
+    <p class="lede">Everything you have from Slate &amp; Signal is listed here. This one passcode opens all of it.</p>
+    <ul class="items" id="items"></ul>
+    <button class="signout" id="signout" type="button">Close</button>
+  </div>
+</section>
+
+<div class="viewer" id="viewer">
+  <button class="back" id="back" type="button">Back to your list</button>
+  <!-- The report renders in a sandboxed frame so it keeps the Signal Report template's own CSS and scripts exactly as designed. -->
+  <iframe class="report" id="report" title="Signal Report" sandbox="allow-scripts"></iframe>
+</div>
+
 <script>
   // n8n "Signal Report - Lookup" production webhook (workflow xVGhfE5xTJhUtN8F).
   const LOOKUP_WEBHOOK_URL = 'https://slateandsignal.app.n8n.cloud/webhook/signal-report-lookup';
+  // Each client's list of other items lives in k/<id>.json, encrypted with their passcode.
+  // id = first 40 hex characters of SHA-256("ss-portal:" + passcode). Without the passcode the file cannot be read.
+  const LIST_DIR = 'k/';
 
   const form = document.getElementById('lookup');
   const input = document.getElementById('code');
   const btn = document.getElementById('go');
   const msg = document.getElementById('msg');
   const frame = document.getElementById('report');
+  const itemsEl = document.getElementById('items');
+  let reportHtml = '';
 
-  form.addEventListener('submit', async (e) => {
-    e.preventDefault();
-    const passcode = input.value.trim();
-    if (!passcode) return;
-    btn.disabled = true;
-    msg.textContent = '';
+  const b64 = s => Uint8Array.from(atob(s), c => c.charCodeAt(0));
+  const hex = buf => Array.from(new Uint8Array(buf)).map(b => b.toString(16).padStart(2, '0')).join('');
+
+  async function loadList(passcode) {
+    try {
+      const id = hex(await crypto.subtle.digest('SHA-256', new TextEncoder().encode('ss-portal:' + passcode))).slice(0, 40);
+      const res = await fetch(LIST_DIR + id + '.json', { cache: 'no-store' });
+      if (!res.ok) return null;
+      const P = await res.json();
+      const base = await crypto.subtle.importKey('raw', new TextEncoder().encode(passcode), 'PBKDF2', false, ['deriveKey']);
+      const key = await crypto.subtle.deriveKey({ name: 'PBKDF2', salt: b64(P.s), iterations: P.n, hash: 'SHA-256' }, base, { name: 'AES-GCM', length: 256 }, false, ['decrypt']);
+      const plain = await crypto.subtle.decrypt({ name: 'AES-GCM', iv: b64(P.i) }, key, b64(P.c));
+      return JSON.parse(new TextDecoder().decode(plain));
+    } catch (e) { return null; }
+  }
+
+  async function loadReport(passcode) {
     try {
       const res = await fetch(LOOKUP_WEBHOOK_URL, {
         method: 'POST',
@@ -61,19 +115,70 @@
         credentials: 'omit'
       });
       const data = await res.json();
-      if (data && data.found === true && data.reportHtml) {
-        input.value = '';
-        document.title = (data.clientName ? data.clientName + ' | ' : '') + 'Signal Report';
-        frame.srcdoc = data.reportHtml;
-        document.body.classList.add('showing');
-      } else {
-        msg.textContent = 'No report found for that code. Double check it and try again.';
-      }
-    } catch (err) {
-      msg.textContent = 'No report found for that code. Double check it and try again.';
-    } finally {
+      return (data && data.found === true && data.reportHtml) ? data : null;
+    } catch (e) { return null; }
+  }
+
+  function el(tag, cls, text) { const n = document.createElement(tag); if (cls) n.className = cls; if (text) n.textContent = text; return n; }
+
+  function addItem(item) {
+    const li = document.createElement('li');
+    const a = item.report ? el('button', 'item') : el('a', 'item');
+    if (item.report) { a.type = 'button'; a.addEventListener('click', showReport); }
+    else { a.href = item.url; a.target = '_blank'; a.rel = 'noopener'; }
+    const text = el('span');
+    text.appendChild(el('span', 'item-title', item.title));
+    if (item.description) text.appendChild(el('span', 'item-desc', item.description));
+    if (item.note) text.appendChild(el('span', 'item-note', item.note));
+    a.appendChild(text);
+    a.appendChild(el('span', 'arrow', '→'));
+    li.appendChild(a);
+    itemsEl.appendChild(li);
+  }
+
+  function showReport() {
+    frame.srcdoc = reportHtml;
+    document.body.classList.remove('home-on');
+    document.body.classList.add('report-on');
+    window.scrollTo(0, 0);
+  }
+
+  document.getElementById('back').addEventListener('click', () => {
+    document.body.classList.remove('report-on');
+    document.body.classList.add('home-on');
+  });
+
+  document.getElementById('signout').addEventListener('click', () => {
+    reportHtml = ''; frame.srcdoc = ''; itemsEl.textContent = '';
+    document.body.className = '';
+    document.title = 'Your Signal Report | Slate & Signal';
+  });
+
+  form.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    const passcode = input.value.trim();
+    if (!passcode) return;
+    btn.disabled = true;
+    msg.textContent = '';
+    const [report, list] = await Promise.all([loadReport(passcode), loadList(passcode.toLowerCase())]);
+    if (!report && !list) {
+      msg.textContent = 'Nothing was found for that code. Double check it and try again.';
       btn.disabled = false;
+      return;
     }
+    input.value = '';
+    itemsEl.textContent = '';
+    const fullName = (list && list.name) || (report && report.clientName) || '';
+    const first = (list && list.firstName) || fullName.split(' ')[0] || '';
+    document.getElementById('welcome').textContent = first ? 'Welcome, ' + first : 'Welcome';
+    document.title = (fullName ? fullName + ' | ' : '') + 'Slate & Signal';
+    if (report) {
+      reportHtml = report.reportHtml;
+      addItem({ report: true, title: 'Your Signal Report', description: 'Your full report, with your niche, market, blind spot and income directions.' });
+    }
+    ((list && list.items) || []).forEach(addItem);
+    document.body.classList.add('home-on');
+    btn.disabled = false;
   });
 </script>
 </body>
